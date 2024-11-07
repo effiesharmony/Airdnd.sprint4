@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { loadUsers, removeUser } from '../store/actions/user.actions'
 import { useNavigate } from 'react-router'
 
-export function AdminIndex() {
+export function HostIndex() {
     const navigate = useNavigate()
 
 	const user = useSelector(storeState => storeState.userModule.user)
