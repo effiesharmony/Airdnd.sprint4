@@ -1,4 +1,3 @@
-import { data } from "../../data/stay.json.js"
 
 export const storageService = {
     query,
@@ -6,6 +5,7 @@ export const storageService = {
     post,
     put,
     remove,
+    save
 }
 
 function query(entityType, delay = 500) {
@@ -25,7 +25,7 @@ function post(entityType, newEntity) {
     newEntity._id = _makeId()
     return query(entityType).then(entities => {
         entities.push(newEntity)
-        _save(entityType, entities)
+        save(entityType, entities)
         return newEntity
     })
 }
@@ -36,7 +36,7 @@ function put(entityType, updatedEntity) {
         if (idx < 0) throw new Error(`Update failed, cannot find entity with id: ${updatedEntity._id} in: ${entityType}`)
         const entityToUpdate = { ...entities[idx], ...updatedEntity }
         entities.splice(idx, 1, entityToUpdate)
-        _save(entityType, entities)
+        save(entityType, entities)
         return entityToUpdate
     })
 }
@@ -46,13 +46,13 @@ function remove(entityType, entityId) {
         const idx = entities.findIndex(entity => entity._id === entityId)
         if (idx < 0) throw new Error(`Remove failed, cannot find entity with id: ${entityId} in: ${entityType}`)
         entities.splice(idx, 1)
-        _save(entityType, entities)
+        save(entityType, entities)
     })
 }
 
 // Private functions
 
-function _save(entityType, entities) {
+function save(entityType, entities) {
     localStorage.setItem(entityType, JSON.stringify(entities))
 }
 

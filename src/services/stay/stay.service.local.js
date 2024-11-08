@@ -109,10 +109,7 @@ function getEmptyStay() {
 async function _createStays() {
     var stays = await storageService.query(STORAGE_KEY)
     if (!stays.length) {
-        const staysToSave = data.stay.map(stay => ({
-            ...stay,
-            _id: makeId()
-        }))
-        await Promise.all(staysToSave.map(stay => storageService.post(STORAGE_KEY, stay)))
+        const staysToSave = data.stays
+        await Promise.all(storageService.save(STORAGE_KEY, staysToSave))
     }
 }
