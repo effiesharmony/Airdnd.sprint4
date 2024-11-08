@@ -31,6 +31,18 @@ export function StayDetails() {
               <img key={index} src={url} alt={stay.name} className="stay-image" />
             ))}
           </div>
+          <div className="stay-description">
+            <p>{stay.summary}</p>
+            <div className="stay-capacity">
+            <p>Capacity: {stay.capacity} guests</p>
+          </div>
+          </div>
+          <div className="stay-host">
+            <img src={stay.host.imgUrl} alt={stay.host.fullname} className="host-image" />
+            <div className="host-details">
+              <p>Hosted by {stay.host.fullname}</p>
+            </div>
+          </div>
         </div>
       )}
     </section>

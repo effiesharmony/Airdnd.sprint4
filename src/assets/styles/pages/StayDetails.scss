@@ -4,7 +4,7 @@
       grid-template-columns: repeat(3, 1fr); 
       grid-template-rows: auto; 
       gap: 8px; 
-      
+
       img {
         width: 100%;
         height: auto;
@@ -26,4 +26,37 @@
       }
     }
   }
-  
+  .stay-description {
+    margin-top: 20px; 
+    font-size: 1rem;
+    line-height: 1.5;
+    font-style: bold;
+  }
+  .stay-capacity {
+    margin-top: 10px; 
+    font-size: 1rem;
+    color: #655;
+  }
+
+  .stay-host {
+    display: flex;
+    align-items: center;
+    margin-top: 20px; 
+
+    .host-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%; 
+      margin-right: 10px; 
+      object-fit: cover;
+    }
+
+    .host-details {
+      font-size: 1rem;
+      color: #333;
+
+      strong {
+        font-weight: bold;
+      }
+    }
+  }
