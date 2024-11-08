@@ -1,0 +1,29 @@
+.stay-details {
+    .stay-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); 
+      grid-template-rows: auto; 
+      gap: 8px; 
+      
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 8px; 
+  
+        &:nth-child(1) {
+          grid-column: span 2; 
+          grid-row: span 2; 
+        }
+  
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(4),
+        &:nth-child(5) {
+          grid-column: span 1;
+          grid-row: span 1;
+        }
+      }
+    }
+  }
+  
