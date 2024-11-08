@@ -86,7 +86,8 @@ const stays = [
 			}
 		],
 		likedByUsers: ['mini-user'],
-	},
+	}
+]
 
 ////////////////////////////////////////////////
 const orders = [
