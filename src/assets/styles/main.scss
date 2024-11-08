@@ -8,15 +8,15 @@
 @import "basics/helpers";
 @import "basics/layout";
 @import "basics/base";
-@import "basics/links";
+// @import "basics/links";
 @import "basics/forms";
 
 
 // pages
-@import "RootCmp";
+@import "../styles/App.scss";
 
 @import "pages/AboutUs";
-@import "pages/StayIndex";
+@import "pages/StayIndex.scss";
 @import "pages/ReviewIndex";
 @import "pages/UserDetails";
 @import "pages/TaskDetails";

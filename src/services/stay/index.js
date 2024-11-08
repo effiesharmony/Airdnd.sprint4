@@ -3,7 +3,7 @@ const { DEV, VITE_LOCAL } = import.meta.env
 import { getRandomIntInclusive, makeId } from '../util.service.js'
 
 import { stayService as local } from './stay.service.local.js'
-import { stayService as remote } from './stay.service.remote.js'
+import { stayServiceRemote as remote } from './stay.service.remote.js'
 
 function getEmptyStay() {
 	return {

@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
-import { loadStays, addStay, updateStay, removeStay, addStayMsg } from '../store/actions/stay.actions'
+import { loadStays, addStay, updateStay, removeStay, addStayMsg } from '../store/actions/stay.actions.js'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
-import { stayService } from '../services/stay.service.js'
-import { userService } from '../services/user.js'
+import { stayService } from '../services/stay/stay.service.local.js'
+import { userService } from '../services/user/user.service.local.js'
 
 import { StayList } from '../cmps/StayList.jsx'
 import { StayFilter } from '../cmps/StayFilterFocused.jsx'
