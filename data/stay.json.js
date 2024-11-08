@@ -12,7 +12,7 @@ const stays = [
 		host: {
 			_id: 'u101',
 			fullname: 'Davit Pok',
-			imgUrl: 'https://a0.muscache.com/im/pictures/fab79f25-2e10-4f0f-9711-663cb69dc7d8.jpg?aki_policy=profile_small',
+			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
 		},
 		loc: {
 			country: 'Portugal',
