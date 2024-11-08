@@ -3,7 +3,7 @@ const stays = [
 		_id: 's101',
 		name: 'Ribeira Charming Duplex',
 		type: 'House',
-		imgUrls: ['https://e26e9b.jpg', 'https://e26e9b.jpg', 'https://e26e9b.jpg', 'https://e26e9b.jpg', 'https://e26e9b.jpg'],
+		imgUrls: ['https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/7a207052-5f78-4594-b71b-7b343b306b24.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/781cb8d4-4a12-4b39-96d3-bbe457dff3ba.jpg?im_w=720'],
 		price: 80.0,
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,

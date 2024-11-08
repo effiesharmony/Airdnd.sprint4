@@ -70,7 +70,7 @@ export function StayIndex() {
           <button onClick={onAddStay}>Add a Stay</button>
         )}
       </header>
-      <button onClick={() => handleShowDetails('s102')}>Stay details</button>
+      <button onClick={() => handleShowDetails('s101')}>Stay details</button>
 
       <StayFilter filterBy={filterBy} setFilterBy={setFilterBy} />
       <StayList

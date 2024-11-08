@@ -33,6 +33,11 @@ export function StayDetails() {
         <h3>{stay.name}</h3>
         <h4>${stay.price}</h4>
         <pre> {stay.name} </pre>
+        <div className="stay-images">
+            {stay.imgUrls.map((url, index) => (
+                <img key={index} src={url} alt={stay.name} />
+            ))}
+        </div>
       </div>
       }
       <button onClick={() => { onAddStayMsg(stay._id) }}>Add stay msg</button>
