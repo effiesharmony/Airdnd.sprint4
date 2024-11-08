@@ -25,8 +25,8 @@ export function StayDetails() {
         <div>
           <div className="stay-header">
             <h3>{stay.name}</h3>
-            <h4>${stay.price}</h4>
-            <pre> {stay.name} </pre>
+            {/* <h4>${stay.price}</h4>
+            <pre> {stay.name} </pre> */}
           </div>
 
           <div className="stay-gallery">
@@ -61,6 +61,22 @@ export function StayDetails() {
                 </li>
               ))}
             </ul>
+          </div>
+
+          <div className="stay-reviews">
+            <h3>Reviews</h3>
+            {stay.reviews.map((review, index) => (
+              <div key={index} className="review-item">
+                <div className="review-header">
+                  <img src={review.by.imgUrl} alt={review.by.fullname} className="reviewer-image" />
+                  <div className="reviewer-details">
+                    <p className="reviewer-name">{review.by.fullname}</p>
+                    <p className="review-rate">Rating: {review.rate}</p>
+                  </div>
+                </div>
+                <p className="review-text">{review.txt}</p>
+              </div>
+            ))}
           </div>
         </div>
       )}

@@ -29,8 +29,8 @@ const stays = [
 				rate: 4,
 				by: {
 					_id: 'u102',
-					fullname: 'user2',
-					imgUrl: '/img/img2.jpg',
+					fullname: 'Reviewer',
+					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
 				},
 			},
 		],

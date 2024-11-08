@@ -85,6 +85,8 @@
 
   .stay-amenities {
     margin-top: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ddd;
 
     h3 {
       font-size: 1.2rem;
@@ -110,6 +112,72 @@
         width: 24px;
         height: 24px;
         margin-right: 8px;
+      }
+    }
+  }
+}
+.stay-reviews {
+  margin-top: 20px;
+
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .review-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .review-header {
+      display: flex;
+      align-items: center;
+
+      .reviewer-image {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        margin-right: 10px;
+        object-fit: cover;
+      }
+
+      .reviewer-details {
+        display: flex;
+        flex-direction: column;
+
+        .reviewer-name {
+          font-weight: bold;
+          color: #333;
+        }
+
+        .reviewer-info {
+          font-size: 0.9rem;
+          color: #888;
+        }
+
+        .review-date {
+          font-size: 0.9rem;
+          color: #777;
+        }
+      }
+    }
+
+    .review-content {
+      .review-text {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.4;
       }
     }
   }
