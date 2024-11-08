@@ -13,6 +13,7 @@ export const userService = {
     getLoggedinUser,
     saveLoggedinUser,
 }
+_createUsers()
 
 async function getUsers() {
     const users = await storageService.query('user')
@@ -90,4 +91,12 @@ async function _createAdmin() {
 
     const newUser = await storageService.post('user', userCred)
     console.log('newUser: ', newUser)
+}
+
+async function _createUsers() {
+    var users = await storageService.query(STORAGE_KEY_LOGGEDIN_USER)
+    if (!users.length) {
+        const usersToSave = data.users
+        await Promise.all(storageService.save(STORAGE_KEY_LOGGEDIN_USER, usersToSave))
+    }
 }
