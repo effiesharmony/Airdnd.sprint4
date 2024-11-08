@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router'
 
 import { AboutUs, AboutTeam, AboutVision } from './pages/AboutUs.jsx'
-import { StayIndex } from './pages/CarIndex.jsx'
+import { StayIndex } from './pages/StayIndex.jsx'
 import { ReviewIndex } from './pages/ReviewIndex.jsx'
 import { ChatApp } from './cmps/Chat.jsx'
 import { HostIndex } from './pages/HostIndex.jsx'
@@ -29,8 +29,8 @@ export function RootCmp() {
                         <Route path="team" element={<AboutTeam />} />
                         <Route path="vision" element={<AboutVision />} />
                     </Route>
-                    <Route path="car" element={<StayIndex />} />
-                    <Route path="car/:carId" element={<StayDetails />} />
+                    <Route path="stay" element={<StayIndex />} />
+                    <Route path="stay/:stayId" element={<StayDetails />} />
                     <Route path="user/:id" element={<UserDetails />} />
                     <Route path="review" element={<ReviewIndex />} />
                     <Route path="chat" element={<ChatApp />} />

@@ -2,7 +2,7 @@ const stay = {
 	_id: 's101',
 	name: 'Ribeira Charming Duplex',
 	type: 'House',
-	imgUrls: ['https://e26e9b.jpg', 'otherImg.jpg'],
+	imgUrls: ['https://e26e9b.jpg', 'https://e26e9b.jpg', 'https://e26e9b.jpg', 'https://e26e9b.jpg', 'https://e26e9b.jpg'],
 	price: 80.0,
 	summary: 'Fantastic duplex apartment...',
 	capacity: 8,
@@ -39,7 +39,7 @@ const stay = {
 const orders = [
 	{
 		_id: 'o1225',
-		hostId: { _id: 'u102', fullname: "bob", imgUrl: "..."},
+		hostId: { _id: 'u102', fullname: "bob", imgUrl: "..." },
 		guest: {
 			_id: 'u101',
 			fullname: 'User 1',
@@ -90,10 +90,12 @@ const users = [
 		password: 'secret',
 	},
 ]
-// Homepage: TOP categories: Best Rate / Houses / Kitchen / Show All - link to Explore
-// See More => /explore?topRate=true
-// See More => /explore?amenities=Kitchen
-// See More => /explore?type=House
+
+export const data = {
+	stay,
+	orders,
+	users
+}
 
 // Explore page:
 // stayService.query({ type: 'House' })
