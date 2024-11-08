@@ -1,0 +1,148 @@
+.order-form {
+    max-width: 360px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+  
+    .order-price {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: baseline;
+  
+      .price-per-night {
+        color: #333;
+        margin-right: 4px;
+      }
+  
+      span:last-child {
+        font-size: 1rem;
+        color: #888;
+      }
+    }
+  
+    .order-dates {
+      display: flex;
+      gap: 2px;
+      margin-bottom: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+  
+      .date-input {
+        flex: 1;
+        position: relative;
+        border-right: 1px solid #ddd;
+  
+        &:last-child {
+          border-right: none;
+        }
+  
+        label {
+          position: absolute;
+          top: 8px;
+          left: 10px;
+          font-size: 0.75rem;
+          color: #888;
+          text-transform: uppercase;
+        }
+  
+        input {
+          padding: 20px 10px 8px; 
+          border: none;
+          font-size: 1rem;
+          outline: none;
+          width: 100%;
+        }
+      }
+    }
+  
+    .order-guests {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      position: relative;
+  
+      label {
+        position: absolute;
+        top: 8px;
+        left: 10px;
+        font-size: 0.75rem;
+        color: #888;
+        text-transform: uppercase;
+      }
+  
+      select {
+        padding: 20px 10px 8px;
+        border: none;
+        font-size: 1rem;
+        outline: none;
+        appearance: none;
+        background-color: #fff;
+        background-image: url('data:image/svg+xml;utf8,<svg fill="%23999" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 16px;
+      }
+    }
+  
+    .reserve-button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(90deg, #ff385c, #d70653);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      margin-top: 16px;
+  
+      &:hover {
+        background: linear-gradient(90deg, #d70653, #ff385c);
+      }
+    }
+  
+    .no-charge-text {
+      font-size: 0.9rem;
+      color: #777;
+      text-align: center;
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+  
+    .order-summary {
+      font-size: 1rem;
+      color: #333;
+  
+      .price-calculation {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        color: #555;
+  
+        span:last-child {
+          font-weight: bold;
+        }
+      }
+  
+      .total-divider {
+        border-top: 1px solid #ddd;
+        margin: 8px 0;
+      }
+  
+      .total-price {
+        display: flex;
+        justify-content: space-between;
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+    }
+  }
+  

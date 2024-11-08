@@ -1,9 +1,31 @@
 .stay-details {
+  display: flex;
+  flex-direction: column;
+
+  .stay-content {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap; 
+    flex-direction: column;
+    align-items: flex-end;
+
+    .stay-main {
+      flex: 1;
+    }
+
+    .stay-order {
+      width: 360px;
+      position: relative;
+      top :-500px
+    }
+  }
+
   .stay-gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
     gap: 8px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ddd;
 
     .image-wrapper {
       position: relative;
@@ -38,16 +60,12 @@
         display: block;
       }
     }
-
-    padding-bottom: 16px;
-    border-bottom: 1px solid #ddd;
   }
 
   .stay-description {
     margin-top: 20px;
     font-size: 1rem;
     line-height: 1.5;
-    font-style: bold;
     padding-bottom: 16px;
     border-bottom: 1px solid #ddd;
   }
@@ -115,65 +133,40 @@
       }
     }
   }
-}
-.stay-reviews {
-  margin-top: 20px;
 
-  h3 {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #333;
-  }
+  .stay-reviews {
+    margin-top: 20px;
 
-  .reviews-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
     }
-  }
 
-  .review-item {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    .review-item {
+      margin-bottom: 16px;
 
-    .review-header {
-      display: flex;
-      align-items: center;
-
-      .reviewer-image {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        margin-right: 10px;
-        object-fit: cover;
-      }
-
-      .reviewer-details {
+      .review-header {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        margin-bottom: 8px;
+
+        .reviewer-image {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          margin-right: 10px;
+        }
 
         .reviewer-name {
           font-weight: bold;
-          color: #333;
         }
 
-        .reviewer-info {
+        .review-rate {
           font-size: 0.9rem;
           color: #888;
         }
-
-        .review-date {
-          font-size: 0.9rem;
-          color: #777;
-        }
       }
-    }
 
-    .review-content {
       .review-text {
         font-size: 1rem;
         color: #555;
