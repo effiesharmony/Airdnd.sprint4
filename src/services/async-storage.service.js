@@ -1,4 +1,5 @@
-import { data } from "../../data/stay.json"
+import { data } from "../../data/stay.json.js"
+
 export const storageService = {
     query,
     get,

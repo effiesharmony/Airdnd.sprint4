@@ -15,8 +15,8 @@ export function stayReducer(state = initialState, action) {
     var stays
     switch (action.type) {
         case SET_STAYS:
-            newState = { ...state, stays: action.stays }
-            break
+            return { ...state, stays: action.stays }
+
         case SET_STAY:
             newState = { ...state, stay: action.stay }
             break
