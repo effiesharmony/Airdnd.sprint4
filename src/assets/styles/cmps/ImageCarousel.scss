@@ -1,0 +1,74 @@
+.carousel-container {
+    position: relative;
+    display: inline-block;
+
+    .image-container {
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: auto;
+            display: block;
+        }
+
+        &:hover .nav-button {
+            opacity: 0.75;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            color: rgba(0, 0, 0, 0.8);
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1;
+            padding: 10px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &.prev {
+                left: 10px;
+            }
+
+            &.next {
+                right: 10px;
+            }
+        }
+
+        .dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 5px;
+
+            .dot {
+                height: 6px;
+                width: 6px;
+                background-color: rgba(255, 255, 255, 0.7);
+                border-radius: 50%;
+                transition: all 0.3s;
+                pointer-events: none;
+
+                &.active {
+                    background-color: rgba(255, 255, 255, 1);
+                }
+            }
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}

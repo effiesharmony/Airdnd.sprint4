@@ -1,15 +1,14 @@
 .stay-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: .5em;
+    // gap: 5rem;
 
     li {
         display: grid;
-        grid-template-columns: max-content auto;
+        grid-template-columns: auto;
         padding: .5em;
-        background-color: $clr2;
 
-        color: $clr6;
+        color: black;
 
         .actions {
             justify-self: end;
@@ -20,3 +19,4 @@
         }
     }
 }
+
