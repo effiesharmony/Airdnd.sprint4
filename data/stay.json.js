@@ -107,7 +107,7 @@ const users = [
 	{
 		_id: 'u101',
 		fullname: 'User 1',
-		imgUrl: '/img/img1.jpg',
+		imgUrl: 'https://a0.muscache.com/im/pictures/user/User-487405339/original/27b4d92c-2c59-4458-8968-a2f0e256db8b.jpeg?im_w=240',
 		username: 'user1',
 		password: 'secret',
 		reviews: [
@@ -118,7 +118,7 @@ const users = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: '/img/img2.jpg',
+					imgUrl: 'https://a0.muscache.com/im/pictures/user/User-487405339/original/27b4d92c-2c59-4458-8968-a2f0e256db8b.jpeg?im_w=240',
 				},
 			},
 		],
