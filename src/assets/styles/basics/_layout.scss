@@ -1,7 +1,6 @@
 .main-container {
     display: grid;
-    grid-template-columns: 1rem 1fr 1rem;
-
+    grid-template-columns: 40px 1fr 40px;
     > * {
         grid-column: 2;
 
@@ -9,25 +8,6 @@
             grid-column: 1 / -1;
         }
     }
-
-    // @include for-narrow-layout {
-    //     grid-template-columns: 
-    //         minmax(20px, 1fr)
-    //         minmax(auto, $mobile-breakpoint)
-    //         minmax(20px, 1fr);
-    // }
-    // @include for-normal-layout {
-    //     grid-template-columns: 
-    //         minmax(20px, 1fr)
-    //         minmax(auto, $narrow-breakpoint)
-    //         minmax(20px, 1fr);
-    // }
-    // @include for-wide-layout {
-    //     grid-template-columns: 
-    //         minmax(20px, 1fr)
-    //         minmax(auto, $normal-breakpoint)
-    //         minmax(20px, 1fr);
-    // }
 }
 
 .card-grid {
