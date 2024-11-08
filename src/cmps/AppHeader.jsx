@@ -1,64 +1,176 @@
 import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 import { logout } from "../store/actions/user.actions";
 
 export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user);
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   async function onLogout() {
     try {
       await logout();
-      navigate("/");
+      navigate("/stay");
       showSuccessMsg(`Bye now`);
     } catch (err) {
       showErrorMsg("Cannot logout");
     }
   }
 
-  return (
-    <header className="app-header full">
-      <nav>
-        <NavLink to="/" className="logo">
-          <div className="logo-and-icon">
-            <img src="/public/img/airbnb.png" alt="" />
-            airdnd
-          </div>
-        </NavLink>
+  function onOpenCloseMenu() {
+    setIsMenuOpen(!isMenuOpen);
+  }
 
-        <div>
-          <NavLink to="stay">Stays</NavLink>
+  return (
+    <header className="full">
+      <div className="app-header-top full">
+        <Link to="/stay" className="logo">
+          <div className="app-header-left-box">
+            <img
+              className="app-header-left-box-logo-img"
+              src="/public/svg/logo.svg"
+              alt=""
+            />
+          </div>
+        </Link>
+
+        <div className="app-header-central-box">
+          <Link className="app-header-central-box-link" to="stay">
+            Stays
+          </Link>
         </div>
 
-<div>
-	<p>Airbnb your home</p>
-	<img src="/public/svg/world.svg" alt="" />
-</div>
+        <div className="app-header-right-box">
+          <p>Airbnb your home</p>
+          <img
+            className="app-header-world-svg"
+            src="/public/svg/world.svg"
+            alt=""
+          />
+          {!user && (
+            <button
+              className="app-header-right-box-menu button1"
+              onClick={onOpenCloseMenu}
+            >
+              <img
+                className="app-header-menu-svg"
+                src="/public/svg/menu.svg"
+                alt="menu icon"
+              />
+              <img
+                className="app-header-user-img"
+                src="/public/svg/user.svg"
+                alt="user icon"
+              />
+            </button>
+          )}
+          {user && (
+            <button
+              className="app-header-right-box-menu button1"
+              onClick={onOpenCloseMenu}
+            >
+              <img
+                className="app-header-menu-svg"
+                src="/public/svg/menu.svg"
+                alt="menu icon"
+              />
+              {user.imgUrl ? (
+                <img className="app-header-user-img" src={user.imgUrl} />
+              ) : (
+                <img
+                  className="app-header-user-img"
+                  src="/public/svg/user.svg"
+                  alt="user icon"
+                />
+              )}
+            </button>
+          )}
 
-<div>
-	<button>
-		<img src="/public/svg/menu.svg" alt="" />
-		{/* <img src={user.imgUrl} alt="" /> */}
-	</button>
-</div>
+          {isMenuOpen && (
+            <div className="dropdown-menu">
+              {user ? (
+                <>
+                  <NavLink
+                    className="dropdown-menu-link messages"
+                    to="user/:id"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Messages
+                  </NavLink>
 
-        {/* {!user && (
-          <NavLink to="login" className="login-link">
-            Login
-          </NavLink>
-        )} */}
-        {/* {user && (
-          <div className="user-info">
-            <Link to={`user/${user._id}`}>
-              {user.imgUrl && <img src={user.imgUrl} />}
-              {user.fullname}
-            </Link>
-            <button onClick={onLogout}>logout</button>
-          </div>
-        )} */}
-      </nav>
+                  <NavLink
+                    className="dropdown-menu-link trips"
+                    to="user/:id"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Trips
+                  </NavLink>
+
+                  <NavLink
+                    className="dropdown-menu-link wishlist"
+                    to="user/:id"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Wishlist
+                  </NavLink>
+                  <hr />
+                  <NavLink
+                    className="dropdown-menu-link"
+                    to="user/:id"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Account
+                  </NavLink>
+                  <hr />
+                  <NavLink
+                    className="dropdown-menu-link"
+                    to="about"
+                    onClick={onOpenCloseMenu}
+                  >
+                    About us
+                  </NavLink>
+                  <button className="dropdown-menu-link-btn" onClick={onLogout}>
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <NavLink
+                    className="dropdown-menu-link login"
+                    to="login"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Log in
+                  </NavLink>
+                  <NavLink
+                    className="dropdown-menu-link"
+                    to="signup"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Sign up
+                  </NavLink>
+                  <hr />
+                  <NavLink
+                    className="dropdown-menu-link"
+                    to="about"
+                    onClick={onOpenCloseMenu}
+                  >
+                    About us
+                  </NavLink>
+                </>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+
+	  <div className="app-header-bottom">
+
+
+	  </div>
     </header>
   );
 }

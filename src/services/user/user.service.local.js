@@ -1,4 +1,5 @@
-import { storageService } from '../async-storage.service'
+import { storageService } from '../async-storage.service.js'
+import { data } from "../../../data/stay.json.js";
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
@@ -46,8 +47,8 @@ async function update({ _id, score }) {
 async function login(userCred) {
     const users = await storageService.query('user')
     const user = users.find(user => user.username === userCred.username)
-
-    if (user) return saveLoggedinUser(user)
+    if (!user) throw new Error('Invalid username or password')
+    return saveLoggedinUser(user)
 }
 
 async function signup(userCred) {
@@ -71,8 +72,6 @@ function saveLoggedinUser(user) {
         _id: user._id, 
         fullname: user.fullname, 
         imgUrl: user.imgUrl, 
-        score: user.score, 
-        isAdmin: user.isAdmin 
     }
 	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
 	return user
@@ -94,9 +93,9 @@ async function _createAdmin() {
 }
 
 async function _createUsers() {
-    var users = await storageService.query(STORAGE_KEY_LOGGEDIN_USER)
+    var users = await storageService.query('user')
     if (!users.length) {
         const usersToSave = data.users
-        await Promise.all(storageService.save(STORAGE_KEY_LOGGEDIN_USER, usersToSave))
+        await Promise.all(storageService.save('user', usersToSave))
     }
 }

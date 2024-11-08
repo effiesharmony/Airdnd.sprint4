@@ -2,29 +2,17 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
 import { userService } from '../services/user'
-import { login } from '../store/actions/user.actions'
+import { login } from '../store/actions/user.actions.js'
 
 export function Login() {
-    const [users, setUsers] = useState([])
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
-
     const navigate = useNavigate()
 
-    useEffect(() => {
-        loadUsers()
-    }, [])
-
-    async function loadUsers() {
-        const users = await userService.getUsers()
-        setUsers(users)
-    }
-
-    async function onLogin(ev = null) {
-        if (ev) ev.preventDefault()
-
-        if (!credentials.username) return
+    async function onLogin(ev) {
+        ev.preventDefault()
+        if (!credentials.username && !credentials.password) return
         await login(credentials)
-        navigate('/')
+        navigate('/stay')
     }
 
     function handleChange(ev) {
@@ -35,14 +23,23 @@ export function Login() {
     
     return (
         <form className="login-form" onSubmit={onLogin}>
-            <select
+            <input
+                type="text"
                 name="username"
                 value={credentials.username}
-                onChange={handleChange}>
-                    <option value="">Select User</option>
-                    {users.map(user => <option key={user._id} value={user.username}>{user.fullname}</option>)}
-            </select>
-            <button>Login</button>
+                placeholder="Username"
+                onChange={handleChange}
+                required
+            />
+            <input
+                type="password"
+                name="password"
+                value={credentials.password}
+                placeholder="Password"
+                onChange={handleChange}
+                required
+            />
+            <button onClick={onLogin}>Login</button>
         </form>
     )
 }

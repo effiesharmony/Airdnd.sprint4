@@ -20,25 +20,25 @@ _createStays()
 
 async function query(filterBy = { txt: '', price: 0 }) {
     var stays = await storageService.query(STORAGE_KEY)
-    const { txt, minSpeed, maxPrice, sortField, sortDir } = filterBy
+    // const { txt, minSpeed, maxPrice, sortField, sortDir } = filterBy
 
-    if (txt) {
-        const regex = new RegExp(filterBy.txt, 'i')
-        stays = stays.filter(stay => regex.test(stay.vendor) || regex.test(stay.description))
-    }
-    if (minSpeed) {
-        stays = stays.filter(stay => stay.speed >= minSpeed)
-    }
-    if (sortField === 'vendor' || sortField === 'owner') {
-        stays.sort((stay1, stay2) =>
-            stay1[sortField].localeCompare(stay2[sortField]) * +sortDir)
-    }
-    if (sortField === 'price' || sortField === 'speed') {
-        stays.sort((stay1, stay2) =>
-            (stay1[sortField] - stay2[sortField]) * +sortDir)
-    }
+    // if (txt) {
+    //     const regex = new RegExp(filterBy.txt, 'i')
+    //     stays = stays.filter(stay => regex.test(stay.vendor) || regex.test(stay.description))
+    // }
+    // if (minSpeed) {
+    //     stays = stays.filter(stay => stay.speed >= minSpeed)
+    // }
+    // if (sortField === 'vendor' || sortField === 'owner') {
+    //     stays.sort((stay1, stay2) =>
+    //         stay1[sortField].localeCompare(stay2[sortField]) * +sortDir)
+    // }
+    // if (sortField === 'price' || sortField === 'speed') {
+    //     stays.sort((stay1, stay2) =>
+    //         (stay1[sortField] - stay2[sortField]) * +sortDir)
+    // }
 
-    stays = stays.map(({ _id, vendor, price, speed, owner }) => ({ _id, vendor, price, speed, owner }))
+    // stays = stays.map(({ _id, vendor, price, speed, owner }) => ({ _id, vendor, price, speed, owner }))
     return stays
 }
 
