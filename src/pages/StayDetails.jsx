@@ -1,22 +1,20 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {amenityIcons} from '../utils/amenities.js'
+import { amenityIcons } from '../utils/amenities.js'
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 import { loadStay, addStayMsg } from '../store/actions/stay.actions'
 import { OrderForm } from '../cmps/OrderForm'
 
-
-export function StayDetails() {
-  const {stayId} = useParams()
+export function StayDetails({  }) {
+  const { stayId } = useParams()
+  const navigate = useNavigate()
   const stay = useSelector(storeState => storeState.stayModule.stay)
 
   useEffect(() => {
     loadStay(stayId)
   }, [stayId])
-
-
 
   return (
     <section className="stay-details">
@@ -81,7 +79,9 @@ export function StayDetails() {
           </div>
 
           <div className="stay-order">
-            <OrderForm stay={stay} />
+            <OrderForm
+              stayId={stayId}
+            />
           </div>
         </div>
       )}

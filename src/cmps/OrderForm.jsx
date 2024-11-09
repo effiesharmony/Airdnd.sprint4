@@ -1,60 +1,53 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { stayService } from '../services/stay/stay.service.local.js'
 
-export function OrderForm({ stay }) {
-  const basePrice = stay.price
+export function OrderForm({ stayId }) {
+  const [stay, setStay] = useState(null)
   const [checkIn, setCheckIn] = useState('')
   const [checkOut, setCheckOut] = useState('')
   const [guests, setGuests] = useState(1)
   const [nights, setNights] = useState(0)
-  const [totalPrice, setTotalPrice] = useState(basePrice)
-  const [isFixed, setIsFixed] = useState(false)
+  const [totalPrice, setTotalPrice] = useState(0)
   const orderFormRef = useRef(null)
+  const navigate = useNavigate()
+
+  useEffect(() => {
+
+    stayService.getById(stayId).then(stay => {
+      setStay(stay)
+    }).catch(err => console.error("Failed to load stay:", err))
+  }, [stayId])
 
   useEffect(() => {
     if (checkIn && checkOut) {
       const checkInDate = new Date(checkIn)
       const checkOutDate = new Date(checkOut)
-      const differenceInTime = checkOutDate - checkInDate
-      const calculatedNights = Math.max(differenceInTime / (1000 * 3600 * 24), 0)
+      const calculatedNights = Math.max((checkOutDate - checkInDate) / (1000 * 3600 * 24), 0)
       setNights(calculatedNights)
     } else {
       setNights(0)
     }
   }, [checkIn, checkOut])
-
   useEffect(() => {
-    setTotalPrice(basePrice * nights)
-  }, [nights, basePrice])
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (orderFormRef.current) {
-        const rect = orderFormRef.current.getBoundingClientRect()
-        if (rect.top <= 100) {
-          setIsFixed(true)
-        } else {
-          setIsFixed(false)
-        }
-      }
+    if (stay) {
+      setTotalPrice(stay.price * nights)
     }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const formatPrice = (price) => {
-    return price.toLocaleString('en-US')
+    
+  }, [nights, stay])
+  const handleReserve = () => {
+    sessionStorage.setItem('reservationDates', JSON.stringify({ checkIn, checkOut }))
+    sessionStorage.setItem('reservationGuests' , guests)
+    navigate(`/reservation/${stayId}`)
   }
 
+  if (!stay) return <p>Loading...</p>
   return (
-    <div 
-      className={`order-form ${isFixed ? 'fixed' : ''}`} 
-      ref={orderFormRef}
-    >
+    <div className="order-form" ref={orderFormRef}>
       <div className="order-price">
-        <span className="price-per-night">${formatPrice(basePrice)}</span> <span>night</span>
+        <span className="price-per-night">${stay.price}</span> <span>night</span>
       </div>
-
       <div className="order-table">
         <div className="order-dates">
           <div className="date-input">
@@ -66,7 +59,6 @@ export function OrderForm({ stay }) {
             <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} />
           </div>
         </div>
-
         <div className="order-guests">
           <label>Guests</label>
           <select value={guests} onChange={(e) => setGuests(Number(e.target.value))}>
@@ -77,20 +69,17 @@ export function OrderForm({ stay }) {
           </select>
         </div>
       </div>
-
-      <button className="reserve-button">Reserve</button>
-
+      <button className="reserve-button" onClick={handleReserve}>Reserve</button>
       <p className="no-charge-text">You won't be charged yet</p>
-
       <div className="order-summary">
         <div className="price-calculation">
-          <span className="underline-text">${formatPrice(basePrice)} x {nights} nights</span>
-          <span>${formatPrice(basePrice * nights)}</span>
+          <span className="underline-text">${stay.price} x {nights} nights</span>
+          <span>${totalPrice}</span>
         </div>
         <div className="total-divider"></div>
         <div className="total-price">
           <span>Total</span>
-          <span>${formatPrice(totalPrice)}</span>
+          <span>${totalPrice}</span>
         </div>
       </div>
     </div>
