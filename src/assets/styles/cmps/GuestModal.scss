@@ -8,8 +8,11 @@
   width: 416px;
   border-radius: 32px;
   background-color: white;
-  //   border: 1px solid #ddd;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+
+  &::after {
+    display: none;
+  }
 
   .guest-modal-options {
     display: grid;
@@ -19,15 +22,17 @@
     padding: 24px 4px;
     border-bottom: 1px solid #ddddddaa;
 
-    &:last-child{
-        border-bottom: none;
+    &:last-child {
+      border-bottom: none;
     }
     .guest-modal-options-left {
       justify-self: start;
 
       h4 {
-        font-size: 1em;
+        font-size: 16px;
         font-weight: bold;
+        margin: 0;
+        margin-bottom: 5px;
       }
 
       p {
@@ -37,7 +42,32 @@
     }
 
     .guest-modal-options-right {
+      display: flex;
       justify-self: end;
+
+      button {
+        width: 31px;
+        height: 31px;
+        padding: 10px;
+        margin: 0 15px;
+        border: 1px solid #dddddd;
+        border-radius: 50%;
+        background-color: transparent;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+          width: 12px;
+          height: 12px;
+          color: #6a6a6a;
+        }
+
+        &:hover {
+          border: 1px solid #222222;
+        }
+      }
     }
   }
 }

@@ -7,9 +7,9 @@ export function GuestModal({ filterBy, handleGuestChange }) {
           <p>Ages 13 or above</p>
         </div>
         <div className="guest-modal-options-right">
-          <button onClick={() => handleGuestChange("decrease")}>-</button>
+          <button onClick={() => handleGuestChange("decrease")}><i className="fa-solid fa-minus"></i></button>
           <span>{filterBy.minCapacity || 0}</span>
-          <button onClick={() => handleGuestChange("increase")}>+</button>
+          <button onClick={() => handleGuestChange("increase")}><i className="fa-solid fa-plus"></i></button>
         </div>
       </div>
 
@@ -19,9 +19,9 @@ export function GuestModal({ filterBy, handleGuestChange }) {
           <p>Ages 2 – 12</p>
         </div>
         <div className="guest-modal-options-right">
-          <button onClick={() => handleGuestChange("decrease")}>-</button>
+          <button onClick={() => handleGuestChange("decrease")}><i className="fa-solid fa-minus"></i></button>
           <span>{filterBy.minCapacity || 0}</span>
-          <button onClick={() => handleGuestChange("increase")}>+</button>
+          <button onClick={() => handleGuestChange("increase")}><i className="fa-solid fa-plus"></i></button>
         </div>
       </div>
 
@@ -31,9 +31,9 @@ export function GuestModal({ filterBy, handleGuestChange }) {
           <p>Under 2</p>
         </div>
         <div className="guest-modal-options-right">
-          <button onClick={() => handleGuestChange("decrease")}>-</button>
+          <button onClick={() => handleGuestChange("decrease")}><i className="fa-solid fa-minus"></i></button>
           <span>{filterBy.minCapacity || 0}</span>
-          <button onClick={() => handleGuestChange("increase")}>+</button>
+          <button onClick={() => handleGuestChange("increase")}><i className="fa-solid fa-plus"></i></button>
         </div>
       </div>
 
@@ -43,9 +43,9 @@ export function GuestModal({ filterBy, handleGuestChange }) {
           <p>Bringing a service animal?</p>
         </div>
         <div className="guest-modal-options-right">
-          <button onClick={() => handleGuestChange("decrease")}>-</button>
+          <button onClick={() => handleGuestChange("decrease")}><i className="fa-solid fa-minus"></i></button>
           <span>{filterBy.minCapacity || 0}</span>
-          <button onClick={() => handleGuestChange("increase")}>+</button>
+          <button onClick={() => handleGuestChange("increase")}><i className="fa-solid fa-plus"></i></button>
         </div>
       </div>
     </div>

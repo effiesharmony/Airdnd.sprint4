@@ -2,7 +2,7 @@
 export function PlaceModal({  }) {
 
   return (
-      <div className="guest-modal">
+      <div className="place-modal">
         <h1>Search by region</h1>
         </div>
   );

@@ -20,7 +20,8 @@ export function DateModal({ filterBy, handleDateChange }) {
           startDate={startDate}
           endDate={endDate}
           selectsRange
-          inline
+          inline          
+          dateFormat="dd/MM/yyyy"
           monthsShown={2}
           calendarStartDay={0}
         />

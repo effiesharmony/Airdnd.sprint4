@@ -46,9 +46,9 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
-				start: '20',
-				end: '30'
+				month: 'Nov',
+				start: '11/11/2024',
+				end: '11/30/2024'
 			}
 		],
 		likedByUsers: ['mini-user'],
@@ -90,7 +90,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -134,7 +134,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -178,7 +178,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -222,7 +222,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}

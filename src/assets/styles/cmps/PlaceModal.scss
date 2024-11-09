@@ -1,0 +1,20 @@
+.place-modal {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  padding: 16px 32px;
+  margin-top: 12px;
+  width: 416px;
+  border-radius: 32px;
+  background-color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+
+  &::after{
+    display: none;
+  }
+
+  h1{
+    font-size: rem(14px);
+  }
+}

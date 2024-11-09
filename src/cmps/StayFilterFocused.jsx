@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { stayAction } from "../store/actions/stay.actions.js";
 import { DateModal } from "./DateModal.jsx";
 import { GuestModal } from "./GuestModal.jsx";
+import { PlaceModal } from "./PlaceModal.jsx";
 import "react-datepicker/dist/react-datepicker.css";
 
 export function StayFilterFocused() {
@@ -46,7 +47,10 @@ export function StayFilterFocused() {
   return (
     <section className="stay-filter-focused">
       {/* Place */}
-      <div className="stay-filter-focused-place" onClick={() => setPlaceDropdownOpen(!isPlaceDropdownOpen)}>
+      <div
+        className="stay-filter-focused-place"
+        onClick={() => setPlaceDropdownOpen(!isPlaceDropdownOpen)}
+      >
         <h3>Where</h3>
         <input
           type="text"
@@ -57,17 +61,37 @@ export function StayFilterFocused() {
         />
       </div>
 
+      {isPlaceDropdownOpen && (
+        <PlaceModal filterBy={filterBy} />
+      )}
+
       {/* Date */}
       <div
         className="stay-filter-focused-date"
         onClick={() => setDateDropdownOpen(!isDateDropdownOpen)}
       >
-        <h3>Check in</h3>
-        <div className="date-input">
-          {filterBy.availableDates.start && filterBy.availableDates.end
-            ? `${filterBy.availableDates.start.toLocaleDateString()} - ${filterBy.availableDates.end.toLocaleDateString()}`
-            : "Add dates"}
+        <div className="stay-filter-focused-date-in">
+          <div className="stay-filter-focused-date-check-in">
+            <h3>Check in</h3>
+            <div className="date-input">
+              {filterBy.availableDates.start
+                ? filterBy.availableDates.start.toLocaleDateString()
+                : "Add dates"}
+            </div>
+          </div>
         </div>
+
+        <div className="stay-filter-focused-date-out">
+          <div className="stay-filter-focused-date-check-out">
+            <h3>Check out</h3>
+            <div className="date-input">
+              {filterBy.availableDates.end
+                ? filterBy.availableDates.end.toLocaleDateString()
+                : "Add dates"}
+            </div>
+          </div>
+        </div>
+        
       </div>
 
       {isDateDropdownOpen && (
@@ -90,8 +114,10 @@ export function StayFilterFocused() {
       </div>
 
       {isGuestDropdownOpen && (
-        <GuestModal filterBy={filterBy} handleGuestChange={handleGuestChange} />
-      )}
+          <GuestModal filterBy={filterBy} handleGuestChange={handleGuestChange} />
+        )}
+
+        <button className="stay-filter-focused-search"><i className="fa-solid fa-magnifying-glass"></i></button>
     </section>
   );
 }
