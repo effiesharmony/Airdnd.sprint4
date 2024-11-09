@@ -1,4 +1,5 @@
 .categories-outer-container {
+    margin-top: 30px;
     position: relative;
 
     button {
@@ -25,6 +26,7 @@
             justify-items: center;
             transition: 200ms;
             scroll-snap-align: start;
+            padding-bottom: 10px;
 
             img {
                 width: 24px;
@@ -33,6 +35,7 @@
 
             span {
                 font-size: rem(12px);
+                text-wrap: nowrap;
             }
 
             &:hover {
