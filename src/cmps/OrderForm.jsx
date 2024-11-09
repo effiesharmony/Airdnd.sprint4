@@ -10,7 +10,6 @@ export function OrderForm({ stay }) {
   const [isFixed, setIsFixed] = useState(false)
   const orderFormRef = useRef(null)
 
-  // Calculate the number of nights between check-in and check-out
   useEffect(() => {
     if (checkIn && checkOut) {
       const checkInDate = new Date(checkIn)
@@ -23,17 +22,15 @@ export function OrderForm({ stay }) {
     }
   }, [checkIn, checkOut])
 
-  // Update the total price based on nights only
   useEffect(() => {
     setTotalPrice(basePrice * nights)
   }, [nights, basePrice])
 
-  // Scroll event handler to toggle `fixed` class
   useEffect(() => {
     const handleScroll = () => {
       if (orderFormRef.current) {
         const rect = orderFormRef.current.getBoundingClientRect()
-        if (rect.top <= 100) { // Adjust threshold as needed
+        if (rect.top <= 100) {
           setIsFixed(true)
         } else {
           setIsFixed(false)
@@ -45,34 +42,40 @@ export function OrderForm({ stay }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const formatPrice = (price) => {
+    return price.toLocaleString('en-US')
+  }
+
   return (
     <div 
       className={`order-form ${isFixed ? 'fixed' : ''}`} 
       ref={orderFormRef}
     >
       <div className="order-price">
-        <span className="price-per-night">${basePrice}</span> <span>night</span>
+        <span className="price-per-night">${formatPrice(basePrice)}</span> <span>night</span>
       </div>
 
-      <div className="order-dates">
-        <div className="date-input">
-          <label>Check-in</label>
-          <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} />
+      <div className="order-table">
+        <div className="order-dates">
+          <div className="date-input">
+            <label>Check-in</label>
+            <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} />
+          </div>
+          <div className="date-input">
+            <label>Checkout</label>
+            <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} />
+          </div>
         </div>
-        <div className="date-input">
-          <label>Checkout</label>
-          <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} />
-        </div>
-      </div>
 
-      <div className="order-guests">
-        <label>Guests</label>
-        <select value={guests} onChange={(e) => setGuests(Number(e.target.value))}>
-          <option value="1">1 guest</option>
-          <option value="2">2 guests</option>
-          <option value="3">3 guests</option>
-          <option value="4">4 guests</option>
-        </select>
+        <div className="order-guests">
+          <label>Guests</label>
+          <select value={guests} onChange={(e) => setGuests(Number(e.target.value))}>
+            <option value="1">1 guest</option>
+            <option value="2">2 guests</option>
+            <option value="3">3 guests</option>
+            <option value="4">4 guests</option>
+          </select>
+        </div>
       </div>
 
       <button className="reserve-button">Reserve</button>
@@ -81,13 +84,13 @@ export function OrderForm({ stay }) {
 
       <div className="order-summary">
         <div className="price-calculation">
-          <span>${basePrice} x {nights} nights</span>
-          <span>${(basePrice * nights).toFixed(2)}</span>
+          <span className="underline-text">${formatPrice(basePrice)} x {nights} nights</span>
+          <span>${formatPrice(basePrice * nights)}</span>
         </div>
         <div className="total-divider"></div>
         <div className="total-price">
           <span>Total</span>
-          <span>${totalPrice.toFixed(2)}</span>
+          <span>${formatPrice(totalPrice)}</span>
         </div>
       </div>
     </div>
