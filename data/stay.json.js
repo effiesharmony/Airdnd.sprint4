@@ -3,8 +3,8 @@ const stays = [
 		_id: 's101',
 		name: 'Ribeira Charming Duplex',
 		type: 'House',
-		imgUrls: ['https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/7a207052-5f78-4594-b71b-7b343b306b24.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/781cb8d4-4a12-4b39-96d3-bbe457dff3ba.jpg?im_w=720'],
-		price: 80.0,
+		imgUrls: ['https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/7a207052-5f78-4594-b71b-7b343b306b24.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/781cb8d4-4a12-4b39-96d3-bbe457dff3ba.jpg?im_w=720'],
+		price: 8000.0,
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
@@ -33,6 +33,16 @@ const stays = [
 					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
 				},
 			},
+			{
+				id: 'madeId',
+				txt: 'Very helpful hosts. Cooked traditional...',
+				rate: 2.5,
+				by: {
+					_id: 'u103',
+					fullname: 'Reviewer',
+					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+				},
+			},
 		],
 		availableDates: [
 			{
@@ -47,7 +57,7 @@ const stays = [
 		_id: 's102',
 		name: 'The Ribeira Charming Duplex',
 		type: 'Big House',
-		imgUrls: ['https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/7a207052-5f78-4594-b71b-7b343b306b24.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/781cb8d4-4a12-4b39-96d3-bbe457dff3ba.jpg?im_w=720'],
+		imgUrls: ['https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/7a207052-5f78-4594-b71b-7b343b306b24.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/781cb8d4-4a12-4b39-96d3-bbe457dff3ba.jpg?im_w=720'],
 		price: 100.0,
 		summary: 'Fantastic duplex apartment...',
 		capacity: 3,
@@ -74,7 +84,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: '/img/img2.jpg',
+					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
 				},
 			},
 		],
@@ -86,7 +96,139 @@ const stays = [
 			}
 		],
 		likedByUsers: ['mini-user'],
-	}
+	},
+	{
+		_id: 's103',
+		name: 'The Ribeira Charming Duplex',
+		type: 'Big House',
+		imgUrls: ['https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/7a207052-5f78-4594-b71b-7b343b306b24.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/781cb8d4-4a12-4b39-96d3-bbe457dff3ba.jpg?im_w=720'],
+		price: 100.0,
+		summary: 'Fantastic duplex apartment...',
+		capacity: 8,
+		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
+		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		host: {
+			_id: 'u102',
+			fullname: 'David Rock',
+			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+		},
+		loc: {
+			country: 'Portugal',
+			countryCode: 'PT',
+			city: 'Lisbon',
+			address: '17 Kombo st',
+			lat: -8.61308,
+			lng: 41.1413,
+		},
+		reviews: [
+			{
+				id: 'madeId',
+				txt: 'Very nice. Cooked traditional...',
+				rate: 4,
+				by: {
+					_id: 'u102',
+					fullname: 'user2',
+					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+				},
+			},
+		],
+		availableDates: [
+			{
+				month: 'NOV',
+				start: '11',
+				end: '15'
+			}
+		],
+		likedByUsers: ['mini-user'],
+	},
+	{
+		_id: 's104',
+		name: 'The Ribeira Charming Duplex',
+		type: 'Big House',
+		imgUrls: ['https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/7a207052-5f78-4594-b71b-7b343b306b24.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/781cb8d4-4a12-4b39-96d3-bbe457dff3ba.jpg?im_w=720'],
+		price: 100.0,
+		summary: 'Fantastic duplex apartment...',
+		capacity: 8,
+		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
+		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		host: {
+			_id: 'u102',
+			fullname: 'David Rock',
+			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+		},
+		loc: {
+			country: 'Portugal',
+			countryCode: 'PT',
+			city: 'Lisbon',
+			address: '17 Kombo st',
+			lat: -8.61308,
+			lng: 41.1413,
+		},
+		reviews: [
+			{
+				id: 'madeId',
+				txt: 'Very nice. Cooked traditional...',
+				rate: 4,
+				by: {
+					_id: 'u102',
+					fullname: 'user2',
+					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+				},
+			},
+		],
+		availableDates: [
+			{
+				month: 'NOV',
+				start: '11',
+				end: '15'
+			}
+		],
+		likedByUsers: ['mini-user'],
+	},
+	{
+		_id: 's105',
+		name: 'The Ribeira Charming Duplex',
+		type: 'Big House',
+		imgUrls: ['https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/8c394e3b-9c87-4c76-b635-3f93eb14e3cb.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/7a207052-5f78-4594-b71b-7b343b306b24.jpg?im_w=720', 'https://a0.muscache.com/im/pictures/781cb8d4-4a12-4b39-96d3-bbe457dff3ba.jpg?im_w=720'],
+		price: 100.0,
+		summary: 'Fantastic duplex apartment...',
+		capacity: 8,
+		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
+		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		host: {
+			_id: 'u102',
+			fullname: 'David Rock',
+			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+		},
+		loc: {
+			country: 'Portugal',
+			countryCode: 'PT',
+			city: 'Lisbon',
+			address: '17 Kombo st',
+			lat: -8.61308,
+			lng: 41.1413,
+		},
+		reviews: [
+			{
+				id: 'madeId',
+				txt: 'Very nice. Cooked traditional...',
+				rate: 4,
+				by: {
+					_id: 'u102',
+					fullname: 'user2',
+					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+				},
+			},
+		],
+		availableDates: [
+			{
+				month: 'NOV',
+				start: '11',
+				end: '15'
+			}
+		],
+		likedByUsers: ['mini-user'],
+	},
 ]
 
 ////////////////////////////////////////////////

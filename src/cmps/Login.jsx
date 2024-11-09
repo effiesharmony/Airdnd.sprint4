@@ -1,18 +1,26 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router'
-
+import { useState } from 'react'
+import { useNavigate, useLocation } from 'react-router'
 import { userService } from '../services/user'
 import { login } from '../store/actions/user.actions.js'
 
-export function Login() {
+export function Login({ setIsLoggedIn }) {
     const [credentials, setCredentials] = useState({ username: '', password: '', fullname: '' })
     const navigate = useNavigate()
+    const location = useLocation()
+    
+    const redirectToReservation = location.state?.redirectToReservation || false
 
     async function onLogin(ev) {
         ev.preventDefault()
-        if (!credentials.username && !credentials.password) return
+        if (!credentials.username || !credentials.password) return
         await login(credentials)
-        navigate('/stay')
+        
+        
+        if (redirectToReservation) {
+            navigate('/reservation')
+        } else {
+            navigate('/stay')
+        }
     }
 
     function handleChange(ev) {
@@ -39,7 +47,7 @@ export function Login() {
                 onChange={handleChange}
                 required
             />
-            <button onClick={onLogin}>Login</button>
+            <button type="submit">Login</button>
         </form>
     )
 }

@@ -1,93 +1,85 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { stayService } from '../services/stay/stay.service.local.js'
 
-export function OrderForm({ stay }) {
-  const basePrice = stay.price
+export function OrderForm({ stayId }) {
+  const [stay, setStay] = useState(null)
   const [checkIn, setCheckIn] = useState('')
   const [checkOut, setCheckOut] = useState('')
   const [guests, setGuests] = useState(1)
   const [nights, setNights] = useState(0)
-  const [totalPrice, setTotalPrice] = useState(basePrice)
-  const [isFixed, setIsFixed] = useState(false)
+  const [totalPrice, setTotalPrice] = useState(0)
   const orderFormRef = useRef(null)
+  const navigate = useNavigate()
 
-  // Calculate the number of nights between check-in and check-out
+  useEffect(() => {
+
+    stayService.getById(stayId).then(stay => {
+      setStay(stay)
+    }).catch(err => console.error("Failed to load stay:", err))
+  }, [stayId])
+
   useEffect(() => {
     if (checkIn && checkOut) {
       const checkInDate = new Date(checkIn)
       const checkOutDate = new Date(checkOut)
-      const differenceInTime = checkOutDate - checkInDate
-      const calculatedNights = Math.max(differenceInTime / (1000 * 3600 * 24), 0)
+      const calculatedNights = Math.max((checkOutDate - checkInDate) / (1000 * 3600 * 24), 0)
       setNights(calculatedNights)
     } else {
       setNights(0)
     }
   }, [checkIn, checkOut])
-
-  // Update the total price based on nights only
   useEffect(() => {
-    setTotalPrice(basePrice * nights)
-  }, [nights, basePrice])
 
-  // Scroll event handler to toggle `fixed` class
-  useEffect(() => {
-    const handleScroll = () => {
-      if (orderFormRef.current) {
-        const rect = orderFormRef.current.getBoundingClientRect()
-        if (rect.top <= 100) { // Adjust threshold as needed
-          setIsFixed(true)
-        } else {
-          setIsFixed(false)
-        }
-      }
+    if (stay) {
+      setTotalPrice(stay.price * nights)
     }
+    
+  }, [nights, stay])
+  const handleReserve = () => {
+    sessionStorage.setItem('reservationDates', JSON.stringify({ checkIn, checkOut }))
+    sessionStorage.setItem('reservationGuests' , guests)
+    navigate(`/reservation/${stayId}`)
+  }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
+  if (!stay) return <p>Loading...</p>
   return (
-    <div 
-      className={`order-form ${isFixed ? 'fixed' : ''}`} 
-      ref={orderFormRef}
-    >
+    <div className="order-form" ref={orderFormRef}>
       <div className="order-price">
-        <span className="price-per-night">${basePrice}</span> <span>night</span>
+        <span className="price-per-night">${stay.price}</span> <span>night</span>
       </div>
-
-      <div className="order-dates">
-        <div className="date-input">
-          <label>Check-in</label>
-          <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} />
+      <div className="order-table">
+        <div className="order-dates">
+          <div className="date-input">
+            <label>Check-in</label>
+            <input type="date" value={checkIn} onChange={(e) => setCheckIn(e.target.value)} />
+          </div>
+          <div className="date-input">
+            <label>Checkout</label>
+            <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} />
+          </div>
         </div>
-        <div className="date-input">
-          <label>Checkout</label>
-          <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} />
+        <div className="order-guests">
+          <label>Guests</label>
+          <select value={guests} onChange={(e) => setGuests(Number(e.target.value))}>
+            <option value="1">1 guest</option>
+            <option value="2">2 guests</option>
+            <option value="3">3 guests</option>
+            <option value="4">4 guests</option>
+          </select>
         </div>
       </div>
-
-      <div className="order-guests">
-        <label>Guests</label>
-        <select value={guests} onChange={(e) => setGuests(Number(e.target.value))}>
-          <option value="1">1 guest</option>
-          <option value="2">2 guests</option>
-          <option value="3">3 guests</option>
-          <option value="4">4 guests</option>
-        </select>
-      </div>
-
-      <button className="reserve-button">Reserve</button>
-
+      <button className="reserve-button" onClick={handleReserve}>Reserve</button>
       <p className="no-charge-text">You won't be charged yet</p>
-
       <div className="order-summary">
         <div className="price-calculation">
-          <span>${basePrice} x {nights} nights</span>
-          <span>${(basePrice * nights).toFixed(2)}</span>
+          <span className="underline-text">${stay.price} x {nights} nights</span>
+          <span>${totalPrice}</span>
         </div>
         <div className="total-divider"></div>
         <div className="total-price">
           <span>Total</span>
-          <span>${totalPrice.toFixed(2)}</span>
+          <span>${totalPrice}</span>
         </div>
       </div>
     </div>

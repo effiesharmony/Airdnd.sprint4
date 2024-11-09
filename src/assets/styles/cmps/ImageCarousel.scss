@@ -6,11 +6,13 @@
         position: relative;
 
         img {
+
+            border-radius: 10px;
             width: 100%;
-            height: 100%;
+            // height: 100%;
             object-fit: cover;
-            aspect-ratio: auto;
-            display: block;
+            aspect-ratio: 1/1;
+            // display: block;
         }
 
         &:hover .nav-button {
@@ -67,7 +69,7 @@
             }
         }
 
-        &:hover{
+        &:hover {
             cursor: pointer;
         }
     }
