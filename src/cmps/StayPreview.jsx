@@ -18,18 +18,18 @@ export function StayPreview({ stay }) {
 
     console.log(stay._id)
     return (
-
-        <article onClick={() => onShowDetails(stay._id)} className="stay-preview">
+        <section className="stay-preview-container">
             <div className="imgCarousel">
-                <ImageCarousel stay={stay} />
+                <ImageCarousel stay={stay} onShowDetails={onShowDetails} />
             </div>
-            <p>{stay.name}</p>
-            how far away from current location
-            <p>{stay.availableDates[0].month} {stay.availableDates[0].start} - {stay.availableDates[0].end}</p>
-            <p>${stay.price} night</p>
+            <article onClick={() => onShowDetails(stay._id)} className="stay-preview">
+                <p>{stay.name}</p>
+                how far away from current location
+                <p>{stay.availableDates[0].month} {stay.availableDates[0].start} - {stay.availableDates[0].end}</p>
+                <p>${stay.price} night</p>
 
-        </article>
-
+            </article>
+        </section>
     )
 }
 
