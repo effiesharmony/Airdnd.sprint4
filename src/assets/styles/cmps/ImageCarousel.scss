@@ -1,22 +1,36 @@
 .carousel-container {
     position: relative;
     display: inline-block;
+    padding-bottom: 5px;
 
     .image-container {
         position: relative;
+        display: flex;
+        // box-shadow: 0 -30 20px;
 
         img {
 
-            border-radius: 10px;
+            border-radius: 15px;
             width: 100%;
-            // height: 100%;
             object-fit: cover;
             aspect-ratio: 1/1;
-            // display: block;
         }
 
         &:hover .nav-button {
             opacity: 0.75;
+        }
+
+        .heart {
+            position: absolute;
+            height: rem(25px);
+            width: rem(25px);
+            top: 5%;
+            right: 5%;
+            transition: 200ms;
+
+            &:hover{
+                scale: 1.1;
+            }
         }
 
         .nav-button {
@@ -33,9 +47,12 @@
             border-radius: 50%;
             opacity: 0;
             transition: opacity 0.3s;
+            transition: 200ms;
 
             &:hover {
                 opacity: 1;
+                scale: 1.03;
+                box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px ;
             }
 
             &.prev {
@@ -44,6 +61,11 @@
 
             &.next {
                 right: 10px;
+            }
+
+            img {
+                width: 12px;
+                height: 12px;
             }
         }
 

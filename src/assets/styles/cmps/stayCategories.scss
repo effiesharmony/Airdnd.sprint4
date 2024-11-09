@@ -1,0 +1,58 @@
+.categories-outer-container {
+    position: relative;
+
+    button {
+        @include carousel-btn;
+        z-index: 2;
+    }
+
+    .categories-inner-container {
+        font-family: AirbnbCereal_W_Bk;
+        font-weight: bold;
+        display: grid;
+        grid-template-rows: 1;
+        gap: 40px;
+        align-items: center;
+        overflow-x: scroll;
+        // scroll-snap-type: x mandatory ;
+        scroll-behavior: smooth;
+
+        .category {
+            grid-row: 1;
+            color: #222222;
+            opacity: 0.7;
+            text-align: center;
+            justify-items: center;
+            transition: 200ms;
+            scroll-snap-align: start;
+
+            img {
+                width: 24px;
+                height: 24px;
+            }
+
+            span {
+                font-size: rem(12px);
+            }
+
+            &:hover {
+                cursor: pointer;
+                opacity: 1;
+                border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        .category.selected {
+            border-bottom: 2px solid rgb(0, 0, 0);
+            opacity: 1;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+
+    .categories-inner-container::-webkit-scrollbar {
+        display: none;
+    }
+}
