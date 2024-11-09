@@ -1,0 +1,87 @@
+.stay-filter-focused {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  width: 100%;
+  max-width: 850px;
+  height: 66px;
+  color: #222222;
+  border-radius: rem(32px);
+  border: 1px solid #dddddd;
+  background-color: transparent;
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1);
+
+  h3 {
+    font-size: 0.75rem;
+    font-family: AirbnbCereal_W_Lt, sans-serif;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 2px;
+  }
+  .stay-filter-focused-place {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 16px 24px;
+    overflow: hidden;
+    border-radius: rem(32px);
+    cursor: default;
+    background-clip: padding-box;
+
+    &:hover {
+      background-color: #ebebeb;
+    }
+
+    input {
+      border: none;
+      background-color: transparent;
+      cursor: default;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .stay-filter-focused-date {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 16px 24px;
+    overflow: hidden;
+    border-radius: rem(32px);
+    cursor: default;
+
+    &:hover {
+      background-color: #ebebeb;
+    }
+
+    .date-input {
+      font-size: 0.875rem;
+      color: #6a6a6a;
+    }
+  }
+
+  .stay-filter-focused-guest {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 16px 24px;
+    overflow: hidden;
+    border-radius: rem(32px);
+    cursor: default;
+
+    &:hover {
+      background-color: #ebebeb;
+    }
+
+    .guest-input {
+      font-size: 0.875rem;
+      color: #6a6a6a;
+    }
+  }
+}

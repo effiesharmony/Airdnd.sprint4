@@ -1,117 +1,97 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { stayAction } from "../store/actions/stay.actions.js";
+import { DateModal } from "./DateModal.jsx";
+import { GuestModal } from "./GuestModal.jsx";
+import "react-datepicker/dist/react-datepicker.css";
 
-export function StayFilter({ filterBy, setFilterBy }) {
-    const [ filterToEdit, setFilterToEdit ] = useState(structuredClone(filterBy))
+export function StayFilterFocused() {
+  const dispatch = useDispatch();
+  const filterBy = useSelector((state) => state.stayModule.filterBy);
+  const [isPlaceDropdownOpen, setPlaceDropdownOpen] = useState(false);
+  const [isDateDropdownOpen, setDateDropdownOpen] = useState(false);
+  const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false);
 
-    useEffect(() => {
-        setFilterBy(filterToEdit)
-    }, [filterToEdit])
+  useEffect(() => {
+    stayAction.loadStays();
+  }, [filterBy]);
 
-    function handleChange(ev) {
-        const type = ev.target.type
-        const field = ev.target.name
-        let value
+  function handleChange({ target }) {
+    const { name, value } = target;
+    dispatch(stayAction.setFilterBy({ ...filterBy, [name]: value }));
+  }
 
-        switch (type) {
-            case 'text':
-            case 'radio':
-                value = field === 'sortDir' ? +ev.target.value : ev.target.value
-                if(!filterToEdit.sortDir) filterToEdit.sortDir = 1
-                break
-            case 'number':
-                value = +ev.target.value || ''
-                break
-        }
-        setFilterToEdit({ ...filterToEdit, [field]: value })
+  function handleDateChange(dates) {
+    const [startDate, endDate] = dates;
+    dispatch(
+      stayAction.setFilterBy({
+        ...filterBy,
+        availableDates: { start: startDate, end: endDate },
+      })
+    );
+    if (startDate && endDate) {
+      setDateDropdownOpen(false);
     }
+  }
 
-    function clearFilter() {
-        setFilterToEdit({ ...filterToEdit, txt: '', minSpeed: '', maxPrice: '' })
-    }
-    
-    function clearSort() {
-        setFilterToEdit({ ...filterToEdit, sortField: '', sortDir: '' })
-    }
+  function handleGuestChange(operation) {
+    const currentCapacity = filterBy.minCapacity || 0;
+    const newCapacity =
+      operation === "increase"
+        ? currentCapacity + 1
+        : Math.max(currentCapacity - 1, 0);
+    dispatch(stayAction.setFilterBy({ ...filterBy, minCapacity: newCapacity }));
+  }
 
-    return <section className="stay-filter">
-            <h3>Filter:</h3>
-            <input
-                type="text"
-                name="txt"
-                value={filterToEdit.txt}
-                placeholder="Free text"
-                onChange={handleChange}
-                required
-            />
-            <input
-                type="number"
-                min="0"
-                name="minSpeed"
-                value={filterToEdit.minSpeed}
-                placeholder="min. speed"
-                onChange={handleChange}
-                required
-            />
-            <button 
-                className="btn-clear" 
-                onClick={clearFilter}>Clear</button>
-            <h3>Sort:</h3>
-            <div className="sort-field">
-                <label>
-                    <span>Speed</span>
-                    <input
-                        type="radio"
-                        name="sortField"
-                        value="speed"
-                        checked={filterToEdit.sortField === 'speed'}
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    <span>Vendor</span>
-                    <input
-                        type="radio"
-                        name="sortField"
-                        value="vendor"
-                        checked={filterToEdit.sortField === 'vendor'}            
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    <span>Owner</span>
-                    <input
-                        type="radio"
-                        name="sortField"
-                        value="owner"
-                        checked={filterToEdit.sortField === 'owner'}                        
-                        onChange={handleChange}
-                    />
-                </label>
-            </div>
-            <div className="sort-dir">
-                <label>
-                    <span>Asce</span>
-                    <input
-                        type="radio"
-                        name="sortDir"
-                        value="1"
-                        checked={filterToEdit.sortDir === 1}                        
-                        onChange={handleChange}
-                    />
-                </label>
-                <label>
-                    <span>Desc</span>
-                    <input
-                        type="radio"
-                        name="sortDir"
-                        value="-1"
-                        onChange={handleChange}
-                        checked={filterToEdit.sortDir === -1}                        
-                    />
-                </label>
-            </div>
-            <button 
-                className="btn-clear" 
-                onClick={clearSort}>Clear</button>
+  return (
+    <section className="stay-filter-focused">
+      {/* Place */}
+      <div className="stay-filter-focused-place" onClick={() => setPlaceDropdownOpen(!isPlaceDropdownOpen)}>
+        <h3>Where</h3>
+        <input
+          type="text"
+          name="place"
+          value={filterBy.place || ""}
+          onChange={handleChange}
+          placeholder="Search destination"
+        />
+      </div>
+
+      {/* Date */}
+      <div
+        className="stay-filter-focused-date"
+        onClick={() => setDateDropdownOpen(!isDateDropdownOpen)}
+      >
+        <h3>Check in</h3>
+        <div className="date-input">
+          {filterBy.availableDates.start && filterBy.availableDates.end
+            ? `${filterBy.availableDates.start.toLocaleDateString()} - ${filterBy.availableDates.end.toLocaleDateString()}`
+            : "Add dates"}
+        </div>
+      </div>
+
+      {isDateDropdownOpen && (
+        <DateModal filterBy={filterBy} handleDateChange={handleDateChange} />
+      )}
+
+      {/* Guests */}
+      <div
+        className="stay-filter-focused-guest"
+        onClick={() => setGuestDropdownOpen(!isGuestDropdownOpen)}
+      >
+        <h3>Who</h3>
+        <div className="guest-input">
+          {filterBy.minCapacity
+            ? `${filterBy.minCapacity} ${
+                filterBy.minCapacity === 1 ? "guest" : "guests"
+              }`
+            : "Add guests"}
+        </div>
+      </div>
+
+      {isGuestDropdownOpen && (
+        <GuestModal filterBy={filterBy} handleGuestChange={handleGuestChange} />
+      )}
     </section>
+  );
 }

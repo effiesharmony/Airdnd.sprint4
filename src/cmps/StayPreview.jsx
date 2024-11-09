@@ -16,7 +16,7 @@ export function StayPreview({ stay }) {
         navigate(`/stay/${stayId}`)
     }
 
-    console.log(stay._id)
+    // console.log(stay._id)
     return (
 
         <article onClick={() => onShowDetails(stay._id)} className="stay-preview">

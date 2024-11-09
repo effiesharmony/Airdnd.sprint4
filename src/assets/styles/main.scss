@@ -31,7 +31,7 @@
 @import "cmps/AppFooter";
 @import "cmps/UserMsg";
 
-@import "cmps/StayFilter";
+@import "cmps/StayFilterFocused.scss";
 @import "cmps/ReviewEdit";
 @import "cmps/ReviewList";
 @import "cmps/ReviewPreview";
@@ -39,3 +39,5 @@
 @import "cmps/StayPreview";
 @import "cmps/OrderForm";
 @import "cmps/ImageCarousel.scss";
+@import "cmps/DateModal.scss";
+@import "cmps/GuestModal.scss";

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 import { logout } from "../store/actions/user.actions";
+import { StayFilterFocused } from "./StayFilterFocused.jsx";
 
 export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user);
@@ -25,8 +26,8 @@ export function AppHeader() {
   }
 
   return (
-    <header className="full">
-      <div className="app-header-top full">
+    <header className="app-header full">
+      <div className="app-header-top">
         <Link to="/stay" className="logo">
           <div className="app-header-left-box">
             <img
@@ -167,10 +168,9 @@ export function AppHeader() {
         </div>
       </div>
 
-	  <div className="app-header-bottom">
-
-
-	  </div>
+      <div className="app-header-bottom">
+        <StayFilterFocused />
+      </div>
     </header>
   );
 }
