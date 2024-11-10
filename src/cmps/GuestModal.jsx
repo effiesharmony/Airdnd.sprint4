@@ -157,7 +157,7 @@ export function GuestModal({ filterBy, handleGuestChange }) {
       <div className="guest-modal-options">
         <div className="guest-modal-options-left">
           <h4>Pets</h4>
-          <p>Bringing a service animal?</p>
+          <p className="pets">Bringing a service animal?</p>
         </div>
         <div className="guest-modal-options-right">
           <button className={`guest-modal-options-right-mbtn ${isButtonDisabled ? "disabled" : ""}`} onClick={() => decrement("pets")} disabled={pets === 0}>
