@@ -17,7 +17,6 @@ export function StayFilterFocused() {
   const [totalGuests, setTotalGuests] = useState(filterBy.minCapacity || 0);
 
   useEffect(() => {
-    // stayAction.loadStays();
     if (isFilterApplied) {
       stayAction.loadStays();
       setIsFilterApplied(false);
@@ -41,15 +40,6 @@ export function StayFilterFocused() {
       setDateDropdownOpen(false);
     }
   }
-
-  // function handleGuestChange(operation) {
-  //   const currentCapacity = filterBy.minCapacity || 0;
-  //   const newCapacity =
-  //     operation === "increase"
-  //       ? currentCapacity + 1
-  //       : Math.max(currentCapacity - 1, 0);
-  //   dispatch(stayAction.setFilterBy({ ...filterBy, minCapacity: newCapacity }));
-  // }
 
   function handleGuestChange(newTotalGuests) {
     setTotalGuests(newTotalGuests);

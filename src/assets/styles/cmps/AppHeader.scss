@@ -5,6 +5,7 @@
   padding-right: 80px;
   padding-top: 16px;
   border-bottom: 1px solid #dddddd;
+  background-color: white;
 
   .app-header-top {
     height: fit-content;
@@ -21,7 +22,7 @@
     .app-header-left-box {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: start;
 
       .app-header-left-box-logo-img {
         width: 103px;
@@ -62,10 +63,11 @@
       p {
         font-family: AirbnbCereal_W_Md2, sans-serif;
         font-weight: normal;
+        color: #222222;
         letter-spacing: 0.001px;
         font-size: rem(13.5px);
-        color: #222222;
         padding: 13px 10px;
+        margin-left: 30px;
         letter-spacing: 0.03rem;
         white-space: nowrap;
         cursor: pointer;
@@ -93,10 +95,10 @@
 
     .dropdown-menu {
       position: fixed;
-      top: 6%;
-      right: 2.5%;
-      width: 243px;
-      min-width: 243px;
+      top: 73px;
+      right: 80px;
+      width: 240px;
+      min-width: 240px;
       display: flex;
       flex-direction: column;
       align-items: start;
@@ -105,15 +107,15 @@
       box-shadow: 0 3px 12px 0 rgb(0 0 0 / 0.15);
       background-color: white;
       border-radius: 0.8rem;
-      padding: 9px 0;
+      padding: 8px 0;
       z-index: 11;
 
       .dropdown-menu-link,
       .dropdown-menu-link-btn {
-        padding: 12px 17px;
+        padding: 12px 16px;
         font-size: rem(13.5px);
         width: 100%;
-        letter-spacing: 0.04rem;
+        letter-spacing: 0.02rem;
         color: #222222;
       }
 
@@ -132,9 +134,10 @@
       .messages,
       .trips,
       .wishlist {
-        font-family: AirbnbCereal_W_Md2, sans-serif;
+        font-family: AirbnbCereal_W_Bk, sans-serif;
         font-weight: normal;
-        letter-spacing: normal;
+        color: #000000;
+        // letter-spacing: normal;
       }
     }
   }
@@ -148,10 +151,22 @@
   }
 }
 
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 80px;
+}
+
 @media screen and (max-width: 1440px) {
   .app-header {
     padding-left: 40px;
     padding-right: 40px;
+    .app-header-top {
+      .dropdown-menu {
+        right: 40px;
+      }
+    }
   }
 }
 

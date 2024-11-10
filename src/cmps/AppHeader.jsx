@@ -1,15 +1,36 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
 import { logout } from "../store/actions/user.actions";
 import { StayFilterFocused } from "./StayFilterFocused.jsx";
+import { StayFilterUnfocused } from "./StayFilterUnfocused.jsx";
 
 export function AppHeader() {
   const user = useSelector((storeState) => storeState.userModule.user);
   const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePage = location.pathname === "/stay";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  
+  useEffect(() => {
+    if (isHomePage) {
+    window.addEventListener("scroll", handleScroll)
+    
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+    }
+  } else {
+    setIsScrolled(true);
+  }
+  }, [isHomePage])
+  
+  function handleScroll() {
+    setIsScrolled(window.scrollY > 0)
+  }
 
   async function onLogout() {
     try {
@@ -26,7 +47,7 @@ export function AppHeader() {
   }
 
   return (
-    <header className="app-header full">
+    <header className={`app-header full ${isHomePage ? (isScrolled ? "sticky" : "") : "sticky"}`}>
       <div className="app-header-top">
         <Link to="/stay" className="logo">
           <div className="app-header-left-box">
@@ -166,7 +187,11 @@ export function AppHeader() {
       </div>
 
       <div className="app-header-bottom">
+      {isScrolled ? (
+        <StayFilterUnfocused />
+      ) : (
         <StayFilterFocused />
+      )}
       </div>
     </header>
   );

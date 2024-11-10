@@ -1,9 +1,9 @@
 .guest-modal {
   position: absolute;
-  top: 100%;
+  top:97%;
   right: 0;
   z-index: 10;
-  padding: 16px 38px;
+  padding: 16px 36px;
   margin-top: 12px;
   width: 416px;
   border-radius: 32px;
@@ -35,9 +35,11 @@
       
       h4 {
         font-size: 16px;
-        font-weight: bold;
+        font-family: AirbnbCereal_W_Md2, sans-serif;
+        font-weight: normal;
+        color: #222222;
         margin: 0;
-        margin-bottom: 5px;
+        margin-bottom: 4px;
       }
 
       p {
@@ -52,6 +54,7 @@
       justify-content: center;
       justify-self: end;
       font-size: 16px;
+      margin-right: 3px;
 
       .disabled {
         opacity: 0.25;
