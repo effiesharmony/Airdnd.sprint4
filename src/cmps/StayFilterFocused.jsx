@@ -9,13 +9,19 @@ import "react-datepicker/dist/react-datepicker.css";
 export function StayFilterFocused() {
   const dispatch = useDispatch();
   const filterBy = useSelector((state) => state.stayModule.filterBy);
+  const [isFilterApplied, setIsFilterApplied] = useState(false);
   const [isPlaceDropdownOpen, setPlaceDropdownOpen] = useState(false);
   const [isDateDropdownOpen, setDateDropdownOpen] = useState(false);
   const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false);
+  const [totalGuests, setTotalGuests] = useState(filterBy.minCapacity || 0);
 
   useEffect(() => {
-    stayAction.loadStays();
-  }, [filterBy]);
+    // stayAction.loadStays();
+    if (isFilterApplied) {
+      stayAction.loadStays();
+      setIsFilterApplied(false);
+    }
+  }, [isFilterApplied, dispatch]);
 
   function handleChange({ target }) {
     const { name, value } = target;
@@ -35,13 +41,24 @@ export function StayFilterFocused() {
     }
   }
 
-  function handleGuestChange(operation) {
-    const currentCapacity = filterBy.minCapacity || 0;
-    const newCapacity =
-      operation === "increase"
-        ? currentCapacity + 1
-        : Math.max(currentCapacity - 1, 0);
-    dispatch(stayAction.setFilterBy({ ...filterBy, minCapacity: newCapacity }));
+  // function handleGuestChange(operation) {
+  //   const currentCapacity = filterBy.minCapacity || 0;
+  //   const newCapacity =
+  //     operation === "increase"
+  //       ? currentCapacity + 1
+  //       : Math.max(currentCapacity - 1, 0);
+  //   dispatch(stayAction.setFilterBy({ ...filterBy, minCapacity: newCapacity }));
+  // }
+
+  function handleGuestChange(newTotalGuests) {
+    setTotalGuests(newTotalGuests);
+    dispatch(
+      stayAction.setFilterBy({ ...filterBy, minCapacity: newTotalGuests })
+    );
+  }
+
+  function applyFilters() {
+    setIsFilterApplied(true);
   }
 
   return (
@@ -61,9 +78,7 @@ export function StayFilterFocused() {
         />
       </div>
 
-      {isPlaceDropdownOpen && (
-        <PlaceModal filterBy={filterBy} />
-      )}
+      {isPlaceDropdownOpen && <PlaceModal filterBy={filterBy} />}
 
       {/* Date */}
       <div
@@ -91,7 +106,6 @@ export function StayFilterFocused() {
             </div>
           </div>
         </div>
-        
       </div>
 
       {isDateDropdownOpen && (
@@ -105,10 +119,13 @@ export function StayFilterFocused() {
       >
         <h3>Who</h3>
         <div className="guest-input">
-          {filterBy.minCapacity
+          {/* {filterBy.minCapacity
             ? `${filterBy.minCapacity} ${
                 filterBy.minCapacity === 1 ? "guest" : "guests"
               }`
+            : "Add guests"} */}
+          {totalGuests
+            ? `${totalGuests} guest${totalGuests > 1 ? "s" : ""}`
             : "Add guests"}
         </div>
       </div>
@@ -117,7 +134,16 @@ export function StayFilterFocused() {
           <GuestModal filterBy={filterBy} handleGuestChange={handleGuestChange} />
         )}
 
-        <button className="stay-filter-focused-search"><i className="fa-solid fa-magnifying-glass"></i></button>
+      {/* {isGuestDropdownOpen && (
+        <GuestModal
+          totalGuests={totalGuests}
+          handleGuestChange={handleGuestChange}
+        />
+      )} */}
+
+      <button className="stay-filter-focused-search" onClick={applyFilters}>
+        <i className="fa-solid fa-magnifying-glass"></i>
+      </button>
     </section>
   );
 }
