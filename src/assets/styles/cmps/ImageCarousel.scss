@@ -12,7 +12,7 @@
             border-radius: 10px;
             width: 100%;
             object-fit: cover;
-            aspect-ratio: 1/1;
+            aspect-ratio: 1.05/1;
             margin-bottom: 6PX;
         }
 
@@ -24,8 +24,8 @@
             position: absolute;
             height: rem(22px);
             width: rem(22px);
-            top: 3.5%;
-            right: 3.5%;
+            top: 4.5%;
+            right: 4.5%;
             transition: 200ms;
 
             &:hover{
@@ -36,14 +36,14 @@
         .nav-button {
             @include carousel-btn;
 
+
             &.prev {
-                left: 10px;
+                left: 12px;
             }
         
             &.next {
-                right: 10px;
+                right: 12px;
             }
-
         }
 
         .dots {
