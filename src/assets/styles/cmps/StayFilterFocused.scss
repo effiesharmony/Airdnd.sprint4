@@ -5,19 +5,32 @@
   align-items: center;
   width: 100%;
   max-width: 850px;
-  height: 65px;
+  height: 66px;
   color: #222222;
   border-radius: rem(32px);
   border: 1px solid #dddddd;
   background-color: transparent;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
 
   h3 {
     font-size: 0.75rem;
-    font-family: AirbnbCereal_W_Lt, sans-serif;
-    font-weight: bold;
+    font-family: AirbnbCereal_W_Md2, sans-serif;
+    font-weight: normal;
     margin: 0;
-    padding-bottom: 3px;
+    padding-bottom: 2px;
+  }
+
+  .stays {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    font-family: AirbnbCereal_W_Md2, sans-serif;
+    font-weight: normal;
+    text-decoration: none;
+    font-size: rem(16px);
+    color: #222222;
+    letter-spacing: 0.01rem;
   }
 
   > * {
@@ -59,7 +72,7 @@
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    padding: 16px 30px;
+    padding: 15px 30px;
     overflow: hidden;
     border-radius: rem(32px);
     cursor: pointer;
@@ -72,6 +85,10 @@
     input {
       border: none;
       background-color: transparent;
+      font-family: AirbnbCereal_W_Lt, sans-serif;
+      font-size: 0.85rem;
+      width: 100%;
+      padding: 0;
 
       &:focus {
         outline: none;
@@ -105,7 +122,7 @@
 
     .stay-filter-focused-date-in,
     .stay-filter-focused-date-out {
-      padding: 16px 24px;
+      padding: 15px 24px;
       border-radius: rem(32px);
 
       &:hover {
@@ -128,7 +145,7 @@
     flex-direction: column;
     align-items: start;
     justify-content: center;
-    padding: 16px 24px;
+    padding: 15px 24px;
     overflow: hidden;
     border-radius: rem(32px);
     cursor: pointer;
@@ -164,10 +181,22 @@
     &::after {
       display: none;
     }
+  }
+}
 
-    i{
-      // width: 10px;
-      // height: 10px;
+
+@media screen and (max-width: 950px) {
+  .stay-filter-focused {
+    .stays {
+      position: fixed;
+      top: 93px;
+      left: 50%;
+      font-family: AirbnbCereal_W_Md2, sans-serif;
+      font-weight: normal;
+      text-decoration: none;
+      font-size: rem(16px);
+      color: #222222;
+      letter-spacing: 0.01rem;
     }
   }
 }

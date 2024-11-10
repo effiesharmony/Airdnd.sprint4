@@ -4,6 +4,7 @@ import { stayAction } from "../store/actions/stay.actions.js";
 import { DateModal } from "./DateModal.jsx";
 import { GuestModal } from "./GuestModal.jsx";
 import { PlaceModal } from "./PlaceModal.jsx";
+import { Link } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 
 export function StayFilterFocused() {
@@ -62,7 +63,12 @@ export function StayFilterFocused() {
   }
 
   return (
+    // <section className="stay-filter-focused-main">
     <section className="stay-filter-focused">
+      <div className="stays-link">
+        <Link to="/stay" className="stays">Stays</Link>
+        </div>
+
       {/* Place */}
       <div
         className="stay-filter-focused-place"
@@ -131,8 +137,8 @@ export function StayFilterFocused() {
       </div>
 
       {isGuestDropdownOpen && (
-          <GuestModal filterBy={filterBy} handleGuestChange={handleGuestChange} />
-        )}
+        <GuestModal filterBy={filterBy} handleGuestChange={handleGuestChange} />
+      )}
 
       {/* {isGuestDropdownOpen && (
         <GuestModal
@@ -145,5 +151,6 @@ export function StayFilterFocused() {
         <i className="fa-solid fa-magnifying-glass"></i>
       </button>
     </section>
+    // </section>
   );
 }
