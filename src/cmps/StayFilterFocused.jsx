@@ -63,11 +63,11 @@ export function StayFilterFocused() {
   }
 
   return (
-    // <section className="stay-filter-focused-main">
-    <section className="stay-filter-focused">
+    <section className="stay-filter-focused-main">
       <div className="stays-link">
         <Link to="/stay" className="stays">Stays</Link>
         </div>
+    <section className="stay-filter-focused">
 
       {/* Place */}
       <div
@@ -80,17 +80,16 @@ export function StayFilterFocused() {
           name="place"
           value={filterBy.place || ""}
           onChange={handleChange}
-          placeholder="Search destination"
+          placeholder="Search destinations"
         />
       </div>
 
-      {isPlaceDropdownOpen && <PlaceModal filterBy={filterBy} />}
 
       {/* Date */}
       <div
         className="stay-filter-focused-date"
         onClick={() => setDateDropdownOpen(!isDateDropdownOpen)}
-      >
+        >
         <div className="stay-filter-focused-date-in">
           <div className="stay-filter-focused-date-check-in">
             <h3>Check in</h3>
@@ -114,43 +113,44 @@ export function StayFilterFocused() {
         </div>
       </div>
 
-      {isDateDropdownOpen && (
-        <DateModal filterBy={filterBy} handleDateChange={handleDateChange} />
-      )}
 
       {/* Guests */}
       <div
         className="stay-filter-focused-guest"
         onClick={() => setGuestDropdownOpen(!isGuestDropdownOpen)}
-      >
+        >
         <h3>Who</h3>
         <div className="guest-input">
           {/* {filterBy.minCapacity
             ? `${filterBy.minCapacity} ${
-                filterBy.minCapacity === 1 ? "guest" : "guests"
+              filterBy.minCapacity === 1 ? "guest" : "guests"
               }`
-            : "Add guests"} */}
+              : "Add guests"} */}
           {totalGuests
             ? `${totalGuests} guest${totalGuests > 1 ? "s" : ""}`
             : "Add guests"}
         </div>
       </div>
 
-      {isGuestDropdownOpen && (
-        <GuestModal filterBy={filterBy} handleGuestChange={handleGuestChange} />
-      )}
 
       {/* {isGuestDropdownOpen && (
         <GuestModal
-          totalGuests={totalGuests}
-          handleGuestChange={handleGuestChange}
+        totalGuests={totalGuests}
+        handleGuestChange={handleGuestChange}
         />
-      )} */}
+        )} */}
 
       <button className="stay-filter-focused-search" onClick={applyFilters}>
         <i className="fa-solid fa-magnifying-glass"></i>
       </button>
     </section>
-    // </section>
+    {isPlaceDropdownOpen && <PlaceModal filterBy={filterBy} />}
+    {isDateDropdownOpen && (
+      <DateModal filterBy={filterBy} handleDateChange={handleDateChange} />
+    )}
+    {isGuestDropdownOpen && (
+      <GuestModal filterBy={filterBy} handleGuestChange={handleGuestChange} />
+    )}
+    </section>
   );
 }

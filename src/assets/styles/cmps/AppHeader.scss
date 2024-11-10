@@ -24,25 +24,14 @@
       justify-content: center;
 
       .app-header-left-box-logo-img {
-        width: 100px;
-        min-width: 100px;
+        width: 103px;
+        min-width: 103px;
       }
     }
-
-    // .app-header-central-box {
-    //   .app-header-central-box-link {
-    //     font-size: rem(16px);
-    //     font-family: AirbnbCereal_W_Lt, sans-serif;
-    //     font-weight: bold;
-    //     color: #222222;
-    //     letter-spacing: 0.03rem;
-    //   }
-    // }
 
     .app-header-world-svg {
       width: 46px;
       height: 42px;
-      // margin-left: 10px;
       padding: 13px;
       cursor: pointer;
 
@@ -113,7 +102,6 @@
       align-items: start;
       justify-content: center;
       text-align: left;
-      // box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
       box-shadow: 0 3px 12px 0 rgb(0 0 0 / 0.15);
       background-color: white;
       border-radius: 0.8rem;
