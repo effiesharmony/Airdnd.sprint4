@@ -1,5 +1,4 @@
-.gitignore
 node_modules
-peacock
-.vscode
+data/stay.json.js
+.vscode/.*
 settings.json
