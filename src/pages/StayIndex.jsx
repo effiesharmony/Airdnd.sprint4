@@ -9,7 +9,7 @@ import { stayService } from "../services/stay/stay.service.local.js"
 // import { userService } from "../services/user/user.service.local.js"
 
 import { StayList } from "../cmps/StayList.jsx"
-import { StayCategories } from "../cmps/StayCategories.jsx"
+import { StayCategories } from "../cmps/StayFilterCategories.jsx"
 
 export function StayIndex() {
   const navigate = useNavigate()
