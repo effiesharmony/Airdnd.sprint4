@@ -13,18 +13,23 @@ import { StayCategories } from "../cmps/StayFilterCategories.jsx"
 
 export function StayIndex() {
   const navigate = useNavigate()
-  const [filterBy, setFilterBy] = useState(stayService.getDefaultFilter())
+  // const [filterBy, setFilterBy] = useState(stayService.getDefaultFilter())
   // const filterBy = useSelector(state => state.stayModule.filterBy)
   const stays = useSelector((storeState) => storeState.stayModule.stays)
+  const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
 
   useEffect(() => {
     loadStays(filterBy)
-  }, [filterBy])
+  }, [filterBy, stays])
+
+  function onSetFilter(filterBy) {
+    setFilterBy(filterBy)
+  }
 
   return (
     <main className="stay-index">
 
-      <StayCategories filterBy={filterBy} setFilterBy={setFilterBy} />
+      <StayCategories filterBy={filterBy} onSetFilter={onSetFilter} />
       <StayList stays={stays} />
     </main>
   )

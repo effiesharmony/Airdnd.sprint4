@@ -1,0 +1,119 @@
+// <main className="stay-edit">
+
+//       <div className="stay-name">
+//         <input type="text" placeholder="Stay name" />
+//       </div>
+//       <div className="images">
+//         <section className="img-section img1"></section>
+//         <section className="img-section img2"></section>
+//         <section className="img-section img3"></section>
+//         <section className="img-section img4"></section>
+//         <section className="img-section img5"></section>
+//       </div>
+//       <div className="description">
+//         <h4>Description</h4>
+//         <textarea className="description-textarea"></textarea>
+//       </div>
+//       <button className="save-btn">Save</button>
+
+//     </main>
+
+.stay-edit {
+  display: grid;
+
+  .stay-name {
+
+    input {
+      border: none;
+      border-bottom: 1px solid $gray2;
+    }
+  }
+
+  .images {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 8px;
+    overflow: hidden;
+
+    // input {
+    //   z-index: 9;
+    //   width: 100%;
+    //   height: 100%;
+
+    //   &:hover{
+    //     cursor: pointer;
+    //   }
+    // }
+
+    .img0{
+      grid-area: 1 / 1 / span 2 / span 2;
+    }
+
+    .img{
+      // width: 100%;
+      // height: 100%;
+      overflow: hidden;
+      object-fit: cover;
+      aspect-ratio: 1/1;
+      background-position: center;
+    }
+
+    // .image-wrapper {
+    //   position: relative;
+    //   border-radius: 8px;
+    //   overflow: hidden;
+    //   width: 100%;
+    //   height: 100%;
+
+    // &::after {
+    //   content: '';
+    //   position: absolute;
+    //   top: 0;
+    //   left: 0;
+    //   width: 100%;
+    //   height: 100%;
+    //   background-color: rgba(0, 0, 0, 0);
+    //   transition: background-color 0.3s ease;
+    // }
+
+    // &:hover {
+    //   cursor: pointer;
+
+    //   &::after {
+    //     background-color: rgba(0, 0, 0, 0.3);
+    //   }
+    // }
+
+    // label {
+    //   width: 100%;
+    //   height: 100%;
+    //   object-fit: cover;
+    //   display: block;
+    // }
+    // }
+  }
+
+  textarea{
+
+  }
+
+  button {
+    width: 100px;
+    height: 50px;
+    padding: 15px;
+    background: linear-gradient(90deg, #ff385c, #d70653);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 5px;
+
+    &:hover {
+      background: linear-gradient(90deg, #d70653, #ff385c);
+    }
+  }
+}

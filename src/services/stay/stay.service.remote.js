@@ -5,7 +5,8 @@ export const stayServiceRemote = {
     getById,
     save,
     remove,
-    addStayMsg
+    addStayMsg,
+    getEmptyStay
 }
 
 async function query(filterBy = { txt: '', price: 0 }) {
@@ -32,4 +33,22 @@ async function save(stay) {
 async function addStayMsg(stayId, txt) {
     const savedMsg = await httpService.post(`stay/${stayId}/msg`, {txt})
     return savedMsg
+}
+
+function getEmptyStay() {
+    return (
+        {
+            name: '',
+            amenities: [],
+            imgUrls: [],
+            price: null,
+            summary: '',
+            capacity: null,
+            loc: {
+                country: '',
+                city: '',
+                address: '',
+            }
+        }
+    )
 }

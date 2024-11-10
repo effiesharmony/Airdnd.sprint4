@@ -28,7 +28,7 @@ async function query(filterBy = {}) {
             stay.loc.country.toLowerCase().includes(place.toLowerCase())
         )
     }
-    
+
     if (availableDates?.start && availableDates?.end) {
         const startDate = new Date(availableDates.start)
         const endDate = new Date(availableDates.end)
@@ -40,7 +40,7 @@ async function query(filterBy = {}) {
             })
         )
     }
-    
+
     if (minCapacity) {
         stays = stays.filter(stay => stay.capacity >= minCapacity)
     }
@@ -62,17 +62,33 @@ async function save(stay) {
     if (stay._id) {
         const stayToSave = {
             _id: stay._id,
+            name: stay.name,
+            summary: stay.summary,
+            imgUrls: stay.imgUrls,
+            loc: stay.loc,
             price: stay.price,
-            speed: stay.speed,
+            capacity: stay.capacity,
         }
         savedStay = await storageService.put(STORAGE_KEY, stayToSave)
     } else {
         const stayToSave = {
-            vendor: stay.vendor,
+            name: stay.name,
+            summary: stay.summary,
+            imgUrls: stay.imgUrls,
+            loc: stay.loc,
             price: stay.price,
-            speed: stay.speed,
+            capacity: stay.capacity,
+            amenities: [],
+            availableDates: [
+                {
+                    month: 'Nov',
+                    start: '20',
+                    end: '30'
+                }
+            ],
+            reviews: [],
             // Later, owner is set by the backend
-            owner: userService.getLoggedinUser(),
+            host: userService.getLoggedinUser(),
             msgs: []
         }
         savedStay = await storageService.post(STORAGE_KEY, stayToSave)
@@ -103,16 +119,26 @@ function getDefaultFilter() {
             start: null,
             end: null
         },
-        labels: [],
+        label: 'Beachfront',
     }
 }
 
 function getEmptyStay() {
-    return {
-        vendor: makeId(),
-        speed: getRandomIntInclusive(80, 240),
-        msgs: [],
-    }
+    return (
+        {
+            name: '',
+            imgUrls: [null, null, null, null, null],
+            price: null,
+            summary: '',
+            amenities: [],
+            capacity: null,
+            loc: {
+                country: '',
+                city: '',
+                address: '',
+            }
+        }
+    )
 }
 
 async function _createStays() {
