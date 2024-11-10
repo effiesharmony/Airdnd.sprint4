@@ -11,7 +11,7 @@
         @content;
     }
 }
-
+// 1440
 @mixin for-normal-layout {
     @media (min-width: calc($narrow-breakpoint + 40px)) {
         @content;
@@ -64,34 +64,27 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     color: rgba(0, 0, 0, 0.8);
     border: none;
     font-size: 24px;
     cursor: pointer;
     z-index: 1;
-    padding: 10px;
+    padding: 7px;
     border-radius: 50%;
-    // opacity: 0;
+    opacity: 0;
     transition: opacity 0.3s;
     transition: 200ms;
 
     &:hover {
         opacity: 1;
         scale: 1.03;
-        box-shadow: rgba(0, 0, 0, 0.2) 0 0 8px;
-    }
-
-    &.prev {
-        left: 10px;
-    }
-
-    &.next {
-        right: 10px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0 0 10px;
     }
 
     img {
         width: 12px;
         height: 12px;
+        margin: 0;
     }
 }

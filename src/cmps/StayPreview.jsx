@@ -22,6 +22,7 @@ export function StayPreview({ stay }) {
                 <div className="stay-rating-container">
                     <img className="star" src="public/svg/star.svg" alt="Star" />
                     <p className="rating-num">{getReviewAvg(stay.reviews).toFixed(1)}</p>
+                    <p className="ratings-amount">({stay.reviews.length})</p>
                 </div>
 
             </article>

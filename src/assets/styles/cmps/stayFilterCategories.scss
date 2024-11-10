@@ -4,7 +4,25 @@
 
     button {
         @include carousel-btn;
+        opacity: 1;
         z-index: 2;
+        border: 1px solid $gray2;
+        background-color: #fff;
+        box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
+        
+        &.prev {
+            left: 0px;
+        }
+    
+        &.next {
+            right: 0px;
+        }
+
+        &:hover{
+            box-shadow: rgb(255, 255, 255) 0 0 10px 30px;            
+        }
+
+
     }
 
     .categories-inner-container {
@@ -15,7 +33,6 @@
         gap: 40px;
         align-items: center;
         overflow-x: scroll;
-        // scroll-snap-type: x mandatory ;
         scroll-behavior: smooth;
 
         .category {
