@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { stayService } from '../services/stay/stay.service.local.js'
+import { getReviewAvg, numberWithCommas } from '../services/util.service.js'
 
 export function OrderForm({ stayId }) {
   const [stay, setStay] = useState(null)
@@ -46,7 +47,7 @@ export function OrderForm({ stayId }) {
   return (
     <div className="order-form" ref={orderFormRef}>
       <div className="order-price">
-        <span className="price-per-night">${stay.price}</span> <span>night</span>
+        <span className="price-per-night">${numberWithCommas(stay.price)}</span> <span>night</span>
       </div>
       <div className="order-table">
         <div className="order-dates">
@@ -73,13 +74,13 @@ export function OrderForm({ stayId }) {
       <p className="no-charge-text">You won't be charged yet</p>
       <div className="order-summary">
         <div className="price-calculation">
-          <span className="underline-text">${stay.price} x {nights} nights</span>
-          <span>${totalPrice}</span>
+          <span className="underline-text">${numberWithCommas(stay.price)} x {nights} nights</span>
+          <span>${numberWithCommas(totalPrice)}</span>
         </div>
         <div className="total-divider"></div>
         <div className="total-price">
           <span>Total</span>
-          <span>${totalPrice}</span>
+          <span>${numberWithCommas(totalPrice)}</span>
         </div>
       </div>
     </div>
