@@ -1,173 +1,229 @@
-.stay-filter-focused {
-  position: relative;
-  display: grid;
-  grid-auto-flow: column;
+.stay-filter-focused-main {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  position: relative;
   width: 100%;
   max-width: 850px;
-  height: 65px;
-  color: #222222;
-  border-radius: rem(32px);
-  border: 1px solid #dddddd;
-  background-color: transparent;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.1);
 
-  h3 {
-    font-size: 0.75rem;
-    font-family: AirbnbCereal_W_Lt, sans-serif;
-    font-weight: bold;
-    margin: 0;
-    padding-bottom: 3px;
+  .stays {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    font-family: AirbnbCereal_W_Md2, sans-serif;
+    font-weight: normal;
+    text-decoration: none;
+    font-size: rem(16px);
+    color: #222222;
+    letter-spacing: 0.01rem;
   }
-
-  > * {
-    position: relative;
-    min-width: 100px;
-
-    &::after {
-      content: "";
-      position: absolute;
-      top: 25%;
-      bottom: 25%;
-      right: 3px;
-      width: 1px;
-      background-color: #dddddd;
-    }
-  }
-
-  > *:nth-last-child(2)::after {
-    content: "";
-    position: absolute;
-    top: 25%;
-    bottom: 25%;
-    left: 3px;
-    width: 1px;
-    background-color: #dddddd;
-  }
-
-  > *:first-child:hover::after {
-    opacity: 0;
-  }
-
-  > *:last-child:hover::after {
-    opacity: 0;
-  }
-
-  .stay-filter-focused-place {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    padding: 16px 30px;
-    overflow: hidden;
-    border-radius: rem(32px);
-    cursor: pointer;
-    width: 100%;
-
-    &:hover {
-      background-color: #ebebeb;
-    }
-
-    input {
-      border: none;
-      background-color: transparent;
-
-      &:focus {
-        outline: none;
-        background-color: transparent;
-      }
-    }
-  }
-
-  .stay-filter-focused-date {
+  
+  .stay-filter-focused {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-    overflow: hidden;
-    cursor: pointer;
+    grid-template-columns: 2fr 2fr 1fr 1fr;
+    grid-auto-flow: column;
+    align-items: center;
     width: 100%;
-
-    &::after {
+    max-width: 850px;
+    height: 66px;
+    color: #222222;
+    border-radius: rem(32px);
+    border: 1px solid #dddddd;
+    background-color: transparent;
+    box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+    
+    h3 {
+      font-size: 0.75rem;
+      font-family: AirbnbCereal_W_Md2, sans-serif;
+      font-weight: normal;
+      margin: 0;
+      padding-bottom: 2px;
+    }
+    
+    > * {
+      position: relative;
+      min-width: 100px;
+      
+      &::after {
+        content: "";
+        position: absolute;
+        top: 25%;
+        bottom: 25%;
+        right: 3px;
+        width: 1px;
+        background-color: #dddddd;
+      }
+    }
+    
+    .stay-filter-focused-guest::after {
       content: "";
       position: absolute;
       top: 25%;
       bottom: 25%;
-      right: 51%;
+      left: 3px;
       width: 1px;
       background-color: #dddddd;
     }
-
-    &:hover::after {
+    
+    > *:first-child:hover::after {
       opacity: 0;
     }
-
-    .stay-filter-focused-date-in,
-    .stay-filter-focused-date-out {
-      padding: 16px 24px;
+    
+    .stay-filter-focused-guest:hover::after {
+      opacity: 0;
+    }
+    
+    .stay-filter-focused-place {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      padding: 15px 30px;
+      padding-left: 32px;
+      overflow: hidden;
       border-radius: rem(32px);
-
+      cursor: pointer;
+      width: 100%;
+      
       &:hover {
         background-color: #ebebeb;
       }
-
-      .stay-filter-focused-date-check-in,
-      .stay-filter-focused-date-check-out {
-        .date-input {
-          font-size: 0.875rem;
-          color: #6a6a6a;
-          width: 70px;
+      
+      input {
+        border: none;
+        background-color: transparent;
+        font-family: AirbnbCereal_W_Lt, sans-serif;
+        font-size: 0.88rem;
+        width: 100%;
+        padding: 0;
+        color: #222222;
+        
+        &:focus {
+          outline: none;
+          background-color: transparent;
+        }
+      }
+      
+    }
+    
+    .stay-filter-focused-date {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+      overflow: hidden;
+      cursor: pointer;
+      width: 100%;
+      
+      &::after {
+        content: "";
+        position: absolute;
+        top: 25%;
+        bottom: 25%;
+        right: 51%;
+        width: 1px;
+        background-color: #dddddd;
+      }
+      
+      &:hover::after {
+        opacity: 0;
+      }
+      
+      .stay-filter-focused-date-in,
+      .stay-filter-focused-date-out {
+        padding: 15px 24px;
+        border-radius: rem(32px);
+        
+        &:hover {
+          background-color: #ebebeb;
+        }
+        
+        .stay-filter-focused-date-check-in,
+        .stay-filter-focused-date-check-out {
+          .date-input {
+            font-size: 0.875rem;
+            color: #585858;
+            width: 70px;
+          }
         }
       }
     }
+    
+    .stay-filter-focused-guest {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      justify-content: center;
+      padding: 15px 24px;
+      overflow: hidden;
+      border-radius: rem(32px);
+      cursor: pointer;
+      width: 100%;
+      
+      &:hover {
+        background-color: #ebebeb;
+      }
+      
+      .guest-input {
+        font-size: 0.875rem;
+        color: #6a6a6a;
+        width: 80px;
+      }
+    }
+    
+    .stay-filter-focused-search {
+      border: none;
+      background-color: #FF385C;
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      font-size: 16px;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      justify-self: end;
+      padding: 0;
+      margin-right: 8px;
+      cursor: pointer;
+      
+      &::after {
+        display: none;
+      }
+      
+      &:hover{
+        background-color: #E31C5F;
+      }
+    }
   }
-
-  .stay-filter-focused-guest {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    padding: 16px 24px;
-    overflow: hidden;
-    border-radius: rem(32px);
-    cursor: pointer;
-    width: 100%;
-
-    &:hover {
-      background-color: #ebebeb;
+}
+  
+  @media screen and (max-width: 950px) {
+  .stay-filter-focused-main {
+    .stay-filter-focused{
+      h3 {
+        font-size: 0.75rem;
+        font-family: AirbnbCereal_W_Md2, sans-serif;
+        font-weight: normal;
+        margin: 0;
+        padding-bottom: 3px;
+        letter-spacing: 0.01rem;
+      }
     }
-
-    .guest-input {
-      font-size: 0.875rem;
-      color: #6a6a6a;
-      width: 80px;
-    }
-  }
-
-  .stay-filter-focused-search {
-    border: none;
-    background-color: #fe4364;
-    width: 48px;
-    height: 48px;
-    min-width: 48px;
-    font-size: 16px;
-    border-radius: 50%;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-self: end;
-    padding: 0;
-    margin-right: 8px;
-
-    &::after {
-      display: none;
-    }
-
-    i{
-      // width: 10px;
-      // height: 10px;
+    .stays {
+      position: fixed;
+      top: 93px;
+      left: 50%;
+      font-family: AirbnbCereal_W_Md2, sans-serif;
+      font-weight: normal;
+      text-decoration: none;
+      font-size: rem(16px);
+      color: #222222;
+      letter-spacing: 0.01rem;
     }
   }
 }

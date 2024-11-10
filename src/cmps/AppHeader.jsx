@@ -38,14 +38,11 @@ export function AppHeader() {
           </div>
         </Link>
 
-        <div className="app-header-central-box">
-          <Link className="app-header-central-box-link" to="stay">
-            Stays
-          </Link>
-        </div>
-
         <div className="app-header-right-box">
-          <p>Airbnb your home</p>
+        <Link to="stay/edit" className="edit">
+          {/* <p>Airbnb your home</p> */}
+          <p>Add new stay</p>
+          </Link>
           <img
             className="app-header-world-svg"
             src="/public/svg/world.svg"

@@ -1,8 +1,7 @@
 .stay-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    // justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(274px, 1fr));
+    gap: 20px;
     margin-bottom: 10px;
 
     li {

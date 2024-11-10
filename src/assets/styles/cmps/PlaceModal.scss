@@ -8,7 +8,8 @@
   width: 416px;
   border-radius: 32px;
   background-color: white;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  // box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 3px 12px 0 rgb(0 0 0 / 0.15);
 
   &::after{
     display: none;

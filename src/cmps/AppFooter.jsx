@@ -5,7 +5,7 @@ export function AppFooter() {
 
   return (
     <footer className="app-footer full">
-      <div class="footer-content">
+      <div className="footer-content">
         <p>© 2024 Airbnb, Inc.</p>
         <div class="footer-links">
           <a href="/">Terms</a>
@@ -15,8 +15,8 @@ export function AppFooter() {
         </div>
       </div>
 
-      <div class="footer-content">
-		<div class="footer-lng">
+      <div className="footer-content">
+		<div className="footer-lng">
         <img
           className="app-footer-world-svg"
           src="/public/svg/world.svg"
