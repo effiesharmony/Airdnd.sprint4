@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { stayService } from '../services/stay/stay.service.local.js'
+import { orderService } from '../services/order/order.service'
+import { ReservationSuccessfull } from '../cmps/ReservationSuccessfull.jsx'
 
 export function ReservationDetails() {
     const { stayId } = useParams()
@@ -10,14 +12,13 @@ export function ReservationDetails() {
     const [guests, setGuests] = useState(1)
     const [nights, setNights] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
+    const [showSuccess, setShowSuccess] = useState(false)
     const navigate = useNavigate()
     const user = useSelector((storeState) => storeState.userModule.user)
 
     useEffect(() => {
         stayService.getById(stayId)
-            .then(stay => {
-                setStay(stay)
-            })
+            .then(stay => setStay(stay))
             .catch(err => console.error("Failed to load stay:", err))
     }, [stayId])
 
@@ -35,14 +36,26 @@ export function ReservationDetails() {
     }, [])
 
     useEffect(() => {
-        if (stay) {
-            setTotalPrice(stay.price * nights)
-        }
+        if (stay) setTotalPrice(stay.price * nights)
     }, [stay, nights])
+
     const handleConfirmReservation = () => {
-        alert('Reservation Successful!')
-        navigate('/stay')
+        const order = {
+            hostId: stay.host._id,
+            guest: { _id: user._id, fullname: user.fullname },
+            totalPrice,
+            startDate: reservationDates.checkIn,
+            endDate: reservationDates.checkOut,
+            guests: { adults: guests, kids: 0 },
+            stay: { _id: stay._id, name: stay.name, price: stay.price },
+            status: 'pending',
+        }
+        
+        orderService.saveOrder(order)
+            .then(() => setShowSuccess(true))
+            .catch(err => console.error("Failed to save order:", err))
     }
+
     if (!stay) return <p>Loading...</p>
     return (
         <div className="reservation-details">
@@ -80,13 +93,27 @@ export function ReservationDetails() {
                 <div className="reservation-image">
                     <img src={stay.imgUrls ? stay.imgUrls[0] : ''} alt={stay.name || 'Stay'} />
                     <p className="stay-name">{stay.name || 'Stay Name'}</p>
-                    <p className="stay-location">{stay.location || 'Location Details'}</p>
+                    <p className="stay-location">{stay.loc.city}, {stay.loc.country}</p>
                 </div>
             </div>
             <div className="buttons-container">
                 <button onClick={() => navigate(-1)} className="back-button">Back</button>
                 <button onClick={handleConfirmReservation} className="confirm-button">Confirm</button>
             </div>
+            {showSuccess && (
+                <div className="modal-overlay">
+                    <ReservationSuccessfull
+                        stay={stay}
+                        reservationDates={reservationDates}
+                        guests={guests}
+                        totalPrice={totalPrice}
+                        onClose={() => {
+                            setShowSuccess(false)
+                            navigate('/stay')
+                        }}
+                    />
+                </div>
+            )}
         </div>
     )
 }

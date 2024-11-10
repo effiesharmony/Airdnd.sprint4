@@ -3,16 +3,34 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
 
   .stay-order {
-    grid-column: 2;
-    grid-row: 1 / 5;
+    display:flex;
+    flex-direction: column;
     width: 350px;
+    height: 400px;
     justify-self: end;
     position: sticky;
-    top: 10px;
+    top: 15vh;
+
   }
+//   .sticky-card {
+//     position: sticky;
+    
+
+//     display: flex;
+//     flex-direction: column;
+    
+//     flex-basis: 240px;
+    
+//     height: 260px;
+//     margin: 5px auto calc(5px + 2em);
+//     padding: 1em;
+
+//     border: 1px solid rgb(226, 226, 226);
+//     box-shadow: 1px 1px 5px #cfcfcf;
+//     border-radius: 6px;
+// }
 
   .stay-details {
     display: flex;
@@ -118,7 +136,6 @@
     .stay-content-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      align-items: end;
       position: relative;
       >*:not(:last-child){
         grid-column: 1;
@@ -137,7 +154,7 @@
         // grid-column: 1;
         margin-top: 7px;
         font-size: 0.86rem;
-        color: #333;
+        color: #000000;
         padding-bottom: 20px;
         border-bottom: 1px solid #ddd;
       }
@@ -187,7 +204,7 @@
         }
 
         p {
-          font-size: 0.83rem;
+          font-size: 0.8rem;
           color: #030303;
           line-height: 1.5;
         }
@@ -217,7 +234,7 @@
         .amenity-item {
           display: flex;
           align-items: center;
-          font-size: 0.9rem;
+          font-size: 0.87rem;
           color: #000000;
 
           .amenity-icon {
