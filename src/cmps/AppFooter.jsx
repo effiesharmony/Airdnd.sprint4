@@ -7,7 +7,7 @@ export function AppFooter() {
     <footer className="app-footer full">
       <div className="footer-content">
         <p>© 2024 Airbnb, Inc.</p>
-        <div class="footer-links">
+        <div className="footer-links">
           <a href="/">Terms</a>
           <a href="/">Sitemap</a>
           <a href="/">Privacy</a>
