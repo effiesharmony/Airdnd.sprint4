@@ -20,7 +20,7 @@ _createStays()
 
 async function query(filterBy = {}) {
     var stays = await storageService.query(STORAGE_KEY)
-    const { minCapacity, place, availableDates, labels } = filterBy
+    const { minCapacity, place, availableDates, label } = filterBy
 
     if (place) {
         stays = stays.filter(stay =>
@@ -43,6 +43,10 @@ async function query(filterBy = {}) {
 
     if (minCapacity) {
         stays = stays.filter(stay => stay.capacity >= minCapacity)
+    }
+
+    if (label){
+        stays = stays.filter(stay => stay.labels.some((stayLabel) => stayLabel === label))
     }
 
     return stays
@@ -119,7 +123,7 @@ function getDefaultFilter() {
             start: null,
             end: null
         },
-        label: 'Beachfront',
+        label: false,
     }
 }
 

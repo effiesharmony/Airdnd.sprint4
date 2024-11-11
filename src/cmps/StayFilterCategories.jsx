@@ -3,10 +3,10 @@ import { useRef, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 
 export function StayCategories({ onSetFilter, filterBy }) {
-    const [selectedCat, setSelectedCat] = useState(categories[0].name)
+    const [selectedCat, setSelectedCat] = useState(false)
     const [isScrollEnd, setIsScrollEnd] = useState(false)
     const [currentLeft, setCurrentLeft] = useState(0)
-    const scrollRef = useRef(0)
+    const scrollRef = useRef(null)
     const [searchParams, setSearchParams] = useSearchParams()
     const navigate = useNavigate()
 

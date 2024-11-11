@@ -12,15 +12,14 @@
   z-index: 11;
   overflow: hidden;
 
-  button {
-    @include carousel-btn;
-    top: 64%;
-    scale: 1.1;
-    opacity: 1;
-    z-index: 2;
-    border: 1px solid $gray2;
-    background-color: #fff;
-    box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
+    button {
+        @include carousel-btn;
+        top: 64%;
+        scale: 1.1;
+        opacity: 1;
+        border: 1px solid $gray2;
+        background-color: #fff;
+        box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
 
     &.prev {
       left: 3px;
