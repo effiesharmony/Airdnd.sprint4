@@ -1,13 +1,14 @@
 import { stayService } from "../services/stay/index.js"
 import { stayAction } from "../store/actions/stay.actions.js"
 import { useParams, useNavigate } from "react-router"
-import { useEffect, useState } from "react"
+import { useRef, useEffect, useState } from "react"
 import { uploadImg } from "../services/cloudinary.service.js"
 
 export function StayEdit() {
   const navigate = useNavigate()
   const { stayId } = useParams()
   const [stayToEdit, setStayToEdit] = useState(stayService.getEmptyStay())
+  const fileInput = useRef(null)
 
   useEffect(() => {
     if (stayId) loadStay()
@@ -22,7 +23,14 @@ export function StayEdit() {
     }
   }
 
+  function clickToUpload() {
+    if (fileInput.current) {
+      fileInput.current.click()
+    }
+  }
+
   async function onChangeImg(ev) {
+    console.log(ev.target)
     try {
       const url = await uploadImg(ev)
       let newStayToEdit = { ...stayToEdit }
@@ -38,7 +46,7 @@ export function StayEdit() {
   }
 
   function onChangeLocation(ev) {
-    const newLoc = {...stayToEdit.loc, [ev.target.id]: ev.target.value}
+    const newLoc = { ...stayToEdit.loc, [ev.target.id]: ev.target.value }
     console.log(newLoc)
     setStayToEdit({ ...stayToEdit, loc: newLoc })
   }
@@ -49,7 +57,7 @@ export function StayEdit() {
 
   function onSaveStay(ev) {
     ev.preventDefault()
-    if(stayId){
+    if (stayId) {
       stayAction.updateStay(stayToEdit)
     } else {
       stayAction.addStay(stayToEdit)
@@ -65,21 +73,21 @@ export function StayEdit() {
           onInput={onChangeString} />
       </div>
       <div className="location">
-        <input id="country" type="text" placeholder="Country" onInput={onChangeLocation} value={stayToEdit.loc.country}/>
-        <input id="city" type="text" placeholder="City" onInput={onChangeLocation} value={stayToEdit.loc.city}/>
-        <input id="address" type="text" placeholder="Address" onInput={onChangeLocation} value={stayToEdit.loc.address}/>
+        <input id="country" type="text" placeholder="Country" onInput={onChangeLocation} value={stayToEdit.loc.country} />
+        <input id="city" type="text" placeholder="City" onInput={onChangeLocation} value={stayToEdit.loc.city} />
+        <input id="address" type="text" placeholder="Address" onInput={onChangeLocation} value={stayToEdit.loc.address} />
       </div>
       <div className="images">
         {stayToEdit.imgUrls.map((img, index) => (
-          <div className={`img img${index}`} key={index}>
-            {img ? <img src={img} alt="" /> : <p>Upload image</p>}
-            <input id={index} type="file" onChange={onChangeImg} />
+          <div id={index} onClick={clickToUpload} className={`img img${index}`} key={index}>
+            {img ? <img src={img} alt="" /> : <div><p>Upload Image</p></div>}
+            <input ref={fileInput} id={index} type="file" onChange={onChangeImg}  />
           </div>
         ))}
-        <div>
-          <input id="capacity" type="text" placeholder="0" onInput={onChangeNumber} value={stayToEdit.capacity}/>
-          <span>Price: <input id="price" type="text" placeholder="0" onInput={onChangeNumber} value={stayToEdit.price}/>per night</span>
-        </div>
+      </div>
+      <div className="bottom-info">
+        <span>Capacity:<input id="capacity" type="number" placeholder="0" onInput={onChangeNumber} value={stayToEdit.capacity}/></span>
+        <span className="price">Price: <input id="price" type="number" placeholder="0" onInput={onChangeNumber} value={stayToEdit.price} />per night</span>
       </div>
       <div className="description">
         <h4>Description</h4>

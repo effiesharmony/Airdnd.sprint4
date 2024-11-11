@@ -128,10 +128,10 @@ function getEmptyStay() {
         {
             name: '',
             imgUrls: [null, null, null, null, null],
-            price: 0,
+            price: '',
             summary: '',
             amenities: [],
-            capacity: 0,
+            capacity: '',
             loc: {
                 country: '',
                 city: '',
