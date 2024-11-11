@@ -1,55 +1,73 @@
-import { Link, NavLink, useLocation } from "react-router-dom"
-import { useNavigate } from "react-router"
-import { useSelector } from "react-redux"
-import { useState, useEffect } from "react"
-import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
-import { logout } from "../store/actions/user.actions"
-import { StayFilterFocused } from "./StayFilterFocused.jsx"
-import { StayFilterUnfocused } from "./StayFilterUnfocused.jsx"
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service";
+import { logout } from "../store/actions/user.actions";
+import { StayFilterFocused } from "./StayFilterFocused.jsx";
+import { StayFilterUnfocused } from "./StayFilterUnfocused.jsx";
 
 export function AppHeader() {
-  const user = useSelector((storeState) => storeState.userModule.user)
-  const navigate = useNavigate()
-  const location = useLocation()
-  const isHomePage = location.pathname === "/stay"
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const user = useSelector((storeState) => storeState.userModule.user);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHomePage = location.pathname === "/stay";
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isFilterFocused, setIsFilterFocused] = useState(true);
 
-  
   useEffect(() => {
     if (isHomePage) {
-    window.addEventListener("scroll", handleScroll)
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
+      setIsFilterFocused(true);
+    } else if (!isHomePage) {
+      setIsFilterFocused(false);
     }
-  } else {
-    setIsScrolled(true)
-  }
-  }, [isHomePage])
-  
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isHomePage]);
+
   function handleScroll() {
-    setIsScrolled(window.scrollY > 0)
+    setIsScrolled(window.scrollY > 0);
+    if (window.scrollY > 0) {
+      setIsFilterFocused(false);
+    } else if (window.scrollY === 0 && isHomePage) {
+      setIsFilterFocused(true);
+    }
   }
 
+  function toggleFilterFocus() {
+    setIsFilterFocused(true);
+  }
+  function onOpenFilterFocus(modalType) {
+    console.log("modalType", modalType);
+  }
   async function onLogout() {
     try {
-      await logout()
-      navigate("/stay")
-      showSuccessMsg(`Bye now`)
+      await logout();
+      navigate("/stay");
+      showSuccessMsg(`Bye now`);
     } catch (err) {
-      showErrorMsg("Cannot logout")
+      showErrorMsg("Cannot logout");
     }
   }
 
   function onOpenCloseMenu() {
-    setIsMenuOpen(!isMenuOpen)
+    setIsMenuOpen(!isMenuOpen);
   }
 
   return (
     <header
       className={`app-header full ${
-        isHomePage ? (isScrolled ? "sticky" : "") : "small"
+        isHomePage
+          ? isScrolled || !isFilterFocused
+            ? "sticky"
+            : ""
+          : isScrolled || !isFilterFocused
+          ? "small"
+          : "small"
       }`}
     >
       <div className="app-header-top">
@@ -191,8 +209,15 @@ export function AppHeader() {
       </div>
 
       <div className="app-header-bottom">
-        {isScrolled ? <StayFilterUnfocused /> : <StayFilterFocused />}
+        {isFilterFocused ? (
+          <StayFilterFocused />
+        ) : (
+          <StayFilterUnfocused
+            toggleFilterFocus={toggleFilterFocus}
+            onOpenFilterFocus={onOpenFilterFocus}
+          />
+        )}
       </div>
     </header>
-  )
+  );
 }

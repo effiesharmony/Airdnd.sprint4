@@ -19,7 +19,7 @@ export function App() {
   return (
     <div className="main-container">
       <AppHeader />
-
+      
       <main>
         <Routes>
           <Route path="/" element={<Navigate to="/stay" replace />} />

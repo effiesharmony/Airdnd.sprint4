@@ -14,22 +14,11 @@
   text-align: center;
   background-color: white;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+  z-index: 12;
 
   &:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
   }
-
-  //   h3 {
-  //     font-family: AirbnbCereal_W_Md2, sans-serif;
-  //     font-weight: normal;
-  //     letter-spacing: 0.001px;
-  //     font-size: rem(13.5px);
-  //     color: #222222;
-  //     margin: 0;
-  //     letter-spacing: 0.03rem;
-  //     white-space: nowrap;
-  //     cursor: pointer;
-  //   }
 
   .stay-filter-unfocused-place {
     padding: 13px 0;
