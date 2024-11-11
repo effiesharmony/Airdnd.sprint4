@@ -1,11 +1,14 @@
 import { categories } from "../../public/categories.js"
 import { useRef, useState } from "react"
+import { useNavigate, useSearchParams } from "react-router-dom"
 
 export function StayCategories({ onSetFilter, filterBy }) {
     const [selectedCat, setSelectedCat] = useState(categories[0].name)
     const [isScrollEnd, setIsScrollEnd] = useState(false)
     const [currentLeft, setCurrentLeft] = useState(0)
     const scrollRef = useRef(0)
+    const [searchParams, setSearchParams] = useSearchParams()
+    const navigate = useNavigate()
 
     function scrollRight() {
         const scrollAmount = scrollRef.current.scrollWidth * 0.15
@@ -27,8 +30,12 @@ export function StayCategories({ onSetFilter, filterBy }) {
     }
 
     function onSelectCategory(catName) {
-        onSetFilter({...filterBy, label: catName})
+        onSetFilter({ ...filterBy, label: catName })
         setSelectedCat(catName)
+        
+        const updatedParams = new URLSearchParams(searchParams)
+        updatedParams.set('category', catName)
+        setSearchParams(updatedParams)
     }
 
     return (
