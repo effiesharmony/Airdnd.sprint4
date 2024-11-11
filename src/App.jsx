@@ -23,8 +23,8 @@ export function App() {
       <main>
         <Routes>
           <Route path="/" element={<Navigate to="/stay" replace />} />
-          <Route path="about" element={<AboutUs />} />
           <Route path="stay" element={<StayIndex />} />
+          <Route path="about" element={<AboutUs />} />
           <Route path="stay/:stayId" element={<StayDetails/>}/>
           <Route path="/stay/edit/:stayId?" element={<StayEdit />} />
           <Route path="/reservation/:stayId" element={<ReservationDetails/>} />

@@ -13,23 +13,22 @@ export function AppHeader() {
   const location = useLocation();
   const isHomePage = location.pathname === "/stay";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  
   useEffect(() => {
     if (isHomePage) {
-    window.addEventListener("scroll", handleScroll)
-    
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
+      window.addEventListener("scroll", handleScroll);
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    } else {
+      setIsScrolled(true);
     }
-  } else {
-    setIsScrolled(true);
-  }
-  }, [isHomePage])
-  
+  }, [isHomePage]);
+
   function handleScroll() {
-    setIsScrolled(window.scrollY > 0)
+    setIsScrolled(window.scrollY > 0);
   }
 
   async function onLogout() {
@@ -47,7 +46,11 @@ export function AppHeader() {
   }
 
   return (
-    <header className={`app-header full ${isHomePage ? (isScrolled ? "sticky" : "") : "sticky"}`}>
+    <header
+      className={`app-header full ${
+        isHomePage ? (isScrolled ? "sticky" : "") : "sticky"
+      }`}
+    >
       <div className="app-header-top">
         <Link to="/stay" className="logo">
           <div className="app-header-left-box">
@@ -60,9 +63,9 @@ export function AppHeader() {
         </Link>
 
         <div className="app-header-right-box">
-        <Link to="stay/edit" className="edit">
-          {/* <p>Airbnb your home</p> */}
-          <p>Add new stay</p>
+          <Link to="stay/edit" className="edit">
+            {/* <p>Airbnb your home</p> */}
+            <p>Add new stay</p>
           </Link>
           <img
             className="app-header-world-svg"
@@ -187,11 +190,7 @@ export function AppHeader() {
       </div>
 
       <div className="app-header-bottom">
-      {isScrolled ? (
-        <StayFilterUnfocused />
-      ) : (
-        <StayFilterFocused />
-      )}
+        {isScrolled ? <StayFilterUnfocused /> : <StayFilterFocused />}
       </div>
     </header>
   );
