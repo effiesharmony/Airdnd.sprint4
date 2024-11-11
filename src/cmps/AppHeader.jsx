@@ -41,9 +41,11 @@ export function AppHeader() {
   function toggleFilterFocus() {
     setIsFilterFocused(true);
   }
+
   function onOpenFilterFocus(modalType) {
     console.log("modalType", modalType);
   }
+
   async function onLogout() {
     try {
       await logout();
@@ -70,6 +72,12 @@ export function AppHeader() {
           : "small"
       }`}
     >
+      {(isScrolled && isFilterFocused) || (!isHomePage && isFilterFocused) ? (
+        <div
+          className="overlay"
+          onClick={() => setIsFilterFocused(false)}
+        ></div>
+      ) : null}
       <div className="app-header-top">
         <Link to="/stay" className="logo">
           <div className="app-header-left-box">
@@ -82,9 +90,8 @@ export function AppHeader() {
         </Link>
 
         <div className="app-header-right-box">
-          <Link to="stay/edit" className="edit">
-            {/* <p>Airbnb your home</p> */}
-            <p>Add new stay</p>
+          <Link to="/stay" className="edit">
+            <p>Airbnb your home</p>
           </Link>
           <img
             className="app-header-world-svg"
@@ -149,7 +156,13 @@ export function AppHeader() {
                   >
                     Trips
                   </NavLink>
-
+                  <NavLink
+                    className="dropdown-menu-link edit"
+                    to="stay/edit"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Add new stay
+                  </NavLink>
                   <NavLink
                     className="dropdown-menu-link wishlist"
                     to="user/:id"

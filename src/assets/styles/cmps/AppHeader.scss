@@ -1,23 +1,13 @@
 .app-header {
   position: relative;
+  z-index: 14;
   display: flex;
   flex-direction: column;
   padding-left: 80px;
   padding-right: 80px;
   padding-top: 16px;
-  // border-bottom: 1px solid #dddddd;
   background-color: white;
-  z-index: 12;
   
-  // &::after{
-  //   position: absolute;
-  //   content: "";
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   height: 1px;
-  //   background-color: #dddddd;
-  // }
   .app-header-top {
     height: fit-content;
     display: grid;
@@ -119,7 +109,7 @@
       background-color: white;
       border-radius: 0.8rem;
       padding: 8px 0;
-      z-index: 11;
+      z-index: 15;
 
       .dropdown-menu-link,
       .dropdown-menu-link-btn {
@@ -144,11 +134,11 @@
       .login,
       .messages,
       .trips,
-      .wishlist {
+      .wishlist,
+      .edit {
         font-family: AirbnbCereal_W_Bk, sans-serif;
         font-weight: normal;
         color: #000000;
-        // letter-spacing: normal;
       }
     }
   }
@@ -158,9 +148,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 16px;
-    // padding-bottom: 22px;
     background-color: white;
-    // border-bottom: 1px solid #dddddd;
   }
 }
 
@@ -175,6 +163,16 @@
 .small {
   height: 80px;
   z-index: 12;
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0 0 0 / 25%);
+  position: fixed;
+  top: 168px;
+  left: 0;
+  z-index: 11;
 }
 
 @media screen and (max-width: 1440px) {

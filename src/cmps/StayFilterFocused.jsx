@@ -52,6 +52,24 @@ export function StayFilterFocused() {
     setIsFilterApplied(true);
   }
 
+  function onPlaceModalOpen() {
+    setPlaceDropdownOpen(!isPlaceDropdownOpen)
+    setDateDropdownOpen(false)
+    setGuestDropdownOpen(false)
+  }
+
+  function onDateModalOpen() {
+    setDateDropdownOpen(!isDateDropdownOpen)
+    setPlaceDropdownOpen(false)
+    setGuestDropdownOpen(false)
+  }
+
+  function onGuestModalOpen() {
+    setGuestDropdownOpen(!isGuestDropdownOpen)
+    setDateDropdownOpen(false)
+    setPlaceDropdownOpen(false)
+  }
+
   return (
     <section className="stay-filter-focused-main-box">
       <div className="stay-filter-focused-main">
@@ -64,7 +82,7 @@ export function StayFilterFocused() {
           {/* Place */}
           <div
             className="stay-filter-focused-place"
-            onClick={() => setPlaceDropdownOpen(!isPlaceDropdownOpen)}
+            onClick={() => onPlaceModalOpen()}
           >
             <h3>Where</h3>
             <input
@@ -79,7 +97,7 @@ export function StayFilterFocused() {
           {/* Date */}
           <div
             className="stay-filter-focused-date"
-            onClick={() => setDateDropdownOpen(!isDateDropdownOpen)}
+            onClick={() => onDateModalOpen()}
           >
             <div className="stay-filter-focused-date-in">
               <div className="stay-filter-focused-date-check-in">
@@ -107,7 +125,7 @@ export function StayFilterFocused() {
           {/* Guests */}
           <div
             className="stay-filter-focused-guest"
-            onClick={() => setGuestDropdownOpen(!isGuestDropdownOpen)}
+            onClick={() => onGuestModalOpen()}
           >
             <h3>Who</h3>
             <div className="guest-input">
