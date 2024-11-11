@@ -3,10 +3,11 @@
     grid-template-columns: 1fr 1fr;
 
     font-family: AirbnbCereal_W_Bk, sans-serif;
-    font-size: rem(13px);
+    font-size: rem(15px);
     letter-spacing: 0.03rem;
     line-height: 1.4;
     color: $clr7;
+    margin-bottom: 20px;
 
     .stay-loc {
         grid-column: 1;
@@ -14,8 +15,10 @@
     }
 
     .stay-distance {
-        grid-column: 1;
+        grid-column: 1 / -1;
+        grid-row: 2;
         color: $user-icon-clr;
+        line-height: 1.6;
     }
 
     .stay-dates {
@@ -25,7 +28,7 @@
 
     .stay-price {
         grid-column: 1;
-        margin-top: 5PX;
+        margin-top: 7PX;
 
         span {
             font-weight: bold;

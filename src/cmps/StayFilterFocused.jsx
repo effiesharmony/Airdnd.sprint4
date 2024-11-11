@@ -1,55 +1,55 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { stayAction } from "../store/actions/stay.actions.js";
-import { DateModal } from "./DateModal.jsx";
-import { GuestModal } from "./GuestModal.jsx";
-import { PlaceModal } from "./PlaceModal.jsx";
-import { Link } from "react-router-dom";
-import "react-datepicker/dist/react-datepicker.css";
+import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { stayAction } from "../store/actions/stay.actions.js"
+import { DateModal } from "./DateModal.jsx"
+import { GuestModal } from "./GuestModal.jsx"
+import { PlaceModal } from "./PlaceModal.jsx"
+import { Link } from "react-router-dom"
+import "react-datepicker/dist/react-datepicker.css"
 
 export function StayFilterFocused() {
-  const dispatch = useDispatch();
-  const filterBy = useSelector((state) => state.stayModule.filterBy);
-  const [isFilterApplied, setIsFilterApplied] = useState(false);
-  const [isPlaceDropdownOpen, setPlaceDropdownOpen] = useState(false);
-  const [isDateDropdownOpen, setDateDropdownOpen] = useState(false);
-  const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false);
-  const [totalGuests, setTotalGuests] = useState(filterBy.minCapacity || 0);
+  const dispatch = useDispatch()
+  const filterBy = useSelector((state) => state.stayModule.filterBy)
+  const [isFilterApplied, setIsFilterApplied] = useState(false)
+  const [isPlaceDropdownOpen, setPlaceDropdownOpen] = useState(false)
+  const [isDateDropdownOpen, setDateDropdownOpen] = useState(false)
+  const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false)
+  const [totalGuests, setTotalGuests] = useState(filterBy.minCapacity || 0)
 
   useEffect(() => {
     if (isFilterApplied) {
-      stayAction.loadStays();
-      setIsFilterApplied(false);
+      stayAction.loadStays()
+      setIsFilterApplied(false)
     }
-  }, [isFilterApplied, dispatch]);
+  }, [isFilterApplied, dispatch])
 
   function handleChange({ target }) {
-    const { name, value } = target;
-    dispatch(stayAction.setFilterBy({ ...filterBy, [name]: value }));
+    const { name, value } = target
+    dispatch(stayAction.setFilterBy({ ...filterBy, [name]: value }))
   }
 
   function handleDateChange(dates) {
-    const [startDate, endDate] = dates;
+    const [startDate, endDate] = dates
     dispatch(
       stayAction.setFilterBy({
         ...filterBy,
         availableDates: { start: startDate, end: endDate },
       })
-    );
+    )
     if (startDate && endDate) {
-      setDateDropdownOpen(false);
+      setDateDropdownOpen(false)
     }
   }
 
   function handleGuestChange(newTotalGuests) {
-    setTotalGuests(newTotalGuests);
+    setTotalGuests(newTotalGuests)
     dispatch(
       stayAction.setFilterBy({ ...filterBy, minCapacity: newTotalGuests })
-    );
+    )
   }
 
   function applyFilters() {
-    setIsFilterApplied(true);
+    setIsFilterApplied(true)
   }
 
   return (
@@ -142,5 +142,5 @@ export function StayFilterFocused() {
       <GuestModal filterBy={filterBy} handleGuestChange={handleGuestChange} />
     )}
     </section>
-  );
+  )
 }

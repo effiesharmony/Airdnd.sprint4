@@ -22,10 +22,10 @@
 
         .heart {
             position: absolute;
-            height: rem(22px);
-            width: rem(22px);
-            top: 4.5%;
-            right: 4.5%;
+            height: rem(25px);
+            width: rem(25px);
+            top: 5%;
+            right: 5%;
             transition: 200ms;
 
             &:hover{
@@ -48,7 +48,7 @@
 
         .dots {
             position: absolute;
-            bottom: 10px;
+            bottom: 18px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;

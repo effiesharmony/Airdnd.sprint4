@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
 export function GuestModal({ filterBy, handleGuestChange }) {
   const isButtonDisabled = filterBy.minCapacity === 0
@@ -8,45 +8,45 @@ export function GuestModal({ filterBy, handleGuestChange }) {
   const [pets, setPets] = useState(0)
 
   useEffect(() => {
-    const total  = adults + children + infants + pets;
+    const total  = adults + children + infants + pets
     handleGuestChange(total)
-  }, [adults, children, infants, pets]);
+  }, [adults, children, infants, pets])
 
   function increment(type) {
     switch (type) {
       case "adults":
-        setAdults(adults + 1);
-        break;
+        setAdults(adults + 1)
+        break
       case "children":
-        setChildren(children + 1);
-        break;
+        setChildren(children + 1)
+        break
       case "infants":
-        setInfants(infants + 1);
-        break;
+        setInfants(infants + 1)
+        break
       case "pets":
-        setPets(pets + 1);
-        break;
+        setPets(pets + 1)
+        break
       default:
-        break;
+        break
     }
   }
 
   function decrement(type) {
     switch (type) {
       case "adults":
-        setAdults(Math.max(adults - 1, 0));
-        break;
+        setAdults(Math.max(adults - 1, 0))
+        break
       case "children":
-        setChildren(Math.max(children - 1, 0));
-        break;
+        setChildren(Math.max(children - 1, 0))
+        break
       case "infants":
-        setInfants(Math.max(infants - 1, 0));
-        break;
+        setInfants(Math.max(infants - 1, 0))
+        break
       case "pets":
-        setPets(Math.max(pets - 1, 0));
-        break;
+        setPets(Math.max(pets - 1, 0))
+        break
       default:
-        break;
+        break
     }
   }
 
@@ -188,5 +188,5 @@ export function GuestModal({ filterBy, handleGuestChange }) {
         </div>
       </div>
     </div>
-  );
+  )
 }

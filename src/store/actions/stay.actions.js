@@ -1,7 +1,7 @@
 import { stayService } from '../../services/stay'
 import { store } from '../store'
 import { ADD_STAY, REMOVE_STAY, SET_STAYS, SET_STAY, UPDATE_STAY, SET_FILTER_BY, ADD_STAY_MSG } from '../reducers/stay.reducer'
-import { LOADING_START, LOADING_DONE } from "../reducers/system.reducer.js";
+import { LOADING_START, LOADING_DONE } from "../reducers/system.reducer.js"
 
 export const stayAction = {
     loadStays,
@@ -24,7 +24,7 @@ export async function loadStays() {
         console.log('Cannot load stays', err)
         throw err
     } finally {
-        store.dispatch({ type: LOADING_DONE });
+        store.dispatch({ type: LOADING_DONE })
     }
 }
 

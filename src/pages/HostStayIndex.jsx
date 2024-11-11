@@ -25,7 +25,7 @@ async function onRemoveStay(stayId) {
     const stayToSave = { ...stay, speed }
     try {
       const savedStay = await updateStay(stayToSave)
-      showSuccessMsg(`Stay updated, new speed: ${savedStay.speed}`);
+      showSuccessMsg(`Stay updated, new speed: ${savedStay.speed}`)
     } catch (err) {
       showErrorMsg("Cannot update stay")
     }

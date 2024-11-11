@@ -5,5 +5,5 @@ export function PlaceModal({  }) {
       <div className="place-modal">
         <h1>Search by region</h1>
         </div>
-  );
+  )
 }

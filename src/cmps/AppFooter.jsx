@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
+import { useSelector } from "react-redux"
 
 export function AppFooter() {
-  const count = useSelector((storeState) => storeState.userModule.count);
+  const count = useSelector((storeState) => storeState.userModule.count)
 
   return (
     <footer className="app-footer full">
@@ -27,5 +27,5 @@ export function AppFooter() {
         <h1>₪ ILS</h1>
       </div>
     </footer>
-  );
+  )
 }

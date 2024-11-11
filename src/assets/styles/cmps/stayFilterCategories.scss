@@ -1,37 +1,43 @@
-*{
+* {
     box-sizing: border-box;
 }
 
 .categories-outer-container {
-    margin-top: 25px;
-    position: relative;
+    width: 100%;
+    background-color: #fff;
+    padding-top: 25px;
+    position: sticky;
+    top: 80px;
+    z-index: 11;
+    overflow: hidden;
 
     button {
         @include carousel-btn;
-        top: 40%;
+        top: 64%;
         scale: 1.1;
         opacity: 1;
         z-index: 2;
         border: 1px solid $gray2;
         background-color: #fff;
         box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
-        
+
         &.prev {
             left: 3px;
         }
-    
+
         &.next {
             right: 3px;
         }
 
-        &:hover{
-            box-shadow: rgb(255, 255, 255) 0 0 10px 30px;            
+        &:hover {
+            box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
         }
 
 
     }
 
     .categories-inner-container {
+        overflow: hidden;
         font-family: AirbnbCereal_W_Bk;
         font-weight: bold;
         display: grid;

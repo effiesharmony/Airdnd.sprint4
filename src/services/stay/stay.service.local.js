@@ -2,7 +2,7 @@
 import { storageService } from '../async-storage.service'
 import { makeId } from '../util.service'
 import { userService } from '../user'
-import { data } from "../../../data/stay.json.js";
+import { data } from "../../../data/stay.json.js"
 
 const STORAGE_KEY = 'stay'
 
@@ -128,10 +128,10 @@ function getEmptyStay() {
         {
             name: '',
             imgUrls: [null, null, null, null, null],
-            price: null,
+            price: 0,
             summary: '',
             amenities: [],
-            capacity: null,
+            capacity: 0,
             loc: {
                 country: '',
                 city: '',

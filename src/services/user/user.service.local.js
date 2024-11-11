@@ -1,5 +1,5 @@
 import { storageService } from '../async-storage.service.js'
-import { data } from "../../../data/stay.json.js";
+import { data } from "../../../data/stay.json.js"
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
 
