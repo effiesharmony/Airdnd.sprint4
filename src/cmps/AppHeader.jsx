@@ -48,7 +48,7 @@ export function AppHeader() {
   return (
     <header
       className={`app-header full ${
-        isHomePage ? (isScrolled ? "sticky" : "") : "sticky"
+        isHomePage ? (isScrolled ? "sticky" : "") : "small"
       }`}
     >
       <div className="app-header-top">

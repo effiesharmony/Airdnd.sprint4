@@ -40,18 +40,25 @@ export function StayDetails({ }) {
                   <p>{stay.type} in {stay.loc.city}, {stay.loc.country}</p>
                 </div>
                 <div className="stay-capacity">
-                  <p>{stay.capacity} guests • 2 bedrooms • 3 beds • 2 baths</p>
+                  <h6 className="stay-capacity-guests">{stay.capacity} guests • 2 bedrooms • 3 beds • 2 baths</h6>
+                  <div className="stay-capacity-review">
+                    <img src="/public/svg/star.svg" alt="" />
+                    <h6> 4.96 • <span> 24 reviews </span></h6>
+                    </div>
                 </div>
 
                 <div className="stay-host">
                   <img src={stay.host.imgUrl} alt={stay.host.fullname} className="host-image" />
-                  <p>Hosted by {stay.host.fullname}</p>
+                  <div>
+                  <h5>Hosted by {stay.host.fullname}</h5>
+                  <h6>10 years hosting</h6>
+                  </div>
                 </div>
                 <div className="stay-info">
-                  <p>{stay.info}</p>
+                  <h6>{stay.info}</h6>
                 </div>
                 <div className="stay-amenities">
-                  <h3>What this place offers</h3>
+                  <h6>What this place offers</h6>
                   <ul>
                     {stay.amenities.map((amenity, index) => (
                       <li key={index} className="amenity-item">
@@ -62,26 +69,33 @@ export function StayDetails({ }) {
                   </ul>
                 </div>
 
-                <div className="stay-reviews">
-                  <h3>Reviews</h3>
-                  {stay.reviews.map((review, index) => (
-                    <div key={index} className="review-item">
-                      <div className="review-header">
-                        <img src={review.by.imgUrl} alt={review.by.fullname} className="reviewer-image" />
-                        <div className="reviewer-details">
-                          <p className="reviewer-name">{review.by.fullname}</p>
-                          <p className="review-rate">Rating: {review.rate}</p>
-                        </div>
-                      </div>
-                      <p className="review-text">{review.txt}</p>
-                    </div>
-                  ))}
-                  </div>
                 </div>
                 <div className="stay-order">
                   <OrderForm stayId={stayId} />
                 </div>
               </div>
+
+                <div className="stay-reviews">
+                <div className="stay-reviews-header">
+                    <img src="/public/svg/star.svg" alt="" />
+                    <h6> 4.96 • <span> 24 reviews </span></h6>
+                    </div>
+                    <div className="review-items">
+                  {stay.reviews.map((review, index) => (
+                    <div key={index} className="review-item">
+                      <div className="review-header">
+                        <img src={review.by.imgUrl} alt={review.by.fullname} className="reviewer-image" />
+                        <div className="reviewer-details">
+                          <h6 className="reviewer-name">{review.by.fullname}</h6>
+                          <h5 className="review-rate">Rating: {review.rate}</h5>
+                        </div>
+                      </div>
+                      <h4 className="review-text">{review.txt}</h4>
+                    </div>
+                  ))}
+                  </div>
+                  </div>
+
             </div>
           </div>
         )}

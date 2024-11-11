@@ -2,13 +2,15 @@
   grid-column: 2 ;
   grid-row: 1;
   // max-width: 360px;
-  width: 385px;
+  // width: 100%;
   padding: 20px;
-  margin-right: 25px;
+  margin-left: 80px;
+  // margin-right: 10px;
   border: 1px solid #ddd;
   border-radius: 12px;
   background-color: #fff;
   font-family: Arial, sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
 
   .order-price {
     font-size: 1.4rem;

@@ -3,48 +3,46 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  justify-self: center;
+  width: 100%;
+  padding: 20px;
+  padding-top: 17px;
+  max-width: 1160px;
 
   .stay-order {
-    display:flex;
+    display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 100%;
     height: 400px;
     justify-self: end;
+    margin-left: 8.333333333333332%;
     position: sticky;
     top: 25vh;
-
   }
-//   .sticky-card {
-//     position: sticky;
-    
-
-//     display: flex;
-//     flex-direction: column;
-    
-//     flex-basis: 240px;
-    
-//     height: 260px;
-//     margin: 5px auto calc(5px + 2em);
-//     padding: 1em;
-
-//     border: 1px solid rgb(226, 226, 226);
-//     box-shadow: 1px 1px 5px #cfcfcf;
-//     border-radius: 6px;
-// }
+  .sticky-card {
+    position: sticky;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 240px;
+    height: 260px;
+    margin: 5px auto calc(5px + 2em);
+    padding: 1em;
+    border: 1px solid rgb(226, 226, 226);
+    box-shadow: 1px 1px 5px #cfcfcf;
+    border-radius: 6px;
+  }
 
   .stay-details {
-    display: flex;
-    max-width: 1120px;
-    padding-top: 24px;
-    justify-content: center;
-    flex-direction: column;
-
     .stay-header {
       grid-row: 1;
-      font-size: 1.35rem;
+      font-size: 25px;
       letter-spacing: 0.44px;
       line-height: inherit;
       font-weight: inherit;
+
+      h3 {
+        margin-bottom: 15px;
+      }
     }
 
     .stay-content {
@@ -64,7 +62,7 @@
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(2, 1fr);
         gap: 8px;
-        padding-bottom: 27px;
+        padding-bottom: 31px;
         padding-top: 8px;
 
         .image-wrapper {
@@ -104,7 +102,7 @@
           }
 
           &::after {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
@@ -130,60 +128,106 @@
           }
         }
       }
-      
     }
-    
-    
+
     .stay-content-wrapper {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 2fr 1fr;
       position: relative;
-      // align-items: center;
       justify-content: center;
-      >*:not(:last-child){
+
+      > *:not(:last-child) {
         grid-column: 1;
       }
-        
-        .stay-description {
-          // grid-column: 1;
-        // margin-top: 10px;
-        font-size: 1.3rem;
+
+      .stay-description {
+        font-size: 1.4rem;
         letter-spacing: 0.01375rem;
         font-family: AirbnbCereal_W_Lt;
         font-weight: bold;
       }
 
       .stay-capacity {
-        // grid-column: 1;
-        margin-top: 7px;
-        font-size: 0.86rem;
+        margin-top: 2px;
+        font-size: 1rem;
         color: #000000;
-        padding-bottom: 20px;
+        padding-bottom: 23px;
         border-bottom: 1px solid #ddd;
+        display: flex;
+        flex-direction: column;
+
+        h6 {
+          font-size: 1rem;
+          font-family: AirbnbCereal_W_Lt;
+          font-weight: normal;
+        }
+
+        .stay-capacity-guests {
+          letter-spacing: 0.005rem;
+          margin-bottom: 6px;
+        }
+
+        .stay-capacity-review {
+          display: flex;
+          justify-content: flex-start;
+
+          h6 {
+            font-family: AirbnbCereal_W_Md2;
+            letter-spacing: 0.01rem;
+          }
+
+          img {
+            width: 16px;
+            height: 20px;
+            margin: 0;
+            padding: 0;
+            margin-right: 5px;
+          }
+
+          span {
+            margin-left: 3px;
+            text-decoration: underline;
+          }
+        }
       }
 
       .stay-host {
-        // grid-column: 1;
         display: flex;
         align-items: center;
-        margin-top: 20px;
-        padding-bottom: 16px;
+        justify-content: start;
+        padding-top: 22px;
+        padding-bottom: 22px;
         border-bottom: 1px solid #ddd;
-        font-size:0.87rem;
+        font-size: 0.87rem;
         font-weight: bold;
 
         .host-image {
-          // grid-column: 1;
-          width: 35px;
-          height: 35px;
+          width: 40px;
+          height: 40px;
           border-radius: 50%;
-          margin-right: 10px;
+          margin-right: 20px;
           object-fit: cover;
         }
 
+        h5 {
+          margin-left: 5px;
+          font-size: 1.01rem;
+          letter-spacing: 0.01rem;
+          color: #333;
+          margin-bottom: 3px;
+        }
+
+        h6 {
+          font-family: AirbnbCereal_W_Lt;
+          font-weight: normal;
+          letter-spacing: 0.04rem;
+          font-size: 0.9rem;
+          margin-left: 5px;
+          color: #333;
+        }
+
         .host-details {
-          // grid-column: 1;
-          font-size: 0.85rem;
+          font-size: 1rem;
           color: #333;
 
           strong {
@@ -193,102 +237,134 @@
       }
 
       .stay-info {
-        // grid-column: 1;
-        margin-top: 20px;
-        font-family: AirbnbCereal_W_Lt;
-        font-size:1em;
-        padding-bottom: 16px;
+        margin-top: 35px;
+        // font-family: AirbnbCereal_W_Bk;
+        // font-weight: normal;
+        padding-bottom: 35px;
         border-bottom: 1px solid #ddd;
-        
-        h3 {
-          font-size: 1.2rem;
-          margin-bottom: 10px;
-          color: #333;
-        }
 
-        p {
-          font-size: 0.8rem;
-          color: #030303;
-          line-height: 1.5;
+        h6 {
+          font-family: AirbnbCereal_W_Bk;
+          font-weight: normal;
+          font-size: 1.5rem;
+          letter-spacing: 0.02rem;
+          font-size: rem(16px);
+          color: #333;
+          margin: 0;
         }
       }
-      
+
       .stay-amenities {
         grid-column: 1;
-        margin-top: 20px;
+        margin-top: 45px;
         grid-column: 1;
-        padding-bottom: 16px;
-        border-bottom: 1px solid #ddd;
-        
-        h3 {
-          font-size: 1.2rem;
-          margin-bottom: 10px;
+        padding-bottom: 45px;
+
+        h6 {
+          font-size: 1.4rem;
+          margin-bottom: 22px;
           color: #000000;
         }
-        
+
         ul {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 10px 0;
+          grid-template-columns: 260px 260px;
+          gap: 15px 60px;
           list-style: none;
           padding: 0;
         }
-        
+
         .amenity-item {
           display: flex;
           align-items: center;
-          font-size: 0.87rem;
+          font-size: 1rem;
           color: #000000;
 
           .amenity-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
+            width: 25px;
+            height: 25px;
+            margin-right: 15px;
           }
         }
       }
-      
-      .stay-reviews {
-        grid-column: 1;
-        margin-top: 20px;
-        
+    }
+    .stay-reviews {
+      grid-column: 1;
+      padding-top: 47px;
+      padding-bottom: 47px;
+      border-top: 1px solid #ddd;
+
+      .stay-reviews-header {
+        display: grid;
+        grid-auto-flow: column;
+        align-items: center;
+        justify-content: start;
+
+        h6 {
+          font-size: 1.6rem;
+          font-family: AirbnbCereal_W_Bk;
+        }
+
+        img {
+          width: 21px;
+          height: 21px;
+          margin: 0;
+          padding: 0;
+          margin-right: 8px;
+          margin-bottom: 15px;
+        }
+
+        span {
+          margin-left: 3px;
+        }
+      }
+
+      .review-items {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(400px, auto));
+
         .review-item {
+          margin-top: 5px;
           margin-bottom: 16px;
-          // font-weight: bold;
           font-size: 0.85rem;
-          
+          align-items: center;
+
           .review-header {
             display: flex;
             align-items: center;
-            margin-bottom: 8px;
-            
+            margin-bottom: 30px;
+
             .reviewer-image {
-              width: 40px;
-              height: 40px;
+              width: 48px;
+              height: 48px;
               border-radius: 50%;
-              margin-right: 10px;
+              margin-right: 15px;
             }
-            
+
             .reviewer-name {
+              font-size: 1.1rem;
               font-weight: bold;
+              margin-top: 4px;
+              margin-bottom: 0px;
             }
 
             .review-rate {
-              font-size: 0.9rem;
-              color: #888;
+              font-weight: normal;
+              font-size: 1rem;
+              color: #222222;
             }
-            
-            .review-text {
-              font-size: 0.85rem;
-              color: #050505;
-              line-height: 1.4;
-            }
-            .grid-wrapper{
-              grid-column: 1;
-            }
+          }
+          .review-text {
+            font-weight: normal;
+            font-size: 1rem;
+            color: #050505;
+            line-height: 1.4;
           }
         }
       }
     }
   }
 }
+// .grid-wrapper {
+//   grid-column: 1;
+// }
