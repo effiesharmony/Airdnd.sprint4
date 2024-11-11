@@ -1,12 +1,23 @@
 .app-header {
+  position: relative;
   display: flex;
   flex-direction: column;
   padding-left: 80px;
   padding-right: 80px;
   padding-top: 16px;
-  border-bottom: 1px solid #dddddd;
+  // border-bottom: 1px solid #dddddd;
   background-color: white;
-
+  z-index: 12;
+  
+  // &::after{
+  //   position: absolute;
+  //   content: "";
+  //   left: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   height: 1px;
+  //   background-color: #dddddd;
+  // }
   .app-header-top {
     height: fit-content;
     display: grid;
@@ -147,7 +158,9 @@
     align-items: center;
     justify-content: center;
     margin-top: 16px;
-    margin-bottom: 22px;
+    // padding-bottom: 22px;
+    background-color: white;
+    // border-bottom: 1px solid #dddddd;
   }
 }
 
@@ -156,11 +169,14 @@
   top: 0;
   z-index: 10;
   height: 80px;
+  z-index: 12;
 }
 
-.small{
+.small {
   height: 80px;
+  z-index: 12;
 }
+
 @media screen and (max-width: 1440px) {
   .app-header {
     padding-left: 40px;
