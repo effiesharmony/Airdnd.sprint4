@@ -1,11 +1,8 @@
 .order-form {
-  grid-column: 2 ;
+  grid-column: 2;
   grid-row: 1;
-  // max-width: 360px;
-  // width: 100%;
-  padding: 20px;
+  padding: 24px;
   margin-left: 80px;
-  // margin-right: 10px;
   border: 1px solid #ddd;
   border-radius: 12px;
   background-color: #fff;
@@ -14,7 +11,7 @@
 
   .order-price {
     font-size: 1.4rem;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     display: flex;
     align-items: baseline;
 
@@ -33,12 +30,14 @@
   }
 
   .order-table {
+    padding: 11px;
+    padding-bottom: 7px;
     display: flex;
     flex-direction: column;
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
-    margin-bottom: 8px;
+    margin-bottom: 15px;
 
     .order-dates {
       display: flex;
@@ -46,41 +45,39 @@
       border-bottom: 1px solid #ddd;
 
       .date-input {
+        padding-inline-end: 10px;
+        overflow: visible;
         flex: 1;
-        position: relative;
         border-right: 1px solid #ddd;
+        line-height: 0.6;
 
         &:last-child {
+          padding-inline-start: 10px;
           border-right: none;
         }
 
         label {
-          position: absolute;
-          top: 8px;
-          left: 10px;
           font-size: 0.6rem;
           font-weight: bold;
           color: #222;
           text-transform: uppercase;
+          border-bottom: 10px;
         }
 
         input {
-          padding: 20px 10px 8px;
           border: none;
           font-size: 1rem;
           outline: none;
           width: 100%;
+          margin-bottom: 10px;
         }
       }
     }
 
     .order-guests {
-      position: relative;
+      margin-top: 7px;
 
       label {
-        position: absolute;
-        top: 8px;
-        left: 10px;
         font-size: 0.6rem;
         font-weight: bold;
         color: #222;
@@ -88,14 +85,13 @@
       }
 
       select {
-        padding: 20px 10px 8px;
         border: none;
-        font-size: 1rem;
+        font-size: rem(14px);
         outline: none;
         width: 100%;
         appearance: none;
         background-color: #fff;
-        background-image: url('data:image/svg+xml;utf8,<svg fill="%23999" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+        // background-image: url('data:image/svg+xml;utf8,<0 2<path d="M7 10l5 5 5-5z"/></svg>');
         background-repeat: no-repeat;
         background-position: right 10px center;
         background-size: 16px;
@@ -105,16 +101,15 @@
 
   .reserve-button {
     width: 100%;
-    padding: 15px;
+    padding: 16px;
     background: linear-gradient(90deg, #ff385c, #d70653);
     color: #fff;
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: bold;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     text-align: center;
-    margin-top: 5px;
 
     &:hover {
       background: linear-gradient(90deg, #d70653, #ff385c);
@@ -122,11 +117,11 @@
   }
 
   .no-charge-text {
-    font-size: 0.83rem; 
+    font-size: rem(15px);
     color: #222;
     text-align: center;
     margin-top: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 26px;
   }
 
   .order-summary {
@@ -136,9 +131,9 @@
     .price-calculation {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 8px;
-      font-size: 0.9rem;
-      color: #222; 
+      margin-bottom: 25px;
+      font-size: 1rem;
+      color: #222;
 
       .underline-text {
         text-decoration: underline;
@@ -151,14 +146,14 @@
 
     .total-divider {
       border-top: 1px solid #ddd;
-      margin: 16px 0;
+      margin-bottom: 25px;
     }
 
     .total-price {
       display: flex;
       justify-content: space-between;
       font-weight: bold;
-      font-size: 0.9rem;
+      font-size: 1rem;
       color: #444;
     }
   }
