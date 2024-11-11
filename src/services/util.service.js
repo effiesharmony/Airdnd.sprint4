@@ -52,8 +52,9 @@ export function loadFromStorage(key) {
 }
 
 export function getReviewAvg(arr) {
+    if (arr.length === 0) return 0
     const sum = arr.reduce((a, b) => a + b.rate, 0)
-    return sum/arr.length
+    return sum / arr.length
 }
 
 export function numberWithCommas(x) {
