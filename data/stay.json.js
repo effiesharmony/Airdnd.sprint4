@@ -48,7 +48,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '20',
 				end: '30'
 			}
@@ -92,7 +92,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -136,7 +136,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -180,7 +180,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -224,7 +224,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -268,7 +268,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -312,7 +312,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -356,7 +356,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -400,7 +400,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -444,7 +444,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -488,7 +488,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -532,7 +532,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -576,7 +576,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}
@@ -620,7 +620,7 @@ const stays = [
 		],
 		availableDates: [
 			{
-				month: 'NOV',
+				month: 'Nov',
 				start: '11',
 				end: '15'
 			}

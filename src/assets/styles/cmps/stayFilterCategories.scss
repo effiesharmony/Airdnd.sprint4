@@ -1,9 +1,15 @@
+*{
+    box-sizing: border-box;
+}
+
 .categories-outer-container {
-    margin-top: 30px;
+    margin-top: 25px;
     position: relative;
 
     button {
         @include carousel-btn;
+        top: 40%;
+        scale: 1.1;
         opacity: 1;
         z-index: 2;
         border: 1px solid $gray2;
@@ -11,11 +17,11 @@
         box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
         
         &.prev {
-            left: 0px;
+            left: 3px;
         }
     
         &.next {
-            right: 0px;
+            right: 3px;
         }
 
         &:hover{
@@ -44,6 +50,7 @@
             transition: 200ms;
             scroll-snap-align: start;
             padding-bottom: 10px;
+            border-bottom: 2px solid transparent;
 
             img {
                 width: 24px;

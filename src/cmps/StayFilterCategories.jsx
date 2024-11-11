@@ -1,7 +1,7 @@
 import { categories } from "../../public/categories.js"
 import { useRef, useState } from "react"
 
-export function StayCategories() {
+export function StayCategories({ onSetFilter, filterBy }) {
     const [selectedCat, setSelectedCat] = useState(categories[0].name)
     const [isScrollEnd, setIsScrollEnd] = useState(false)
     const [currentLeft, setCurrentLeft] = useState(0)
@@ -27,6 +27,7 @@ export function StayCategories() {
     }
 
     function onSelectCategory(catName) {
+        onSetFilter({...filterBy, label: catName})
         setSelectedCat(catName)
     }
 
