@@ -1,3 +1,4 @@
+import { store } from "../store/store.js"
 import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
@@ -23,7 +24,7 @@ export function StayIndex() {
   }, [filterBy, stays])
 
   function onSetFilter(filterBy) {
-    setFilterBy(filterBy)
+    store.dispatch(setFilterBy(filterBy))
   }
 
   return (

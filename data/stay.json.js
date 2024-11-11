@@ -10,7 +10,7 @@ const stays = [
 		capacity: 8,
 		info: 'A big, comfortable and nice five room apartment, fully equipped, completely renewed, located in the heart of Lisbon, Portugals historic area, at 2 minutes walking from Riberia, 7 minutes walking from Sao Bento Metro and train station.',
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u101',
 			fullname: 'Davit Pok',
@@ -64,7 +64,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
@@ -108,7 +108,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
@@ -152,7 +152,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
