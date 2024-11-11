@@ -90,7 +90,7 @@ export function AppHeader() {
         </Link>
 
         <div className="app-header-right-box">
-          <Link to="/stay" className="edit">
+          <Link to="/stay/edit" className="edit">
             <p>Airbnb your home</p>
           </Link>
           <img

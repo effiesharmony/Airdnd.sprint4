@@ -1,14 +1,15 @@
 import { stayService } from "../services/stay/index.js"
 import { stayAction } from "../store/actions/stay.actions.js"
 import { useParams, useNavigate } from "react-router"
-import { useRef, useEffect, useState } from "react"
+import { createRef, useRef, useEffect, useState } from "react"
 import { uploadImg } from "../services/cloudinary.service.js"
 
 export function StayEdit() {
   const navigate = useNavigate()
   const { stayId } = useParams()
   const [stayToEdit, setStayToEdit] = useState(stayService.getEmptyStay())
-  const fileInput = useRef(null)
+  const fileInput = useRef([])
+  fileInput.current = stayToEdit.imgUrls.map((_, i) => fileInput.current[i] ?? createRef())
 
   useEffect(() => {
     if (stayId) loadStay()
@@ -23,14 +24,13 @@ export function StayEdit() {
     }
   }
 
-  function clickToUpload() {
+  function clickToUpload(index) {
     if (fileInput.current) {
-      fileInput.current.click()
+      fileInput.current[index].current.click()
     }
   }
 
   async function onChangeImg(ev) {
-    console.log(ev.target)
     try {
       const url = await uploadImg(ev)
       let newStayToEdit = { ...stayToEdit }
@@ -79,9 +79,9 @@ export function StayEdit() {
       </div>
       <div className="images">
         {stayToEdit.imgUrls.map((img, index) => (
-          <div id={index} onClick={clickToUpload} className={`img img${index}`} key={index}>
+          <div id={index} onClick={() => clickToUpload(index)} className={`img img${index}`} key={index}>
             {img ? <img src={img} alt="" /> : <div><p>Upload Image</p></div>}
-            <input ref={fileInput} id={index} type="file" onChange={onChangeImg}  />
+            <input ref={fileInput.current[index]} id={index} type="file" onChange={onChangeImg}  />
           </div>
         ))}
       </div>
