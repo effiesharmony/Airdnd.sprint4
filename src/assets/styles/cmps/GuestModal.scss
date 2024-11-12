@@ -1,92 +1,59 @@
-.guest-modal {
-  position: absolute;
-  top:97%;
-  right: 0;
-  z-index: 12;
-  padding: 16px 36px;
-  margin-top: 12px;
-  width: 416px;
-  border-radius: 32px;
-  background-color: white;
-  // box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-  box-shadow: 0 3px 12px 0 rgb(0 0 0 / 0.15);
+.guest-modal-box {
+  @include guest-modal;
+}
 
-  &::after {
-    display: none;
-  }
+.guest-modal-details-box {
+  @include guest-modal;
+  .guest-modal {
+    display: flex;
+    flex-direction: column;
+    top: 188px;
+    right: 24px;
+    padding: 16px;
+    margin: 0;
+    width: 100%;
+    max-width: 323px;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px,
+      rgba(0, 0, 0, 0.07) 0px 0px 0px 1px;
 
-  .guest-modal-options {
-    display: grid;
-    grid-auto-flow: column;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 24px 0px;
-    border-bottom: 1px solid #ddddddaa;
+    .guest-modal-options {
+      padding: 6px 0px;
+      padding-bottom: 18px;
+      border: none;
 
-    &:last-child {
-      border-bottom: none;
-    }
-    .guest-modal-options-left {
-      justify-self: start;
+      .guest-modal-options-left {
+        width: 170px;
+        h4{
+          margin-bottom: 5px;
+        }
 
-      .pets {
-        text-decoration: underline;
+        .pets{
+          margin-top: 6px;
+          font-family: AirbnbCereal_W_Md;
+          font-weight: normal;
+        }
       }
-      
-      h4 {
-        font-size: 16px;
-        font-family: AirbnbCereal_W_Md2, sans-serif;
-        font-weight: normal;
-        color: #222222;
+
+      .guest-modal-options-right {
+        height: 31px;
+        width: 104px;
         margin: 0;
-        margin-bottom: 4px;
-      }
-
-      p {
-        font-size: 0.875rem;
-        color: #6a6a6a;
       }
     }
 
-    .guest-modal-options-right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      justify-self: end;
-      font-size: 16px;
-      margin-right: 3px;
-
-      .disabled {
-        opacity: 0.25;
-        cursor: not-allowed;
-      }
-
-      button {
-        width: 32.5px;
-        height: 32.5px;
-        padding: 9px;
-        margin: 0 15px;
-        border: 1px solid #b0b0b0;
-        border-radius: 50%;
-        background-color: transparent;
-        cursor: pointer;
-        display: flex;
-        // align-items: center;
-        // justify-content: center;
-
-        .svg-icon {
-          display: block;
-          height: 14px;
-          width: 14px;
-          fill: #6a6a6a;
-          align-self: center;
-          justify-self: center;
-        }
-
-        &:hover {
-          border: 1px solid #222222;
-        }
-      }
+    .close-guest-modal-btn {
+      font-size: rem(16px);
+      font-family: AirbnbCereal_W_Md, sans-serif;
+      font-weight: normal;
+      letter-spacing: 0.02rem;
+      text-decoration: underline;
+      align-self: end;
+      padding: 10px;
+      padding-right: 0;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
     }
   }
 }

@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 
-export function GuestModal({ filterBy, handleGuestChange }) {
-  const isButtonDisabled = filterBy.minCapacity === 0;
-  const [adults, setAdults] = useState(0);
+export function GuestModalDetails({ handleGuestChange, setGuestDropdownOpen }) {
+  const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
   const [pets, setPets] = useState(0);
+  const total = adults + children + infants + pets;
+  const isButtonDisabled = total === 1;
 
   useEffect(() => {
-    const total = adults + children + infants + pets;
     handleGuestChange(total);
   }, [adults, children, infants, pets]);
 
@@ -51,12 +51,12 @@ export function GuestModal({ filterBy, handleGuestChange }) {
   }
 
   return (
-    <div className="guest-modal-box">
+    <div className="guest-modal-details-box">
       <div className="guest-modal">
         <div className="guest-modal-options">
           <div className="guest-modal-options-left">
             <h4>Adults</h4>
-            <p>Ages 13 or above</p>
+            <p>Age 13+</p>
           </div>
           <div className="guest-modal-options-right">
             <button
@@ -96,7 +96,7 @@ export function GuestModal({ filterBy, handleGuestChange }) {
         <div className="guest-modal-options">
           <div className="guest-modal-options-left">
             <h4>Children</h4>
-            <p>Ages 2 – 12</p>
+            <p>Ages 2–12</p>
           </div>
           <div className="guest-modal-options-right">
             <button
@@ -212,6 +212,7 @@ export function GuestModal({ filterBy, handleGuestChange }) {
             </button>
           </div>
         </div>
+      <button className="close-guest-modal-btn" onClick={()=> setGuestDropdownOpen(false)}>Close</button>
       </div>
     </div>
   );

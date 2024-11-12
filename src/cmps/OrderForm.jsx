@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { stayService } from '../services/stay/stay.service.local.js'
 import { getReviewAvg, numberWithCommas } from '../services/util.service.js'
+import { GuestModalDetails } from "./GuestModalDetails.jsx";
 
 export function OrderForm({ stayId }) {
   const [stay, setStay] = useState(null)
@@ -12,6 +13,7 @@ export function OrderForm({ stayId }) {
   const [totalPrice, setTotalPrice] = useState(0)
   const orderFormRef = useRef(null)
   const navigate = useNavigate()
+  const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false)
 
   useEffect(() => {
 
@@ -43,6 +45,14 @@ export function OrderForm({ stayId }) {
     navigate(`/reservation/${stayId}`)
   }
 
+  function handleGuestChange(newTotalGuests) {
+    setGuests(newTotalGuests)
+  }
+
+  function onOpenGuestModal() {
+    setGuestDropdownOpen(!isGuestDropdownOpen)
+  }
+
   if (!stay) return <p>Loading...</p>
   return (
     <div className="order-form" ref={orderFormRef}>
@@ -60,14 +70,21 @@ export function OrderForm({ stayId }) {
             <input type="date" value={checkOut} onChange={(e) => setCheckOut(e.target.value)} />
           </div>
         </div>
-        <div className="order-guests">
+        <div className={`${isGuestDropdownOpen ? 'bold-border': 'order-guests'} `} onClick={() => onOpenGuestModal()}>
+          <div className="stay-details-guest">
           <label>Guests</label>
-          <select value={guests} onChange={(e) => setGuests(Number(e.target.value))}>
-            <option value="1">1 guest</option>
-            <option value="2">2 guests</option>
-            <option value="3">3 guests</option>
-            <option value="4">4 guests</option>
-          </select>
+          <div className="guest-input">
+              {guests
+                ? `${guests} guest${guests > 1 ? "s" : ""}`
+                : "Add guests"}
+            </div>
+          </div>
+
+          <div className="stay-details-guest-svg">
+          {isGuestDropdownOpen 
+          ? <img className="stay-details-guest-svg" src="/public/svg/up-arrow.svg" alt="" />
+          : <img className="stay-details-guest-svg" src="/public/svg/down-arrow.svg" alt="" />}
+          </div>
         </div>
       </div>
       <button className="reserve-button" onClick={handleReserve}>Reserve</button>
@@ -83,6 +100,12 @@ export function OrderForm({ stayId }) {
           <span>${numberWithCommas(totalPrice)}</span>
         </div>
       </div>
+      {isGuestDropdownOpen && (
+          <GuestModalDetails
+            handleGuestChange={handleGuestChange}
+            setGuestDropdownOpen={setGuestDropdownOpen}
+          />
+        )}
     </div>
   )
 }
