@@ -16,12 +16,15 @@ export function AppHeader() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isFilterFocused, setIsFilterFocused] = useState(true)
   const [modalType, setModalType] = useState(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   useEffect(() => {
     if (isHomePage) {
       setIsFilterFocused(true)
+      setIsModalOpen(false)
     } else if (!isHomePage) {
       setIsFilterFocused(false)
+      setIsModalOpen(false)
     }
     window.addEventListener("scroll", handleScroll)
 
@@ -45,7 +48,8 @@ export function AppHeader() {
 
   function onOpenFilterFocus(modalType) {
     setModalType(modalType)
-    // setIsFilterFocused(true)
+    setIsModalOpen(true)
+    setIsFilterFocused(true)
   }
 
   async function onLogout() {
@@ -60,6 +64,12 @@ export function AppHeader() {
 
   function onOpenCloseMenu() {
     setIsMenuOpen(!isMenuOpen)
+  }
+
+  function onCloseFilterModals() {
+    setIsModalOpen(false)
+    setIsFilterFocused(false)
+    setModalType(null)
   }
 
   return (
@@ -77,7 +87,7 @@ export function AppHeader() {
       {(isScrolled && isFilterFocused) || (!isHomePage && isFilterFocused) ? (
         <div
           className="overlay"
-          onClick={() => setIsFilterFocused(false)}
+          onClick={() => onCloseFilterModals()}
         ></div>
       ) : null}
       <div className="app-header-top">

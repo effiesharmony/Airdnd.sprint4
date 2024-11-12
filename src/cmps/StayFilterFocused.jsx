@@ -21,6 +21,7 @@ export function StayFilterFocused({ modalType }) {
       stayAction.loadStays()
       setIsFilterApplied(false)
     }
+    onModalsClose()
     switch (modalType) {
       case "anywhere":
         onPlaceModalOpen()
@@ -79,6 +80,12 @@ export function StayFilterFocused({ modalType }) {
 
   function onGuestModalOpen() {
     setGuestDropdownOpen(!isGuestDropdownOpen)
+    setDateDropdownOpen(false)
+    setPlaceDropdownOpen(false)
+  }
+
+  function onModalsClose() {
+    setGuestDropdownOpen(false)
     setDateDropdownOpen(false)
     setPlaceDropdownOpen(false)
   }
