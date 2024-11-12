@@ -61,6 +61,7 @@
           bottom: 25%;
           right: 3px;
           width: 1px;
+          z-index: 11;
           background-color: #dddddd;
         }
       }
@@ -70,7 +71,7 @@
         position: absolute;
         top: 25%;
         bottom: 25%;
-        left: 3px;
+        left: 4px;
         width: 1px;
         background-color: #dddddd;
       }
@@ -131,8 +132,9 @@
           position: absolute;
           top: 25%;
           bottom: 25%;
-          right: 51%;
+          right: 50%;
           width: 1px;
+          z-index: 10;
           background-color: #dddddd;
         }
         
@@ -141,9 +143,7 @@
         }
         .stay-filter-focused-date-in,
         .stay-filter-focused-date-out {
-          padding: 16px 24px;
-          padding-left: 14px;
-          // padding-right: 65px;
+          padding: 14px 24px;
           border-radius: rem(32px);
           
           &:hover {
