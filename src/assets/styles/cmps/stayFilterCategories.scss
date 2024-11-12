@@ -6,7 +6,7 @@
   border-top: 1px solid #dddddd;
   width: 100%;
   background-color: #fff;
-  padding-top: 25px;
+  padding-top: 15px;
   position: sticky;
   top: 80px;
   z-index: 11;
@@ -15,22 +15,23 @@
     button {
         @include carousel-btn;
         top: 64%;
-        scale: 1.1;
+        scale: 1.2;
         opacity: 1;
         border: 1px solid $gray2;
         background-color: #fff;
         box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
 
     &.prev {
-      left: 3px;
+      left: 4px;
     }
 
     &.next {
-      right: 3px;
+      right: 4px;
     }
 
     &:hover {
       box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
+      scale: 1.25;
     }
   }
 
@@ -59,6 +60,7 @@
       img {
         width: 24px;
         height: 24px;
+        margin-bottom: 2px;
       }
 
       span {
