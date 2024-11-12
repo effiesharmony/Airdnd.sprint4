@@ -76,8 +76,8 @@ export function ReservationDetails() {
                         </div>
                         <div className="price-details">
                             <div className="info-item">
-                                <span className="label">${stay.price} x {nights} nights</span>
-                                <span className="value">${totalPrice}</span>
+                                <span className="label">${numberWithCommas(stay.price)} x {nights} nights</span>
+                                <span className="value">${numberWithCommas(totalPrice)}</span>
                             </div>
                             <div className="info-item">
                                 <span className="label">Service fee</span>
@@ -85,7 +85,7 @@ export function ReservationDetails() {
                             </div>
                             <div className="info-item total">
                                 <span className="label">Total</span>
-                                <span className="value">${totalPrice}</span>
+                                <span className="value">${numberWithCommas(totalPrice)}</span>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ export function ReservationDetails() {
                         stay={stay}
                         reservationDates={reservationDates}
                         guests={guests}
-                        totalPrice={totalPrice}
+                        totalPrice={numberWithCommas(totalPrice)}
                         onClose={() => {
                             setShowSuccess(false)
                             navigate('/stay')
