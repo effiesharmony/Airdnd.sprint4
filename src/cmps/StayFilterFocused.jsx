@@ -1,55 +1,68 @@
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { stayAction } from "../store/actions/stay.actions.js";
-import { DateModal } from "./DateModal.jsx";
-import { GuestModal } from "./GuestModal.jsx";
-import { PlaceModal } from "./PlaceModal.jsx";
-import { Link } from "react-router-dom";
-import "react-datepicker/dist/react-datepicker.css";
+import { useState, useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { stayAction } from "../store/actions/stay.actions.js"
+import { DateModal } from "./DateModal.jsx"
+import { GuestModal } from "./GuestModal.jsx"
+import { PlaceModal } from "./PlaceModal.jsx"
+import { Link } from "react-router-dom"
+import "react-datepicker/dist/react-datepicker.css"
 
-export function StayFilterFocused() {
-  const dispatch = useDispatch();
-  const filterBy = useSelector((state) => state.stayModule.filterBy);
-  const [isFilterApplied, setIsFilterApplied] = useState(false);
-  const [isPlaceDropdownOpen, setPlaceDropdownOpen] = useState(false);
-  const [isDateDropdownOpen, setDateDropdownOpen] = useState(false);
-  const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false);
-  const [totalGuests, setTotalGuests] = useState(filterBy.minCapacity || 0);
+export function StayFilterFocused({ modalType }) {
+  const dispatch = useDispatch()
+  const filterBy = useSelector((state) => state.stayModule.filterBy)
+  const [isFilterApplied, setIsFilterApplied] = useState(false)
+  const [isPlaceDropdownOpen, setPlaceDropdownOpen] = useState(false)
+  const [isDateDropdownOpen, setDateDropdownOpen] = useState(false)
+  const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false)
+  const [totalGuests, setTotalGuests] = useState(filterBy.minCapacity || 0)
 
   useEffect(() => {
     if (isFilterApplied) {
-      stayAction.loadStays();
-      setIsFilterApplied(false);
+      stayAction.loadStays()
+      setIsFilterApplied(false)
     }
-  }, [isFilterApplied, dispatch]);
+    switch (modalType) {
+      case "anywhere":
+        onPlaceModalOpen()
+        break
+      case "anyWeek":
+        onDateModalOpen()
+        break
+      case "addGuests":
+        onGuestModalOpen()
+        break
+      default:
+        break
+    }
+  }, [isFilterApplied, dispatch, modalType])
 
   function handleChange({ target }) {
-    const { name, value } = target;
-    dispatch(stayAction.setFilterBy({ ...filterBy, [name]: value }));
+    const { name, value } = target
+    dispatch(stayAction.setFilterBy({ ...filterBy, [name]: value }))
   }
 
   function handleDateChange(dates) {
-    const [startDate, endDate] = dates;
+    const [startDate, endDate] = dates
     dispatch(
       stayAction.setFilterBy({
         ...filterBy,
         availableDates: { start: startDate, end: endDate },
       })
-    );
+    )
     if (startDate && endDate) {
-      setDateDropdownOpen(false);
+      setDateDropdownOpen(false)
     }
   }
 
   function handleGuestChange(newTotalGuests) {
-    setTotalGuests(newTotalGuests);
+    setTotalGuests(newTotalGuests)
     dispatch(
       stayAction.setFilterBy({ ...filterBy, minCapacity: newTotalGuests })
-    );
+    )
   }
 
   function applyFilters() {
-    setIsFilterApplied(true);
+    setIsFilterApplied(true)
   }
 
   function onPlaceModalOpen() {
@@ -78,6 +91,7 @@ export function StayFilterFocused() {
             Stays
           </Link>
         </div>
+
         <section className="stay-filter-focused">
           {/* Place */}
           <div
@@ -129,28 +143,17 @@ export function StayFilterFocused() {
           >
             <h3>Who</h3>
             <div className="guest-input">
-              {/* {filterBy.minCapacity
-            ? `${filterBy.minCapacity} ${
-              filterBy.minCapacity === 1 ? "guest" : "guests"
-              }`
-              : "Add guests"} */}
               {totalGuests
                 ? `${totalGuests} guest${totalGuests > 1 ? "s" : ""}`
                 : "Add guests"}
             </div>
           </div>
 
-          {/* {isGuestDropdownOpen && (
-        <GuestModal
-        totalGuests={totalGuests}
-        handleGuestChange={handleGuestChange}
-        />
-        )} */}
-
           <button className="stay-filter-focused-search" onClick={applyFilters}>
             <i className="fa-solid fa-magnifying-glass"></i>
           </button>
         </section>
+
         {isPlaceDropdownOpen && <PlaceModal filterBy={filterBy} />}
         {isDateDropdownOpen && (
           <DateModal filterBy={filterBy} handleDateChange={handleDateChange} />
@@ -163,5 +166,5 @@ export function StayFilterFocused() {
         )}
       </div>
     </section>
-  );
+  )
 }

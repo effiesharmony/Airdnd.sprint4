@@ -1,5 +1,5 @@
 
-export function StayFilterUnfocused({toggleFilterFocus,onOpenFilterFocus}) {
+export function StayFilterUnfocused({toggleFilterFocus, onOpenFilterFocus}) {
 
   return (
     <div className="stay-filter-unfocused" onClick={() => toggleFilterFocus()}>
@@ -26,6 +26,7 @@ export function StayFilterUnfocused({toggleFilterFocus,onOpenFilterFocus}) {
       >
         <h3>Add guests</h3>
       </div>
+      
       <button className="stay-filter-unfocused-search" onClick={() => toggleFilterFocus()}>
         <i className="fa-solid fa-magnifying-glass"></i>
       </button>
