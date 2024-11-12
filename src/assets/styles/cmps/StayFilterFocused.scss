@@ -143,6 +143,8 @@
         .stay-filter-focused-date-in,
         .stay-filter-focused-date-out {
           padding: 15px 24px;
+          padding-left: 15px;
+          padding-right: 65px;
           border-radius: rem(32px);
           
           &:hover {
