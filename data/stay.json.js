@@ -196,7 +196,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Top of the world', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
@@ -240,7 +240,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Top of the world', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
@@ -284,7 +284,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Top of the world', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
@@ -328,7 +328,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Top of the world', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
@@ -372,7 +372,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Top of the world', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
@@ -416,7 +416,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Top of the world', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
@@ -460,7 +460,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Top of the world', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
@@ -504,7 +504,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Top of the world', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
@@ -548,7 +548,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Top of the world', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
@@ -592,7 +592,7 @@ const stays = [
 		summary: 'Fantastic duplex apartment...',
 		capacity: 8,
 		amenities: ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics'],
-		labels: ['Top of the world', 'Trending', 'Play', 'Tropical'],
+		labels: ['Beachfront', 'Top of the world', 'Trending', 'Play', 'Tropical'],
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
