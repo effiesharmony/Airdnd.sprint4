@@ -14,7 +14,7 @@ const stays = [
 		host: {
 			_id: 'u101',
 			fullname: 'Davit Pok',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -32,17 +32,17 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'Reviewer',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 			{
 				id: 'madeId',
 				txt: 'Very helpful hosts. Cooked traditional...',
-				rate: 2.5,
+				rate: 2.7,
 				by: {
 					_id: 'u103',
 					fullname: 'Reviewer',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -68,7 +68,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -82,11 +82,11 @@ const stays = [
 			{
 				id: 'madeId',
 				txt: 'Very nice. Cooked traditional...',
-				rate: 4,
+				rate: 4.5648,
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -112,7 +112,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -130,7 +130,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -156,7 +156,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -174,7 +174,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -200,7 +200,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -218,7 +218,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -244,7 +244,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -262,7 +262,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -288,7 +288,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -306,7 +306,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -332,7 +332,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -350,7 +350,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -376,7 +376,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -394,7 +394,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -420,7 +420,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -438,7 +438,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -464,7 +464,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -482,7 +482,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -508,7 +508,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -526,7 +526,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -552,7 +552,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -570,7 +570,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -596,7 +596,7 @@ const stays = [
 		host: {
 			_id: 'u102',
 			fullname: 'David Rock',
-			imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+			imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 		},
 		loc: {
 			country: 'Portugal',
@@ -614,7 +614,7 @@ const stays = [
 				by: {
 					_id: 'u102',
 					fullname: 'user2',
-					imgUrl: 'https://a0.muscache.com/im/pictures/user/9da9a054-1301-4edc-bcfb-2a8d826404e7.jpg?im_w=240',
+					imgUrl: 'https://res.cloudinary.com/dycvqhve0/image/upload/v1731511402/hz9zfwh7yh6zdjmrukpa.jpg',
 				},
 			},
 		],
@@ -661,7 +661,7 @@ const users = [
 	{
 		_id: 'u101',
 		fullname: 'User 1',
-		imgUrl: 'https://a0.muscache.com/im/pictures/user/User-570074090/original/4a25a900-e452-4772-933a-d42f1f0ae551.jpeg?im_w=240',
+		imgUrl: 'https://a0.muscache.com/im/pictures/user/User-487405339/original/27b4d92c-2c59-4458-8968-a2f0e256db8b.jpeg?im_w=240',
 		username: 'user1',
 		password: 'secret1',
 		reviews: [
