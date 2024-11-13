@@ -185,10 +185,10 @@ export function AppHeader() {
                   <hr />
                   <NavLink
                     className="dropdown-menu-link"
-                    to="user/:id"
+                    to="/dashboard"
                     onClick={onOpenCloseMenu}
                   >
-                    Account
+                    Dashboard
                   </NavLink>
                   <hr />
                   <NavLink
