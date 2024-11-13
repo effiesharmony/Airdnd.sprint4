@@ -7,6 +7,7 @@ import { HostIndex } from "./pages/HostIndex.jsx"
 import { StayDetails } from "./pages/StayDetails.jsx"
 import { UserDetails } from "./pages/UserDetails.jsx"
 import { StayEdit } from "./pages/StayEdit.jsx"
+import { DashboardReservation } from "./pages/DashboardReservation.jsx" 
 
 import { AppHeader } from "./cmps/AppHeader.jsx"
 import { AppFooter } from "./cmps/AppFooter.jsx"
@@ -30,6 +31,7 @@ export function App() {
           <Route path="/reservation/:stayId" element={<ReservationDetails/>} />
           <Route path="user/:id" element={<UserDetails />} />
           <Route path="admin" element={<HostIndex />} />
+          <Route path="/dashboard" element={<DashboardReservation />} />
           <Route path="login" element={<LoginSignup />}>
           <Route index element={<Login />} />
             <Route path="signup" element={<Signup />} />

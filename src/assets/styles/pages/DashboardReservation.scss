@@ -1,0 +1,32 @@
+.dashboard-reservations {
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f4f4f4;
+}
+
+.approve-btn {
+    color: green;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.reject-btn {
+    color: red;
+    margin-top: 30px;
+    cursor: pointer;
+
+}
