@@ -11,6 +11,7 @@
     @content;
   }
 }
+
 // 1440
 @mixin for-normal-layout {
   @media (min-width: calc($narrow-breakpoint + 40px)) {
@@ -86,6 +87,23 @@
     width: 12px;
     height: 12px;
     margin: 0;
+  }
+}
+
+@mixin reserve-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(90deg, #ff385c, #d70653);
+  color: $clr6;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+
+  &:hover {
+    background: linear-gradient(90deg, #d70653, #ff385c);
   }
 }
 

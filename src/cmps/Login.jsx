@@ -32,6 +32,7 @@ export function Login({ setIsLoggedIn }) {
     return (
         <form className="login-form" onSubmit={onLogin}>
             <input
+            className="user-name"
                 type="text"
                 name="username"
                 value={credentials.username}

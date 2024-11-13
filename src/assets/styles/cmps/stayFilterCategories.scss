@@ -5,7 +5,7 @@
 .categories-outer-container {
   border-top: 1px solid #dddddd;
   width: 100%;
-  background-color: #fff;
+  background-color: $clr6;
   padding-top: 15px;
   position: sticky;
   top: 80px;
@@ -18,7 +18,7 @@
         scale: 1.2;
         opacity: 1;
         border: 1px solid $gray2;
-        background-color: #fff;
+        background-color: $clr6;
         box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
 
     &.prev {

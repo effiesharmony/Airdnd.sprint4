@@ -1,9 +1,12 @@
 .login-page {
 
 	.login-form-container {
+		margin: auto;
+		margin-top: 40px;
+		width: fit-content;
 		border-radius: rem(10px);
 		background-color: $gray1;
-		padding: rem(40px);
+		padding: rem(30px);
 		padding-top: rem(20px);
 
 		nav {
@@ -22,30 +25,38 @@
 			}
 
 			a.active {
+				font-family: AirbnbCereal_W_Md;
 				text-decoration: underline;
 				color: $clr2;
 			}
 		}
 
-
-
 		.login-form,
 		.signup-form {
 			display: grid;
-			width: min(80%, 300px);
+			width: fit-content;
 			margin: auto;
+			margin-bottom: 20px;
 			border-radius: rem(10px);
 			padding: 1em;
-			background-color: #ffffff;
-		}
+			background-color: $clr6;
 
-		.signup-form {
 			input {
 				width: 100%;
 				border: none;
 				border-bottom: 1px solid $gray2;
-				background-color: #fff;
+				background-color: $clr6;
 			}
+
+			button{
+				@include reserve-btn;
+				// justify-self: center;
+				// width: 100px;
+				// padding: 10px;
+			}
+		}
+
+		.signup-form {
 
 			.admin-toggle {
 				display: flex;

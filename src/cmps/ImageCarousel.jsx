@@ -20,7 +20,7 @@ export function ImageCarousel({ stay, onShowDetails }) {
                 )}
                 <div className="heart">
                     <img src="public/svg/heart.svg" alt="Heart" />
-                    </div>
+                </div>
                 <img onClick={() => onShowDetails(stay._id)} src={stay.imgUrls[imgIndex]} alt="Stay Image" />
                 <div className="dots">
                     {stay.imgUrls.map((_, index) => (

@@ -12,7 +12,7 @@
 }
 
 .reservation-success-popup {
-    background-color: #fff;
+    background-color: $clr6;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -101,7 +101,7 @@
 
     .swal2-confirm {
         background-color: #6c757d;
-        color: #fff;
+        color: $clr6;
         font-size: 0.9rem;
         padding: 8px 16px; 
         border: none;

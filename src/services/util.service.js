@@ -54,7 +54,13 @@ export function loadFromStorage(key) {
 export function getReviewAvg(arr) {
     if (arr.length === 0) return 0
     const sum = arr.reduce((a, b) => a + b.rate, 0)
-    return sum / arr.length
+    let val = `${sum / arr.length}`.split('.')
+    if(val[1]){
+        val = `${val[0]}.${val[1].substring(0,2)}`
+    }else{
+        val = `${val}.0`
+    }
+    return val
 }
 
 export function numberWithCommas(x) {

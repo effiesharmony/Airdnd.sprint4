@@ -122,7 +122,7 @@ export function AppHeader() {
               />
               <img
                 className="app-header-user-img"
-                src="/public/svg/user.svg"
+                src="/public/img/effie.jpeg"
                 alt="user icon"
               />
             </button>
@@ -142,7 +142,7 @@ export function AppHeader() {
               ) : (
                 <img
                   className="app-header-user-img"
-                  src="/public/svg/user.svg"
+                  src="/public/img/effie.jpeg"
                   alt="user icon"
                 />
               )}
@@ -213,7 +213,7 @@ export function AppHeader() {
                   </NavLink>
                   <NavLink
                     className="dropdown-menu-link"
-                    to="signup"
+                    to="login/signup"
                     onClick={onOpenCloseMenu}
                   >
                     Sign up
