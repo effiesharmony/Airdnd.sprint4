@@ -1,6 +1,12 @@
+*{
+  box-sizing: border-box;
+}
+
 .stay-edit {
+  justify-self: center;
   font-family: AirbnbCereal_W_Lt, sans-serif;
   font-size: rem(16px);
+  width: 80%;
 
   input {
     border: none;
@@ -117,19 +123,8 @@
   }
 
   .save-btn {
+    @include reserve-btn;
     width: 100px;
     padding: 8px;
-    background: linear-gradient(90deg, #ff385c, #d70653);
-    color: #fff;
-    font-size: 0.9rem;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    text-align: center;
-
-    &:hover {
-      background: linear-gradient(90deg, #d70653, #ff385c);
-    }
   }
 }
