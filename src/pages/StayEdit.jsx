@@ -94,7 +94,7 @@ export function StayEdit() {
         <textarea id="summary" className="description-textarea" value={stayToEdit.summary}
           onInput={onChangeString}></textarea>
       </div>
-      <button className="save-btn" onClick={onSaveStay}>save</button>
+      <button className="save-btn" onClick={onSaveStay}>Save</button>
     </form>
   )
 }

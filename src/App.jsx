@@ -20,20 +20,20 @@ export function App() {
   return (
     <div className="main-container">
       <AppHeader />
-      
+
       <main>
         <Routes>
           <Route path="/" element={<Navigate to="/stay" replace />} />
           <Route path="stay" element={<StayIndex />} />
           <Route path="about" element={<AboutUs />} />
-          <Route path="stay/:stayId" element={<StayDetails/>}/>
+          <Route path="stay/:stayId" element={<StayDetails />} />
           <Route path="/stay/edit/:stayId?" element={<StayEdit />} />
-          <Route path="/reservation/:stayId" element={<ReservationDetails/>} />
+          <Route path="/reservation/:stayId" element={<ReservationDetails />} />
           <Route path="user/:id" element={<UserDetails />} />
           <Route path="admin" element={<HostIndex />} />
           <Route path="/dashboard" element={<DashboardReservation />} />
           <Route path="login" element={<LoginSignup />}>
-          <Route index element={<Login />} />
+            <Route index element={<Login />} />
             <Route path="signup" element={<Signup />} />
           </Route>
         </Routes>
