@@ -1,4 +1,4 @@
-import { categories } from "../../public/categories.js"
+import { categories } from '../services/utils/categories.js'
 import { useRef, useState } from "react"
 import { useNavigate, useSearchParams } from "react-router-dom"
 

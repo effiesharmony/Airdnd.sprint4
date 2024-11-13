@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { ImageCarousel } from './ImageCarousel.jsx'
-import { getReviewAvg, numberWithCommas } from '../services/util.service.js'
+import { getReviewAvg, numberWithCommas } from '../services/utils/util.service.js'
 
 export function StayPreview({ stay }) {
     const navigate = useNavigate()

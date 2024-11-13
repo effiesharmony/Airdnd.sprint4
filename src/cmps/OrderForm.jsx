@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { stayService } from "../services/stay/stay.service.local.js";
-import { getReviewAvg, numberWithCommas } from "../services/util.service.js";
+import { getReviewAvg, numberWithCommas } from "../services/utils/util.service.js";
 import { GuestModalDetails } from "./GuestModalDetails.jsx";
 import { DateModalDetails } from "./DateModalDetails.jsx";
 
