@@ -1,62 +1,62 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { stayService } from "../services/stay/stay.service.local.js";
-import { getReviewAvg, numberWithCommas } from "../services/util.service.js";
+import { getReviewAvg, numberWithCommas } from "../services/utils/util.service.js";
 import { GuestModalDetails } from "./GuestModalDetails.jsx";
 import { DateModalDetails } from "./DateModalDetails.jsx";
 
 export function OrderForm({ stayId }) {
-  const [stay, setStay] = useState(null);
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState(1);
-  const [nights, setNights] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
-  const orderFormRef = useRef(null);
-  const navigate = useNavigate();
-  const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false);
-  const [isDateDropdownOpen, setDateDropdownOpen] = useState(false);
+  const [stay, setStay] = useState(null)
+  const [checkIn, setCheckIn] = useState("")
+  const [checkOut, setCheckOut] = useState("")
+  const [guests, setGuests] = useState(1)
+  const [nights, setNights] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
+  const orderFormRef = useRef(null)
+  const navigate = useNavigate()
+  const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false)
+  const [isDateDropdownOpen, setDateDropdownOpen] = useState(false)
 
   useEffect(() => {
     stayService
       .getById(stayId)
       .then((stay) => {
-        setStay(stay);
+        setStay(stay)
       })
-      .catch((err) => console.error("Failed to load stay:", err));
-  }, [stayId]);
+      .catch((err) => console.error("Failed to load stay:", err))
+  }, [stayId])
 
   useEffect(() => {
     if (checkIn && checkOut) {
-      const checkInDate = new Date(checkIn);
-      const checkOutDate = new Date(checkOut);
+      const checkInDate = new Date(checkIn)
+      const checkOutDate = new Date(checkOut)
       const calculatedNights = Math.max(
         (checkOutDate - checkInDate) / (1000 * 3600 * 24),
         0
-      );
-      setNights(calculatedNights);
+      )
+      setNights(calculatedNights)
     } else {
-      setNights(0);
+      setNights(0)
     }
-  }, [checkIn, checkOut]);
+  }, [checkIn, checkOut])
 
   useEffect(() => {
     if (stay) {
-      setTotalPrice(stay.price * nights);
+      setTotalPrice(stay.price * nights)
     }
-  }, [nights, stay]);
+  }, [nights, stay])
 
   const handleReserve = () => {
     sessionStorage.setItem(
       "reservationDates",
       JSON.stringify({ checkIn, checkOut })
-    );
-    sessionStorage.setItem("reservationGuests", guests);
-    navigate(`/reservation/${stayId}`);
-  };
+    )
+    sessionStorage.setItem("reservationGuests", guests)
+    navigate(`/reservation/${stayId}`)
+  }
 
   function handleGuestChange(newTotalGuests) {
-    setGuests(newTotalGuests);
+    setGuests(newTotalGuests)
   }
 
   function handleDateChange(dates) {
@@ -70,13 +70,13 @@ export function OrderForm({ stayId }) {
   }
 
   function onOpenGuestModal() {
-    setGuestDropdownOpen(!isGuestDropdownOpen);
-    setDateDropdownOpen(false);
+    setGuestDropdownOpen(!isGuestDropdownOpen)
+    setDateDropdownOpen(false)
   }
 
   function onOpenDateModal() {
-    setDateDropdownOpen(!isDateDropdownOpen);
-    setGuestDropdownOpen(false);
+    setDateDropdownOpen(!isDateDropdownOpen)
+    setGuestDropdownOpen(false)
   }
 
   if (!stay) return <p>Loading...</p>;

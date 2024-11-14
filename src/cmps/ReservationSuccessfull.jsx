@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import { numberWithCommas } from '../services/util.service'
+import { numberWithCommas } from '../services/utils/util.service'
 
 const MySwal = withReactContent(Swal)
 
