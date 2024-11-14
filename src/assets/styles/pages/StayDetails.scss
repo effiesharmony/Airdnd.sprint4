@@ -38,20 +38,22 @@
         display: flex;
         align-items: center;
         font-style: bold;
-        gap: 16px;
+        gap: 5px;
+
 
         button {
-          font-style: AirbnbCereal_W_Bd_otf;
+          font-family: AirbnbCereal_W_Bk;
           display: flex;
           align-items: center;
           text-decoration: underline;
-          font-style: bold;
-          gap: 4px;
+          font-weight: normal;
+          gap: 10px;
+          padding: 8px;
           background: transparent;
           border: none;
-          font-style: bold;
           font-size: 0.9rem;
           color: #000000;
+          
           cursor: pointer;
 
           img {
@@ -60,7 +62,7 @@
           }
 
           &:hover {
-            background:rgba(214, 214, 214, 0.3);
+            background-color: #f7f7f7;
         
             
           }
