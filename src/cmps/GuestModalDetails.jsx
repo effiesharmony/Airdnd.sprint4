@@ -1,52 +1,52 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
 export function GuestModalDetails({ handleGuestChange, setGuestDropdownOpen }) {
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
-  const [infants, setInfants] = useState(0);
-  const [pets, setPets] = useState(0);
-  const total = adults + children + infants + pets;
-  const isButtonDisabled = total === 1;
+  const [adults, setAdults] = useState(1)
+  const [children, setChildren] = useState(0)
+  const [infants, setInfants] = useState(0)
+  const [pets, setPets] = useState(0)
+  const total = adults + children + infants + pets
+  const isButtonDisabled = total === 1
 
   useEffect(() => {
-    handleGuestChange(total);
-  }, [adults, children, infants, pets]);
+    handleGuestChange(total)
+  }, [adults, children, infants, pets])
 
   function increment(type) {
     switch (type) {
       case "adults":
-        setAdults(adults + 1);
-        break;
+        setAdults(adults + 1)
+        break
       case "children":
-        setChildren(children + 1);
-        break;
+        setChildren(children + 1)
+        break
       case "infants":
-        setInfants(infants + 1);
-        break;
+        setInfants(infants + 1)
+        break
       case "pets":
-        setPets(pets + 1);
-        break;
+        setPets(pets + 1)
+        break
       default:
-        break;
+        break
     }
   }
 
   function decrement(type) {
     switch (type) {
       case "adults":
-        setAdults(Math.max(adults - 1, 0));
-        break;
+        setAdults(Math.max(adults - 1, 0))
+        break
       case "children":
-        setChildren(Math.max(children - 1, 0));
-        break;
+        setChildren(Math.max(children - 1, 0))
+        break
       case "infants":
-        setInfants(Math.max(infants - 1, 0));
-        break;
+        setInfants(Math.max(infants - 1, 0))
+        break
       case "pets":
-        setPets(Math.max(pets - 1, 0));
-        break;
+        setPets(Math.max(pets - 1, 0))
+        break
       default:
-        break;
+        break
     }
   }
 
@@ -215,5 +215,5 @@ export function GuestModalDetails({ handleGuestChange, setGuestDropdownOpen }) {
       <button className="close-guest-modal-btn" onClick={()=> setGuestDropdownOpen(false)}>Close</button>
       </div>
     </div>
-  );
+  )
 }
