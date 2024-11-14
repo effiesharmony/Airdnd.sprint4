@@ -25,6 +25,16 @@ export function StayDetails({ }) {
             <div className="stay-main">
               <div className="stay-header">
                 <h3>{stay.name}</h3>
+                <div className="stay-actions">
+                  <button className="share-btn">
+                    <img src="/public/svg/share.svg" alt="Share" />
+                    Share
+                  </button>
+                  <button className="save-btn">
+                    <img src="/public/svg/save.svg" alt="Save" />
+                    Save
+                  </button>
+                </div>
               </div>
               <div className="stay-gallery">
                 {stay.imgUrls.map((url, index) => (
@@ -33,41 +43,41 @@ export function StayDetails({ }) {
                   </div>
                 ))}
               </div>
-              
+
               <div className='stay-content-wrapper'>
                 <div className="grid-wrapper">
-                <div className="stay-description">
-                  <p>{stay.type} in {stay.loc.city}, {stay.loc.country}</p>
-                </div>
-                <div className="stay-capacity">
-                  <h6 className="stay-capacity-guests">{stay.capacity} guests • 2 bedrooms • 3 beds • 2 baths</h6>
-                  <div className="stay-capacity-review">
-                    <img src="/public/svg/star.svg" alt="" />
-                    <h6> 4.96 • <span> 24 reviews </span></h6>
-                    </div>
-                </div>
-
-                <div className="stay-host">
-                  <img src={stay.host.imgUrl} alt={stay.host.fullname} className="host-image" />
-                  <div>
-                  <h5>Hosted by {stay.host.fullname}</h5>
-                  <h6>10 years hosting</h6>
+                  <div className="stay-description">
+                    <p>{stay.type} in {stay.loc.city}, {stay.loc.country}</p>
                   </div>
-                </div>
-                <div className="stay-info">
-                  <h6>{stay.info}</h6>
-                </div>
-                <div className="stay-amenities">
-                  <h6>What this place offers</h6>
-                  <ul>
-                    {stay.amenities.map((amenity, index) => (
-                      <li key={index} className="amenity-item">
-                        <img src={amenityIcons[amenity]} alt={amenity} className="amenity-icon" />
-                        <span>{amenity}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  <div className="stay-capacity">
+                    <h6 className="stay-capacity-guests">{stay.capacity} guests • 2 bedrooms • 3 beds • 2 baths</h6>
+                    <div className="stay-capacity-review">
+                      <img src="/public/svg/star.svg" alt="" />
+                      <h6> 4.96 • <span> 24 reviews </span></h6>
+                    </div>
+                  </div>
+
+                  <div className="stay-host">
+                    <img src={stay.host.imgUrl} alt={stay.host.fullname} className="host-image" />
+                    <div>
+                      <h5>Hosted by {stay.host.fullname}</h5>
+                      <h6>10 years hosting</h6>
+                    </div>
+                  </div>
+                  <div className="stay-info">
+                    <h6>{stay.info}</h6>
+                  </div>
+                  <div className="stay-amenities">
+                    <h6>What this place offers</h6>
+                    <ul>
+                      {stay.amenities.map((amenity, index) => (
+                        <li key={index} className="amenity-item">
+                          <img src={amenityIcons[amenity]} alt={amenity} className="amenity-icon" />
+                          <span>{amenity}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
                 </div>
                 <div className="stay-order">
@@ -75,12 +85,12 @@ export function StayDetails({ }) {
                 </div>
               </div>
 
-                <div className="stay-reviews">
+              <div className="stay-reviews">
                 <div className="stay-reviews-header">
-                    <img src="/public/svg/star.svg" alt="" />
-                    <h6> 4.96 • <span> 24 reviews </span></h6>
-                    </div>
-                    <div className="review-items">
+                  <img src="/public/svg/star.svg" alt="" />
+                  <h6> 4.96 • <span> 24 reviews </span></h6>
+                </div>
+                <div className="review-items">
                   {stay.reviews.map((review, index) => (
                     <div key={index} className="review-item">
                       <div className="review-header">
@@ -93,8 +103,8 @@ export function StayDetails({ }) {
                       <h4 className="review-text">{review.txt}</h4>
                     </div>
                   ))}
-                  </div>
-                  </div>
+                </div>
+              </div>
 
             </div>
           </div>
