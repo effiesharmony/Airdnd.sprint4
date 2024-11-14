@@ -1,23 +1,15 @@
-.main-container {
-    display: grid;
-    grid-template-columns: 80px 90vw 80px;
-    > * {
-        grid-column: 2;
-
-        &.full {
-            grid-column: 1 / -1;
-        }
-    }
+main {
+  padding: 0 80px;
 }
 
 .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
 }
 
 @media screen and (max-width: 1440px) {
-    .main-container {
-        grid-template-columns: 40px 90vw 40px;
-    }
+    main {
+    padding: 0 40px;
   }
+}

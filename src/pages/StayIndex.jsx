@@ -28,10 +28,10 @@ export function StayIndex() {
   }
 
   return (
-    <main className="stay-index">
+    <section className="stay-index">
       
       <StayCategories filterBy={filterBy} onSetFilter={onSetFilter} />
       <StayList stays={stays} />
-    </main>
+    </section>
   )
 }

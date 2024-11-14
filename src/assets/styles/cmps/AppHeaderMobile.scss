@@ -1,0 +1,46 @@
+.app-header-mobile {
+  position: relative;
+  height: 70px;
+  width: 100vh;
+  max-width: 750px;
+  z-index: 15;
+  background-color: white;
+
+  .app-header-mobile-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+
+  }
+
+  .app-header-mobile-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    background-color: white;
+
+
+    .app-header-mobile-options {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-top: 1px solid rgb(235, 235, 235);
+      background-color: white;
+
+      img {
+        width: 20px;
+        height: 20px;
+        opacity: 0.7;
+      }
+    }
+  }
+}

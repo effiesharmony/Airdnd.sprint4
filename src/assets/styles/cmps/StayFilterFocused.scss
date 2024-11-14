@@ -212,6 +212,8 @@
           }
 
           button {
+            background-color: transparent;
+            border: none;
             img {
               position: absolute;
               top: 10%;
@@ -317,19 +319,44 @@
 
 @media screen and (max-width: 950px) {
   .stay-filter-focused-main-box {
-    // background-color: white;
-      padding-top: 80px;
-      padding-bottom: 30px;
-    
+    position: absolute;
+    top: 60px;
+    left: 0;
+    padding-top: 70px;
+    padding-bottom: 30px;
+    padding-left: 38px;
+    padding-right: 38px;
+
     .stay-filter-focused-main {
       .stay-filter-focused {
         h3 {
           font-size: 0.75rem;
-          font-family: AirbnbCereal_W_Md2, sans-serif;
+          font-family: AirbnbCereal_W_Bk, sans-serif;
           font-weight: normal;
           margin: 0;
           padding-bottom: 3px;
           letter-spacing: 0.01rem;
+        }
+
+        .stay-filter-focused-date {
+          .stay-filter-focused-date-in-box,
+          .stay-filter-focused-date-out-box {
+            button {
+              img {
+                position: absolute;
+                top: 10%;
+                right: -30px;
+                width: 25px;
+                padding: 7px;
+                border-radius: 50%;
+                cursor: pointer;
+
+                &:hover {
+                  background-color: #dddddd;
+                }
+              }
+            }
+          }
         }
       }
       .stays {
@@ -344,20 +371,5 @@
         letter-spacing: 0.01rem;
       }
     }
-  }
-}
-
-
-@media screen and (max-width: 950px) {
-  .app-header {
-    // .app-header-bottom {
-    //   padding-top: 80px;
-    //   padding-bottom: 30px;
-    //   background-color: white;
-    //   .stay-filter-focused-main-box {
-    //     background-color: white;
-    //     padding-bottom: 0px;
-    //   }
-    // }
   }
 }

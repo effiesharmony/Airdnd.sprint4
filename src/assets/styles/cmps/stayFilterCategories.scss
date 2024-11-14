@@ -3,7 +3,7 @@
 }
 
 .categories-outer-container {
-  border-top: 1px solid #dddddd;
+  // border-top: 1px solid #dddddd;
   width: 100%;
   background-color: $clr6;
   padding-top: 15px;
@@ -87,5 +87,11 @@
 
   .categories-inner-container::-webkit-scrollbar {
     display: none;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .categories-outer-container{
+    margin-top: 180px;
   }
 }
