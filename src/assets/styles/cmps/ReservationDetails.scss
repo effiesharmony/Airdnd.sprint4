@@ -1,105 +1,106 @@
 .reservation-details {
+  border-top: 1px solid #dddddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+
+  .details-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    
-    .details-container {
-      display: flex;
-      justify-content: space-between;
-      max-width: 800px;
-      width: 100%;
-      margin-bottom: 20px;
-  
-      .reservation-text {
-        flex: 1;
-        margin-right: 20px;
-  
-        h2 {
-          font-size: 24px;
-          font-weight: bold;
-        }
-  
-        p {
-          margin: 5px 0;
-        }
-  
-        .reservation-info {
-          margin-top: 15px;
-  
-          h3 {
-            font-weight: bold;
-            margin-bottom: 10px;
-          }
-  
-          .info-item {
-            display: flex;
-            justify-content: space-between;
-            margin: 5px 0;
-            font-size: 14px;
-  
-            .label {
-              font-weight: bold;
-            }
-  
-            &.total {
-              margin-top: 10px;
-              font-size: 16px;
-            }
-          }
-  
-          .price-details {
-            border-top: 1px solid #ccc;
-            margin-top: 10px;
-            padding-top: 10px;
-          }
-        }
+    justify-content: space-between;
+    max-width: 800px;
+    width: 100%;
+    margin-bottom: 20px;
+
+    .reservation-text {
+      flex: 1;
+      margin-right: 20px;
+
+      h2 {
+        font-size: 24px;
+        font-weight: bold;
       }
-  
-      .reservation-image {
-        width: 200px;
-        text-align: center;
-  
-        img {
-          width: 100%;
-          border-radius: 8px;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-  
-        .stay-name {
+
+      p {
+        margin: 5px 0;
+      }
+
+      .reservation-info {
+        margin-top: 15px;
+
+        h3 {
           font-weight: bold;
-          margin-top: 10px;
+          margin-bottom: 10px;
         }
-  
-        .stay-location {
-          color: #777;
-          font-size: 12px;
+
+        .info-item {
+          display: flex;
+          justify-content: space-between;
+          margin: 5px 0;
+          font-size: 14px;
+
+          .label {
+            font-weight: bold;
+          }
+
+          &.total {
+            margin-top: 10px;
+            font-size: 16px;
+          }
+        }
+
+        .price-details {
+          border-top: 1px solid #ccc;
+          margin-top: 10px;
+          padding-top: 10px;
         }
       }
     }
-  
-    .buttons-container {
-      display: flex;
-      gap: 10px;
-  
-      .back-button, .confirm-button {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
+
+    .reservation-image {
+      width: 200px;
+      text-align: center;
+
+      img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .stay-name {
         font-weight: bold;
-        cursor: pointer;
+        margin-top: 10px;
       }
-  
-      .back-button {
-        background-color: #ccc;
-        color: #333;
-      }
-  
-      .confirm-button {
-        background-color: #ff385c;
-        color: white;
+
+      .stay-location {
+        color: #777;
+        font-size: 12px;
       }
     }
   }
-  
+
+  .buttons-container {
+    display: flex;
+    gap: 10px;
+
+    .back-button,
+    .confirm-button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .back-button {
+      background-color: #ccc;
+      color: #333;
+    }
+
+    .confirm-button {
+      background-color: #ff385c;
+      color: white;
+    }
+  }
+}

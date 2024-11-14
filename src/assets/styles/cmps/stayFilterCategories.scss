@@ -74,7 +74,6 @@
       span {
         font-size: rem(12px);
         text-wrap: nowrap;
-
       }
 
       span:first-child {
@@ -100,5 +99,11 @@
 
   .categories-inner-container::-webkit-scrollbar {
     display: none;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .categories-outer-container {
+    margin-top: 178px;
   }
 }

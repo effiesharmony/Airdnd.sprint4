@@ -199,6 +199,8 @@
 .small {
   height: 80px;
   z-index: 15;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .overlay {
@@ -223,16 +225,4 @@
   }
 }
 
-@media screen and (max-width: 950px) {
-  .app-header {
-    // .app-header-bottom {
-    //   padding-top: 80px;
-    //   padding-bottom: 30px;
-    //   background-color: white;
-    //   .stay-filter-focused-main-box {
-    //     background-color: white;
-    //     padding-bottom: 0px;
-    //   }
-    // }
-  }
-}
+
