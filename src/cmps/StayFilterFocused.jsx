@@ -7,7 +7,7 @@ import { PlaceModal } from "./PlaceModal.jsx";
 import { Link } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 
-export function StayFilterFocused({ modalType }) {
+export function StayFilterFocused({ modalType, isFilterFocused }) {
   const dispatch = useDispatch();
   const filterBy = useSelector((state) => state.stayModule.filterBy);
   const [isFilterApplied, setIsFilterApplied] = useState(false);
@@ -118,7 +118,7 @@ export function StayFilterFocused({ modalType }) {
   }
 
   return (
-    <section className="stay-filter-focused-main-box">
+    <section className={`stay-filter-focused-main-box ${isFilterFocused ? '' : 'transform'}`}>
       <div className="stay-filter-focused-main">
         <div className="stays-link">
           <Link to="/stay" className="stays">

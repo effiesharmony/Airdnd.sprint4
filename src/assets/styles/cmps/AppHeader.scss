@@ -1,13 +1,43 @@
 .app-header {
   position: relative;
-  z-index: 14;
+  z-index: 15;
   display: flex;
   flex-direction: column;
   padding-left: 80px;
   padding-right: 80px;
   padding-top: 16px;
+  width: 100%;
   background-color: white;
-  
+
+  .app-header-top-reservation {
+    height: fit-content;
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 65px;
+    border-bottom: 1px solid #dddddd;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app-header-left-box {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+
+      .app-header-left-box-logo-img {
+        position: absolute;
+        top: 20px;
+        left: 24px;
+        width: 103px;
+        min-width: 103px;
+      }
+    }
+  }
+
   .app-header-top {
     height: fit-content;
     display: grid;
@@ -109,7 +139,7 @@
       background-color: white;
       border-radius: 0.8rem;
       padding: 8px 0;
-      z-index: 15;
+      z-index: 16;
 
       .dropdown-menu-link,
       .dropdown-menu-link-btn {
@@ -147,7 +177,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 16px;
+    padding-top: 16px;
+    padding-bottom: 22px;
+    width: 100%;
+    z-index: 15;
     background-color: white;
   }
 }
@@ -155,14 +188,18 @@
 .sticky {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 15;
   height: 80px;
-  z-index: 12;
+  background-color: white;
+  width: 100%;
+  .app-header-bottom {
+    background-color: transparent;
+  }
 }
 
 .small {
   height: 80px;
-  z-index: 12;
+  z-index: 15;
 }
 
 .overlay {
@@ -172,7 +209,7 @@
   position: fixed;
   top: 168px;
   left: 0;
-  z-index: 11;
+  z-index: 15;
 }
 
 @media screen and (max-width: 1440px) {
@@ -189,9 +226,14 @@
 
 @media screen and (max-width: 950px) {
   .app-header {
-    .app-header-bottom {
-      margin-top: 80px;
-      margin-bottom: 30px;
-    }
+    // .app-header-bottom {
+    //   padding-top: 80px;
+    //   padding-bottom: 30px;
+    //   background-color: white;
+    //   .stay-filter-focused-main-box {
+    //     background-color: white;
+    //     padding-bottom: 0px;
+    //   }
+    // }
   }
 }
