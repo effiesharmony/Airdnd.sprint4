@@ -33,7 +33,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  // justify-content: center;
   z-index: 12;
   border: none;
   border-radius: 16px;
@@ -124,9 +123,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    
     .date-picker-modal-days-info {
       h1 {
+        font-family: AirbnbCereal_W_Md, sans-serif;
+        font-weight: normal;
         font-size: 1.4rem;
         margin: 0;
         margin-left: 14px;
@@ -134,6 +135,8 @@
       }
 
       h3 {
+        font-family: AirbnbCereal_W_Lt, sans-serif;
+        font-weight: normal;
         font-size: 0.9rem;
         margin: 0;
         margin-left: 14px;
@@ -231,15 +234,21 @@
       font-size: rem(15px);
       margin-right: 10px;
       padding: 5px;
+      background-color: transparent;
+      border: none;
+      font-family: AirbnbCereal_W_Bk, sans-serif;
       text-decoration: underline;
       cursor: pointer;
     }
 
     .date-modal-close-btn {
       font-size: rem(15px);
-      font-family: AirbnbCereal_W_Md;
+      font-family: AirbnbCereal_W_Bk, sans-serif;
+      letter-spacing: 0.01rem;
       padding: 8px 14px;
       border-radius: 8px;
+      background-color: transparent;
+      border: none;
       background-color: #222222;
       color: white;
       cursor: pointer;
