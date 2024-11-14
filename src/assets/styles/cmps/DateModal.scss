@@ -255,3 +255,85 @@
     }
   }
 }
+
+
+@media screen and (max-width: 950px) {
+  .date-modal {    
+    @include calendar;
+    .react-datepicker {
+      font-family: AirbnbCereal_W_Lt, sans-serif;
+      width: 100%;
+      border: none;
+      display: flex;
+      align-items: start;
+      justify-content: center;
+      gap: 15px;
+    }
+  
+    .react-datepicker__header {
+      padding-top: 38px;
+      padding-bottom: 5px;
+      border: none;
+      background-color: transparent;
+    }
+  
+    .react-datepicker__navigation--next {
+      top: 37px;
+      right: 7px;
+    }
+  
+    .react-datepicker__navigation--previous {
+      top: 37px;
+      left: 5px;
+    }
+  
+    .react-datepicker__month {
+      font-family: AirbnbCereal_W_Lt, sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      margin: 0px;
+    }
+  
+    .react-datepicker__current-month {
+      letter-spacing: 0.04rem;
+    }
+  
+    .react-datepicker__day-name {
+      font-family: AirbnbCereal_W_Lt, sans-serif;
+      margin-top: 18px;
+      font-size: 12px;
+      color: #818181;
+    }
+  
+    .react-datepicker__day-names {
+      display: grid;
+      grid-auto-flow: column;
+      align-items: center;
+      justify-content: space-around;
+      margin: 0 3px;
+      padding-right: 3px;
+      font-weight: bold;
+    }
+  
+    .react-datepicker__week {
+      display: grid;
+      grid-auto-flow: column;
+      align-items: center;
+      justify-content: space-around;
+      margin: 0 5px;
+      font-weight: bold;
+    }
+  
+    .react-datepicker__day {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin: 0px;
+      border-radius: 50%;
+      transition: background-color 0.3s, border 0.3s;
+    }
+
+  }
+}
