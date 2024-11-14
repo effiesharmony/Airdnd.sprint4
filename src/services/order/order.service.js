@@ -31,7 +31,7 @@ function saveOrder(order) {
 
 async function createOrders() {
     var orders = await storageService.query(STORAGE_KEY)
-    console.log('orders',orders);
+    // console.log('orders',orders);
     
     if (!orders.length) {
         const orders = data.orders

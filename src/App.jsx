@@ -31,7 +31,7 @@ export function App() {
           <Route path="/reservation/:stayId" element={<ReservationDetails />} />
           <Route path="user/:id" element={<UserDetails />} />
           <Route path="admin" element={<HostIndex />} />
-          <Route path="/dashboard" element={<DashboardReservation />} />
+          <Route path="/dashboard/reservations" element={<DashboardReservation />} />
           <Route path="login" element={<LoginSignup />}>
             <Route index element={<Login />} />
             <Route path="signup" element={<Signup />} />
