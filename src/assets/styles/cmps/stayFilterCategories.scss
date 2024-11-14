@@ -2,24 +2,29 @@
   box-sizing: border-box;
 }
 
+.sticky {
+  position: sticky;
+}
+
 .categories-outer-container {
+  display: grid;
+  grid-template-columns: 1fr auto;
   border-top: 1px solid #dddddd;
   width: 100%;
   background-color: $clr6;
   padding-top: 15px;
-  position: sticky;
   top: 80px;
   z-index: 11;
   overflow: hidden;
 
-    button {
-        @include carousel-btn;
-        top: 64%;
-        scale: 1.2;
-        opacity: 1;
-        border: 1px solid $gray2;
-        background-color: $clr6;
-        box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
+  button {
+    @include carousel-btn;
+    top: 65%;
+    scale: 1.15;
+    opacity: 1;
+    border: 1px solid $gray2;
+    background-color: $clr6;
+    box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
 
     &.prev {
       left: 4px;
@@ -36,17 +41,18 @@
   }
 
   .categories-inner-container {
-    overflow: hidden;
+    padding-left: 4px;
+    width: 100%;
     font-family: AirbnbCereal_W_Bk;
     font-weight: bold;
     display: grid;
-    grid-template-rows: 1;
     gap: 40px;
-    align-items: center;
+    align-content: center;
     overflow-x: scroll;
     scroll-behavior: smooth;
 
     .category {
+      min-width: 56px;
       grid-row: 1;
       color: #222222;
       opacity: 0.7;
@@ -54,7 +60,9 @@
       justify-items: center;
       transition: 200ms;
       scroll-snap-align: start;
-      padding-bottom: 10px;
+      padding: 4px 0px;
+      margin-top: 12px;
+      margin-bottom: 10px;
       border-bottom: 2px solid transparent;
 
       img {
@@ -66,6 +74,11 @@
       span {
         font-size: rem(12px);
         text-wrap: nowrap;
+
+      }
+
+      span:first-child {
+        color: pink;
       }
 
       &:hover {

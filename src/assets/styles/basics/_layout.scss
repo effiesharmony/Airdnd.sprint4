@@ -1,13 +1,5 @@
 .main-container {
-    display: grid;
-    grid-template-columns: 80px 90vw 80px;
-    > * {
-        grid-column: 2;
-
-        &.full {
-            grid-column: 1 / -1;
-        }
-    }
+    padding: 0px 80px;
 }
 
 .card-grid {
@@ -18,6 +10,6 @@
 
 @media screen and (max-width: 1440px) {
     .main-container {
-        grid-template-columns: 40px 90vw 40px;
+        padding: 0px 40px;
     }
   }
