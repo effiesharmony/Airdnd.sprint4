@@ -31,6 +31,7 @@
       > * {
         &:hover {
           background-color: #dddddd;
+          border-radius: rem(32px);
         }
       }
     }
@@ -41,6 +42,7 @@
       > * {
         &:hover {
           background-color: #ebebeb;
+          border-radius: rem(32px);
         }
       }
     }
@@ -79,7 +81,7 @@
           position: absolute;
           top: 25%;
           bottom: 25%;
-          right: 1px;
+          right: 0px;
           width: 1px;
           background-color: #dddddd;
         }
@@ -99,6 +101,7 @@
         padding-left: 32px;
         background-color: white;
         box-shadow: 0 3px 12px 0 rgb(0 0 0 / 0.1), 0 1px 2px 0 rgb(0 0 0 / 0.08);
+        border-radius: rem(32px);
 
         &::after {
           opacity: 0;
@@ -117,7 +120,7 @@
         align-items: start;
         justify-content: center;
         overflow: hidden;
-        border-radius: rem(32px);
+        // border-radius: rem(32px);
         cursor: pointer;
         width: 100%;
         white-space: nowrap;
@@ -163,6 +166,7 @@
         padding-left: 19px;
         background-color: white;
         box-shadow: 0 3px 12px 0 rgb(0 0 0 / 0.1), 0 1px 2px 0 rgb(0 0 0 / 0.08);
+        border-radius: rem(32px);
         &::after {
           opacity: 0;
         }
@@ -180,7 +184,6 @@
         overflow: hidden;
         cursor: pointer;
         width: 100%;
-        border-radius: rem(32px);
 
         .stay-filter-focused-date-in-box,
         .stay-filter-focused-date-out-box {
@@ -191,7 +194,7 @@
 
           .stay-filter-focused-date-in,
           .stay-filter-focused-date-out {
-            border-radius: rem(32px);
+            // border-radius: rem(32px);
             white-space: nowrap;
 
             .date-input {
@@ -224,6 +227,7 @@
         padding: 13px 24px;
         background-color: white;
         box-shadow: 0 3px 12px 0 rgb(0 0 0 / 0.1), 0 1px 2px 0 rgb(0 0 0 / 0.08);
+        border-radius: rem(32px);
         &::after {
           opacity: 0;
         }
@@ -239,7 +243,6 @@
         justify-content: space-between;
         padding: 15px 24px;
         overflow: hidden;
-        border-radius: rem(32px);
         cursor: pointer;
         width: 100%;
         white-space: nowrap;
