@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { ImageCarousel } from './ImageCarousel.jsx'
-import { getReviewAvg, numberWithCommas } from '../services/util.service.js'
+import { getReviewAvg, numberWithCommas } from '../services/utils/util.service.js'
 
 export function StayPreview({ stay }) {
     const navigate = useNavigate()
@@ -21,7 +21,7 @@ export function StayPreview({ stay }) {
                 <p className="stay-price"><span>${numberWithCommas(stay.price)}</span> night</p>
                 <div className="stay-rating-container">
                     <img className="star" src="public/svg/star.svg" alt="Star" />
-                    <p className="rating-num">{getReviewAvg(stay.reviews).toFixed(1)}</p>
+                    <p className="rating-num">{getReviewAvg(stay.reviews)}</p>
                     <p className="ratings-amount">({stay.reviews.length})</p>
                 </div>
 

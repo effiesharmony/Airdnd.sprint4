@@ -1,6 +1,6 @@
 
 import { storageService } from '../async-storage.service'
-import { makeId } from '../util.service'
+import { makeId } from '../utils/util.service.js'
 import { userService } from '../user'
 import { data } from "../../../data/stay.json.js"
 
