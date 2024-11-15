@@ -50,10 +50,15 @@ export function StayDetails({ }) {
                     <p>{stay.type} in {stay.loc.city}, {stay.loc.country}</p>
                   </div>
                   <div className="stay-capacity">
-                    <h6 className="stay-capacity-guests">{stay.capacity} guests • 2 bedrooms • 3 beds • 2 baths</h6>
+                    <h6 className="stay-capacity-guests">
+                      {stay.capacity === 1 ? '1 guest' : `${stay.capacity} guests`} • 2 bedrooms • 3 beds • 2 baths 
+                      {/* MAKE THIS DYNAMIC ^ */}
+                    </h6>
                     <div className="stay-capacity-review">
                       <img src="/public/svg/star.svg" alt="" />
-                      <h6> 4.96 • <span> 24 reviews </span></h6>
+                      <h6> 4.96 • <span>
+                        {stay.reviews.length === 1 ? ' 1 review' : `${stay.reviews.length} reviews`}
+                      </span></h6>
                     </div>
                   </div>
 
@@ -88,7 +93,9 @@ export function StayDetails({ }) {
               <div className="stay-reviews">
                 <div className="stay-reviews-header">
                   <img src="/public/svg/star.svg" alt="" />
-                  <h6> 4.96 • <span> 24 reviews </span></h6>
+                  <h6> 4.96 • <span>
+                    {stay.reviews.length === 1 ? ' 1 review' : `${stay.reviews.length} reviews`}
+                  </span></h6>
                 </div>
                 <div className="review-items">
                   {stay.reviews.map((review, index) => (
