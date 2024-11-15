@@ -107,3 +107,11 @@
     margin-top: 178px;
   }
 }
+
+@media screen and (max-width: 745px) {
+  .categories-outer-container {
+    border-top: none;
+    margin-top: 70px;
+    padding-top: 0;
+  }
+}

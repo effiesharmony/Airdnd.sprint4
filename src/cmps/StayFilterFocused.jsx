@@ -36,13 +36,15 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
       default:
         break;
     }
-  }, [isFilterApplied, dispatch, modalType]);
+  }, [isFilterApplied, modalType]);
 
   function handleChange({ target }) {
     const { name, value } = target;
     dispatch(stayAction.setFilterBy({ ...filterBy, [name]: value }));
     if (name === "place" && value) {
-      onDateInModalOpen();
+      setTimeout(() => {
+        onDateInModalOpen()
+      }, 1000);
     }
   }
 
@@ -165,7 +167,12 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
                 <h3>Check in</h3>
                 <div className="date-input">
                   {filterBy.availableDates.start
-                    ? filterBy.availableDates.start.toLocaleDateString()
+                    ? filterBy.availableDates.start.toLocaleDateString(
+                      "en-US",
+                      {
+                        month: "short",
+                        day: "numeric",
+                      })
                     : "Add dates"}
                 </div>
                 </div>
@@ -187,7 +194,12 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
               <h3>Check out</h3>
               <div className="date-input">
                 {filterBy.availableDates.end
-                  ? filterBy.availableDates.end.toLocaleDateString()
+                  ? filterBy.availableDates.end.toLocaleDateString(
+                    "en-US",
+                      {
+                        month: "short",
+                        day: "numeric",
+                      })
                   : "Add dates"}
               </div>
             </div>

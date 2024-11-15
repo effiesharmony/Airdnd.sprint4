@@ -203,6 +203,11 @@
   max-width: 1200px;
 }
 
+.app-header.small {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
 .overlay {
   width: 100vw;
   height: 100vh;
@@ -224,5 +229,3 @@
     }
   }
 }
-
-
