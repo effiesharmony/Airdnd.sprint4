@@ -136,7 +136,7 @@ export function AppHeaderFull() {
                   Wishlist
                 </NavLink>
                 <hr />
-                <NavLink className="dropdown-menu-link" to="/dashboard" onClick={onOpenCloseMenu}>
+                <NavLink className="dropdown-menu-link" to="/dashboard/reservations" onClick={onOpenCloseMenu}>
                   Dashboard
                 </NavLink>
                 <hr />
