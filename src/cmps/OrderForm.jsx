@@ -139,7 +139,8 @@ export function OrderForm({ stayId }) {
       <div className="order-summary">
         <div className="price-calculation">
           <span className="underline-text">
-            ${numberWithCommas(stay.price)} x {nights} nights
+            ${numberWithCommas(stay.price)} x {nights} 
+            {nights === 1 ? ' night' : ' nights'}
           </span>
           <span>${numberWithCommas(totalPrice)}</span>
         </div>
