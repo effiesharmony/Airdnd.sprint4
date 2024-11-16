@@ -21,7 +21,6 @@ export function StayDetails() {
 
   if (!stay) return <p>Loading...</p>
 
-  // Calculate average rating with hardcoded numbers
   const hardcodedRatings = stay.reviews.map((_, index) => 4.91 + (index % 10) / 100)
   const averageRating = (
     hardcodedRatings.reduce((sum, rate) => sum + rate, 0) / hardcodedRatings.length
@@ -84,7 +83,10 @@ export function StayDetails() {
                   <img src={stay.host.thumbnailUrl} alt={stay.host.fullname} className="host-image" />
                   <div className="titles">
                     <h5>Hosted by {stay.host.fullname}</h5>
-                    <h6>1 year hosting</h6>
+                    <h6>
+                      {stay.host.isSuperhost && <span className="superhost-badge">Superhost</span>} • 1 year hosting
+                    </h6>
+
                   </div>
                 </div>
                 <div className="stay-info">
