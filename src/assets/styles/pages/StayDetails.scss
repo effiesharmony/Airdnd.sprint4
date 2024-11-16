@@ -343,7 +343,7 @@
   }
 
   .stay-reviews {
-    grid-column: 1;
+    grid-column: 1 / -1;
     padding-top: 47px;
     padding-bottom: 47px;
     border-top: 1px solid #ddd;
@@ -380,7 +380,7 @@
 
     .review-items {
       display: grid;
-      grid-template-columns: repeat(2, minmax(400px, auto));
+      grid-template-columns: repeat(2, 1fr);
 
       .review-item {
         margin-top: 5px;
