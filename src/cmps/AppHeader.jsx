@@ -1,21 +1,18 @@
 import { useState, useEffect } from "react"
 import { AppHeaderFull } from "./AppHeaderFull"
 import { AppHeaderMobile } from "./AppHeaderMobile"
+import { handleMobileResize } from "../services/utils/util.service.js"
 
 export function AppHeader() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 745)
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize)
+    window.addEventListener("resize", handleMobileResize)
 
     return () => {
-      window.removeEventListener("resize", handleResize)
+      window.removeEventListener("resize", handleMobileResize)
     }
   }, [])
-
-  function handleResize() {
-    setIsMobile(window.innerWidth < 745)
-  }
 
   return isMobile ? <AppHeaderMobile /> : <AppHeaderFull />
 }

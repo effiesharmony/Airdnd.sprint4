@@ -6,8 +6,6 @@
   justify-content: center;
   justify-self: center;
   padding-top: 17px;
-  padding-left: 80px;
-  padding-right: 80px;
 
   .sticky-card {
     position: sticky;
@@ -168,7 +166,7 @@
     position: relative;
     width: 100%;
 
-    > *:not(:last-child) {
+    >*:not(:last-child) {
       grid-column: 1;
       width: 87.5%;
     }
@@ -316,11 +314,6 @@
 
       ul {
         width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        height: 160px;
-        gap: 15px 60px;
         list-style: none;
         padding: 0;
         margin-bottom: 0;
@@ -331,6 +324,7 @@
         align-items: center;
         font-size: 1rem;
         color: #000000;
+        margin-bottom: 16px;
 
         .amenity-icon {
           width: 25px;
@@ -378,14 +372,13 @@
     }
 
     .review-items {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      display: flex;
 
       .review-item {
         margin-top: 5px;
         margin-bottom: 16px;
+        margin-right: 20px;
         font-size: 0.85rem;
-        align-items: center;
 
         .review-header {
           display: flex;
@@ -544,7 +537,52 @@
 
 @media screen and (max-width: 1130px) {
   .main-details {
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 0 40px;
+  }
+}
+
+@include for-mobile-layout {
+  .main-details {
+    padding: 0;
+  }
+
+  .stay-content-wrapper {
+    padding: 0 24px;
+
+    .grid-wrapper {
+      grid-column: 1/ -1;
+    }
+  }
+
+  .stay-reviews {
+    padding: 0 24px;
+    
+    .review-items {
+      width: 100%;
+      overflow-x: scroll;
+      max-height: 308px;
+      
+      // &::-webkit-scrollbar {
+      //   display: none;
+      // }
+
+      .review-item {
+        min-width: 200px;
+        padding: 20px;
+        margin: 0 15px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+      }
+    }
+  }
+}
+
+@include for-wide-layout {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 15px 60px;
+    height: 160px;
   }
 }
