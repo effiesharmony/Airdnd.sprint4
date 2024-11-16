@@ -52,7 +52,6 @@ export function StayDetails({ }) {
                   <div className="stay-capacity">
                     <h6 className="stay-capacity-guests">
                       {stay.capacity === 1 ? '1 guest' : `${stay.capacity} guests`} • 2 bedrooms • 3 beds • 2 baths 
-                      {/* MAKE THIS DYNAMIC ^ */}
                     </h6>
                     <div className="stay-capacity-review">
                       <img src="/public/svg/star.svg" alt="" />

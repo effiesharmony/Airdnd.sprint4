@@ -17,11 +17,24 @@ $user-icon-clr: #6a6a6a;
 $icons-clr: #484848;
 $hover-focus-icons-clr: #222222;
 $text-clr: #222222;
-$second-text-clr: #484848;
+$second-text-clr: #484848; 
 $btn-left-clr: #e61e4e;
 $btn-right-clr: #d70566;
 
 // Breakpoints
-$mobile-breakpoint: 460px;
-$narrow-breakpoint: 720px;
-$normal-breakpoint: 960px;
+// screen max:550px (- 24px margins):
+$small-mobile-breakpoint: 550px;
+
+// screen max:740px (- 24px margins):
+$mobile-breakpoint: 740px;
+
+// screen max:950px (- 40px margins):
+$narrow-breakpoint: 950px;
+
+// screen max:1127px (- 40px margins):
+$normal-breakpoint: 1127px;
+
+// screen max:1440px (- 40px margins):
+$wide-breakpoint: 1440px;
+
+// screen min: 1440px (80px margins).
