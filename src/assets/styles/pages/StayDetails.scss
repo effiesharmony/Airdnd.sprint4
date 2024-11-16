@@ -5,9 +5,9 @@
   align-items: center;
   justify-content: center;
   justify-self: center;
-  width: 100%;
   padding-top: 17px;
-  max-width: 1120px;
+  padding-left: 80px;
+  padding-right: 80px;
 
   .sticky-card {
     position: sticky;
@@ -20,10 +20,12 @@
     border: 1px solid rgb(226, 226, 226);
     box-shadow: 1px 1px 5px #cfcfcf;
     border-radius: 6px;
-
   }
 
   .stay-details {
+    width: 100%;
+    max-width: 1120px;
+
     .stay-header {
       display: flex;
       justify-content: space-between;
@@ -39,7 +41,6 @@
         align-items: center;
         font-style: bold;
         gap: 5px;
-
 
         button {
           font-family: AirbnbCereal_W_Bk;
@@ -64,19 +65,15 @@
 
           &:hover {
             background-color: #f7f7f7;
-
-
           }
         }
       }
-
     }
 
     h3 {
       margin-bottom: 13px;
       margin-top: 3px;
     }
-
   }
 
   .stay-content {
@@ -171,7 +168,7 @@
     position: relative;
     width: 100%;
 
-    >*:not(:last-child) {
+    > *:not(:last-child) {
       grid-column: 1;
       width: 87.5%;
     }
@@ -397,7 +394,6 @@
           gap: 14px;
           margin-bottom: 30px;
 
-
           .reviewer-image {
             width: 48px;
             height: 48px;
@@ -434,5 +430,12 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .main-details {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }

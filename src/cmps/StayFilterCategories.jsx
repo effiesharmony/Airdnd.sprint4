@@ -21,11 +21,6 @@ export function StayCategories({ onSetFilter, filterBy }) {
 
     function handleScrollDown() {
         setIsScrolled(window.scrollY > 0)
-        if (window.scrollY > 0) {
-            setIsFilterFocused(false)
-        } else if (window.scrollY === 0 && isHomePage) {
-            setIsFilterFocused(true)
-        }
     }
 
     function scrollRight() {
@@ -58,7 +53,7 @@ export function StayCategories({ onSetFilter, filterBy }) {
 
     return (
         <div className={`categories-outer-container
-            ${isScrolled ? "sticky" : ""} `}>
+            ${isScrolled ? "cat-sticky" : "cat-not-sticky"} `}>
             {currentLeft > 0 &&
                 <button className="cat-button prev" onClick={() => scrollLeft()}>
                     <img src="public/svg/leftArrow.svg" alt="Left arrow" />

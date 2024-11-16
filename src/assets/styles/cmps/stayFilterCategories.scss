@@ -2,20 +2,17 @@
   box-sizing: border-box;
 }
 
-.sticky {
-  position: sticky;
-}
-
 .categories-outer-container {
   display: grid;
   grid-template-columns: 1fr auto;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #dddddda8;
   width: 100%;
   background-color: $clr6;
-  padding-top: 15px;
-  top: 80px;
+  // top: 80px;
   z-index: 11;
   overflow: hidden;
+  padding: 0 80px;
+  position: relative;
 
   button {
     @include carousel-btn;
@@ -61,14 +58,14 @@
       transition: 200ms;
       scroll-snap-align: start;
       padding: 4px 0px;
-      margin-top: 12px;
-      margin-bottom: 10px;
-      border-bottom: 2px solid transparent;
+      padding-bottom: 11px;
+      margin-top: 0px;
+      margin-bottom: 0;
+      border-bottom: 3px solid transparent;
 
       img {
         width: 24px;
         height: 24px;
-        margin-bottom: 2px;
       }
 
       span {
@@ -83,12 +80,12 @@
       &:hover {
         cursor: pointer;
         opacity: 1;
-        border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+        border-bottom: 3px solid rgba(0, 0, 0, 0.2);
       }
     }
 
     .category.selected {
-      border-bottom: 2px solid rgb(0, 0, 0);
+      border-bottom: 3px solid rgb(0, 0, 0);
       opacity: 1;
 
       &:hover {
@@ -102,6 +99,33 @@
   }
 }
 
+.cat-not-sticky {
+  padding-top: 23px;
+}
+
+.cat-sticky {
+  position: sticky;
+  padding-top: 13px;
+  top: 80px;
+  box-shadow: 0 2px 4px rgba(200, 200, 200, 0.4);
+}
+
+@media screen and (max-width: 1440px) {
+  .categories-outer-container {
+    padding: 0 40px;
+  }
+
+  .cat-not-sticky {
+    padding-top: 23px;
+  }
+
+  .cat-sticky {
+    position: sticky;
+    padding-top: 13px;
+    box-shadow: 0 2px 4px rgba(200, 200, 200, 0.4);
+  }
+}
+
 @media screen and (max-width: 950px) {
   .categories-outer-container {
     margin-top: 178px;
@@ -111,7 +135,51 @@
 @media screen and (max-width: 745px) {
   .categories-outer-container {
     border-top: none;
-    margin-top: 70px;
+    margin-top: 82px;
     padding-top: 0;
+    box-shadow: 0 2px 4px rgba(200, 200, 200, 0.4);
+
+    .categories-inner-container {
+      padding-left: 4px;
+      width: 100%;
+      font-family: AirbnbCereal_W_Bk;
+      font-weight: bold;
+      display: grid;
+      gap: 40px;
+      align-content: center;
+      overflow-x: scroll;
+      scroll-behavior: smooth;
+  
+      .category {
+        min-width: 56px;
+        grid-row: 1;
+        color: #222222;
+        opacity: 0.7;
+        text-align: center;
+        justify-items: center;
+        transition: 200ms;
+        scroll-snap-align: start;
+        padding: 4px 0px;
+        padding-bottom: 8px;
+        margin-top: 0px;
+        margin-bottom: 0;
+        border-bottom: 2px solid transparent;
+
+        &:hover {
+          cursor: pointer;
+          opacity: 1;
+          border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+        }
+      }
+  
+      .category.selected {
+        border-bottom: 2px solid rgb(0, 0, 0);
+        opacity: 1;
+  
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
   }
 }

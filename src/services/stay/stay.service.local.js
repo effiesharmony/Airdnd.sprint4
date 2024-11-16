@@ -3,6 +3,7 @@ import { storageService } from '../async-storage.service'
 import { makeId } from '../utils/util.service.js'
 import { userService } from '../user'
 import { data } from "../../../data/stay.json.js"
+import newStays from "../../../data/stay.json";
 
 const STORAGE_KEY = 'stay'
 
@@ -29,25 +30,25 @@ async function query(filterBy = {}) {
         )
     }
 
-    if (availableDates?.start && availableDates?.end) {
-        const startDate = new Date(availableDates.start)
-        const endDate = new Date(availableDates.end)
-        stays = stays.filter(stay =>
-            stay.availableDates.some(dateRange => {
-                const rangeStart = new Date(`${dateRange.month} ${dateRange.start}`)
-                const rangeEnd = new Date(`${dateRange.month} ${dateRange.end}`)
-                return rangeStart <= startDate && rangeEnd >= endDate
-            })
-        )
-    }
+    // if (availableDates?.start && availableDates?.end) {
+    //     const startDate = new Date(availableDates.start)
+    //     const endDate = new Date(availableDates.end)
+    //     stays = stays.filter(stay =>
+    //         stay.availableDates.some(dateRange => {
+    //             const rangeStart = new Date(`${dateRange.month} ${dateRange.start}`)
+    //             const rangeEnd = new Date(`${dateRange.month} ${dateRange.end}`)
+    //             return rangeStart <= startDate && rangeEnd >= endDate
+    //         })
+    //     )
+    // }
 
     if (minCapacity) {
         stays = stays.filter(stay => stay.capacity >= minCapacity)
     }
 
-    if (label){
-        stays = stays.filter(stay => stay.labels.some((stayLabel) => stayLabel === label))
-    }
+    // if (label){
+    //     stays = stays.filter(stay => stay.labels.some((stayLabel) => stayLabel === label))
+    // }
 
     return stays
 }
@@ -148,7 +149,11 @@ function getEmptyStay() {
 async function _createStays() {
     var stays = await storageService.query(STORAGE_KEY)
     if (!stays.length) {
-        const staysToSave = data.stays
-        await Promise.all(storageService.save(STORAGE_KEY, staysToSave))
+        const staysToSave = newStays
+        if (Array.isArray(staysToSave) && staysToSave.length > 0) {
+            await storageService.save(STORAGE_KEY, staysToSave)
+        } else {
+            console.error('newStays is not a valid array or is empty', staysToSave)
+        }
     }
 }

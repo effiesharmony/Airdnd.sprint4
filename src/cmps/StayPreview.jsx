@@ -17,7 +17,7 @@ export function StayPreview({ stay }) {
             <article onClick={() => onShowDetails(stay._id)} className="stay-preview">
                 <p className="stay-loc">{stay.loc.city}, {stay.loc.country}</p>
                 <p className="stay-distance">4,019 kilometers away</p>
-                <p className="stay-dates">{stay.availableDates[0].month} {stay.availableDates[0].start} - {stay.availableDates[0].end}</p>
+                {/* <p className="stay-dates">{stay.availableDates[0].month} {stay.availableDates[0].start} - {stay.availableDates[0].end}</p> */}
                 <p className="stay-price"><span>${numberWithCommas(stay.price)}</span> night</p>
                 <div className="stay-rating-container">
                     <img className="star" src="public/svg/star.svg" alt="Star" />
