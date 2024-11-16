@@ -19,13 +19,14 @@ export function AppHeaderMobile() {
   }
 
   return (
-    <header className="app-header-mobile">
-      {isHomePage && !isFilterOpen && (
-        <AppHeaderMobileTop onOpenFilter={onOpenFilter} />
-      )}
-      {!isDetailsPage && !isFilterOpen && <AppHeaderMobileBottom />}
-
-      {isFilterOpen && <StayFilterMobile onCloseFilter={onCloseFilter}/>}
-    </header>
-  );
+    !isDetailsPage ? (
+      <header className="app-header-mobile">
+        {isHomePage && !isFilterOpen && (
+          <AppHeaderMobileTop onOpenFilter={onOpenFilter} />
+        )}
+        {!isDetailsPage && !isFilterOpen && <AppHeaderMobileBottom />}
+        {isFilterOpen && <StayFilterMobile onCloseFilter={onCloseFilter} />}
+      </header>
+    ) : null
+  )
 }

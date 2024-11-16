@@ -1,10 +1,13 @@
 import { useSelector } from "react-redux"
+import { useLocation } from "react-router-dom";
 
 export function AppFooter() {
   const count = useSelector((storeState) => storeState.userModule.count)
+  const location = useLocation();
+  const isDetailsPage = location.pathname.startsWith("/stay/");
 
   return (
-    <footer className="app-footer">
+    <footer className={`app-footer ${isDetailsPage ? "" : "margin-bottom"}`}>
       <div className="footer-content">
         <p>© 2024 Airdnd, Inc.</p>
         <div className="footer-links">
