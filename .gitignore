@@ -4,3 +4,4 @@ data/stay.json.js
 settings.json
 cloudinary.service.js
 .gitignore
+cloudinary.service.js

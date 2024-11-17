@@ -45,11 +45,11 @@ export function AppHeaderFull() {
 
   function handleResize() {
     if (window.innerWidth <= 1127) {
-        setIsSmallScreen(true);
+      setIsSmallScreen(true);
     } else {
-        setIsSmallScreen(false);
+      setIsSmallScreen(false);
     }
-};
+  };
 
   function toggleFilterFocus() {
     setIsFilterFocused(true);
@@ -81,9 +81,8 @@ export function AppHeaderFull() {
 
   return !isReservationPage ? (
     <header
-      className={`app-header full ${
-        isHomePage ? (isScrolled || !isFilterFocused ? "sticky" : "") : "small"
-      }`}
+      className={`app-header full ${isHomePage ? (isScrolled || !isFilterFocused ? "sticky" : "") : "small"
+        }`}
     >
       {(isScrolled && isFilterFocused) || (!isHomePage && isFilterFocused) ? (
         <div className="overlay" onClick={onCloseFilterModals}></div>
@@ -93,9 +92,9 @@ export function AppHeaderFull() {
           <div className="app-header-left-box">
             {isSmallScreen ? (
               <img
-              className="app-header-left-box-logo-img"
-              src="/public/svg/small-logo.svg"
-              alt="App Logo"
+                className="app-header-left-box-logo-img"
+                src="/public/svg/small-logo.svg"
+                alt="App Logo"
               />
             ) : (
               <img
@@ -117,7 +116,7 @@ export function AppHeaderFull() {
             alt="World icon"
           />
           <button
-            className={`app-header-right-box-menu ${isMenuOpen ? "active" : "" }`}
+            className={`app-header-right-box-menu ${isMenuOpen ? "active" : ""}`}
             onClick={onOpenCloseMenu}
           >
             <img
