@@ -1,0 +1,80 @@
+.dashboard-listings {
+  padding: 20px;
+  color: #222222;
+
+  .dashboard-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    text-align: center;
+    margin: 30px 0;
+    margin-bottom: 40px;
+    .link {
+      color: #222222;
+      text-decoration: none;
+    }
+    .link-l{
+      color: $logo-clr;
+      text-decoration: none;
+    }
+  }
+
+  .dashboard-listings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+      margin-left: 5px;
+      min-width: 85px;
+      background-color: transparent;
+      border: 1px solid #dddddd;
+      border-radius: 30px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      padding-right: 15px;
+      padding-left: 15px;
+      cursor: pointer;
+
+      .add-listing {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        color: #222222;
+        text-decoration: none;
+
+        img {
+          width: 20px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .stay-card {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    overflow: hidden;
+  }
+
+  .stay-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
+
+  .stay-details {
+    padding: 10px;
+    flex: 1;
+  }
+
+  .stay-actions a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #007bff;
+  }
+}
