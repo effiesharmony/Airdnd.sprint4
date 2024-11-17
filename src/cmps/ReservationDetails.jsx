@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { stayService } from '../services/stay/stay.service.local.js'
+import { stayService } from '../services/stay/stay.service.js'
 import { orderService } from '../services/order/order.service'
 import { ReservationSuccessfull } from '../cmps/ReservationSuccessfull.jsx'
 import { getReviewAvg, numberWithCommas } from '../services/utils/util.service.js'

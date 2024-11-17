@@ -1,5 +1,5 @@
-import { stayService } from '../../services/stay'
-import { store } from '../store'
+import { stayService } from '../../services/stay/stay.service.js'
+import { store } from '../store.js'
 import { ADD_STAY, REMOVE_STAY, SET_STAYS, SET_STAY, UPDATE_STAY, SET_FILTER_BY, ADD_STAY_MSG } from '../reducers/stay.reducer'
 import { LOADING_START, LOADING_DONE } from "../reducers/system.reducer.js"
 

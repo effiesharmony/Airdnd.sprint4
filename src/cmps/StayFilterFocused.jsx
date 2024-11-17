@@ -19,24 +19,27 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
 
   useEffect(() => {
     if (isFilterApplied) {
-      stayAction.loadStays();
-      setIsFilterApplied(false);
+        stayAction.loadStays();
+        setIsFilterApplied(false);
     }
+}, [isFilterApplied]);
+
+useEffect(() => {
     onModalsClose();
     switch (modalType) {
-      case "anywhere":
-        onPlaceModalOpen();
-        break;
-      case "anyWeek":
-        onDateInModalOpen();
-        break;
-      case "addGuests":
-        onGuestModalOpen();
-        break;
-      default:
-        break;
+        case "anywhere":
+            onPlaceModalOpen();
+            break;
+        case "anyWeek":
+            onDateInModalOpen();
+            break;
+        case "addGuests":
+            onGuestModalOpen();
+            break;
+        default:
+            break;
     }
-  }, [isFilterApplied, modalType]);
+}, [modalType]);
 
   function handleChange({ target }) {
     const { name, value } = target;
@@ -80,7 +83,8 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
     setDateOutDropdownOpen(false);
   }
 
-  function applyFilters() {
+  function applyFilters(event) {
+    event.preventDefault()
     setIsFilterApplied(true);
   }
 
@@ -233,7 +237,7 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
                   ? "search"
                   : "not-search"
               }`}
-              onClick={applyFilters}
+              onClick={(ev) => applyFilters(ev)}
             >
               {isPlaceDropdownOpen ||
               isDateInDropdownOpen ||

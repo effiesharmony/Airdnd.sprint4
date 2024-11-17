@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Routes, Route, Navigate } from "react-router"
+import { Routes, Route, Navigate, useLocation } from "react-router"
 
 import { AboutUs, AboutTeam, AboutVision } from "./pages/AboutUs.jsx"
 import { StayIndex } from "./pages/StayIndex.jsx"
@@ -17,13 +17,21 @@ import { Signup } from "./cmps/Signup.jsx"
 import { ReservationDetails } from "./cmps/ReservationDetails.jsx"
 
 export function App() {
+  const location = useLocation()
+  // const [shouldRedirect, setShouldRedirect] = useState(false)
+
+  if (location.pathname === '/') {
+    // return <Navigate to="/stay" replace />;
+  }
+
   return (
     <div className="main-container">
       <AppHeader />
 
       <main>
         <Routes>
-          <Route path="/" element={<Navigate to="/stay" replace />} />
+        {/* <Route path="/" element={location.pathname === '/' ? <Navigate to="/stay" replace /> : null} /> */}
+        {/* <Route path="/" element={<Navigate to="/stay" replace />} /> */}
           <Route path="stay" element={<StayIndex />} />
           <Route path="about" element={<AboutUs />} />
           <Route path="stay/:stayId" element={<StayDetails />} />

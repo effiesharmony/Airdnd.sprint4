@@ -127,7 +127,7 @@ export function AppHeaderFull() {
             />
             <img
               className="app-header-user-img"
-              src={user?.imgUrl || "/public/img/effie.jpeg"}
+              src={user.imgUrl || "/public/img/effie.jpeg"}
               alt="User icon"
             />
           </button>

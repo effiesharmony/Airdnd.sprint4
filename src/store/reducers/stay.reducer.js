@@ -1,4 +1,4 @@
-import { stayService } from "../../services/stay/stay.service.local.js"
+import { stayService } from "../../services/stay/stay.service.js"
 export const SET_STAYS = 'SET_STAYS'
 export const SET_STAY = 'SET_STAY'
 export const REMOVE_STAY = 'REMOVE_STAY'
@@ -10,7 +10,7 @@ export const SET_FILTER_BY = 'SET_FILTER_BY'
 const initialState = {
     stays: [],
     stay: null,
-    filterBy: stayService.getDefaultFilter()
+    filterBy: stayService.getDefaultFilter() //null,
 }
 
 export function stayReducer(state = initialState, action) {

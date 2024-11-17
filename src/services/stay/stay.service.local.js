@@ -17,7 +17,7 @@ export const stayService = {
     getEmptyStay
 }
 window.cs = stayService
-_createStays()
+// _createStays()
 
 async function query(filterBy = {}) {
     var stays = await storageService.query(STORAGE_KEY)

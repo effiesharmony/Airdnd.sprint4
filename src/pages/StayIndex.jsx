@@ -18,7 +18,7 @@ export function StayIndex() {
 
   useEffect(() => {
     loadStays(filterBy)
-  }, [filterBy, stays])
+  }, [filterBy])
 
   function onSetFilter(filterBy) {
     store.dispatch(setFilterBy(filterBy))

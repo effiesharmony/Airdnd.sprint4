@@ -14,7 +14,7 @@ export const userService = {
     getLoggedinUser,
     saveLoggedinUser,
 }
-_createUsers()
+// _createUsers()
 
 async function getUsers() {
     const users = await storageService.query('user')
