@@ -5,7 +5,6 @@ import { amenityIcons } from '../services/utils/amenities.js'
 import { loadStay } from '../store/actions/stay.actions'
 import { OrderForm } from '../cmps/OrderForm'
 import { AmenitiesModal } from '../cmps/AmenitiesModal'
-import { handleMobileResize } from '../services/utils/util.service.js'
 import { MobileGallery } from '../cmps/MobileGallery.jsx'
 
 export function StayDetails({ }) {
@@ -111,7 +110,7 @@ export function StayDetails({ }) {
                   </div>
                   <div className="stay-amenities">
                     <h6>What this place offers</h6>
-                    <ul>
+                    <ul className="amenities-preview">
                       {stay.amenities.slice(0, 10).map((amenity, index) => (
                         <li key={index} className="amenity-item">
                           <img src={amenityIcons[amenity]} alt={amenity} className="amenity-icon" />

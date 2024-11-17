@@ -317,19 +317,35 @@
         list-style: none;
         padding: 0;
         margin-bottom: 0;
+
+        .amenity-item {
+          display: flex;
+          align-items: center;
+          font-size: 1rem;
+          color: #000000;
+          margin-bottom: 16px;
+
+          .amenity-icon {
+            width: 25px;
+            height: 25px;
+            margin-right: 15px;
+          }
+        }
       }
 
-      .amenity-item {
-        display: flex;
-        align-items: center;
+      .show-more-btn {
+        margin-top: 24px;
+        padding: 15px 25px;
         font-size: 1rem;
         color: #000000;
-        margin-bottom: 16px;
+        border: 1px solid #000000;
+        border-radius: 8px;
+        background-color: #ffffff;
+        cursor: pointer;
+        transition: all 0.3s ease;
 
-        .amenity-icon {
-          width: 25px;
-          height: 25px;
-          margin-right: 15px;
+        &:hover {
+          background-color: #f7f7f7;
         }
       }
     }
@@ -373,6 +389,8 @@
 
     .review-items {
       display: flex;
+      flex-wrap: wrap;
+      height: 678px;
 
       .review-item {
         margin-top: 5px;
@@ -425,115 +443,84 @@
   }
 }
 
+.amenities-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
-  .show-more-btn {
-    padding: 15px 25px;
-    font-size: 1rem;
-    color: #000000;
-    border: 1px solid #000000;
-    border-radius: 8px;
-    background-color: #ffffff;
+.amenities-modal-content {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%;
+  max-width: 500px;
+  max-height: 80%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  position: relative;
+
+  h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .amenities-preview {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+
+    .amenity-item {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      color: #000000;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+
+      .amenity-icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 15px;
+      }
+    }
+
+    .amenity-item:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .close-modal-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000;
+    transition: color 0.3s ease;
 
     &:hover {
-      background-color: #f7f7f7;
+      color: #ff385c;
     }
-  }
 
-
-  .amenities-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .amenities-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .amenities-modal-content {
-    background-color: #ffffff;
-    padding: 20px;
-    border-radius: 10px;
-    width: 50%;
-    max-width: 500px;
-    max-height: 80%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    position: relative;
-  
-    h3 {
-      margin-bottom: 20px;
-      font-size: 1.5rem;
-      text-align: center;
-    }
-  
-    .amenities-list {
-      list-style: none;
-      padding: 0;
-  
-      .amenity-item {
-        display: flex;
-        align-items: center;
-        font-size: 1rem;
-        color: #000000;
-        padding: 10px 0;
-        border-bottom: 1px solid #ddd;
-  
-        .amenity-icon {
-          width: 25px;
-          height: 25px;
-          margin-right: 15px;
-        }
-      }
-  
-      .amenity-item:last-child {
-        border-bottom: none;
-      }
-    }
-  
-    .close-modal-icon {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 20px;
-      height: 20px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #000;
-      transition: color 0.3s ease;
-  
-      &:hover {
-        color: #ff385c;
-      }
-  
-      &:active {
-        color: #d20460;
-      }
+    &:active {
+      color: #d20460;
     }
   }
-  
-  
+}
 
 @media screen and (max-width: 1130px) {
   .main-details {
@@ -556,12 +543,12 @@
 
   .stay-reviews {
     padding: 0 24px;
-    
+
     .review-items {
       width: 100%;
       overflow-x: scroll;
       max-height: 308px;
-      
+
       // &::-webkit-scrollbar {
       //   display: none;
       // }
@@ -578,11 +565,37 @@
 }
 
 @include for-wide-layout {
-  ul {
+  .review-items {
+    width: 100%;
+    height: 678px;
+    grid-column: 1;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     gap: 15px 60px;
-    height: 160px;
+    // height: 300px;
+
+    .review-item {
+      height: 226px;
+      width: 423px;
+      padding: 0 8px;
+      margin-inline-end: 85px;
+      text-wrap: wrap;
+
+      .review-text {
+        width: 100%;
+      }
+
+    }
+  }
+
+  .amenities-preview {
+    display: flex;
+    flex-wrap: wrap;
+    height: 216px;
+
+    .amenity-item{
+      width: 50%;
+    }
   }
 }
