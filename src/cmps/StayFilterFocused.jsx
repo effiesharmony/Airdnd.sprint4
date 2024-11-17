@@ -52,24 +52,6 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
     }
   }
 
-//   function handleDateChange(dates) {
-//     const [startDate, endDate] = dates;
-//     console.log(startDate, endDate);
-//     console.log('Start Date:', filterBy.availableDates.start);
-// console.log('End Date:', filterBy.availableDates.end);
-
-//     dispatch(
-//       stayAction.setFilterBy({
-//         ...filterBy,
-//         availableDates: { start: startDate, end: endDate },
-//       })
-//     );
-//     if (startDate && !endDate) {
-//       setDateInDropdownOpen(false);
-//       setDateOutDropdownOpen(true);
-//     }
-//   }
-
 function handleDateChange(dates) {
   const [startDate, endDate] = dates;
   const finalEndDate = endDate || startDate; 
