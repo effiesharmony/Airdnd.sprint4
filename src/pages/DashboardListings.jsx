@@ -1,11 +1,16 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export function DashboardListings() {
   const user = useSelector((storeState) => storeState.userModule.user);
+  const navigate = useNavigate();
   const stays = user.stays;
-  const totalStays = user.stays.length;
-  console.log(user.stays);
+
+  function onImgClick(stayId){
+    const stay = stays.find((stay) => stay._id === stayId)
+    navigate(`/stay/${stay._id}`);
+  }
 
   if (!user || !stays) return <div>Loading</div>;
   return (
@@ -21,7 +26,7 @@ export function DashboardListings() {
       <div className="dashboard-listings-list">
         <div className="dashboard-listings-header">
           <h1>
-            {totalStays} {totalStays === 1 ? "listing" : "listings"}
+            {user.stays.length} {user.stays.length === 1 ? "listing" : "listings"}
           </h1>
           <button>
             <Link to="/stay/edit" className="add-listing">
@@ -33,32 +38,32 @@ export function DashboardListings() {
           <table className="stay-table">
             <thead>
               <tr>
-                <th>Listing</th>
-                <th>Name</th>
-                <th>Capacity</th>
-                <th>Bedrooms</th>
-                <th>Bathrooms</th>
-                <th>Price</th>
-                <th>Actions</th>
+                <th className="listing">LISTING</th>
+                <th></th>
+                <th>CAPACITY</th>
+                <th>BEDROOMS</th>
+                <th>BATHROOMS</th>
+                <th>PRICE</th>
+                <th className="manage">MANAGE</th>
               </tr>
             </thead>
             <tbody>
               {stays.map((stay) => (
                 <tr key={stay._id}>
-                  <td>
-                    <img
+                  <td className="stay-img">
+                    <img onClick={() => onImgClick(stay._id)}
                       src={stay.imgUrl || ""}
                       alt={stay.name}
                       className="stay-image"
                       style={{ width: "100px", height: "auto" }}
                     />
                   </td>
-                  <td>{stay.name}</td>
-                  <td>{stay.capacity}</td>
-                  <td>{stay.bedrooms}</td>
-                  <td>{stay.bathrooms}</td>
-                  <td>${stay.price}</td>
-                  <td>
+                  <td className="stay-name">{stay.name}</td>
+                  <td className="num">{stay.capacity}</td>
+                  <td className="num">{stay.bedrooms}</td>
+                  <td className="num">{stay.bathrooms}</td>
+                  <td className="num">${stay.price}</td>
+                  <td className="name">
                     <Link to={`/stay/edit/${stay._id}`} className="edit-btn">
                       Edit
                     </Link>

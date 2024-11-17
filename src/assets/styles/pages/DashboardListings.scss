@@ -1,6 +1,7 @@
 .dashboard-listings {
-  padding: 20px;
   color: #222222;
+  width: 85vw;
+  max-width: none;
 
   .dashboard-links {
     display: flex;
@@ -14,7 +15,7 @@
       color: #222222;
       text-decoration: none;
     }
-    .link-l{
+    .link-l {
       color: $logo-clr;
       text-decoration: none;
     }
@@ -24,9 +25,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+
+    h1 {
+      align-self: center;
+      font-family: AirbnbCereal_W_Bk, sans-serif;
+      letter-spacing: 0.02rem;
+      font-weight: normal;
+      font-size: rem(22px);
+      color: #222222;
+      padding-left: 8px;
+      margin: 0;
+    }
 
     button {
-      margin-left: 5px;
+      margin: 0 5px;
       min-width: 85px;
       background-color: transparent;
       border: 1px solid #dddddd;
@@ -36,45 +50,227 @@
       padding-right: 15px;
       padding-left: 15px;
       cursor: pointer;
+      margin-bottom: 8px;
+
+      &:hover {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+      }
 
       .add-listing {
         display: flex;
         align-items: center;
         justify-content: center;
         white-space: nowrap;
-        color: #222222;
+        color: #4f4f4f;
         text-decoration: none;
 
         img {
-          width: 20px;
+          width: 10px;
+          opacity: 0.6;
           margin-right: 10px;
         }
       }
     }
   }
 
-  .stay-card {
+  .dashboard-listings-stays {
+    .stay-table {
+      thead {
+        tr {
+          th {
+            font-family: AirbnbCereal_W_Bk, sans-serif;
+            letter-spacing: 0.02rem;
+            font-weight: normal;
+            font-size: rem(12px);
+            background-color: transparent;
+            text-align: center;
+            border: none;
+            color: #636363;
+            padding: 10px 25px;
+          }
+          .listing {
+            padding-left: 0px;
+            text-align: left;
+          }
+        }
+      }
+      tbody {
+        td {
+          border: none;
+          border-top: 1px solid #dddddd;
+          text-align: center;
+        }
+
+        .stay-img {
+          padding-left: 0px;
+
+          img {
+            width: 100%;
+            height: 100%;
+            max-width: 600px;
+            min-width: 100px;
+            border-radius: 0.5rem;
+            transition: transform 0.1s ease;
+            cursor: pointer;
+
+            &:hover {
+              transform: scale(1.03);
+            }
+          }
+        }
+
+        .stay-name {
+          text-align: left;
+        }
+
+        .name,
+        .stay-name {
+          font-family: AirbnbCereal_W_Lt, sans-serif;
+          letter-spacing: 0.02rem;
+          font-weight: normal;
+          font-size: rem(16px);
+          color: #222222;
+        }
+
+        .num {
+          font-family: AirbnbCereal_W_Lt, sans-serif;
+          letter-spacing: 0.02rem;
+          font-weight: normal;
+          font-size: rem(14px);
+          color: #222222;
+        }
+
+        .view-btn {
+          margin-left: 20px;
+        }
+
+        .view-btn,
+        .edit-btn {
+          text-decoration: none;
+          color: #222222;
+          &:hover {
+            color: $logo-clr;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .dashboard-listings {
+    color: #222222;
+    width: 92vw;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .dashboard-listings {
     display: flex;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    overflow: hidden;
-  }
+    flex-direction: column;
+    align-items: center;
+    .dashboard-listings-stays {
+      .stay-table {
+        thead {
+          display: none;
+          tr {
+            th {
+              font-family: AirbnbCereal_W_Bk, sans-serif;
+              letter-spacing: 0.02rem;
+              font-weight: normal;
+              font-size: rem(12px);
+              background-color: transparent;
+              text-align: center;
+              border: none;
+              color: #636363;
+              padding: 10px;
+            }
+            .listing {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    tbody {
+      display: grid !important;
+      grid-auto-flow: column !important;
+      gap: 10px;
 
-  .stay-image {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-  }
+      tr {
+        min-width: 230px;
+        max-width: 230px;
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 10px;
+        border-radius: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
 
-  .stay-details {
-    padding: 10px;
-    flex: 1;
-  }
+        td {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          border-top: none !important;
+        }
 
-  .stay-actions a {
-    margin-right: 10px;
-    text-decoration: none;
-    color: #007bff;
+        .stay-img {
+          padding-left: 0px;
+          border-top: 1px solid #dddddd;
+
+          img {
+            width: 100%;
+            height: 100%;
+            max-width: 600px;
+            min-width: 100px;
+            border-radius: 0.5rem;
+            transition: transform 0.1s ease;
+            cursor: pointer;
+
+            &:hover {
+              transform: scale(1.03);
+            }
+          }
+        }
+      }
+
+      .stay-name {
+        text-align: left;
+      }
+
+      .name,
+      .stay-name {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        font-family: AirbnbCereal_W_Lt, sans-serif;
+        letter-spacing: 0.02rem;
+        font-weight: normal;
+        font-size: rem(14px) !important;
+        color: #222222;
+      }
+
+      .num {
+        font-family: AirbnbCereal_W_Lt, sans-serif;
+        letter-spacing: 0.02rem;
+        font-weight: normal;
+        font-size: rem(14px);
+        color: #222222;
+      }
+
+      .view-btn {
+        margin-left: 20px;
+      }
+
+      .view-btn,
+      .edit-btn {
+        text-decoration: none;
+        color: #222222;
+        &:hover {
+          color: $logo-clr;
+        }
+      }
+    }
   }
 }
