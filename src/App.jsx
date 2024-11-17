@@ -31,7 +31,7 @@ export function App() {
       <main>
         <Routes>
         {/* <Route path="/" element={location.pathname === '/' ? <Navigate to="/stay" replace /> : null} /> */}
-        {/* <Route path="/" element={<Navigate to="/stay" replace />} /> */}
+        <Route path="/" element={<Navigate to="/stay" replace />} />
           <Route path="stay" element={<StayIndex />} />
           <Route path="about" element={<AboutUs />} />
           <Route path="stay/:stayId" element={<StayDetails />} />

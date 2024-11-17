@@ -6,6 +6,7 @@ import { loadStay } from '../store/actions/stay.actions'
 import { OrderForm } from '../cmps/OrderForm'
 import { AmenitiesModal } from '../cmps/AmenitiesModal'
 import { MobileGallery } from '../cmps/MobileGallery.jsx'
+import { MobileOrderForm } from '../cmps/MobileOrderForm.jsx'
 
 export function StayDetails({ }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 745)
@@ -125,8 +126,9 @@ export function StayDetails({ }) {
 
                 </div>
 
-                {isMobile ? '' :
-                  <div className="stay-order">
+                {isMobile
+                  ? <MobileOrderForm />
+                  : <div className="stay-order">
                     <OrderForm stayId={stayId} />
                   </div>
                 }
@@ -162,6 +164,7 @@ export function StayDetails({ }) {
                   ))}
                 </div>
               </div>
+
             </div>
           </div>
         )}
