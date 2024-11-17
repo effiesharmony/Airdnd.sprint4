@@ -36,16 +36,6 @@ export function DashboardReservation() {
     setOrders(updatedOrders);
   };
 
-  const getStatusCounts = () => {
-    const statusCounts = { approved: 0, rejected: 0, pending: 0 };
-    if (orders) {
-      orders.forEach((order) => {
-        statusCounts[order.status] = (statusCounts[order.status] || 0) + 1;
-      });
-    }
-    return statusCounts;
-  };
-
   const getStayBookingCounts = () => {
     const stayBookingCounts = {};
     if (orders) {
@@ -57,24 +47,31 @@ export function DashboardReservation() {
     return stayBookingCounts;
   };
 
-  const statusCounts = getStatusCounts();
-  const stayBookingCounts = getStayBookingCounts();
-
-  const pieData = {
-    labels: ["Approved", "Rejected", "Pending"],
-    datasets: [
-      {
-        label: "Order Status",
-        data: [
-          statusCounts.approved,
-          statusCounts.rejected,
-          statusCounts.pending,
-        ],
-        backgroundColor: ["#4CAF50", "#FF0000", "#FFCE56"],
-        hoverBackgroundColor: ["#4CAF50", "#FF0000", "#FFCE56"],
-      },
-    ],
+  const getStatusCounts = () => {
+    const statusCounts = { pending: 0, approved: 0, rejected: 0 };
+    if (orders) {
+      orders.forEach((order) => {
+        statusCounts[order.status] = (statusCounts[order.status] || 0) + 1;
+      });
+    }
+    return statusCounts;
   };
+
+  const stayBookingCounts = getStayBookingCounts();
+  const statusCounts = getStatusCounts();
+
+  const totalReservations =
+    statusCounts.pending + statusCounts.approved + statusCounts.rejected;
+
+  const pendingPercent = Math.round(
+    (statusCounts.pending / totalReservations) * 100
+  );
+  const approvedPercent = Math.round(
+    (statusCounts.approved / totalReservations) * 100
+  );
+  const rejectedPercent = Math.round(
+    (statusCounts.rejected / totalReservations) * 100
+  );
 
   const stayPieData = {
     labels: Object.keys(stayBookingCounts),
@@ -82,22 +79,24 @@ export function DashboardReservation() {
       {
         label: "Stay Bookings",
         data: Object.values(stayBookingCounts),
-        backgroundColor: [
-          "#1E90FF",
-          "#000000",
-          "#32CD32",
-          "#FFD700",
-          "#8A2BE2",
-        ],
-        hoverBackgroundColor: [
-          "#1E90FF",
-          "#000000",
-          "#32CD32",
-          "#FFD700",
-          "#8A2BE2",
-        ],
+        backgroundColor: ["#6A0DAD", "#0000FF", "#1E90FF", "#00CED1"],
+        hoverBackgroundColor: ["#6A0DAD", "#0000FF", "#1E90FF", "#00CED1"],
       },
     ],
+  };
+
+  const pieOptions = {
+    plugins: {
+      legend: {
+        display: true,
+        position: "top",
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+    responsive: true,
+    maintainAspectRatio: false,
   };
 
   if (!orders) return <div>Loading...</div>;
@@ -112,33 +111,66 @@ export function DashboardReservation() {
         </Link>
       </div>
       <div className="charts-container">
-        <div className="status-chart">
-          <h3>Status Distribution</h3>
-          <Pie data={pieData} />
+        <div className="chart-card">
+          <h3>Stays Booked</h3>
+          <div className="pie-chart-container">
+            <Pie data={stayPieData} options={pieOptions} />
+          </div>
         </div>
-        <div className="stay-chart">
-          <h3>Stay Bookings</h3>
-          <Pie data={stayPieData} />
+        <div className="chart-card">
+          <h3>Reservation Status</h3>
+          <div className="reservation-status">
+            <div className="status-item">
+              <span>Pending</span>
+              <span style={{ color: "#FFCE56" }}>
+                {statusCounts.pending} ({pendingPercent}%)
+              </span>
+            </div>
+            <div className="status-item">
+              <span>Approved</span>
+              <span style={{ color: "#4CAF50" }}>
+                {statusCounts.approved} ({approvedPercent}%)
+              </span>
+            </div>
+            <div className="status-item">
+              <span>Rejected</span>
+              <span style={{ color: "#FF0000" }}>
+                {statusCounts.rejected} ({rejectedPercent}%)
+              </span>
+            </div>
+          </div>
+          <div className="actionable-insights">
+            <h4>Actionable Insights</h4>
+            {statusCounts.pending > statusCounts.approved ? (
+              <p>Most reservations are pending. Follow up to increase approvals!</p>
+            ) : (
+              <p>Approval rates are steady. Great work maintaining quality bookings!</p>
+            )}
+            {statusCounts.rejected > 0 && (
+              <p>
+                {statusCounts.rejected} rejected reservations. Consider reviewing
+                pricing or policies.
+              </p>
+            )}
+          </div>
         </div>
       </div>
       <table>
         <thead>
           <tr>
-            <th>Date</th>
             <th>Booker</th>
             <th>Stay Name</th>
-            <th>ReservedDates</th>
+            <th>Dates Reserved</th>
             <th>Guests</th>
-            <th>Price / night</th>
+            <th>Price / Night</th>
             <th>Total</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th>Manage</th>
           </tr>
         </thead>
         <tbody>
           {orders.map((order) => (
             <tr key={order._id}>
-              <td>{new Date(order.startDate).toLocaleDateString()}</td>
               <td>{order.guest.fullname}</td>
               <td>{order.stay.name}</td>
               <td>
@@ -146,7 +178,7 @@ export function DashboardReservation() {
                 {new Date(order.endDate).toLocaleDateString()}
               </td>
               <td>
-                {order.guests.adults} Adults, {order.guests.kids} Kids
+                {order.guests.adults} Guests
               </td>
               <td>${numberWithCommas(order.stay.price)}</td>
               <td>${numberWithCommas(order.totalPrice)}</td>
