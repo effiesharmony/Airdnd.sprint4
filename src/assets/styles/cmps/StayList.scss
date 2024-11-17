@@ -5,8 +5,6 @@
   margin-bottom: 10px;
   margin-top: 15px;
   position: relative;
-  padding-right: 80px;
-  padding-left: 80px;
 
   li {
     flex: 1;
@@ -24,9 +22,26 @@
   }
 }
 
-@media screen and (max-width: 1440px) {
-  .stay-list {
-    padding-right: 40px;
-    padding-left: 40px;
+@include for-wide-layout{
+  .stay-list{
+    padding: 0 80px;
+  }
+}
+
+@include for-normal-layout{
+  .stay-list{
+    padding: 0 80px;
+  }
+}
+
+@include for-narrow-layout{
+  .stay-list{
+    padding: 0 40px;
+  }
+}
+
+@include for-mobile-layout{
+  .stay-list{
+    padding: 0 24px;
   }
 }
