@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { stayService } from "../services/stay/stay.service.js";
-import { getReviewAvg, numberWithCommas } from "../services/utils/util.service.js";
-import { GuestModalDetails } from "./GuestModalDetails.jsx";
-import { DateModalDetails } from "./DateModalDetails.jsx";
+import React, { useState, useEffect, useRef } from "react"
+import { useNavigate, useSearchParams } from "react-router-dom"
+import { stayService } from "../services/stay/stay.service.js"
+import { numberWithCommas } from "../services/utils/util.service.js"
+import { GuestModalDetails } from "./GuestModalDetails.jsx"
+import { DateModalDetails } from "./DateModalDetails.jsx"
 
 export function OrderForm({ stayId }) {
   const [stay, setStay] = useState(null)
@@ -16,15 +16,19 @@ export function OrderForm({ stayId }) {
   const navigate = useNavigate()
   const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false)
   const [isDateDropdownOpen, setDateDropdownOpen] = useState(false)
+  const [searchParams] = useSearchParams()
 
   useEffect(() => {
     stayService
       .getById(stayId)
       .then((stay) => {
         setStay(stay)
+        setCheckIn(searchParams.get("checkIn") || "")
+        setCheckOut(searchParams.get("checkOut") || "")
+        setGuests(+searchParams.get("guests") || 1)
       })
       .catch((err) => console.error("Failed to load stay:", err))
-  }, [stayId])
+  }, [stayId, searchParams])
 
   useEffect(() => {
     if (checkIn && checkOut) {
@@ -60,12 +64,12 @@ export function OrderForm({ stayId }) {
   }
 
   function handleDateChange(dates) {
-    const [startDate, endDate] = dates;
+    const [startDate, endDate] = dates
 
     if (startDate && endDate) {
       setCheckIn(startDate)
       setCheckOut(endDate)
-      setDateDropdownOpen(false);
+      setDateDropdownOpen(false)
     }
   }
 
@@ -79,7 +83,7 @@ export function OrderForm({ stayId }) {
     setGuestDropdownOpen(false)
   }
 
-  if (!stay) return <p>Loading...</p>;
+  if (!stay) return <p>Loading...</p>
   return (
     <div className="order-form" ref={orderFormRef}>
       <div className="order-price">
@@ -91,14 +95,13 @@ export function OrderForm({ stayId }) {
           <div className="date-input">
             <label>Check in</label>
             <div className="input">
-              {checkIn ? checkIn.toLocaleDateString() : "Add date"}
+              {checkIn ? new Date(checkIn).toLocaleDateString() : "Add date"}
             </div>
           </div>
-
           <div className="date-input">
             <label>Check out</label>
             <div className="input">
-              {checkOut ? checkOut.toLocaleDateString() : "Add date"}
+              {checkOut ? new Date(checkOut).toLocaleDateString() : "Add date"}
             </div>
           </div>
         </div>
@@ -114,7 +117,6 @@ export function OrderForm({ stayId }) {
                 : "Add guests"}
             </div>
           </div>
-
           <div className="stay-details-guest-svg">
             {isGuestDropdownOpen ? (
               <img
@@ -139,8 +141,8 @@ export function OrderForm({ stayId }) {
       <div className="order-summary">
         <div className="price-calculation">
           <span className="underline-text">
-            ${numberWithCommas(stay.price)} x {nights} 
-            {nights === 1 ? ' night' : ' nights'}
+            ${numberWithCommas(stay.price)} x {nights}{" "}
+            {nights === 1 ? " night" : " nights"}
           </span>
           <span>${numberWithCommas(totalPrice)}</span>
         </div>
@@ -158,7 +160,7 @@ export function OrderForm({ stayId }) {
       )}
       {isDateDropdownOpen && (
         <DateModalDetails
-        nights={nights}
+          nights={nights}
           checkIn={checkIn}
           checkOut={checkOut}
           handleDateChange={handleDateChange}
@@ -166,5 +168,5 @@ export function OrderForm({ stayId }) {
         />
       )}
     </div>
-  );
+  )
 }

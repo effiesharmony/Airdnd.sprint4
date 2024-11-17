@@ -9,6 +9,7 @@ export const stayService = {
     remove,
     getEmptyStay,
     getDefaultFilter,
+    getFilterFromSearchParams
 }
 
 function query(filterBy = {}) {
@@ -56,4 +57,19 @@ function getEmptyStay() {
             }
         }
     )
+}
+
+function getFilterFromSearchParams(searchParams) {
+    const defaultFilter = getDefaultFilter()
+    const filterBy = { ...defaultFilter }
+
+    for (const field in defaultFilter) {
+        if (field === 'availableDates') {
+            filterBy[field].start = searchParams.get('checkIn') || ''
+            filterBy[field].end = searchParams.get('checkOut') || ''
+        } else {
+            filterBy[field] = searchParams.get(field) || defaultFilter[field]
+        }
+    }
+    return filterBy
 }

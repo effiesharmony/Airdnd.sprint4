@@ -23,9 +23,13 @@ export function StayDetails({}) {
     window.addEventListener("resize", handleMobileResize);
 
     return () => {
-      window.removeEventListener("resize", handleMobileResize);
-    };
-  }, []);
+      window.removeEventListener('resize', handleMobileResize)
+    }
+  }, [])
+
+  function handleMobileResize() {
+    setIsMobile(window.innerWidth < 745)
+  }
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -148,14 +152,12 @@ export function StayDetails({}) {
                     </button>
                   </div>
                 </div>
-
-                {isMobile ? (
-                  <MobileOrderForm />
-                ) : (
-                  <div className="stay-order">
+                {isMobile
+                  ? <MobileOrderForm />
+                  : <div className="stay-order">
                     <OrderForm stayId={stayId} />
                   </div>
-                )}
+                }
               </div>
 
               <div className="stay-reviews">
