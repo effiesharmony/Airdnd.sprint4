@@ -16,7 +16,7 @@ export const stayAction = {
 export async function loadStays() {
     const filterBy = store.getState().stayModule.filterBy
     store.dispatch({ type: LOADING_START })
-
+    
     try {
         const stays = await stayService.query(filterBy)
         store.dispatch(getCmdSetStays(stays))
@@ -81,7 +81,7 @@ export async function addStayMsg(stayId, txt) {
     }
 }
 
-export function setFilterBy(filterBy) {
+export function setFilterBy(filterBy) {    
     return {
         type: SET_FILTER_BY,
         filterBy,

@@ -51,19 +51,40 @@ useEffect(() => {
     }
   }
 
-  function handleDateChange(dates) {
-    const [startDate, endDate] = dates;
-    dispatch(
-      stayAction.setFilterBy({
-        ...filterBy,
-        availableDates: { start: startDate, end: endDate },
-      })
-    );
-    if (startDate && !endDate) {
-      setDateInDropdownOpen(false);
-      setDateOutDropdownOpen(true);
-    }
+//   function handleDateChange(dates) {
+//     const [startDate, endDate] = dates;
+//     console.log(startDate, endDate);
+//     console.log('Start Date:', filterBy.availableDates.start);
+// console.log('End Date:', filterBy.availableDates.end);
+
+//     dispatch(
+//       stayAction.setFilterBy({
+//         ...filterBy,
+//         availableDates: { start: startDate, end: endDate },
+//       })
+//     );
+//     if (startDate && !endDate) {
+//       setDateInDropdownOpen(false);
+//       setDateOutDropdownOpen(true);
+//     }
+//   }
+
+function handleDateChange(dates) {
+  const [startDate, endDate] = dates;
+  const finalEndDate = endDate || startDate; 
+
+  dispatch(
+    stayAction.setFilterBy({
+      ...filterBy,
+      availableDates: { start: startDate, end: finalEndDate },
+    })
+  );
+
+  if (startDate && !finalEndDate) {
+    setDateInDropdownOpen(false);
+    setDateOutDropdownOpen(true);
   }
+}
 
   function handleGuestChange(newTotalGuests) {
     setTotalGuests(newTotalGuests);

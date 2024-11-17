@@ -1,44 +1,48 @@
-import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { amenityIcons } from '../services/utils/amenities.js'
-import { loadStay } from '../store/actions/stay.actions'
-import { OrderForm } from '../cmps/OrderForm'
-import { AmenitiesModal } from '../cmps/AmenitiesModal'
-import { MobileGallery } from '../cmps/MobileGallery.jsx'
-import { MobileOrderForm } from '../cmps/MobileOrderForm.jsx'
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { amenityIcons } from "../services/utils/amenities.js";
+import { loadStay } from "../store/actions/stay.actions";
+import { OrderForm } from "../cmps/OrderForm";
+import { AmenitiesModal } from "../cmps/AmenitiesModal";
+import { MobileGallery } from "../cmps/MobileGallery.jsx";
+import { MobileOrderForm } from "../cmps/MobileOrderForm.jsx";
 
-export function StayDetails({ }) {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 745)
-  const { stayId } = useParams()
-  const stay = useSelector(storeState => storeState.stayModule.stay)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
-  useEffect(() => {
-    loadStay(stayId)
-  }, [stayId])
+export function StayDetails({}) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 745);
+  const { stayId } = useParams();
+  const stay = useSelector((storeState) => storeState.stayModule.stay);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  console.log(stay);
 
   useEffect(() => {
-    window.addEventListener('resize', handleMobileResize)
+    loadStay(stayId);
+  }, [stayId]);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleMobileResize);
 
     return () => {
-      window.removeEventListener('resize', handleMobileResize)
-    }
-  }, [])
+      window.removeEventListener("resize", handleMobileResize);
+    };
+  }, []);
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen)
-  }
+    setIsModalOpen(!isModalOpen);
+  };
 
-  if (!stay) return <p>Loading...</p>
+  if (!stay) return <p>Loading...</p>;
 
-  const hardcodedRatings = stay.reviews.map((_, index) => 4.91 + (index % 10) / 100)
+  const hardcodedRatings = stay.reviews.map(
+    (_, index) => 4.91 + (index % 10) / 100
+  );
   const averageRating = (
-    hardcodedRatings.reduce((sum, rate) => sum + rate, 0) / hardcodedRatings.length
-  ).toFixed(2)
+    hardcodedRatings.reduce((sum, rate) => sum + rate, 0) /
+    hardcodedRatings.length
+  ).toFixed(2);
 
   function handleMobileResize() {
-    setIsMobile(window.innerWidth < 745)
+    setIsMobile(window.innerWidth < 745);
   }
 
   return (
@@ -47,7 +51,7 @@ export function StayDetails({ }) {
         {stay && (
           <div className="stay-content">
             <div className="stay-main">
-              {!isMobile &&
+              {!isMobile && (
                 <div className="stay-header">
                   <h3>{stay.name}</h3>
                   <div className="stay-actions">
@@ -61,48 +65,64 @@ export function StayDetails({ }) {
                     </button>
                   </div>
                 </div>
-              }
-              {isMobile ? <MobileGallery stay={stay} /> :
+              )}
+              {isMobile ? (
+                <MobileGallery stay={stay} />
+              ) : (
                 <div className="stay-gallery">
                   {stay.imgUrls.map((url, index) => (
                     <div key={index} className="image-wrapper">
                       <img src={url} alt={stay.name} className="stay-image" />
                     </div>
                   ))}
-                </div>}
+                </div>
+              )}
 
-              <div className='stay-content-wrapper'>
+              <div className="stay-content-wrapper">
                 <div className="grid-wrapper">
                   <div className="stay-description">
                     {isMobile && <h3>{stay.name}</h3>}
-                    <p>{stay.type} in {stay.loc.city}, {stay.loc.country}</p>
+                    <p>
+                      {stay.type} in {stay.loc.city}, {stay.loc.country}
+                    </p>
                   </div>
                   <div className="stay-capacity">
                     <h6 className="stay-capacity-guests">
-                      {stay.capacity} {stay.capacity === 1 ? 'guest' : 'guests'} •{' '}
-                      {stay.bedrooms} {stay.bedrooms === 1 ? 'bedroom' : 'bedrooms'} •{' '}
-                      {stay.bathrooms} {stay.bathrooms === 1 ? 'bath' : 'baths'}
+                      {stay.capacity} {stay.capacity === 1 ? "guest" : "guests"}{" "}
+                      • {stay.bedrooms}{" "}
+                      {stay.bedrooms === 1 ? "bedroom" : "bedrooms"} •{" "}
+                      {stay.bathrooms} {stay.bathrooms === 1 ? "bath" : "baths"}
                     </h6>
                     <div className="stay-capacity-review">
                       <img src="/public/svg/star.svg" alt="" />
-                      <h6> {stay.reviews && stay.reviews.length > 0
-                        ? averageRating
-                        : 'No rating'}{' '}
-                        •{' '}
+                      <h6>
+                        {" "}
+                        {stay.reviews && stay.reviews.length > 0
+                          ? averageRating
+                          : "No rating"}{" "}
+                        •{" "}
                         <span>
                           {stay.reviews.length === 1
-                            ? ' 1 review'
+                            ? " 1 review"
                             : `${stay.reviews.length} reviews`}
-                        </span></h6>
+                        </span>
+                      </h6>
                     </div>
                   </div>
 
                   <div className="stay-host">
-                    <img src={stay.host.thumbnailUrl} alt={stay.host.fullname} className="host-image" />
+                    <img
+                      src={stay.host.thumbnailUrl}
+                      alt={stay.host.fullname}
+                      className="host-image"
+                    />
                     <div className="titles">
                       <h5>Hosted by {stay.host.fullname}</h5>
                       <h6>
-                        {stay.host.isSuperhost && <span className="superhost-badge">Superhost</span>} • 1 year hosting
+                        {stay.host.isSuperhost && (
+                          <span className="superhost-badge">Superhost</span>
+                        )}{" "}
+                        • 1 year hosting
                       </h6>
                     </div>
                   </div>
@@ -114,7 +134,11 @@ export function StayDetails({ }) {
                     <ul className="amenities-preview">
                       {stay.amenities.slice(0, 10).map((amenity, index) => (
                         <li key={index} className="amenity-item">
-                          <img src={amenityIcons[amenity]} alt={amenity} className="amenity-icon" />
+                          <img
+                            src={amenityIcons[amenity]}
+                            alt={amenity}
+                            className="amenity-icon"
+                          />
                           <span>{amenity}</span>
                         </li>
                       ))}
@@ -123,16 +147,15 @@ export function StayDetails({ }) {
                       Show all {stay.amenities.length} amenities
                     </button>
                   </div>
-
                 </div>
 
-                {isMobile
-                  ? <MobileOrderForm />
-                  : <div className="stay-order">
+                {isMobile ? (
+                  <MobileOrderForm />
+                ) : (
+                  <div className="stay-order">
                     <OrderForm stayId={stayId} />
                   </div>
-                }
-
+                )}
               </div>
 
               <div className="stay-reviews">
@@ -141,22 +164,31 @@ export function StayDetails({ }) {
                   <h6>
                     {stay.reviews && stay.reviews.length > 0
                       ? averageRating
-                      : 'No rating'}{' '}
-                    •{' '}
+                      : "No rating"}{" "}
+                    •{" "}
                     <span>
                       {stay.reviews.length === 1
-                        ? ' 1 review'
+                        ? " 1 review"
                         : `${stay.reviews.length} reviews`}
-                    </span></h6>
+                    </span>
+                  </h6>
                 </div>
                 <div className="review-items">
                   {stay.reviews.map((review, index) => (
                     <div key={index} className="review-item">
                       <div className="review-header">
-                        <img className="reviewer-image" src={review.by.imgUrl} alt={review.by.fullname} />
+                        <img
+                          className="reviewer-image"
+                          src={review.by.imgUrl}
+                          alt={review.by.fullname}
+                        />
                         <div className="reviewer-details">
-                          <h6 className="reviewer-name">{review.by.fullname}</h6>
-                          <h5 className="review-rate">Rating: 4.{91 + (index % 10)}</h5>
+                          <h6 className="reviewer-name">
+                            {review.by.fullname}
+                          </h6>
+                          <h5 className="review-rate">
+                            Rating: 4.{91 + (index % 10)}
+                          </h5>
                         </div>
                       </div>
                       <h4 className="review-text">{review.txt}</h4>
@@ -164,15 +196,13 @@ export function StayDetails({ }) {
                   ))}
                 </div>
               </div>
-
             </div>
           </div>
         )}
-      </section >
+      </section>
       {isModalOpen && (
         <AmenitiesModal amenities={stay.amenities} onClose={toggleModal} />
       )}
-    </div >
-  )
+    </div>
+  );
 }
-

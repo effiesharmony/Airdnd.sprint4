@@ -61,7 +61,7 @@ export function AppHeaderMobileBottom() {
           <h4>Wishlist</h4>
         </NavLink>
         <NavLink
-          to="/dashboard/reservations"
+          to="/trips"
           className={({ isActive }) =>
             `app-header-mobile-options trips ${isActive ? "active" : ""}`
           }
