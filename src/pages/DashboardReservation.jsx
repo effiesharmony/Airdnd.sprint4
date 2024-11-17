@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { orderService } from "../services/order/order.service.js";
-import { DashboardListings } from "./DashboardListings.jsx";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -15,7 +14,15 @@ export function DashboardReservation() {
   const [orders, setOrders] = useState(null);
 
   useEffect(() => {
-    orderService.query().then((orders) => setOrders(orders));
+    const loggedinUser =
+      JSON.parse(sessionStorage.getItem("loggedinUser")) ||
+      JSON.parse(localStorage.getItem("loggedinUser"));
+
+    if (loggedinUser) {
+      orderService
+        .query({ hostId: loggedinUser._id })
+        .then((orders) => setOrders(orders));
+    }
   }, []);
 
   const handleStatusChange = (orderId, status) => {
@@ -93,7 +100,7 @@ export function DashboardReservation() {
     ],
   };
 
-  if (!orders) return <div>Loading</div>;
+  if (!orders) return <div>Loading...</div>;
 
   return (
     <div className="dashboard-reservation">
