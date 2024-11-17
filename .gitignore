@@ -2,5 +2,5 @@ node_modules
 data/stay.json.js
 .vscode/.*
 settings.json
-upload.service.js
+cloudinary.service.js
 .gitignore

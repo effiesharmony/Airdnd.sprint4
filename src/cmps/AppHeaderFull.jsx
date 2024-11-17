@@ -127,7 +127,7 @@ export function AppHeaderFull() {
             />
             <img
               className="app-header-user-img"
-              src={user.imgUrl || "/public/img/effie.jpeg"}
+              src={"/public/img/effie.jpeg"}
               alt="User icon"
             />
           </button>
@@ -146,7 +146,7 @@ export function AppHeaderFull() {
                 </NavLink>
                 <NavLink
                   className="dropdown-menu-link trips"
-                  to="user/:id"
+                  to="trips"
                   onClick={onOpenCloseMenu}
                 >
                   Trips
