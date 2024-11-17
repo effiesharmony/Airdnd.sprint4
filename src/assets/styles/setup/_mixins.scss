@@ -6,7 +6,7 @@
 }
 
 @mixin for-mobile-layout {
-  @media (min-width: $small-mobile-breakpoint) {
+  @media (max-width: $mobile-breakpoint) {
     @content;
   }
 }
