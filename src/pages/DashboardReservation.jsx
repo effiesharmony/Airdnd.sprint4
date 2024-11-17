@@ -101,15 +101,14 @@ export function DashboardReservation() {
   };
 
   if (!orders) return <div>Loading...</div>;
-
   return (
     <div className="dashboard-reservation">
       <div className="dashboard-links">
-        <Link to="/dashboard/listings" className="listings">
-          listings
+        <Link to="/dashboard/listings" className="link">
+          Listings
         </Link>
-        <Link to="/dashboard/reservations" className="reservations">
-          reservations
+        <Link to="/dashboard/reservations" className="link-r">
+          Reservations
         </Link>
       </div>
       <div className="charts-container">
