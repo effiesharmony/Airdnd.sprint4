@@ -1,16 +1,16 @@
 import { categories } from '../services/utils/categories.js'
 import { useRef, useState, useEffect } from "react"
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 
 export function StayCategories({ onSetFilter, filterBy }) {
     const [selectedCat, setSelectedCat] = useState(false)
     const [isScrollEnd, setIsScrollEnd] = useState(false)
     const [currentLeft, setCurrentLeft] = useState(0)
     const [isScrolled, setIsScrolled] = useState(false)
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 745)
 
     const scrollRef = useRef(null)
     const [searchParams, setSearchParams] = useSearchParams()
-    const navigate = useNavigate()
 
     useEffect(() => {
         window.addEventListener("scroll", handleScrollDown)
@@ -19,12 +19,16 @@ export function StayCategories({ onSetFilter, filterBy }) {
         }
     }, [])
 
+    function handleMobileResize() {
+        setIsMobile(window.innerWidth < 745)
+    }
+
     function handleScrollDown() {
         setIsScrolled(window.scrollY > 0)
     }
 
     function scrollRight() {
-        const scrollAmount = scrollRef.current.scrollWidth * 0.15
+        const scrollAmount = scrollRef.current.clientWidth * 0.5
         setCurrentLeft(scrollRef.current.scrollLeft + scrollAmount)
         scrollRef.current.scrollLeft += scrollAmount
         const atEnd = Math.ceil(scrollRef.current.scrollLeft + scrollRef.current.clientWidth + 300)
@@ -33,7 +37,7 @@ export function StayCategories({ onSetFilter, filterBy }) {
     }
 
     function scrollLeft() {
-        const scrollAmount = scrollRef.current.scrollWidth * 0.10
+        const scrollAmount = scrollRef.current.clientWidth * 0.5
         setCurrentLeft(scrollRef.current.scrollLeft - scrollAmount)
         scrollRef.current.scrollLeft -= scrollAmount
 
@@ -68,7 +72,7 @@ export function StayCategories({ onSetFilter, filterBy }) {
                         <span>{category.name}</span>
                     </div>)}
             </section>
-            {!isScrollEnd &&
+            {!isScrollEnd && 
                 <button className="cat-button next" onClick={() => scrollRight()}>
                     <img src="public/svg/rightArrow.svg" alt="Right arrow" />
                 </button>

@@ -8,29 +8,29 @@
   border-top: 1px solid #dddddda8;
   width: 100%;
   background-color: $clr6;
-  // top: 80px;
   z-index: 11;
   overflow: hidden;
   padding: 0 80px;
   position: relative;
-
+  
   button {
     @include carousel-btn;
-    top: 65%;
+    top: 60%;
     scale: 1.15;
     opacity: 1;
     border: 1px solid $gray2;
     background-color: $clr6;
     box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
-
+    
     &.prev {
-      left: 4px;
+      left: 80px;
+      
     }
-
+    
     &.next {
-      right: 4px;
+      right: 80px;
     }
-
+    
     &:hover {
       box-shadow: rgb(255, 255, 255) 0 0 10px 30px;
       scale: 1.25;
@@ -47,7 +47,8 @@
     align-content: center;
     overflow-x: scroll;
     scroll-behavior: smooth;
-
+    padding-top: 15px;
+    
     .category {
       min-width: 56px;
       grid-row: 1;
@@ -100,7 +101,7 @@
 }
 
 .cat-not-sticky {
-  padding-top: 23px;
+  padding: 23px;
 }
 
 .cat-sticky {
@@ -108,6 +109,16 @@
   padding-top: 13px;
   top: 80px;
   box-shadow: 0 2px 4px rgba(200, 200, 200, 0.4);
+
+  button {
+    top: 52%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .categories-outer-container {
+    padding: 0 80px;
+  }
 }
 
 @media screen and (max-width: 1440px) {
@@ -149,7 +160,7 @@
       align-content: center;
       overflow-x: scroll;
       scroll-behavior: smooth;
-  
+
       .category {
         min-width: 56px;
         grid-row: 1;
@@ -171,11 +182,11 @@
           border-bottom: 2px solid rgba(0, 0, 0, 0.2);
         }
       }
-  
+
       .category.selected {
         border-bottom: 2px solid rgb(0, 0, 0);
         opacity: 1;
-  
+
         &:hover {
           opacity: 1;
         }
