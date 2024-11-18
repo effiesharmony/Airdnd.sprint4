@@ -282,7 +282,9 @@ export function DashboardReservation() {
                       : "#FFCE56",
                 }}
               >
-                {order.status}
+                {order.status 
+                ? order.status.charAt(0).toUpperCase() + order.status.slice(1).toLowerCase() 
+                : "Unknown"}
               </td>
               <td>
                 <div className="action-btns">

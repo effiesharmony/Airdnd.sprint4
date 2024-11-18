@@ -4,9 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
 export function DashboardListings() {
-  const user = useSelector((storeState) => storeState.userModule.user);
-  console.log(user);
-  
+  const user = useSelector((storeState) => storeState.userModule.user);  
   const [isSmallListing, setSmallListing] = useState(window.innerWidth <= 745);
   const navigate = useNavigate();
   const stays = user.stays;
@@ -64,7 +62,6 @@ export function DashboardListings() {
                     src={stay.imgUrl || ""}
                     alt={stay.name}
                     className="stay-image"
-                    style={{ width: "100px", height: "auto" }}
                   />
                 </div>
                 <h1 className="stay-name">{stay.name}</h1>
