@@ -166,13 +166,12 @@
 
 @media screen and (max-width: 950px) {
   .dashboard-listings {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    color: #222222;
+    width: 92vw;
+
     .dashboard-listings-stays {
       .stay-table {
         thead {
-          display: none;
           tr {
             th {
               font-family: AirbnbCereal_W_Bk, sans-serif;
@@ -186,56 +185,122 @@
               padding: 10px;
             }
             .listing {
-              display: none;
+              padding-left: 0px;
+              text-align: left;
             }
           }
         }
       }
     }
+
     tbody {
-      display: grid !important;
-      grid-auto-flow: column !important;
-      gap: 10px;
+      td {
+        border: none;
+        border-top: 1px solid #dddddd;
+        text-align: center;
+      }
 
-      tr {
-        min-width: 230px;
-        max-width: 230px;
-        display: grid;
-        grid-template-columns: 1fr;
-        margin: 10px;
-        border-radius: 1rem;
-        box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+      .stay-img {
+        padding-left: 0px;
 
-        td {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          border-top: none !important;
-        }
+        img {
+          width: 100%;
+          height: 100%;
+          max-width: 600px;
+          min-width: 100px;
+          border-radius: 0.5rem;
+          transition: transform 0.1s ease;
+          cursor: pointer;
 
-        .stay-img {
-          padding-left: 0px;
-          border-top: 1px solid #dddddd;
-
-          img {
-            width: 100%;
-            height: 100%;
-            max-width: 600px;
-            min-width: 100px;
-            border-radius: 0.5rem;
-            transition: transform 0.1s ease;
-            cursor: pointer;
-
-            &:hover {
-              transform: scale(1.03);
-            }
+          &:hover {
+            transform: scale(1.03);
           }
         }
       }
 
       .stay-name {
         text-align: left;
+      }
+
+      .name,
+      .stay-name {
+        font-family: AirbnbCereal_W_Lt, sans-serif;
+        letter-spacing: 0.02rem;
+        font-weight: normal;
+        font-size: rem(16px);
+        color: #222222;
+      }
+
+      .num {
+        font-family: AirbnbCereal_W_Lt, sans-serif;
+        letter-spacing: 0.02rem;
+        font-weight: normal;
+        font-size: rem(14px);
+        color: #222222;
+        padding: 10px;
+      }
+
+      .view-btn {
+        margin-left: 20px;
+      }
+
+      .view-btn,
+      .edit-btn {
+        text-decoration: none;
+        color: #222222;
+        &:hover {
+          color: $logo-clr;
+        }
+      }
+    }
+  }
+}
+
+.dashboard-listings {
+  color: #222222;
+  width: 90vw;
+  .dashboard-listings-stays-small {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 15px;
+
+    .stay {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      min-width: 230px;
+      min-height: 400px;
+      border-radius: 1rem;
+      padding: 10px;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+
+      .stay-img {
+        align-self: center;
+        
+        img {
+          min-width: 220px;
+          width: 100%;
+          height: 100%;
+          border-radius: 0.5rem;
+          transition: transform 0.1s ease;
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.03);
+          }
+        }
+      }
+
+      h1 {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        font-family: AirbnbCereal_W_Lt, sans-serif;
+        letter-spacing: 0.02rem;
+        font-weight: normal;
+        color: #222222;
       }
 
       .name,
@@ -247,7 +312,7 @@
         font-family: AirbnbCereal_W_Lt, sans-serif;
         letter-spacing: 0.02rem;
         font-weight: normal;
-        font-size: rem(14px) !important;
+        font-size: rem(18px);
         color: #222222;
       }
 
@@ -255,7 +320,7 @@
         font-family: AirbnbCereal_W_Lt, sans-serif;
         letter-spacing: 0.02rem;
         font-weight: normal;
-        font-size: rem(14px);
+        font-size: rem(16px);
         color: #222222;
       }
 
@@ -267,6 +332,8 @@
       .edit-btn {
         text-decoration: none;
         color: #222222;
+        padding-top: 10px;
+
         &:hover {
           color: $logo-clr;
         }
