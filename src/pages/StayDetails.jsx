@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { amenityIcons } from "../services/utils/amenities.js";
-import { loadStay } from "../store/actions/stay.actions";
-import { OrderForm } from "../cmps/OrderForm";
-import { AmenitiesModal } from "../cmps/AmenitiesModal";
-import { MobileGallery } from "../cmps/MobileGallery.jsx";
-import { MobileOrderForm } from "../cmps/MobileOrderForm.jsx";
+import { useEffect, useState } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { amenityIcons } from "../services/utils/amenities.js"
+import { loadStay } from "../store/actions/stay.actions"
+import { OrderForm } from "../cmps/OrderForm"
+import { AmenitiesModal } from "../cmps/AmenitiesModal"
+import { MobileGallery } from "../cmps/MobileGallery.jsx"
+import { MobileOrderForm } from "../cmps/MobileOrderForm.jsx"
+import { LongTxt } from "../cmps/LongTxt.jsx";
 
-export function StayDetails({}) {
+export function StayDetails({ }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 745);
   const { stayId } = useParams();
   const stay = useSelector((storeState) => storeState.stayModule.stay);
@@ -131,7 +132,9 @@ export function StayDetails({}) {
                     </div>
                   </div>
                   <div className="stay-info">
-                    <h6>{stay.summary}</h6>
+                    <h6>
+                      <LongTxt txt={stay.summary} />
+                    </h6>
                   </div>
                   <div className="stay-amenities">
                     <h6>What this place offers</h6>
@@ -176,7 +179,7 @@ export function StayDetails({}) {
                   </h6>
                 </div>
                 <div className="review-items">
-                  {stay.reviews.map((review, index) => (
+                  {stay.reviews.slice(0, 6).map((review, index) => (
                     <div key={index} className="review-item">
                       <div className="review-header">
                         <img
@@ -193,7 +196,9 @@ export function StayDetails({}) {
                           </h5>
                         </div>
                       </div>
-                      <h4 className="review-text">{review.txt}</h4>
+                      <h4 className="review-text">
+                        <LongTxt txt={review.txt} length={150} />
+                      </h4>
                     </div>
                   ))}
                 </div>
