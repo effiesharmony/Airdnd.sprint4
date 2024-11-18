@@ -14,7 +14,7 @@ export function ReservationSuccessfull({ stay, reservationDates, guests, totalPr
                 <div className="reservation-success-content">
                     <p>You can follow the order status in <span className="link">My trips</span> page</p>
                     
-                    <div className="reservation-details">
+                    {/* <div className="reservation-details">
                         <h3>Reservation details</h3>
                         <div className="info-section">
                             <p className="label">Trip dates:</p>
@@ -42,7 +42,7 @@ export function ReservationSuccessfull({ stay, reservationDates, guests, totalPr
                             <p className="value">${numberWithCommas(totalPrice)}</p>
                         </div>
                     </div>
-                    
+                     */}
                     <div className="stay-image">
                         <img src={stay.imgUrls[0]} alt={stay.name} />
                         <p>{stay.name}</p>

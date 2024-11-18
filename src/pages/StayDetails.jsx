@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, useSearchParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { amenityIcons } from "../services/utils/amenities.js"
 import { loadStay } from "../store/actions/stay.actions"
@@ -9,14 +9,22 @@ import { MobileGallery } from "../cmps/MobileGallery.jsx"
 import { MobileOrderForm } from "../cmps/MobileOrderForm.jsx"
 import { LongTxt } from "../cmps/LongTxt.jsx";
 
+
 export function StayDetails({ }) {
+  const [searchParams, setSearchParams] = useSearchParams()
   const [isMobile, setIsMobile] = useState(window.innerWidth < 745);
   const { stayId } = useParams();
   const stay = useSelector((storeState) => storeState.stayModule.stay);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log(stay);
+  const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
 
   useEffect(() => {
+    // filterBy.availableDates.start = new Date(filterBy.availableDates.start)
+    // filterBy.availableDates.end = new Date(filterBy.availableDates.end)
+    // console.log(typeof filterBy.availableDates.end);
+    
+    // console.log(filterBy, 'filterBy');
+    setSearchParams(filterBy)
     loadStay(stayId);
   }, [stayId]);
 

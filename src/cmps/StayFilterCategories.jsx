@@ -72,7 +72,7 @@ export function StayCategories({ onSetFilter, filterBy }) {
                         <span>{category.name}</span>
                     </div>)}
             </section>
-            {!isScrollEnd && 
+            {!isScrollEnd &&
                 <button className="cat-button next" onClick={() => scrollRight()}>
                     <img src="public/svg/rightArrow.svg" alt="Right arrow" />
                 </button>

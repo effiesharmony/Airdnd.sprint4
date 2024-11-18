@@ -6,7 +6,6 @@ import { orderService } from '../services/order/order.service'
 import { ReservationSuccessfull } from '../cmps/ReservationSuccessfull.jsx'
 import { getReviewAvg, numberWithCommas } from '../services/utils/util.service.js'
 
-
 export function ReservationDetails() {
     const { stayId } = useParams()
     const [stay, setStay] = useState(null)
@@ -52,55 +51,65 @@ export function ReservationDetails() {
             stay: { _id: stay._id, name: stay.name, price: stay.price },
             status: 'pending',
         }
-        
+
         orderService.saveOrder(order)
             .then(() => setShowSuccess(true))
             .catch(err => console.error("Failed to save order:", err))
+    }
+
+    const formatDate = (date) => {
+        return new Date(date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+        })
     }
 
     if (!stay) return <p>Loading...</p>
     return (
         <div className="reservation-details">
             <div className="details-container">
-                <div className="reservation-text">
-                    <h2>One last step</h2>
-                    <p>Dear {user.fullname},</p>
-                    <p>In order to complete your reservation, please confirm your trip details.</p>
-                    <div className="reservation-info">
-                        <h3>Reservation details</h3>
-                        <div className="info-item">
-                            <span className="label">Trip dates:</span>
-                            <span className="value">{reservationDates.checkIn} - {reservationDates.checkOut}</span>
-                        </div>
-                        <div className="info-item">
-                            <span className="label">Guests:</span>
-                            <span className="value">{guests} {guests > 1 ? 'adults' : 'adult'}</span>
-                        </div>
-                        <div className="price-details">
+                <div className="details-wrapper">
+                    <div className="reservation-text">
+                        <h2>One last step</h2>
+                        <p>Dear {user.fullname},</p>
+                        <p>In order to complete your reservation, please confirm your trip details.</p>
+                        <div className="reservation-info">
+                            <h3>Reservation details</h3>
                             <div className="info-item">
-                                <span className="label">${numberWithCommas(stay.price)} x {nights} nights</span>
-                                <span className="value">${numberWithCommas(totalPrice)}</span>
+                                <span className="label">Trip dates:</span>
+                                <span className="value">{formatDate(reservationDates.checkIn)} - {formatDate(reservationDates.checkOut)}</span>
                             </div>
                             <div className="info-item">
-                                <span className="label">Service fee</span>
-                                <span className="value">$0</span>
+                                <span className="label">Guests:</span>
+                                <span className="value">{guests} {guests > 1 ? 'adults' : 'adult'}</span>
                             </div>
-                            <div className="info-item total">
-                                <span className="label">Total</span>
-                                <span className="value">${numberWithCommas(totalPrice)}</span>
+                            <div className="price-details">
+                                <div className="info-item">
+                                    <span className="label">${numberWithCommas(stay.price)} x {nights} nights</span>
+                                    <span className="value">${numberWithCommas(totalPrice)}</span>
+                                </div>
+                                <div className="info-item">
+                                    <span className="label service-label">Service fee</span>
+                                    <span className="value">$0</span>
+                                </div>
+                                <div className="info-item total">
+                                    <span className="label">Total</span>
+                                    <span className="value">${numberWithCommas(totalPrice)}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div className="reservation-image">
+                        <img src={stay.imgUrls ? stay.imgUrls[0] : ''} alt={stay.name || 'Stay'} />
+                        <p className="stay-name">{stay.name || 'Stay Name'}</p>
+                        <p className="stay-location">{stay.loc.city}, {stay.loc.country}</p>
+                    </div>
                 </div>
-                <div className="reservation-image">
-                    <img src={stay.imgUrls ? stay.imgUrls[0] : ''} alt={stay.name || 'Stay'} />
-                    <p className="stay-name">{stay.name || 'Stay Name'}</p>
-                    <p className="stay-location">{stay.loc.city}, {stay.loc.country}</p>
+                <div className="buttons-container">
+                    <button onClick={() => navigate(-1)} className="back-button">Back</button>
+                    <button onClick={handleConfirmReservation} className="confirm-button">Confirm</button>
                 </div>
-            </div>
-            <div className="buttons-container">
-                <button onClick={() => navigate(-1)} className="back-button">Back</button>
-                <button onClick={handleConfirmReservation} className="confirm-button">Confirm</button>
             </div>
             {showSuccess && (
                 <div className="modal-overlay">
