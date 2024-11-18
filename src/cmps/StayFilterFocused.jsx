@@ -63,7 +63,7 @@ function handleDateChange(dates) {
     })
   );
 
-  if (startDate && !finalEndDate) {
+  if (startDate && !endDate) {
     setDateInDropdownOpen(false);
     setDateOutDropdownOpen(true);
   }

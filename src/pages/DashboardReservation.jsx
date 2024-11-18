@@ -93,6 +93,7 @@ export function DashboardReservation() {
         data: Object.values(stayBookingCounts),
         backgroundColor: ["#6A0DAD", "#0000FF", "#1E90FF", "#00CED1"],
         hoverBackgroundColor: ["#6A0DAD", "#0000FF", "#1E90FF", "#00CED1"],
+        borderRadius: 0,
       },
     ],
   };
@@ -115,12 +116,26 @@ export function DashboardReservation() {
     plugins: {
       legend: {
         display: true,
-        position: "top",
+        position: "left",
+        labels: {
+          boxWidth: 18,
+          boxHeight: 18,
+          usePointStyle: true,
+          pointStyle: "rectRounded",
+          padding: 5,
+          color: "#333",
+          font: {
+            size: 14,
+            family: "AirbnbCereal_W_Lt, san serif",
+            weight: "normal",
+          },
+        },
       },
       tooltip: {
         enabled: true,
       },
     },
+    radius: "80%", 
     responsive: true,
     maintainAspectRatio: false,
   };
@@ -149,9 +164,10 @@ export function DashboardReservation() {
         ticks: {
           font: {
             size: 14,
-            weight: "bold",
+            family: "AirbnbCereal_W_Lt, san serif",
+            weight: "normal",
           },
-          color: "#555",
+          color: "#333",
         },
       },
       y: {
@@ -178,7 +194,7 @@ export function DashboardReservation() {
         </Link>
       </div>
       <div className="charts-container">
-        <div className="chart-card">
+        <div className="chart-card-pie">
           <h3>Stays Booked</h3>
           <div className="pie-chart-container">
             <Pie data={stayPieData} options={pieOptions} />
@@ -190,7 +206,8 @@ export function DashboardReservation() {
             <Bar data={barData} options={barOptions} />
           </div>
         </div>
-        <div className="chart-card">
+        <div className="chart-card-3">
+          <div>
           <h3>Reservation Status</h3>
           <div className="reservation-status">
             <div className="status-item">
@@ -211,6 +228,7 @@ export function DashboardReservation() {
                 {statusCounts.rejected} ({rejectedPercent}%)
               </span>
             </div>
+          </div>
           </div>
           <div className="actionable-insights">
             <h4>Actionable Insights</h4>
