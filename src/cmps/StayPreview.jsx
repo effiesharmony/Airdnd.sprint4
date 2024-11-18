@@ -21,10 +21,15 @@ export function StayPreview({ stay }) {
                 <p className="stay-price"><span>${numberWithCommas(stay.price)}</span> night</p>
                 <div className="stay-rating-container">
                     <img className="star" src="public/svg/star.svg" alt="Star" />
-                    <p className="rating-num">5.0</p>
-                    {/* <p className="rating-num">{getReviewAvg(stay.reviews)}</p> */}
-                    <p className="ratings-amount">({stay.reviews.length})</p>
+                    {stay.reviews.length > 0
+                        ? <>
+                            <p className="rating-num">5.0</p>
+                            <p className="ratings-amount">({stay.reviews.length})</p>
+                        </>
+                        : <p>New</p>
+                    }
                 </div>
+                {/* <p className="rating-num">{getReviewAvg(stay.reviews)}</p> */}
 
             </article>
         </section>

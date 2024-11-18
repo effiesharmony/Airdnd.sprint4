@@ -1,5 +1,13 @@
+.main{
+  margin: 0;
+  padding: 0;
+}
+
 .dashboard-reservations {
+  display: flex;
+  width: 1fr;
   padding: 20px;
+  align-items: center;
 }
 
 .dashboard-links {
@@ -21,19 +29,18 @@
 }
 
 table {
+  margin-top: 15px;
   width: 100%;
   border-collapse: collapse;
 }
 
 table th,
 table td {
-  border: 1px solid #ddd;
-  padding: 10px;
+  height: 60px;
+  line-height: 1.5;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 25px;
   text-align: left;
-}
-
-table th {
-  background-color: #f4f4f4;
 }
 
 .action-btns {
@@ -79,18 +86,21 @@ table th {
 }
 
 .charts-container {
+  width: 60%;
   display: flex;
+  justify-self: center;
   justify-content: center;
   gap: 20px;
   padding: 20px;
 }
 
 .chart-card {
+  justify-self: center;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 300px;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -145,11 +155,12 @@ table th {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 300px; 
+  width: 100%;
+  height: 200px; 
 }
 
 .tiny-pie-chart-container {
+  background-color: pink;
   display: flex;
   justify-content: center;
   align-items: center;
