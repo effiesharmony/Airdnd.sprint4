@@ -55,6 +55,7 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
 function handleDateChange(dates) {
   const [startDate, endDate] = dates;
 
+
   dispatch(
     stayAction.setFilterBy({
       ...filterBy,
@@ -113,8 +114,9 @@ function handleDateChange(dates) {
     if (totalGuests) {
       searchParams.set("guests", totalGuests)
     }
-
+    
     navigate(`/stay?${searchParams.toString()}`)
+    console.log("applyFilters  searchParams:", searchParams)
     setIsFilterApplied(true)
   }
 

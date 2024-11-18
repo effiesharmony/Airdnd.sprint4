@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, useSearchParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { amenityIcons } from "../services/utils/amenities.js"
 import { loadStay } from "../store/actions/stay.actions"
@@ -8,15 +8,24 @@ import { AmenitiesModal } from "../cmps/AmenitiesModal"
 import { MobileGallery } from "../cmps/MobileGallery.jsx"
 import { MobileOrderForm } from "../cmps/MobileOrderForm.jsx"
 import { LongTxt } from "../cmps/LongTxt.jsx";
+import { MobileHeader } from "../cmps/MobileHeader.jsx"
+
 
 export function StayDetails({ }) {
+  const [searchParams, setSearchParams] = useSearchParams()
   const [isMobile, setIsMobile] = useState(window.innerWidth < 745);
   const { stayId } = useParams();
   const stay = useSelector((storeState) => storeState.stayModule.stay);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log(stay);
+  const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
 
   useEffect(() => {
+    // filterBy.availableDates.start = new Date(filterBy.availableDates.start)
+    // filterBy.availableDates.end = new Date(filterBy.availableDates.end)
+    // console.log(typeof filterBy.availableDates.end);
+    
+    // console.log(filterBy, 'filterBy');
+    setSearchParams(filterBy)
     loadStay(stayId);
   }, [stayId]);
 
@@ -52,6 +61,7 @@ export function StayDetails({ }) {
 
   return (
     <div className="main-details">
+      {isMobile && <MobileHeader />}
       <section className="stay-details">
         {stay && (
           <div className="stay-content">
@@ -210,6 +220,9 @@ export function StayDetails({ }) {
       {isModalOpen && (
         <AmenitiesModal amenities={stay.amenities} onClose={toggleModal} />
       )}
+      {isMobile &&
+        <MobileOrderForm />
+      }
     </div>
   );
 }
