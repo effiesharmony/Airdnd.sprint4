@@ -157,7 +157,7 @@ export function DashboardReservation() {
       </div>
       <table>
         <thead>
-          <tr>
+          <tr className="table-headers">
             <th>Booker</th>
             <th>Stay Name</th>
             <th>Dates Reserved</th>
