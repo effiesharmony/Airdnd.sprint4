@@ -14,8 +14,6 @@ export const orderService = {
 
 async function query(filterBy = {}) {
     var orders = await storageService.query(STORAGE_KEY)
-    console.log('orders in service',orders);
-    
     return orders
 }
 
