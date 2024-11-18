@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Pie } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Pie, Bar } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from "chart.js";
 import { orderService } from "../services/order/order.service.js";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -57,8 +57,20 @@ export function DashboardReservation() {
     return statusCounts;
   };
 
+  const getMonthlyRevenue = () => {
+    const revenueByMonth = {};
+    if (orders) {
+      orders.forEach((order) => {
+        const month = new Date(order.startDate).toLocaleString("default", { month: "short" });
+        revenueByMonth[month] = (revenueByMonth[month] || 0) + order.totalPrice;
+      });
+    }
+    return revenueByMonth;
+  };
+
   const stayBookingCounts = getStayBookingCounts();
   const statusCounts = getStatusCounts();
+  const monthlyRevenue = getMonthlyRevenue();
 
   const totalReservations =
     statusCounts.pending + statusCounts.approved + statusCounts.rejected;
@@ -85,6 +97,20 @@ export function DashboardReservation() {
     ],
   };
 
+  const barData = {
+    labels: Object.keys(monthlyRevenue),
+    datasets: [
+      {
+        label: "Revenue",
+        data: Object.values(monthlyRevenue),
+        backgroundColor: ["#6A0DAD", "#0000FF", "#1E90FF", "#00CED1", "#40E0D0"],
+        hoverBackgroundColor: ["#500A9D", "#0000CC", "#1876D2", "#00B2A8", "#37CACD"],
+        borderRadius: 8,
+        borderSkipped: false,
+      },
+    ],
+  };
+
   const pieOptions = {
     plugins: {
       legend: {
@@ -99,7 +125,48 @@ export function DashboardReservation() {
     maintainAspectRatio: false,
   };
 
+  const barOptions = {
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        enabled: true,
+        callbacks: {
+          label: function (context) {
+            return `$${numberWithCommas(context.raw)}`;
+          },
+        },
+      },
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          font: {
+            size: 14,
+            weight: "bold",
+          },
+          color: "#555",
+        },
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          display: false,
+        },
+      },
+    },
+  };
+
   if (!orders) return <div>Loading...</div>;
+
   return (
     <div className="dashboard-reservation">
       <div className="dashboard-links">
@@ -115,6 +182,12 @@ export function DashboardReservation() {
           <h3>Stays Booked</h3>
           <div className="pie-chart-container">
             <Pie data={stayPieData} options={pieOptions} />
+          </div>
+        </div>
+        <div className="chart-card">
+          <h3>Revenue / Month</h3>
+          <div className="bar-chart-container" style={{ height: "150px" }}>
+            <Bar data={barData} options={barOptions} />
           </div>
         </div>
         <div className="chart-card">
@@ -177,9 +250,7 @@ export function DashboardReservation() {
                 {new Date(order.startDate).toLocaleDateString()} -{" "}
                 {new Date(order.endDate).toLocaleDateString()}
               </td>
-              <td>
-                {order.guests.adults} Guests
-              </td>
+              <td>{order.guests.adults} Guests</td>
               <td>${numberWithCommas(order.stay.price)}</td>
               <td>${numberWithCommas(order.totalPrice)}</td>
               <td
