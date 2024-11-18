@@ -54,16 +54,15 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
 
 function handleDateChange(dates) {
   const [startDate, endDate] = dates;
-  const finalEndDate = endDate || startDate; 
 
   dispatch(
     stayAction.setFilterBy({
       ...filterBy,
-      availableDates: { start: startDate, end: finalEndDate },
+      availableDates: { start: startDate, end: endDate },
     })
   );
 
-  if (startDate && !finalEndDate) {
+  if (startDate && !endDate) {
     setDateInDropdownOpen(false);
     setDateOutDropdownOpen(true);
   }
