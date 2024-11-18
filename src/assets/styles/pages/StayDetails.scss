@@ -165,6 +165,7 @@
     grid-template-columns: 2fr 1fr;
     position: relative;
     width: 100%;
+    margin-bottom: 45px;
 
     >*:not(:last-child) {
       grid-column: 1;
@@ -303,7 +304,6 @@
     .stay-amenities {
       grid-column: 1;
       margin-top: 45px;
-      padding-bottom: 45px;
 
       h6 {
         font-size: 1.4rem;
