@@ -8,6 +8,7 @@ import { AmenitiesModal } from "../cmps/AmenitiesModal"
 import { MobileGallery } from "../cmps/MobileGallery.jsx"
 import { MobileOrderForm } from "../cmps/MobileOrderForm.jsx"
 import { LongTxt } from "../cmps/LongTxt.jsx";
+import { MobileHeader } from "../cmps/MobileHeader.jsx"
 
 
 export function StayDetails({ }) {
@@ -60,6 +61,7 @@ export function StayDetails({ }) {
 
   return (
     <div className="main-details">
+      {isMobile && <MobileHeader />}
       <section className="stay-details">
         {stay && (
           <div className="stay-content">
@@ -218,6 +220,9 @@ export function StayDetails({ }) {
       {isModalOpen && (
         <AmenitiesModal amenities={stay.amenities} onClose={toggleModal} />
       )}
+      {isMobile &&
+        <MobileOrderForm />
+      }
     </div>
   );
 }
