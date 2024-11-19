@@ -30,6 +30,15 @@ export function DateModalDetails({
     satCheckIn(false);
   }
 
+  function formatDate(dates) {
+    const date = new Date(dates)
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    })
+  }
+
   return (
     <div className="date-modal-details" onClick={(e) => e.stopPropagation()}>
       <div className="date-picker-modal">
@@ -38,7 +47,7 @@ export function DateModalDetails({
           <h1>{!nights ? "Select dates" : `${nights} ${nights === 1 ? "night" : "nights"}`}</h1>
         <h3>{!startDate || !endDate
         ? "Minimum stay: 1 night"
-        : `${format(startDate, "MMM d,yyyy")} - ${format(endDate, "MMM d,yyyy")}`}</h3>
+        : `${formatDate(startDate)} - ${formatDate(endDate)}`}</h3>
         </div>
         <div className="order-dates">
           <div
@@ -47,7 +56,14 @@ export function DateModalDetails({
             >
             <label>Check in</label>
             <div className="input">
-              {startDate ? startDate.toLocaleDateString() : "Add date"}
+              {startDate ? startDate.toLocaleDateString(
+                        "en-US",
+                        {
+                          month: "short",
+                          day: "numeric",
+                        }
+                      )
+                    : "Add dates"}
             </div>
           </div>
 
@@ -57,7 +73,14 @@ export function DateModalDetails({
             >
             <label>Check out</label>
             <div className="input">
-              {endDate ? endDate.toLocaleDateString() : "Add date"}
+              {endDate ? endDate.toLocaleDateString(
+                        "en-US",
+                        {
+                          month: "short",
+                          day: "numeric",
+                        }
+                      )
+                    : "Add dates"}
             </div>
           </div>
         </div>

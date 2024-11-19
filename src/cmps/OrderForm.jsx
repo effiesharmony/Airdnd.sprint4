@@ -1,85 +1,96 @@
-import React, { useState, useEffect, useRef } from "react"
-import { stayService } from "../services/stay/stay.service.js"
-import { numberWithCommas } from "../services/utils/util.service.js"
-import { GuestModalDetails } from "./GuestModalDetails.jsx"
-import { DateModalDetails } from "./DateModalDetails.jsx"
-import { ReservationDetails } from "./ReservationDetails.jsx"
+import React, { useState, useEffect, useRef } from "react";
+import { stayService } from "../services/stay/stay.service.js";
+import { numberWithCommas } from "../services/utils/util.service.js";
+import { GuestModalDetails } from "./GuestModalDetails.jsx";
+import { DateModalDetails } from "./DateModalDetails.jsx";
+import { ReservationDetails } from "./ReservationDetails.jsx";
 
-export function OrderForm({ stayId }) {
-  const [stay, setStay] = useState(null)
-  const [checkIn, setCheckIn] = useState("")
-  const [checkOut, setCheckOut] = useState("")
-  const [guests, setGuests] = useState(1)
-  const [nights, setNights] = useState(0)
-  const [totalPrice, setTotalPrice] = useState(0)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const orderFormRef = useRef(null)
-  const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false)
-  const [isDateDropdownOpen, setDateDropdownOpen] = useState(false)
+export function OrderForm({ stayId, filterBy, formatDate }) {
+  const [stay, setStay] = useState(null);
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const [guests, setGuests] = useState(1);
+  const [nights, setNights] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const orderFormRef = useRef(null);
+  const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false);
+  const [isDateDropdownOpen, setDateDropdownOpen] = useState(false);
 
   useEffect(() => {
     stayService
       .getById(stayId)
       .then((stay) => {
-        setStay(stay)
+        setStay(stay);
       })
-      .catch((err) => console.error("Failed to load stay:", err))
-  }, [stayId])
+      .catch((err) => console.error("Failed to load stay:", err));
+  }, [stayId]);
+
+  useEffect(() => {
+    if (filterBy.availableDates?.start) {
+      setCheckIn(formatDate(filterBy.availableDates.start));
+    }
+    if (filterBy.availableDates?.end) {
+      setCheckOut(formatDate(filterBy.availableDates.end));
+    }
+  }, [filterBy]);
 
   useEffect(() => {
     if (checkIn && checkOut) {
-      const checkInDate = new Date(checkIn)
-      const checkOutDate = new Date(checkOut)
+      const checkInDate = new Date(checkIn);
+      const checkOutDate = new Date(checkOut);
       const calculatedNights = Math.max(
         (checkOutDate - checkInDate) / (1000 * 3600 * 24),
         0
-      )
-      setNights(calculatedNights)
+      );
+      setNights(calculatedNights);
     } else {
-      setNights(0)
+      setNights(0);
     }
-  }, [checkIn, checkOut])
+  }, [checkIn, checkOut]);
 
   useEffect(() => {
     if (stay) {
-      setTotalPrice(stay.price * nights)
+      setTotalPrice(stay.price * nights);
     }
-  }, [nights, stay])
+  }, [nights, stay]);
 
   const handleReserve = () => {
-    setIsModalOpen(true)
-  }
+    setIsModalOpen(true);
+  };
 
   function handleGuestChange(newTotalGuests) {
-    setGuests(newTotalGuests)
+    setGuests(newTotalGuests);
   }
 
   function handleDateChange(dates) {
-    const [startDate, endDate] = dates
+    const [startDate, endDate] = dates;
 
     if (startDate && endDate) {
-      setCheckIn(startDate)
-      setCheckOut(endDate)
-      setDateDropdownOpen(false)
+      setCheckIn(startDate);
+      setCheckOut(endDate);
+      setDateDropdownOpen(false);
     }
   }
 
   function onOpenGuestModal() {
-    setGuestDropdownOpen(!isGuestDropdownOpen)
-    setDateDropdownOpen(false)
+    setGuestDropdownOpen(!isGuestDropdownOpen);
+    setDateDropdownOpen(false);
   }
 
   function onOpenDateModal() {
-    setDateDropdownOpen(!isDateDropdownOpen)
-    setGuestDropdownOpen(false)
+    setDateDropdownOpen(!isDateDropdownOpen);
+    setGuestDropdownOpen(false);
   }
 
-  if (!stay) return <p>Loading...</p>
+  if (!stay) return <p>Loading...</p>;
   return (
     <>
       <div className="order-form" ref={orderFormRef}>
         <div className="order-price">
-          <span className="price-per-night">${numberWithCommas(stay.price)}</span>{" "}
+          <span className="price-per-night">
+            ${numberWithCommas(stay.price)}
+          </span>{" "}
           <span>night</span>
         </div>
         <div className="order-table">
@@ -87,18 +98,35 @@ export function OrderForm({ stayId }) {
             <div className="date-input">
               <label>Check in</label>
               <div className="input">
-                {checkIn ? new Date(checkIn).toLocaleDateString() : "Add date"}
+                {checkIn ? new Date(checkIn).toLocaleDateString(
+                        "en-US",
+                        {
+                          month: "short",
+                          day: "numeric",
+                        }
+                      )
+                    : "Add dates"}
               </div>
             </div>
             <div className="date-input">
               <label>Check out</label>
               <div className="input">
-                {checkOut ? new Date(checkOut).toLocaleDateString() : "Add date"}
+                {checkOut
+                  ? new Date(checkOut).toLocaleDateString(
+                    "en-US",
+                    {
+                      month: "short",
+                      day: "numeric",
+                    }
+                  )
+                : "Add dates"}
               </div>
             </div>
           </div>
           <div
-            className={`${isGuestDropdownOpen ? "bold-border" : "order-guests"} `}
+            className={`${
+              isGuestDropdownOpen ? "bold-border" : "order-guests"
+            } `}
             onClick={() => onOpenGuestModal()}
           >
             <div className="stay-details-guest">
@@ -138,8 +166,8 @@ export function OrderForm({ stayId }) {
         {isDateDropdownOpen && (
           <DateModalDetails
             nights={nights}
-            checkIn={checkIn}
-            checkOut={checkOut}
+            checkIn={checkIn ? new Date(checkIn) : null}
+            checkOut={checkOut ? new Date(checkOut) : null}
             handleDateChange={handleDateChange}
             setDateDropdownOpen={setDateDropdownOpen}
           />
@@ -155,5 +183,5 @@ export function OrderForm({ stayId }) {
         />
       )}
     </>
-  )
+  );
 }

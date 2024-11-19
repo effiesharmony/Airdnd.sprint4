@@ -20,6 +20,14 @@ export function TripDetails({ selectedTripId, setTripDetailsOpen }) {
     setMousePos({ x: mouseX, y: mouseY });
   }
 
+  function formatDate(dateStr) {
+  const date = new Date(dateStr)
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  })
+}
 
   function onTripClick(tripId) {
     const stay = user.trips.find((trip) => trip._id === tripId)
@@ -36,14 +44,14 @@ export function TripDetails({ selectedTripId, setTripDetailsOpen }) {
 
         <div className="trip-details-info">
             <h1>{trip.name}</h1>
-            <p>Adults {trip.guests.adults}</p>
-            <p>Kids {trip.guests.kids}</p>
-            <p>Country {trip.country}</p>
+            <p>Adults: <span>{trip.guests.adults}</span></p>
+            <p>Kids: <span>{trip.guests.kids}</span></p>
+            <p>Country: <span>{trip.country}</span></p>
             <p>
-              Dates {trip.startDate} - {trip.endDate}
+              Dates: <span className="span-dates">{formatDate(trip.startDate)} - {formatDate(trip.endDate)}</span>
             </p>
             <p>
-              Total price <span>{numberWithCommas(trip.totalPrice)} / {trip.nights} {trip.nights === 1 ? "night" : "nights"}</span>
+              Total price: <span className="span-price">{numberWithCommas(trip.totalPrice)} / {trip.nights} {trip.nights === 1 ? "night" : "nights"}</span>
             </p>
         </div>
         </div>

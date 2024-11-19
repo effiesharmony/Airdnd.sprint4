@@ -27,14 +27,28 @@ export function StayDetails() {
   }, [isMobile])
 
   useEffect(() => {
-    // filterBy.availableDates.start = new Date(filterBy.availableDates.start)
-    // filterBy.availableDates.end = new Date(filterBy.availableDates.end)
-    // console.log(typeof filterBy.availableDates.end);
-    
-    // console.log(filterBy, 'filterBy');
-    setSearchParams(filterBy)
+    const params = new URLSearchParams()
+    if (filterBy.availableDates.start) {
+      params.set("startDate", formatDate(filterBy.availableDates.start));
+    }
+    if (filterBy.availableDates.end) {
+      params.set("endDate", formatDate(filterBy.availableDates.end));
+    }
+    if (filterBy.minCapacity) {
+      params.set("minCapacity", filterBy.minCapacity);
+    }
+
+    if (filterBy.place) {
+      params.set("place", filterBy.place);
+    }
+    setSearchParams(params)
     loadStay(stayId);
-  }, [stayId]);
+  }, [stayId, filterBy]);
+
+  function formatDate(dates) {
+    const date = new Date(dates);
+    return date.toISOString().split('T')[0];
+  }
 
   useEffect(() => {
     window.addEventListener("resize", handleMobileResize);
@@ -172,7 +186,7 @@ export function StayDetails() {
                 {isMobile
                   ? <MobileOrderForm />
                   : <div className="stay-order">
-                    <OrderForm stayId={stayId} />
+                    <OrderForm stayId={stayId} filterBy={filterBy} formatDate={formatDate}/>
                   </div>
                 }
               </div>
