@@ -2,8 +2,8 @@
 import { storageService } from '../async-storage.service'
 import { makeId } from '../utils/util.service.js'
 import { userService } from '../user'
-import { data } from "../../../data/stay.json.js"
-import newStays from "../../../data/stay.json";
+// import { data } from "../../../data/stay.json.js"
+// import newStays from "../../../data/stay.json";
 
 const STORAGE_KEY = 'stay'
 
@@ -22,34 +22,29 @@ window.cs = stayService
 async function query(filterBy = {}) {
     var stays = await storageService.query(STORAGE_KEY)
     const { minCapacity, place, availableDates, label } = filterBy
-
     if (place) {
         stays = stays.filter(stay =>
             stay.loc.city.toLowerCase().includes(place.toLowerCase()) ||
             stay.loc.country.toLowerCase().includes(place.toLowerCase())
         )
     }
-
-    // if (availableDates?.start && availableDates?.end) {
-    //     const startDate = new Date(availableDates.start)
-    //     const endDate = new Date(availableDates.end)
-    //     stays = stays.filter(stay =>
-    //         stay.availableDates.some(dateRange => {
-    //             const rangeStart = new Date(`${dateRange.month} ${dateRange.start}`)
-    //             const rangeEnd = new Date(`${dateRange.month} ${dateRange.end}`)
-    //             return rangeStart <= startDate && rangeEnd >= endDate
-    //         })
-    //     )
-    // }
-
+    if (availableDates?.start && availableDates?.end) {
+        const startDate = new Date(availableDates.start)
+        const endDate = new Date(availableDates.end)
+        stays = stays.filter(stay =>
+            stay.availableDates.some(dateRange => {
+                const rangeStart = new Date(`${dateRange.month} ${dateRange.start}`)
+                const rangeEnd = new Date(`${dateRange.month} ${dateRange.end}`)
+                return rangeStart <= startDate && rangeEnd >= endDate
+            })
+        )
+    }
     if (minCapacity) {
         stays = stays.filter(stay => stay.capacity >= minCapacity)
     }
-
-    // if (label){
-    //     stays = stays.filter(stay => stay.labels.some((stayLabel) => stayLabel === label))
-    // }
-
+    if (label){
+        stays = stays.filter(stay => stay.labels.some((stayLabel) => stayLabel === label))
+    }
     return stays
 }
 
@@ -58,7 +53,6 @@ function getById(stayId) {
 }
 
 async function remove(stayId) {
-    // throw new Error('Nope')
     await storageService.remove(STORAGE_KEY, stayId)
 }
 
@@ -92,7 +86,6 @@ async function save(stay) {
                 }
             ],
             reviews: [],
-            // Later, owner is set by the backend
             host: userService.getLoggedinUser(),
             msgs: []
         }
@@ -102,9 +95,7 @@ async function save(stay) {
 }
 
 async function addStayMsg(stayId, txt) {
-    // Later, this is all done by the backend
     const stay = await getById(stayId)
-
     const msg = {
         id: makeId(),
         by: userService.getLoggedinUser(),
@@ -112,7 +103,6 @@ async function addStayMsg(stayId, txt) {
     }
     stay.msgs.push(msg)
     await storageService.put(STORAGE_KEY, stay)
-
     return msg
 }
 
@@ -146,14 +136,14 @@ function getEmptyStay() {
     )
 }
 
-async function _createStays() {
-    var stays = await storageService.query(STORAGE_KEY)
-    if (!stays.length) {
-        const staysToSave = newStays
-        if (Array.isArray(staysToSave) && staysToSave.length > 0) {
-            await storageService.save(STORAGE_KEY, staysToSave)
-        } else {
-            console.error('newStays is not a valid array or is empty', staysToSave)
-        }
-    }
-}
+// async function _createStays() {
+//     var stays = await storageService.query(STORAGE_KEY)
+//     if (!stays.length) {
+//         const staysToSave = newStays
+//         if (Array.isArray(staysToSave) && staysToSave.length > 0) {
+//             await storageService.save(STORAGE_KEY, staysToSave)
+//         } else {
+//             console.error('newStays is not a valid array or is empty', staysToSave)
+//         }
+//     }
+// }

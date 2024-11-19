@@ -9,7 +9,11 @@ export function OrderForm({ stayId, filterBy, formatDate }) {
   const [stay, setStay] = useState(null);
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState(1);
+  const [guests, setGuests] = useState(0);
+  const [adults, setAdults] = useState(0);
+  const [children, setChildren] = useState(0);
+  const [infants, setInfants] = useState(0);
+  const [pets, setPets] = useState(0);
   const [nights, setNights] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,6 +36,9 @@ export function OrderForm({ stayId, filterBy, formatDate }) {
     }
     if (filterBy.availableDates?.end) {
       setCheckOut(formatDate(filterBy.availableDates.end));
+    }
+    if (filterBy.minCapacity) {
+      setGuests(filterBy.minCapacity);
     }
   }, [filterBy]);
 
@@ -59,8 +66,14 @@ export function OrderForm({ stayId, filterBy, formatDate }) {
     setIsModalOpen(true);
   };
 
-  function handleGuestChange(newTotalGuests) {
-    setGuests(newTotalGuests);
+  function handleGuestChange(guestDetails) {
+    const { adults, children, infants, pets } = guestDetails;
+    const totalGuests = adults + children + infants + pets;
+    setAdults(adults);
+    setChildren(children);
+    setInfants(infants);
+    setPets(pets);
+    setGuests(totalGuests);
   }
 
   function handleDateChange(dates) {
@@ -98,28 +111,23 @@ export function OrderForm({ stayId, filterBy, formatDate }) {
             <div className="date-input">
               <label>Check in</label>
               <div className="input">
-                {checkIn ? new Date(checkIn).toLocaleDateString(
-                        "en-US",
-                        {
-                          month: "short",
-                          day: "numeric",
-                        }
-                      )
-                    : "Add dates"}
+                {checkIn
+                  ? new Date(checkIn).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                    })
+                  : "Add dates"}
               </div>
             </div>
             <div className="date-input">
               <label>Check out</label>
               <div className="input">
                 {checkOut
-                  ? new Date(checkOut).toLocaleDateString(
-                    "en-US",
-                    {
+                  ? new Date(checkOut).toLocaleDateString("en-US", {
                       month: "short",
                       day: "numeric",
-                    }
-                  )
-                : "Add dates"}
+                    })
+                  : "Add dates"}
               </div>
             </div>
           </div>
@@ -159,6 +167,7 @@ export function OrderForm({ stayId, filterBy, formatDate }) {
         </div>
         {isGuestDropdownOpen && (
           <GuestModalDetails
+            filterBy={filterBy}
             handleGuestChange={handleGuestChange}
             setGuestDropdownOpen={setGuestDropdownOpen}
           />
@@ -177,6 +186,10 @@ export function OrderForm({ stayId, filterBy, formatDate }) {
         <ReservationDetails
           stay={stay}
           guests={guests}
+          adults={adults}
+          children={children}
+          infants={infants}
+          pets={pets}
           reservationDates={{ checkIn, checkOut }}
           totalPrice={totalPrice}
           onClose={() => setIsModalOpen(false)}

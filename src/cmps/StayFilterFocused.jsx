@@ -17,6 +17,9 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
   const [isDateOutDropdownOpen, setDateOutDropdownOpen] = useState(false);
   const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false);
   const [totalGuests, setTotalGuests] = useState(filterBy.minCapacity || 0);
+  const [country, setCountry] = useState(filterBy.place);
+  const [startDate, setStartDate] = useState(filterBy.start);
+  const [endDate, setEndDate] = useState(filterBy.end);
 
   useEffect(() => {
     if (isFilterApplied) {
@@ -44,7 +47,10 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
 
   function handleChange({ target }) {
     const { name, value } = target;
-    dispatch(stayAction.setFilterBy({ ...filterBy, [name]: value }));
+    setCountry(value);
+    if (isFilterApplied) {
+      dispatch(stayAction.setFilterBy({ ...filterBy, [name]: value }));
+    }
     if (name === "place" && value) {
       setTimeout(() => {
         onDateInModalOpen();
@@ -54,28 +60,43 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
 
   function handleDateChange(dates) {
     const [startDate, endDate] = dates;
-
-    dispatch(
-      stayAction.setFilterBy({
-        ...filterBy,
-        availableDates: { start: startDate, end: endDate },
-      })
-    );
-
+    setStartDate(startDate);
+    setEndDate(endDate);
+    if (isFilterApplied) {
+      dispatch(
+        stayAction.setFilterBy({
+          ...filterBy,
+          availableDates: { start: startDate, end: endDate },
+        })
+      );
+    }
     if (startDate && !endDate) {
       setDateInDropdownOpen(false);
       setDateOutDropdownOpen(true);
     }
   }
 
-  function handleGuestChange(newTotalGuests) {
-    setTotalGuests(newTotalGuests);
-    dispatch(
-      stayAction.setFilterBy({ ...filterBy, minCapacity: newTotalGuests })
-    );
+  function handleGuestChange(guestDetails) {
+    const { adults, children, infants, pets } = guestDetails;
+    const totalGuests = adults + children + infants + pets;
+    setTotalGuests(totalGuests);
+    if (isFilterApplied) {
+      dispatch(
+        stayAction.setFilterBy({
+          ...filterBy,
+          minCapacity: totalGuests,
+          adults: adults,
+          children: children,
+          infants: infants,
+          pets: pets,
+        })
+      );
+    }
   }
 
   function clearDates() {
+    setStartDate("");
+    setEndDate("");
     dispatch(
       stayAction.setFilterBy({
         ...filterBy,
@@ -87,6 +108,14 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
   }
 
   function applyFilters(event) {
+    dispatch(
+      stayAction.setFilterBy({
+        ...filterBy,
+        place: country,
+        availableDates: { start: startDate, end: endDate },
+        minCapacity: totalGuests,
+      })
+    );
     event.preventDefault();
     const searchParams = new URLSearchParams();
     if (filterBy.availableDates?.start) {
@@ -98,17 +127,31 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
     if (filterBy.place) {
       searchParams.set("place", filterBy.place);
     }
-    
-    if (totalGuests) {
-      searchParams.set("guests", totalGuests);
+    if (filterBy.adults > 0) {
+      searchParams.set("adults", filterBy.adults);
     }
-    navigate(`/stay?${searchParams.toString()}`);
+
+    if (filterBy.children > 0) {
+      searchParams.set("children", filterBy.children);
+    }
+
+    if (filterBy.infants > 0) {
+      searchParams.set("infants", filterBy.infants);
+    }
+    if (filterBy.pets > 0) {
+      searchParams.set("pets", filterBy.pets);
+    }
+    if (!searchParams) {
+      navigate("/stay");
+    } else {
+      navigate(`/stay?${searchParams.toString()}`);
+    }
     setIsFilterApplied(true);
   }
 
   function formatDate(dates) {
     const date = new Date(dates);
-    return date.toISOString().split('T')[0];
+    return date.toISOString().split("T")[0];
   }
 
   function onPlaceModalOpen() {
@@ -179,7 +222,7 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
             <input
               type="text"
               name="place"
-              value={filterBy.place || ""}
+              value={country || ""}
               onChange={handleChange}
               placeholder="Search destinations"
             />
@@ -195,24 +238,19 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
               <div className="stay-filter-focused-date-in">
                 <h3>Check in</h3>
                 <div className="date-input">
-                  {filterBy.availableDates.start
-                    ? filterBy.availableDates.start.toLocaleDateString(
-                        "en-US",
-                        {
-                          month: "short",
-                          day: "numeric",
-                        }
-                      )
+                  {startDate
+                    ? startDate.toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                      })
                     : "Add dates"}
                 </div>
               </div>
-              {filterBy.availableDates.start &&
-                filterBy.availableDates.end &&
-                isDateInDropdownOpen && (
-                  <button onClick={clearDates}>
-                    <img src="/public/svg/close.svg" alt="" />
-                  </button>
-                )}
+              {startDate && endDate && isDateInDropdownOpen && (
+                <button onClick={clearDates}>
+                  <img src="/public/svg/close.svg" alt="" />
+                </button>
+              )}
             </div>
           </div>
 
@@ -226,21 +264,19 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
               <div className="stay-filter-focused-date-out">
                 <h3>Check out</h3>
                 <div className="date-input">
-                  {filterBy.availableDates.end
-                    ? filterBy.availableDates.end.toLocaleDateString("en-US", {
+                  {endDate
+                    ? endDate.toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",
                       })
                     : "Add dates"}
                 </div>
               </div>
-              {filterBy.availableDates.start &&
-                filterBy.availableDates.end &&
-                isDateOutDropdownOpen && (
-                  <button onClick={clearDates}>
-                    <img src="/public/svg/close.svg" alt="" />
-                  </button>
-                )}
+              {startDate && endDate && isDateOutDropdownOpen && (
+                <button onClick={clearDates}>
+                  <img src="/public/svg/close.svg" alt="" />
+                </button>
+              )}
             </div>
           </div>
 

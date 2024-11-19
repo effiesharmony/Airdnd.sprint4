@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
 
 export function GuestModal({ filterBy, handleGuestChange }) {
-  const isButtonDisabled = filterBy.minCapacity === 0;
+  const isAdultsDisabled = filterBy.adults === 0;
+  const isChildrenDisabled = filterBy.children === 0;
+  const isInfantsDisabled = filterBy.infants === 0;
+  const isPetsDisabled = filterBy.pets === 0;
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
   const [pets, setPets] = useState(0);
 
   useEffect(() => {
-    const total = adults + children + infants + pets;
-    handleGuestChange(total);
+    const guestDetails = { adults, children, infants, pets };
+    handleGuestChange(guestDetails)
   }, [adults, children, infants, pets]);
 
   function increment(type) {
@@ -61,7 +64,7 @@ export function GuestModal({ filterBy, handleGuestChange }) {
           <div className="guest-modal-options-right">
             <button
               className={`guest-modal-options-right-mbtn ${
-                isButtonDisabled ? "disabled" : ""
+                isAdultsDisabled ? "disabled" : ""
               }`}
               onClick={() => decrement("adults")}
               disabled={adults === 0}
@@ -101,7 +104,7 @@ export function GuestModal({ filterBy, handleGuestChange }) {
           <div className="guest-modal-options-right">
             <button
               className={`guest-modal-options-right-mbtn ${
-                isButtonDisabled ? "disabled" : ""
+                isChildrenDisabled ? "disabled" : ""
               }`}
               onClick={() => decrement("children")}
               disabled={children === 0}
@@ -141,7 +144,7 @@ export function GuestModal({ filterBy, handleGuestChange }) {
           <div className="guest-modal-options-right">
             <button
               className={`guest-modal-options-right-mbtn ${
-                isButtonDisabled ? "disabled" : ""
+                isInfantsDisabled ? "disabled" : ""
               }`}
               onClick={() => decrement("infants")}
               disabled={infants === 0}
@@ -181,7 +184,7 @@ export function GuestModal({ filterBy, handleGuestChange }) {
           <div className="guest-modal-options-right">
             <button
               className={`guest-modal-options-right-mbtn ${
-                isButtonDisabled ? "disabled" : ""
+                isPetsDisabled ? "disabled" : ""
               }`}
               onClick={() => decrement("pets")}
               disabled={pets === 0}

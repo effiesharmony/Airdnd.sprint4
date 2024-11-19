@@ -4,7 +4,7 @@ import { orderService } from '../services/order/order.service'
 import { ReservationSuccessfull } from './ReservationSuccessfull'
 import { numberWithCommas } from '../services/utils/util.service'
 
-export function ReservationDetails({ stay, guests, reservationDates, totalPrice, onClose }) {
+export function ReservationDetails({ stay, guests, adults, children, infants, pets, reservationDates, totalPrice, onClose }) {
   const [nights, setNights] = useState(0)
   const [showSuccess, setShowSuccess] = useState(false)
   const user = useSelector((storeState) => storeState.userModule.user)
@@ -75,7 +75,12 @@ export function ReservationDetails({ stay, guests, reservationDates, totalPrice,
                 </div>
                 <div className="info-item">
                   <span className="label">Guests:</span>
-                  <span className="value">{guests} {guests > 1 ? 'adults' : 'adult'}</span>
+                  <div>
+                  <span className="value guests">{adults} {adults > 1 ? 'adults' : 'adult'}</span>
+                  <span className="value guests">{children} {children > 1 ? 'children' : 'child'}</span>
+                  <span className="value guests">{infants} {infants > 1 ? 'infants' : 'infant'}</span>
+                  <span className="value guests">{pets} {pets > 1 ? 'pets' : 'pet'}</span>
+                  </div>
                 </div>
                 <div className="price-details">
                   <div className="info-item">
