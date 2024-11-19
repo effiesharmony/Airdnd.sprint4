@@ -603,3 +603,39 @@
     }
   }
 }
+
+.swal2-container {
+  display: flex;
+  justify-content: end;
+  align-items: self-end;
+}
+
+.swal2-popup.share-popup {
+  width: auto !important;
+  padding: 5px 10px !important;
+  font-size: 0.8rem !important;
+  background: #fff !important;
+  border: 1px solid #ddd !important;
+  border-radius: 5px !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2) !important;
+  margin: 0 !important;
+  text-align: center;
+}
+
+
+.swal2-popup.share-popup .swal2-title {
+  font-size: 0.8rem !important;
+  margin: 0 !important; 
+  padding: 0 !important;
+  text-align: center;
+}
+
+.swal2-popup.share-popup .swal2-icon {
+  display: none !important; 
+}
+
+.swal2-popup.share-popup .swal2-content {
+  padding: 0 !important; 
+  margin: 0 !important; 
+}
+

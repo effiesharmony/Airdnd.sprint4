@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate, useSearchParams } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { amenityIcons, filterAmenities} from "../services/utils/amenities.js"
+import { amenityIcons, filterAmenities } from "../services/utils/amenities.js"
 import { loadStay } from "../store/actions/stay.actions"
 import { OrderForm } from "../cmps/OrderForm"
 import { AmenitiesModal } from "../cmps/AmenitiesModal"
 import { MobileGallery } from "../cmps/MobileGallery.jsx"
 import { MobileOrderForm } from "../cmps/MobileOrderForm.jsx"
-import { LongTxt } from "../cmps/LongTxt.jsx";
+import { LongTxt } from "../cmps/LongTxt.jsx"
 import { MobileHeader } from "../cmps/MobileHeader.jsx"
+import Swal from "sweetalert2"
+import withReactContent from "sweetalert2-react-content"
+
+const MySwal = withReactContent(Swal)
 
 export function StayDetails() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 745);
-  const { stayId } = useParams();
-  const stay = useSelector((storeState) => storeState.stayModule.stay);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 745)
+  const { stayId } = useParams()
+  const stay = useSelector((storeState) => storeState.stayModule.stay)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
   const [reviewAmount, setReviewAmount] = useState(6)
 
@@ -24,36 +28,35 @@ export function StayDetails() {
       let num = isMobile ? stay.reviews.length : 6
       setReviewAmount(num)
     }
-  }, [isMobile])
+  }, [isMobile, stay])
 
   useEffect(() => {
     const params = new URLSearchParams()
     if (filterBy.availableDates.start) {
-      params.set("startDate", formatDate(filterBy.availableDates.start));
+      params.set("startDate", formatDate(filterBy.availableDates.start))
     }
     if (filterBy.availableDates.end) {
-      params.set("endDate", formatDate(filterBy.availableDates.end));
+      params.set("endDate", formatDate(filterBy.availableDates.end))
     }
     if (filterBy.minCapacity) {
-      params.set("minCapacity", filterBy.minCapacity);
+      params.set("minCapacity", filterBy.minCapacity)
     }
-
     if (filterBy.place) {
-      params.set("place", filterBy.place);
+      params.set("place", filterBy.place)
     }
     setSearchParams(params)
-    loadStay(stayId);
-  }, [stayId, filterBy]);
+    loadStay(stayId)
+  }, [stayId, filterBy])
 
   function formatDate(dates) {
-    const date = new Date(dates);
-    return date.toISOString().split('T')[0];
+    const date = new Date(dates)
+    return date.toISOString().split("T")[0]
   }
 
   useEffect(() => {
-    window.addEventListener("resize", handleMobileResize);
+    window.addEventListener("resize", handleMobileResize)
     return () => {
-      window.removeEventListener('resize', handleMobileResize)
+      window.removeEventListener("resize", handleMobileResize)
     }
   }, [])
 
@@ -62,21 +65,36 @@ export function StayDetails() {
   }
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+    setIsModalOpen(!isModalOpen)
+  }
 
-  if (!stay) return <p>Loading...</p>;
+  const showSharePopup = () => {
+    MySwal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "Link copied",
+      showConfirmButton: false,
+      timer: 900,
+      customClass: {
+        popup: "share-popup",
+      },
+      backdrop: false, 
+      target: ".share-btn",
+    })
+  }
+
+  if (!stay) return <p>Loading...</p>
 
   const hardcodedRatings = stay.reviews.map(
     (_, index) => 4.91 + (index % 10) / 100
-  );
+  )
   const averageRating = (
     hardcodedRatings.reduce((sum, rate) => sum + rate, 0) /
     hardcodedRatings.length
-  ).toFixed(2);
+  ).toFixed(2)
 
-  const filteredAmenities = filterAmenities(stay.amenities, amenityIcons);
-  
+  const filteredAmenities = filterAmenities(stay.amenities, amenityIcons)
+
   return (
     <div className="main-details">
       {isMobile && <MobileHeader />}
@@ -88,7 +106,7 @@ export function StayDetails() {
                 <div className="stay-header">
                   <h3>{stay.name}</h3>
                   <div className="stay-actions">
-                    <button className="share-btn">
+                    <button className="share-btn" onClick={showSharePopup}>
                       <img src="/public/svg/share.svg" alt="Share" />
                       Share
                     </button>
@@ -186,7 +204,7 @@ export function StayDetails() {
                 {isMobile
                   ? <MobileOrderForm />
                   : <div className="stay-order">
-                    <OrderForm stayId={stayId} filterBy={filterBy} formatDate={formatDate}/>
+                    <OrderForm stayId={stayId} filterBy={filterBy} formatDate={formatDate} />
                   </div>
                 }
               </div>
@@ -238,9 +256,7 @@ export function StayDetails() {
       {isModalOpen && (
         <AmenitiesModal amenities={stay.amenities} onClose={toggleModal} />
       )}
-      {isMobile &&
-        <MobileOrderForm stay={stay} />
-      }
+      {isMobile && <MobileOrderForm stay={stay} />}
     </div>
-  );
+  )
 }
