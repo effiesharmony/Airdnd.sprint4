@@ -17,6 +17,10 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
   const [isDateOutDropdownOpen, setDateOutDropdownOpen] = useState(false);
   const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false);
   const [totalGuests, setTotalGuests] = useState(filterBy.minCapacity || 0);
+  const [adults, setAdults] = useState(filterBy.minCapacity || 0);
+  const [children, setChildren] = useState(filterBy.minCapacity || 0);
+  const [infants, setInfants] = useState(filterBy.minCapacity || 0);
+  const [pets, setPets] = useState(filterBy.minCapacity || 0);
   const [country, setCountry] = useState(filterBy.place);
   const [startDate, setStartDate] = useState(filterBy.start);
   const [endDate, setEndDate] = useState(filterBy.end);
@@ -80,6 +84,10 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
     const { adults, children, infants, pets } = guestDetails;
     const totalGuests = adults + children + infants + pets;
     setTotalGuests(totalGuests);
+    setAdults(adults)
+    setChildren(children)
+    setInfants(infants)
+    setPets(pets)
     if (isFilterApplied) {
       dispatch(
         stayAction.setFilterBy({
@@ -107,44 +115,99 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
     setDateOutDropdownOpen(false);
   }
 
-  function applyFilters(event) {
+  // function applyFilters(event) {
+  //   dispatch(
+  //     stayAction.setFilterBy({
+  //       ...filterBy,
+  //       place: country,
+  //       availableDates: { start: startDate, end: endDate },
+  //       minCapacity: totalGuests,
+  //       adults: adults,
+  //       children: children,
+  //       infants: infants,
+  //       pets: pets,
+  //     })
+  //   );
+  //   event.preventDefault();
+  //   const searchParams = new URLSearchParams();
+  //   if (filterBy.availableDates.start) {
+  //     searchParams.set("checkIn", formatDate(filterBy.availableDates.start));
+  //   }
+  //   if (filterBy.availableDates.end) {
+  //     searchParams.set("checkOut", formatDate(filterBy.availableDates.end));
+  //   }
+  //   if (filterBy.place) {
+  //     searchParams.set("place", filterBy.place);
+  //   }
+  //   if (filterBy.adults > 0) {
+  //     searchParams.set("adults", filterBy.adults);
+  //   }
+  //   if (filterBy.children > 0) {
+  //     searchParams.set("children", filterBy.children);
+  //   }
+  //   if (filterBy.infants > 0) {
+  //     searchParams.set("infants", filterBy.infants);
+  //   }
+  //   if (filterBy.pets > 0) {
+  //     searchParams.set("pets", filterBy.pets);
+  //   }
+  //   if (searchParams.toString()) {
+  //     navigate(`/stay?${searchParams.toString()}`);
+  //   } else {
+  //     navigate("/stay");
+  //   }
+  //   setIsFilterApplied(true);
+  // }
+
+  function createSearchParams() {
+    const searchParams = new URLSearchParams();
+    if (startDate) {
+      searchParams.set("checkIn", formatDate(startDate));
+    }
+    if (endDate) {
+      searchParams.set("checkOut", formatDate(endDate));
+    }
+    if (country) {
+      searchParams.set("place", country);
+    }
+    if (adults > 0) {
+      searchParams.set("adults", adults);
+    }
+    if (children > 0) {
+      searchParams.set("children", children);
+    }
+    if (infants > 0) {
+      searchParams.set("infants", infants);
+    }
+    if (pets > 0) {
+      searchParams.set("pets", pets);
+    }
+    return searchParams;
+  }
+
+  function updateFiltersInStore() {
     dispatch(
       stayAction.setFilterBy({
         ...filterBy,
         place: country,
         availableDates: { start: startDate, end: endDate },
         minCapacity: totalGuests,
+        adults: adults,
+        children: children,
+        infants: infants,
+        pets: pets,
       })
     );
+  }
+
+  function applyFilters(event) {
     event.preventDefault();
-    const searchParams = new URLSearchParams();
-    if (filterBy.availableDates?.start) {
-      searchParams.set("checkIn", formatDate(filterBy.availableDates.start));
-    }
-    if (filterBy.availableDates?.end) {
-      searchParams.set("checkOut", formatDate(filterBy.availableDates.end));
-    }
-    if (filterBy.place) {
-      searchParams.set("place", filterBy.place);
-    }
-    if (filterBy.adults > 0) {
-      searchParams.set("adults", filterBy.adults);
-    }
-
-    if (filterBy.children > 0) {
-      searchParams.set("children", filterBy.children);
-    }
-
-    if (filterBy.infants > 0) {
-      searchParams.set("infants", filterBy.infants);
-    }
-    if (filterBy.pets > 0) {
-      searchParams.set("pets", filterBy.pets);
-    }
-    if (!searchParams) {
-      navigate("/stay");
-    } else {
+    updateFiltersInStore();
+    const searchParams = createSearchParams();
+    if (searchParams.toString()) {
       navigate(`/stay?${searchParams.toString()}`);
+    } else {
+      navigate("/stay");
     }
     setIsFilterApplied(true);
   }

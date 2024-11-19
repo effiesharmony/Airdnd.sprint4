@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 
 export function GuestModal({ filterBy, handleGuestChange }) {
-  const isAdultsDisabled = filterBy.adults === 0;
-  const isChildrenDisabled = filterBy.children === 0;
-  const isInfantsDisabled = filterBy.infants === 0;
-  const isPetsDisabled = filterBy.pets === 0;
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
   const [pets, setPets] = useState(0);
+  const isAdultsDisabled = adults === 0;
+  const isChildrenDisabled = children === 0;
+  const isInfantsDisabled = infants === 0;
+  const isPetsDisabled = pets === 0;
 
   useEffect(() => {
     const guestDetails = { adults, children, infants, pets };

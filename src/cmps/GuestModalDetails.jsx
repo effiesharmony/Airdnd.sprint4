@@ -9,10 +9,10 @@ export function GuestModalDetails({
   const [children, setChildren] = useState(filterBy.children);
   const [infants, setInfants] = useState(filterBy.infants);
   const [pets, setPets] = useState(filterBy.pets);
-  const isAdultsDisabled = filterBy.adults === 0;
-  const isChildrenDisabled = filterBy.children === 0;
-  const isInfantsDisabled = filterBy.infants === 0;
-  const isPetsDisabled = filterBy.pets === 0;
+  const isAdultsDisabled = adults === 0;
+  const isChildrenDisabled = children === 0;
+  const isInfantsDisabled = infants === 0;
+  const isPetsDisabled = pets === 0;
 
   useEffect(() => {
     const guestDetails = { adults, children, infants, pets };
