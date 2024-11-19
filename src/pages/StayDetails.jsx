@@ -18,6 +18,14 @@ export function StayDetails({ }) {
   const stay = useSelector((storeState) => storeState.stayModule.stay);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
+  const [reviewAmount, setReviewAmount] = useState(6)
+
+  useEffect(() => {
+    if (stay) {
+      let num = isMobile ? stay.reviews.length : 6
+      setReviewAmount(num)
+    }
+  }, [isMobile])
 
   useEffect(() => {
     const params = new URLSearchParams()
@@ -203,7 +211,7 @@ export function StayDetails({ }) {
                   </h6>
                 </div>
                 <div className="review-items">
-                  {stay.reviews.slice(0, 6).map((review, index) => (
+                  {stay.reviews.slice(0, reviewAmount).map((review, index) => (
                     <div key={index} className="review-item">
                       <div className="review-header">
                         <img
@@ -235,7 +243,7 @@ export function StayDetails({ }) {
         <AmenitiesModal amenities={stay.amenities} onClose={toggleModal} />
       )}
       {isMobile &&
-        <MobileOrderForm />
+        <MobileOrderForm stay={stay} />
       }
     </div>
   );

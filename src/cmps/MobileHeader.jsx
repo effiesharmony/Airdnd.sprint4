@@ -12,7 +12,6 @@ export function MobileHeader() {
         <div className="mobile-header">
             <button className="return-btn" onClick={() => navigate(-1)}>
                 <img src="/public/svg/leftArrow.svg" />
-                <span>Homes</span>
             </button>
             {isDetailsPage &&
                 (
