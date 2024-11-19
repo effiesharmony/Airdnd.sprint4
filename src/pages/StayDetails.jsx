@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate, useSearchParams } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { amenityIcons } from "../services/utils/amenities.js"
+import { amenityIcons, filterAmenities, groupAmenities } from "../services/utils/amenities.js"
 import { loadStay } from "../store/actions/stay.actions"
 import { OrderForm } from "../cmps/OrderForm"
 import { AmenitiesModal } from "../cmps/AmenitiesModal"
@@ -10,8 +10,7 @@ import { MobileOrderForm } from "../cmps/MobileOrderForm.jsx"
 import { LongTxt } from "../cmps/LongTxt.jsx";
 import { MobileHeader } from "../cmps/MobileHeader.jsx"
 
-
-export function StayDetails({ }) {
+export function StayDetails() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [isMobile, setIsMobile] = useState(window.innerWidth < 745);
   const { stayId } = useParams();
@@ -31,7 +30,7 @@ export function StayDetails({ }) {
     // filterBy.availableDates.start = new Date(filterBy.availableDates.start)
     // filterBy.availableDates.end = new Date(filterBy.availableDates.end)
     // console.log(typeof filterBy.availableDates.end);
-
+    
     // console.log(filterBy, 'filterBy');
     setSearchParams(filterBy)
     loadStay(stayId);
@@ -39,7 +38,6 @@ export function StayDetails({ }) {
 
   useEffect(() => {
     window.addEventListener("resize", handleMobileResize);
-
     return () => {
       window.removeEventListener('resize', handleMobileResize)
     }
@@ -63,10 +61,9 @@ export function StayDetails({ }) {
     hardcodedRatings.length
   ).toFixed(2);
 
-  function handleMobileResize() {
-    setIsMobile(window.innerWidth < 745);
-  }
-
+  const filteredAmenities = filterAmenities(stay.amenities, amenityIcons);
+  const groupedAmenities = groupAmenities(filteredAmenities);
+  
   return (
     <div className="main-details">
       {isMobile && <MobileHeader />}
@@ -157,7 +154,7 @@ export function StayDetails({ }) {
                   <div className="stay-amenities">
                     <h6>What this place offers</h6>
                     <ul className="amenities-preview">
-                      {stay.amenities.slice(0, 10).map((amenity, index) => (
+                      {filteredAmenities.map((amenity, index) => (
                         <li key={index} className="amenity-item">
                           <img
                             src={amenityIcons[amenity]}
