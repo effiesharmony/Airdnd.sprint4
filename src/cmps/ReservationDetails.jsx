@@ -18,17 +18,18 @@ export function ReservationDetails({ stay, guests, adults, children, infants, pe
 
   const handleConfirmReservation = () => {
     const order = {
+      userId: user._id,
+      stayId: stay._id,
       hostId: stay.host._id,
-      guest: { _id: user._id, fullname: user.fullname },
-      totalPrice,
+      pricePerNight: stay.price,
+      nights: nights,
+      guests: { adults: adults, children: children, infants: infants, pets: pets },
       startDate: reservationDates.checkIn,
       endDate: reservationDates.checkOut,
-      guests: { adults: guests, kids: 0 },
-      stay: { _id: stay._id, name: stay.name, price: stay.price },
       status: 'pending',
     }
 
-    orderService.saveOrder(order)
+    orderService.save(order)
       .then(() => setShowSuccess(true))
       .catch(err => console.error("Failed to save order:", err))
   }
