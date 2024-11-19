@@ -1,13 +1,13 @@
 import DatePicker from "react-datepicker"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export function DateModal({ filterBy, handleDateChange }) {
   const [dateRange, setDateRange] = useState([
-    filterBy.availableDates.start,
-    filterBy.availableDates.end,
+    filterBy.availableDates.start || null,
+    filterBy.availableDates.end || null,
   ])
   const [startDate, endDate] = dateRange
-
+  
   return (
     <div className="date-modal" onClick={(e) => e.stopPropagation()}>
       <div className="date-picker-modal">

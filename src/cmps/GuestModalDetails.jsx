@@ -1,52 +1,60 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
-export function GuestModalDetails({ handleGuestChange, setGuestDropdownOpen }) {
-  const [adults, setAdults] = useState(1)
-  const [children, setChildren] = useState(0)
-  const [infants, setInfants] = useState(0)
-  const [pets, setPets] = useState(0)
-  const total = adults + children + infants + pets
-  const isButtonDisabled = total === 1
+export function GuestModalDetails({
+  filterBy,
+  handleGuestChange,
+  setGuestDropdownOpen,
+}) {
+  const [adults, setAdults] = useState(filterBy.adults);
+  const [children, setChildren] = useState(filterBy.children);
+  const [infants, setInfants] = useState(filterBy.infants);
+  const [pets, setPets] = useState(filterBy.pets);
+  const isAdultsDisabled = filterBy.adults === 0;
+  const isChildrenDisabled = filterBy.children === 0;
+  const isInfantsDisabled = filterBy.infants === 0;
+  const isPetsDisabled = filterBy.pets === 0;
 
   useEffect(() => {
-    handleGuestChange(total)
-  }, [adults, children, infants, pets])
+    const guestDetails = { adults, children, infants, pets };
+    handleGuestChange(guestDetails);
+  }, [adults, children, infants, pets]);
 
   function increment(type) {
     switch (type) {
       case "adults":
-        setAdults(adults + 1)
-        break
+        setAdults(prev => prev + 1);
+        break;
       case "children":
-        setChildren(children + 1)
-        break
+        setChildren(prev => prev + 1);
+        break;
       case "infants":
-        setInfants(infants + 1)
-        break
+        setInfants(prev => prev + 1);
+        break;
       case "pets":
-        setPets(pets + 1)
-        break
+        setPets(prev => prev + 1);
+        break;
       default:
-        break
+        break;
     }
   }
 
   function decrement(type) {
     switch (type) {
       case "adults":
-        setAdults(Math.max(adults - 1, 0))
-        break
+        setAdults((prev) => Math.max(prev - 1, 0));
+        break;
       case "children":
-        setChildren(Math.max(children - 1, 0))
-        break
+        setChildren((prev) => Math.max(prev - 1, 0));
+
+        break;
       case "infants":
-        setInfants(Math.max(infants - 1, 0))
-        break
+        setInfants((prev) => Math.max(prev - 1, 0));
+        break;
       case "pets":
-        setPets(Math.max(pets - 1, 0))
-        break
+        setPets((prev) => Math.max(prev - 1, 0));
+        break;
       default:
-        break
+        break;
     }
   }
 
@@ -61,7 +69,7 @@ export function GuestModalDetails({ handleGuestChange, setGuestDropdownOpen }) {
           <div className="guest-modal-options-right">
             <button
               className={`guest-modal-options-right-mbtn ${
-                isButtonDisabled ? "disabled" : ""
+                isAdultsDisabled ? "disabled" : ""
               }`}
               onClick={() => decrement("adults")}
               disabled={adults === 0}
@@ -101,7 +109,7 @@ export function GuestModalDetails({ handleGuestChange, setGuestDropdownOpen }) {
           <div className="guest-modal-options-right">
             <button
               className={`guest-modal-options-right-mbtn ${
-                isButtonDisabled ? "disabled" : ""
+                isChildrenDisabled ? "disabled" : ""
               }`}
               onClick={() => decrement("children")}
               disabled={children === 0}
@@ -141,7 +149,7 @@ export function GuestModalDetails({ handleGuestChange, setGuestDropdownOpen }) {
           <div className="guest-modal-options-right">
             <button
               className={`guest-modal-options-right-mbtn ${
-                isButtonDisabled ? "disabled" : ""
+                isInfantsDisabled ? "disabled" : ""
               }`}
               onClick={() => decrement("infants")}
               disabled={infants === 0}
@@ -181,7 +189,7 @@ export function GuestModalDetails({ handleGuestChange, setGuestDropdownOpen }) {
           <div className="guest-modal-options-right">
             <button
               className={`guest-modal-options-right-mbtn ${
-                isButtonDisabled ? "disabled" : ""
+                isPetsDisabled ? "disabled" : ""
               }`}
               onClick={() => decrement("pets")}
               disabled={pets === 0}
@@ -212,8 +220,13 @@ export function GuestModalDetails({ handleGuestChange, setGuestDropdownOpen }) {
             </button>
           </div>
         </div>
-      <button className="close-guest-modal-btn" onClick={()=> setGuestDropdownOpen(false)}>Close</button>
+        <button
+          className="close-guest-modal-btn"
+          onClick={() => setGuestDropdownOpen(false)}
+        >
+          Close
+        </button>
       </div>
     </div>
-  )
+  );
 }
