@@ -1,79 +1,78 @@
-import { useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { stayAction } from "../store/actions/stay.actions.js"
-import { DateModal } from "./DateModal.jsx"
-import { GuestModal } from "./GuestModal.jsx"
-import { PlaceModal } from "./PlaceModal.jsx"
-import { Link, useNavigate } from "react-router-dom"
-import "react-datepicker/dist/react-datepicker.css"
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { stayAction } from "../store/actions/stay.actions.js";
+import { DateModal } from "./DateModal.jsx";
+import { GuestModal } from "./GuestModal.jsx";
+import { PlaceModal } from "./PlaceModal.jsx";
+import { Link, useNavigate } from "react-router-dom";
+import "react-datepicker/dist/react-datepicker.css";
 
 export function StayFilterFocused({ modalType, isFilterFocused }) {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const filterBy = useSelector((state) => state.stayModule.filterBy)
-  const [isFilterApplied, setIsFilterApplied] = useState(false)
-  const [isPlaceDropdownOpen, setPlaceDropdownOpen] = useState(false)
-  const [isDateInDropdownOpen, setDateInDropdownOpen] = useState(false)
-  const [isDateOutDropdownOpen, setDateOutDropdownOpen] = useState(false)
-  const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false)
-  const [totalGuests, setTotalGuests] = useState(filterBy.minCapacity || 0)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const filterBy = useSelector((state) => state.stayModule.filterBy);
+  const [isFilterApplied, setIsFilterApplied] = useState(false);
+  const [isPlaceDropdownOpen, setPlaceDropdownOpen] = useState(false);
+  const [isDateInDropdownOpen, setDateInDropdownOpen] = useState(false);
+  const [isDateOutDropdownOpen, setDateOutDropdownOpen] = useState(false);
+  const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false);
+  const [totalGuests, setTotalGuests] = useState(filterBy.minCapacity || 0);
 
   useEffect(() => {
     if (isFilterApplied) {
-      stayAction.loadStays()
-      setIsFilterApplied(false)
+      stayAction.loadStays();
+      setIsFilterApplied(false);
     }
-  }, [isFilterApplied])
+  }, [isFilterApplied]);
 
   useEffect(() => {
-    onModalsClose()
+    onModalsClose();
     switch (modalType) {
       case "anywhere":
-        onPlaceModalOpen()
-        break
+        onPlaceModalOpen();
+        break;
       case "anyWeek":
-        onDateInModalOpen()
-        break
+        onDateInModalOpen();
+        break;
       case "addGuests":
-        onGuestModalOpen()
-        break
+        onGuestModalOpen();
+        break;
       default:
-        break
+        break;
     }
-  }, [modalType])
+  }, [modalType]);
 
   function handleChange({ target }) {
-    const { name, value } = target
-    dispatch(stayAction.setFilterBy({ ...filterBy, [name]: value }))
+    const { name, value } = target;
+    dispatch(stayAction.setFilterBy({ ...filterBy, [name]: value }));
     if (name === "place" && value) {
       setTimeout(() => {
-        onDateInModalOpen()
-      }, 1000)
+        onDateInModalOpen();
+      }, 1000);
     }
   }
 
-function handleDateChange(dates) {
-  const [startDate, endDate] = dates;
+  function handleDateChange(dates) {
+    const [startDate, endDate] = dates;
 
+    dispatch(
+      stayAction.setFilterBy({
+        ...filterBy,
+        availableDates: { start: startDate, end: endDate },
+      })
+    );
 
-  dispatch(
-    stayAction.setFilterBy({
-      ...filterBy,
-      availableDates: { start: startDate, end: endDate },
-    })
-  );
-
-  if (startDate && !endDate) {
-    setDateInDropdownOpen(false);
-    setDateOutDropdownOpen(true);
+    if (startDate && !endDate) {
+      setDateInDropdownOpen(false);
+      setDateOutDropdownOpen(true);
+    }
   }
-}
 
   function handleGuestChange(newTotalGuests) {
-    setTotalGuests(newTotalGuests)
+    setTotalGuests(newTotalGuests);
     dispatch(
       stayAction.setFilterBy({ ...filterBy, minCapacity: newTotalGuests })
-    )
+    );
   }
 
   function clearDates() {
@@ -82,81 +81,77 @@ function handleDateChange(dates) {
         ...filterBy,
         availableDates: { start: null, end: null },
       })
-    )
-    setDateInDropdownOpen(false)
-    setDateOutDropdownOpen(false)
+    );
+    setDateInDropdownOpen(false);
+    setDateOutDropdownOpen(false);
   }
 
   function applyFilters(event) {
-    event.preventDefault()
-    const searchParams = new URLSearchParams()
-
-    if (filterBy.availableDates.start) {
-      const checkInDate = new Date(filterBy.availableDates.start)
-      searchParams.set(
-        "checkIn",
-        `${checkInDate.getFullYear()}-${(checkInDate.getMonth() + 1)
-          .toString()
-          .padStart(2, "0")}-${checkInDate.getDate().toString().padStart(2, "0")}`
-      )
+    event.preventDefault();
+    const searchParams = new URLSearchParams();
+    if (filterBy.availableDates?.start) {
+      searchParams.set("checkIn", formatDate(filterBy.availableDates.start));
     }
-
-    if (filterBy.availableDates.end) {
-      const checkOutDate = new Date(filterBy.availableDates.end)
-      searchParams.set(
-        "checkOut",
-        `${checkOutDate.getFullYear()}-${(checkOutDate.getMonth() + 1)
-          .toString()
-          .padStart(2, "0")}-${checkOutDate.getDate().toString().padStart(2, "0")}`
-      )
+    if (filterBy.availableDates?.end) {
+      searchParams.set("checkOut", formatDate(filterBy.availableDates.end));
     }
-
-    if (totalGuests) {
-      searchParams.set("guests", totalGuests)
+    if (filterBy.place) {
+      searchParams.set("place", filterBy.place);
     }
     
-    navigate(`/stay?${searchParams.toString()}`)
-    console.log("applyFilters  searchParams:", searchParams)
-    setIsFilterApplied(true)
+    if (totalGuests) {
+      searchParams.set("guests", totalGuests);
+    }
+    navigate(`/stay?${searchParams.toString()}`);
+    setIsFilterApplied(true);
+  }
+
+  function formatDate(dates) {
+    const date = new Date(dates);
+    return date.toISOString().split('T')[0];
   }
 
   function onPlaceModalOpen() {
-    setPlaceDropdownOpen(!isPlaceDropdownOpen)
-    setDateInDropdownOpen(false)
-    setDateOutDropdownOpen(false)
-    setGuestDropdownOpen(false)
+    setPlaceDropdownOpen(!isPlaceDropdownOpen);
+    setDateInDropdownOpen(false);
+    setDateOutDropdownOpen(false);
+    setGuestDropdownOpen(false);
   }
 
   function onDateInModalOpen() {
-    setDateInDropdownOpen(!isDateInDropdownOpen)
-    setDateOutDropdownOpen(false)
-    setPlaceDropdownOpen(false)
-    setGuestDropdownOpen(false)
+    setDateInDropdownOpen(!isDateInDropdownOpen);
+    setDateOutDropdownOpen(false);
+    setPlaceDropdownOpen(false);
+    setGuestDropdownOpen(false);
   }
 
   function onDateOutModalOpen() {
-    setDateOutDropdownOpen(!isDateOutDropdownOpen)
-    setDateInDropdownOpen(false)
-    setPlaceDropdownOpen(false)
-    setGuestDropdownOpen(false)
+    setDateOutDropdownOpen(!isDateOutDropdownOpen);
+    setDateInDropdownOpen(false);
+    setPlaceDropdownOpen(false);
+    setGuestDropdownOpen(false);
   }
 
   function onGuestModalOpen() {
-    setGuestDropdownOpen(!isGuestDropdownOpen)
-    setDateInDropdownOpen(false)
-    setDateOutDropdownOpen(false)
-    setPlaceDropdownOpen(false)
+    setGuestDropdownOpen(!isGuestDropdownOpen);
+    setDateInDropdownOpen(false);
+    setDateOutDropdownOpen(false);
+    setPlaceDropdownOpen(false);
   }
 
   function onModalsClose() {
-    setGuestDropdownOpen(false)
-    setDateInDropdownOpen(false)
-    setDateOutDropdownOpen(false)
-    setPlaceDropdownOpen(false)
+    setGuestDropdownOpen(false);
+    setDateInDropdownOpen(false);
+    setDateOutDropdownOpen(false);
+    setPlaceDropdownOpen(false);
   }
 
   return (
-    <section className={`stay-filter-focused-main-box ${isFilterFocused ? '' : 'transform'}`}>
+    <section
+      className={`stay-filter-focused-main-box ${
+        isFilterFocused ? "" : "transform"
+      }`}
+    >
       <div className="stay-filter-focused-main">
         <div className="stays-link">
           <Link to="/stay" className="stays">
@@ -165,17 +160,19 @@ function handleDateChange(dates) {
         </div>
 
         <section
-          className={`stay-filter-focused ${isPlaceDropdownOpen ||
-              isDateInDropdownOpen ||
-              isDateOutDropdownOpen ||
-              isGuestDropdownOpen
+          className={`stay-filter-focused ${
+            isPlaceDropdownOpen ||
+            isDateInDropdownOpen ||
+            isDateOutDropdownOpen ||
+            isGuestDropdownOpen
               ? "gray"
               : "white"
-            }`}
+          }`}
         >
           <div
-            className={`stay-filter-focused-place ${isPlaceDropdownOpen ? "focus-place" : "not-focus-place"
-              }`}
+            className={`stay-filter-focused-place ${
+              isPlaceDropdownOpen ? "focus-place" : "not-focus-place"
+            }`}
             onClick={() => onPlaceModalOpen()}
           >
             <h3>Where</h3>
@@ -189,8 +186,9 @@ function handleDateChange(dates) {
           </div>
 
           <div
-            className={`stay-filter-focused-date ${isDateInDropdownOpen ? "focus-date" : "not-focus-date"
-              }`}
+            className={`stay-filter-focused-date ${
+              isDateInDropdownOpen ? "focus-date" : "not-focus-date"
+            }`}
             onClick={() => onDateInModalOpen()}
           >
             <div className="stay-filter-focused-date-in-box">
@@ -199,24 +197,29 @@ function handleDateChange(dates) {
                 <div className="date-input">
                   {filterBy.availableDates.start
                     ? filterBy.availableDates.start.toLocaleDateString(
-                      "en-US",
-                      {
-                        month: "short",
-                        day: "numeric",
-                      }
-                    )
+                        "en-US",
+                        {
+                          month: "short",
+                          day: "numeric",
+                        }
+                      )
                     : "Add dates"}
                 </div>
               </div>
-              {(filterBy.availableDates.start && filterBy.availableDates.end) && (isDateInDropdownOpen) && (
-                <button onClick={clearDates}><img src="/public/svg/close.svg" alt="" /></button>
-              )}
+              {filterBy.availableDates.start &&
+                filterBy.availableDates.end &&
+                isDateInDropdownOpen && (
+                  <button onClick={clearDates}>
+                    <img src="/public/svg/close.svg" alt="" />
+                  </button>
+                )}
             </div>
           </div>
 
           <div
-            className={`stay-filter-focused-date ${isDateOutDropdownOpen ? "focus-date" : "not-focus-date"
-              }`}
+            className={`stay-filter-focused-date ${
+              isDateOutDropdownOpen ? "focus-date" : "not-focus-date"
+            }`}
             onClick={() => onDateOutModalOpen()}
           >
             <div className="stay-filter-focused-date-out-box">
@@ -224,25 +227,27 @@ function handleDateChange(dates) {
                 <h3>Check out</h3>
                 <div className="date-input">
                   {filterBy.availableDates.end
-                    ? filterBy.availableDates.end.toLocaleDateString(
-                      "en-US",
-                      {
+                    ? filterBy.availableDates.end.toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",
-                      }
-                    )
+                      })
                     : "Add dates"}
                 </div>
               </div>
-              {(filterBy.availableDates.start && filterBy.availableDates.end) && (isDateOutDropdownOpen) && (
-                <button onClick={clearDates}><img src="/public/svg/close.svg" alt="" /></button>
-              )}
+              {filterBy.availableDates.start &&
+                filterBy.availableDates.end &&
+                isDateOutDropdownOpen && (
+                  <button onClick={clearDates}>
+                    <img src="/public/svg/close.svg" alt="" />
+                  </button>
+                )}
             </div>
           </div>
 
           <div
-            className={`stay-filter-focused-guest ${isGuestDropdownOpen ? "focus-guest" : "not-focus-guest"
-              }`}
+            className={`stay-filter-focused-guest ${
+              isGuestDropdownOpen ? "focus-guest" : "not-focus-guest"
+            }`}
             onClick={() => onGuestModalOpen()}
           >
             <div className="guest-input-box">
@@ -254,19 +259,20 @@ function handleDateChange(dates) {
               </div>
             </div>
             <button
-              className={`stay-filter-focused-search ${isPlaceDropdownOpen ||
-                  isDateInDropdownOpen ||
-                  isDateOutDropdownOpen ||
-                  isGuestDropdownOpen
+              className={`stay-filter-focused-search ${
+                isPlaceDropdownOpen ||
+                isDateInDropdownOpen ||
+                isDateOutDropdownOpen ||
+                isGuestDropdownOpen
                   ? "search"
                   : "not-search"
-                }`}
+              }`}
               onClick={(ev) => applyFilters(ev)}
             >
               {isPlaceDropdownOpen ||
-                isDateInDropdownOpen ||
-                isDateOutDropdownOpen ||
-                isGuestDropdownOpen ? (
+              isDateInDropdownOpen ||
+              isDateOutDropdownOpen ||
+              isGuestDropdownOpen ? (
                 <>
                   <i className="fa-solid fa-magnifying-glass"></i> Search
                 </>
@@ -292,5 +298,5 @@ function handleDateChange(dates) {
         )}
       </div>
     </section>
-  )
+  );
 }

@@ -32,7 +32,6 @@ export function Trips() {
               <div className="user-trip-bottom">
                 <p className="user-trip-price">${trip.price}</p>
                 <p className="user-trip-status">
-                  Status
                   <span
                     className={`status ${
                       trip.status ? trip.status.toLowerCase() : "unknown"
