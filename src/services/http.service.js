@@ -2,8 +2,8 @@ import Axios from 'axios'
 
 const BASE_URL = process.env.NODE_ENV === 'production'
     ? '/api/'
-    // : 'https://airdnd-w3rd.onrender.com/api/'
-    : '//localhost:3030/api/'
+    : 'https://airdnd-w3rd.onrender.com/api/'
+    // : '//localhost:3030/api/'
 
 
 

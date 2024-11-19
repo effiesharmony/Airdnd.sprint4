@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate, useSearchParams } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { amenityIcons, filterAmenities, groupAmenities } from "../services/utils/amenities.js"
+import { amenityIcons, filterAmenities} from "../services/utils/amenities.js"
 import { loadStay } from "../store/actions/stay.actions"
 import { OrderForm } from "../cmps/OrderForm"
 import { AmenitiesModal } from "../cmps/AmenitiesModal"
@@ -62,7 +62,6 @@ export function StayDetails() {
   ).toFixed(2);
 
   const filteredAmenities = filterAmenities(stay.amenities, amenityIcons);
-  const groupedAmenities = groupAmenities(filteredAmenities);
   
   return (
     <div className="main-details">

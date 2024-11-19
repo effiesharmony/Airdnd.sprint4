@@ -81,13 +81,5 @@ export const amenityIcons = {
 }
 
 export function filterAmenities(amenities, amenityIcons) {
-    return amenities.filter(amenity => amenityIcons.hasOwnProperty(amenity));
-}
-
-export function groupAmenities(amenities, itemsPerRow = 5) {
-    const rows = [];
-    for (let i = 0; i < amenities.length; i += itemsPerRow) {
-        rows.push(amenities.slice(i, i + itemsPerRow));
-    }
-    return rows;
+    return amenities.filter(amenity => amenityIcons.hasOwnProperty(amenity)).slice(0, 10)
 }
