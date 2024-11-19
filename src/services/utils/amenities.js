@@ -79,3 +79,7 @@ export const amenityIcons = {
     'Private hot tub': privatehottubicon,
     Shampoo: shampooicon,
 }
+
+export function filterAmenities(amenities, amenityIcons) {
+    return amenities.filter(amenity => amenityIcons.hasOwnProperty(amenity)).slice(0, 10)
+}
