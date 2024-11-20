@@ -18,6 +18,17 @@ export function ReservationDetails({ stay, guests, adults, children, infants, pe
   }, [reservationDates])
 
   const handleConfirmReservation = () => {
+    // const order = {
+    //   userId: user._id,
+    //   stayId: stay._id,
+    //   hostId: stay.host._id,
+    //   pricePerNight: stay.price,
+    //   nights: nights,
+    //   guests: { adults: adults, children: children, infants: infants, pets: pets },
+    //   startDate: reservationDates.checkIn,
+    //   endDate: reservationDates.checkOut,
+    //   status: 'pending',
+    // }
     const order = {
       userId: user._id,
       stayId: stay._id,
@@ -29,6 +40,7 @@ export function ReservationDetails({ stay, guests, adults, children, infants, pe
       endDate: reservationDates.checkOut,
       status: 'pending',
     }
+
 
     // orderService.save(order)
     orderServiceLocal.saveOrder(order)
