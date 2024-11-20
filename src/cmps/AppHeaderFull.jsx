@@ -27,10 +27,10 @@ export function AppHeaderFull() {
     }
 
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener('resize', handleResize)
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener('resize', handleResize)
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, [isHomePage]);
 
@@ -49,7 +49,7 @@ export function AppHeaderFull() {
     } else {
       setIsSmallScreen(false);
     }
-  };
+  }
 
   function toggleFilterFocus() {
     setIsFilterFocused(true);
@@ -81,8 +81,9 @@ export function AppHeaderFull() {
 
   return !isReservationPage ? (
     <header
-      className={`app-header full ${isHomePage ? (isScrolled || !isFilterFocused ? "sticky" : "") : "small"
-        }`}
+      className={`app-header full ${
+        isHomePage ? (isScrolled || !isFilterFocused ? "sticky" : "") : "small"
+      }`}
     >
       {(isScrolled && isFilterFocused) || (!isHomePage && isFilterFocused) ? (
         <div className="overlay" onClick={onCloseFilterModals}></div>
@@ -116,7 +117,9 @@ export function AppHeaderFull() {
             alt="World icon"
           />
           <button
-            className={`app-header-right-box-menu ${isMenuOpen ? "active" : ""}`}
+            className={`app-header-right-box-menu ${
+              isMenuOpen ? "active" : ""
+            }`}
             onClick={onOpenCloseMenu}
           >
             <img
@@ -124,11 +127,19 @@ export function AppHeaderFull() {
               src="/public/svg/menu.svg"
               alt="Menu icon"
             />
-            <img
-              className="app-header-user-img"
-              src={"/public/img/effie.jpeg" || user.imgUrl}
-              alt="User icon"
-            />
+            {user ? (
+              <img
+                className="app-header-user-img"
+                src={user.imgUrl ? user.imgUrl : "/public/img/effie.jpeg"}
+                alt="User icon"
+              />
+            ) : (
+              <img
+                className="app-header-user-img"
+                src='../../public/img/user.png'
+                alt="User icon"
+              />
+            )}
           </button>
         </div>
 

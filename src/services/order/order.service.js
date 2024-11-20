@@ -1,41 +1,45 @@
-import { storageService } from '../async-storage.service'
-// import { userService } from '../user'
-import { data } from '../../../data/stay.json.js' 
-
-const STORAGE_KEY = 'order'
-// window.cs = orderService
-createOrders()
-
+import { httpService } from '../http.service'
 
 export const orderService = {
-    saveOrder,
-    query
+	save,
+	query,
+	remove,
 }
 
-async function query(filterBy = {}) {
-    var orders = await storageService.query(STORAGE_KEY)
-    return orders
+function query(filterBy = {}) {
+	const queryStr = Object.keys(filterBy).map(key => `${key}=${filterBy[key]}`).join('&')
+	return httpService.get(`order?${queryStr}`)
+}
+
+function remove(orderId) {
+	return httpService.delete(`order/${orderId}`)
+}
+
+function save(order) {
+	return httpService.post('order', order)
 }
 
 
-function saveOrder(order) {
-    if (order._id) {
-        return storageService.put(STORAGE_KEY, order)
-    } else {
-        // order.guest = userService.getLoggedinUser()
-        return storageService.post(STORAGE_KEY, order)
-    }
-}
 
-async function createOrders() {
-    var orders = await storageService.query(STORAGE_KEY)
-    // console.log('orders',orders);
-    
-    if (!orders.length) {
-        const orders = data.orders
-        console.log(orders);
-        
-        storageService.save(STORAGE_KEY, orders)
-    }
 
-}
+
+// import { httpService } from '../http.service'
+
+// export const reviewService = {
+// 	add,
+// 	query,
+// 	remove,
+// }
+
+// function query(filterBy) {
+// 	var queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`
+// 	return httpService.get(`review${queryStr}`)
+// }
+
+// async function remove(reviewId) {
+// 	await httpService.delete(`review/${reviewId}`)
+// }
+
+// async function add({ txt, aboutUserId }) {
+// 	return await httpService.post(`review`, { txt, aboutUserId })
+// }

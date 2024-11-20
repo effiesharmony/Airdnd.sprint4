@@ -31,22 +31,38 @@ export function StayDetails() {
   }, [isMobile, stay])
 
   useEffect(() => {
-    const params = new URLSearchParams()
+    const params = updateSearchParams(filterBy);
+    if (params.toString()) {
+      setSearchParams(params)
+    }
+    loadStay(stayId);
+  }, [stayId, filterBy, setSearchParams, loadStay])
+
+  function updateSearchParams(filterBy) {
+    const params = new URLSearchParams();
     if (filterBy.availableDates.start) {
-      params.set("startDate", formatDate(filterBy.availableDates.start))
+      params.set("startDate", formatDate(filterBy.availableDates.start));
     }
     if (filterBy.availableDates.end) {
-      params.set("endDate", formatDate(filterBy.availableDates.end))
-    }
-    if (filterBy.minCapacity) {
-      params.set("minCapacity", filterBy.minCapacity)
+      params.set("endDate", formatDate(filterBy.availableDates.end));
     }
     if (filterBy.place) {
-      params.set("place", filterBy.place)
+      params.set("place", filterBy.place);
     }
-    setSearchParams(params)
-    loadStay(stayId)
-  }, [stayId, filterBy])
+    if (filterBy.adults) {
+      params.set("adults", filterBy.adults);
+    }
+    if (filterBy.children) {
+      params.set("children", filterBy.children);
+    }
+    if (filterBy.infants) {
+      params.set("infants", filterBy.infants);
+    }
+    if (filterBy.pets) {
+      params.set("pets", filterBy.pets);
+    }
+    return params;
+  }
 
   function formatDate(dates) {
     const date = new Date(dates)
