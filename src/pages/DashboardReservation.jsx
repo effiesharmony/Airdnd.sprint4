@@ -202,12 +202,6 @@ export function DashboardReservation() {
             <Pie data={stayPieData} options={pieOptions} />
           </div>
         </div>
-        <div className="chart-card">
-          <h3>Revenue / Month</h3>
-          <div className="bar-chart-container" style={{ height: "150px" }}>
-            <Bar data={barData} options={barOptions} />
-          </div>
-        </div>
         <div className="chart-card-3">
           <div>
           <h3>Reservation Status</h3>
@@ -232,7 +226,7 @@ export function DashboardReservation() {
             </div>
           </div>
           </div>
-          <div className="actionable-insights">
+          {/* <div className="actionable-insights">
             <h4>Actionable Insights</h4>
             {statusCounts.pending > statusCounts.approved ? (
               <p>Most reservations are pending. Follow up to increase approvals!</p>
@@ -245,6 +239,12 @@ export function DashboardReservation() {
                 pricing or policies.
               </p>
             )}
+          </div> */}
+        </div>
+        <div className="chart-card">
+          <h3>Revenue / Month</h3>
+          <div className="bar-chart-container" style={{ height: "150px" }}>
+            <Bar data={barData} options={barOptions} />
           </div>
         </div>
       </div>
