@@ -91,12 +91,21 @@ export function ReservationDetails({ stay, guests, adults, children, infants, pe
                 <div className="info-item">
                   <span className="label">Guests:</span>
                   <div>
-                  <span className="value guests">{adults} {adults > 1 ? 'adults' : 'adult'}</span>
-                  <span className="value guests">{children} {children > 1 ? 'children' : 'child'}</span>
-                  <span className="value guests">{infants} {infants > 1 ? 'infants' : 'infant'}</span>
-                  <span className="value guests">{pets} {pets > 1 ? 'pets' : 'pet'}</span>
+                    {adults > 0 && (
+                      <span className="value guests">{adults} {adults > 1 ? 'adults' : 'adult'}</span>
+                    )}
+                    {children > 0 && (
+                      <span className="value guests">{children} {children > 1 ? 'children' : 'child'}</span>
+                    )}
+                    {infants > 0 && (
+                      <span className="value guests">{infants} {infants > 1 ? 'infants' : 'infant'}</span>
+                    )}
+                    {pets > 0 && (
+                      <span className="value guests">{pets} {pets > 1 ? 'pets' : 'pet'}</span>
+                    )}
                   </div>
                 </div>
+
                 <div className="price-details">
                   <div className="info-item">
                     <span className="label">${numberWithCommas(stay.price)} x {nights} nights</span>
