@@ -288,6 +288,7 @@
       margin-top: 35px;
       padding-bottom: 35px;
       border-bottom: 1px solid #ddd;
+      height: fit-content;
 
       h6 {
         font-family: AirbnbCereal_W_Lt;
@@ -297,7 +298,6 @@
         letter-spacing: 0.02rem;
         color: #333;
         margin: 0;
-        margin-bottom: 20px;
       }
     }
 
@@ -323,6 +323,7 @@
           font-size: 1rem;
           color: #000000;
           margin-bottom: 16px;
+          height: fit-content;
 
           .amenity-icon {
             width: 25px;
@@ -523,9 +524,46 @@
   }
 }
 
-@media screen and (max-width: 1130px) {
+@include for-wide-layout {
+  .review-items {
+    width: 100%;
+    grid-column: 1;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 15px 60px;
+
+    .review-item {
+      max-width: 423px;
+      padding: 0 8px;
+      margin-inline-end: 85px;
+      text-wrap: wrap;
+
+      .review-text {
+        width: 100%;
+      }
+    }
+  }
+
+  .amenities-preview {
+    display: flex;
+    flex-wrap: wrap;
+
+    .amenity-item {
+      width: 50%;
+    }
+  }
+}
+
+@include for-normal-layout {
   .main-details {
     padding: 0 40px;
+  }
+
+  .amenities-preview {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
   }
 }
 
@@ -540,6 +578,12 @@
     .grid-wrapper {
       grid-column: 1/ -1;
     }
+  }
+
+  .amenities-preview {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
   }
 
   .stay-reviews {
@@ -564,41 +608,6 @@
         margin: 0 15px;
         border-radius: 10px;
         box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-      }
-    }
-  }
-
-  @include for-wide-layout {
-    .review-items {
-      width: 100%;
-      // height: 678px;
-      grid-column: 1;
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: column;
-      gap: 15px 60px;
-      // height: 300px;
-
-      .review-item {
-        // height: 226px;
-        width: 423px;
-        padding: 0 8px;
-        margin-inline-end: 85px;
-        text-wrap: wrap;
-
-        .review-text {
-          width: 100%;
-        }
-      }
-    }
-
-    .amenities-preview {
-      display: flex;
-      flex-wrap: wrap;
-      height: 216px;
-
-      .amenity-item {
-        width: 50%;
       }
     }
   }

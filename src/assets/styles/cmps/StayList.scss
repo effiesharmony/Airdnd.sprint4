@@ -5,6 +5,7 @@
   margin-bottom: 10px;
   margin-top: 15px;
   position: relative;
+  padding: 0 80px;
 
   li {
     flex: 1;
@@ -22,26 +23,32 @@
   }
 }
 
-@include for-wide-layout{
-  .stay-list{
+@include for-extra-wide-layout {
+  .stay-list {
     padding: 0 80px;
   }
 }
 
-@include for-normal-layout{
-  .stay-list{
-    padding: 0 80px;
-  }
-}
-
-@include for-narrow-layout{
-  .stay-list{
+@include for-wide-layout {
+  .stay-list {
     padding: 0 40px;
   }
 }
 
-@include for-mobile-layout{
-  .stay-list{
+@include for-normal-layout {
+  .stay-list {
+    padding: 0 40px;
+  }
+}
+
+@include for-narrow-layout {
+  .stay-list {
+    padding: 0 40px;
+  }
+}
+
+@include for-mobile-layout {
+  .stay-list {
     padding: 0 24px;
   }
 }
