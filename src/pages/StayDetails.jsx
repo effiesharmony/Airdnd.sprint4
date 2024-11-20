@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams, useNavigate, useSearchParams } from "react-router-dom"
 import { useSelector } from "react-redux"
-import { amenityIcons, filterAmenities } from "../services/utils/amenities.js"
+import { amenityIcons } from "../services/utils/amenities.js"
 import { loadStay } from "../store/actions/stay.actions"
 import { OrderForm } from "../cmps/OrderForm"
 import { AmenitiesModal } from "../cmps/AmenitiesModal"
@@ -24,17 +24,12 @@ export function StayDetails() {
   const [reviewAmount, setReviewAmount] = useState(6)
 
   useEffect(() => {
-    if (stay) {
-      let num = isMobile ? stay.reviews.length : 6
-      setReviewAmount(num)
-    }
-  }, [isMobile, stay])
-
-  useEffect(() => {
-    const params = updateSearchParams(filterBy);
-    if (params.toString()) {
-      setSearchParams(params)
-    }
+    // filterBy.availableDates.start = new Date(filterBy.availableDates.start)
+    // filterBy.availableDates.end = new Date(filterBy.availableDates.end)
+    // console.log(typeof filterBy.availableDates.end);
+    
+    // console.log(filterBy, 'filterBy');
+    setSearchParams(filterBy)
     loadStay(stayId);
   }, [stayId, filterBy, setSearchParams, loadStay])
 
@@ -70,7 +65,8 @@ export function StayDetails() {
   }
 
   useEffect(() => {
-    window.addEventListener("resize", handleMobileResize)
+    window.addEventListener("resize", handleMobileResize);
+
     return () => {
       window.removeEventListener("resize", handleMobileResize)
     }
