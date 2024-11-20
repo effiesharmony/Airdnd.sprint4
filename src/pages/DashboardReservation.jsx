@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Pie, Bar } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from "chart.js";
-import { orderService } from "../services/order/order.service.js";
+// import { orderService } from "../services/order/order.service.js";
+import { orderServiceLocal } from "../services/order/order.servece.local.js";
 import { numberWithCommas } from "../services/utils/util.service.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
@@ -16,17 +17,21 @@ export function DashboardReservation() {
       JSON.parse(localStorage.getItem("loggedinUser"));
 
     if (loggedinUser) {
-      orderService
+      // orderService
+      orderServiceLocal
         .query({ hostId: loggedinUser._id })
         .then((orders) => setOrders(orders));
-    }
-  }, []);
+        
+      }
+    }, []);
+    console.log(orders);
 
   const handleStatusChange = (orderId, status) => {
     const updatedOrders = orders.map((order) => {
       if (order._id === orderId) {
         order.status = status;
-        orderService.saveOrder(order);
+        // orderService.save(order);
+        orderServiceLocal.saveOrder(order);
       }
       return order;
     });
@@ -197,12 +202,6 @@ export function DashboardReservation() {
             <Pie data={stayPieData} options={pieOptions} />
           </div>
         </div>
-        <div className="chart-card">
-          <h3>Revenue / Month</h3>
-          <div className="bar-chart-container" style={{ height: "150px" }}>
-            <Bar data={barData} options={barOptions} />
-          </div>
-        </div>
         <div className="chart-card-3">
           <div>
           <h3>Reservation Status</h3>
@@ -227,7 +226,7 @@ export function DashboardReservation() {
             </div>
           </div>
           </div>
-          <div className="actionable-insights">
+          {/* <div className="actionable-insights">
             <h4>Actionable Insights</h4>
             {statusCounts.pending > statusCounts.approved ? (
               <p>Most reservations are pending. Follow up to increase approvals!</p>
@@ -240,6 +239,12 @@ export function DashboardReservation() {
                 pricing or policies.
               </p>
             )}
+          </div> */}
+        </div>
+        <div className="chart-card">
+          <h3>Revenue / Month</h3>
+          <div className="bar-chart-container" style={{ height: "150px" }}>
+            <Bar data={barData} options={barOptions} />
           </div>
         </div>
       </div>

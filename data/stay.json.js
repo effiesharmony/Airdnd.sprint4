@@ -629,7 +629,7 @@ const stays = [
 	},
 ]
 
-////////////////////////////////////////////////
+//////////////////////////////////////////////
 const orders = [
 	{
 		_id: 'o1225',
@@ -655,6 +655,114 @@ const orders = [
 		status: 'pending', // approved / rejected
 	},
 ]
+
+// const orders = [
+// 	{
+// 	  _id: 'o1225',
+// 	  hostId: {
+// 		_id: '6738f80fc2e1f893eb7d74a0',
+// 		fullname: 'Valery Vi',
+// 		imgUrl: 'https://ca.slack-edge.com/T07G2AGFSKT-U07G0636EFR-3f1d3ac2396d-512',
+// 	  },
+// 	  guest: {
+// 		_id: 'u101',
+// 		fullname: 'User 1',
+// 	  },
+// 	  totalPrice: 160,
+// 	  startDate: '2025/10/15',
+// 	  endDate: '2025/10/17',
+// 	  guests: {
+// 		adults: 1,
+// 		kids: 2,
+// 	  },
+// 	  stay: {
+// 		_id: 'h102',
+// 		name: 'House Of Uncle My',
+// 		price: 80.0,
+// 	  },
+// 	  msgs: [],
+// 	  status: 'pending',
+// 	},
+// 	{
+// 	  _id: 'o1226',
+// 	  hostId: {
+// 		_id: '6738f80fc2e1f893eb7d74a0',
+// 		fullname: 'Valery Vi',
+// 		imgUrl: 'https://ca.slack-edge.com/T07G2AGFSKT-U07G0636EFR-3f1d3ac2396d-512',
+// 	  },
+// 	  guest: {
+// 		_id: 'u102',
+// 		fullname: 'User 2',
+// 	  },
+// 	  totalPrice: 320,
+// 	  startDate: '2025/10/18',
+// 	  endDate: '2025/10/21',
+// 	  guests: {
+// 		adults: 2,
+// 		kids: 2,
+// 	  },
+// 	  stay: {
+// 		_id: 'h102',
+// 		name: 'House Of Uncle My',
+// 		price: 80.0,
+// 	  },
+// 	  msgs: [],
+// 	  status: 'approved',
+// 	},
+// 	{
+// 	  _id: 'o1227',
+// 	  hostId: {
+// 		_id: '6738f80fc2e1f893eb7d74a0',
+// 		fullname: 'Valery Vi',
+// 		imgUrl: 'https://ca.slack-edge.com/T07G2AGFSKT-U07G0636EFR-3f1d3ac2396d-512',
+// 	  },
+// 	  guest: {
+// 		_id: 'u103',
+// 		fullname: 'User 3',
+// 	  },
+// 	  totalPrice: 240,
+// 	  startDate: '2025/11/01',
+// 	  endDate: '2025/11/04',
+// 	  guests: {
+// 		adults: 2,
+// 		kids: 1,
+// 	  },
+// 	  stay: {
+// 		_id: 'h103',
+// 		name: 'Cosy Quiet Retreat',
+// 		price: 120.0,
+// 	  },
+// 	  msgs: [],
+// 	  status: 'rejected',
+// 	},
+// 	{
+// 	  _id: 'o1228',
+// 	  hostId: {
+// 		_id: '6738f80fc2e1f893eb7d74a0',
+// 		fullname: 'Valery Vi',
+// 		imgUrl: 'https://ca.slack-edge.com/T07G2AGFSKT-U07G0636EFR-3f1d3ac2396d-512',
+// 	  },
+// 	  guest: {
+// 		_id: 'u104',
+// 		fullname: 'User 4',
+// 	  },
+// 	  totalPrice: 480,
+// 	  startDate: '2025/12/01',
+// 	  endDate: '2025/12/05',
+// 	  guests: {
+// 		adults: 3,
+// 		kids: 3,
+// 	  },
+// 	  stay: {
+// 		_id: 'h103',
+// 		name: 'Cosy Quiet Retreat',
+// 		price: 120.0,
+// 	  },
+// 	  msgs: [],
+// 	  status: 'pending',
+// 	},
+//   ]
+  
 
 ////////////////////////////////////////////////
 const users = [

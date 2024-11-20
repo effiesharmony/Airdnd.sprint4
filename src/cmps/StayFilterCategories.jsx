@@ -1,79 +1,66 @@
-import { categories } from '../services/utils/categories.js'
-import { useRef, useState, useEffect } from "react"
 import { useSearchParams } from "react-router-dom"
+import { useRef, useState, useEffect } from "react"
+import { categories } from '../services/utils/categories.js'
 
 export function StayCategories({ onSetFilter, filterBy }) {
-    const [selectedCat, setSelectedCat] = useState(false)
-    const [isScrollEnd, setIsScrollEnd] = useState(false)
-    const [currentLeft, setCurrentLeft] = useState(0)
-    const [isScrolled, setIsScrolled] = useState(false)
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 745)
-
-    const scrollRef = useRef(null)
     const [searchParams, setSearchParams] = useSearchParams()
+    const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category'))
+    const [isScrollEnd, setIsScrollEnd] = useState(false)
+    const [isScrolled, setIsScrolled] = useState(false)
+    const [currentPos, setCurrentPos] = useState(0)
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 745)
+    const scrollRef = useRef(null)
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScrollDown)
-        return () => {
-            window.removeEventListener("scroll", handleScrollDown)
-        }
+        window.addEventListener("scroll", handleScrollY)
+        window.addEventListener("resize", handleMobileResize)
     }, [])
 
     function handleMobileResize() {
         setIsMobile(window.innerWidth < 745)
     }
 
-    function handleScrollDown() {
+    function handleScrollY() {
         setIsScrolled(window.scrollY > 0)
     }
 
-    function scrollRight() {
-        const scrollAmount = scrollRef.current.clientWidth * 0.5
-        setCurrentLeft(scrollRef.current.scrollLeft + scrollAmount)
-        scrollRef.current.scrollLeft += scrollAmount
-        const atEnd = Math.ceil(scrollRef.current.scrollLeft + scrollRef.current.clientWidth + 300)
+    function HandleScrollX(scalar) {
+        const scrollAmount = scrollRef.current.clientWidth * 0.5 * scalar
+        const scrollPos = scrollRef.current.scrollLeft + scrollAmount
+        const isScrollEnd = Math.ceil(scrollPos + scrollRef.current.clientWidth)
             >= scrollRef.current.scrollWidth
-        setIsScrollEnd(atEnd)
-    }
 
-    function scrollLeft() {
-        const scrollAmount = scrollRef.current.clientWidth * 0.5
-        setCurrentLeft(scrollRef.current.scrollLeft - scrollAmount)
-        scrollRef.current.scrollLeft -= scrollAmount
-
-        const atEnd = Math.ceil(scrollRef.current.scrollLeft + scrollRef.current.clientWidth + 300)
-            >= scrollRef.current.scrollWidth
-        setIsScrollEnd(atEnd)
+        scrollRef.current.scrollLeft = scrollPos
+        setCurrentPos(scrollPos)
+        setIsScrollEnd(isScrollEnd)
     }
 
     function onSelectCategory(catName) {
+        if (catName === selectedCategory) catName = ''
         onSetFilter({ ...filterBy, label: catName })
-        setSelectedCat(catName)
-
-        const updatedParams = new URLSearchParams(searchParams)
-        updatedParams.set('category', catName)
-        setSearchParams(updatedParams)
+        setSelectedCategory(catName)
+        setSearchParams({ category: catName })
     }
 
     return (
         <div className={`categories-outer-container
             ${isScrolled ? "cat-sticky" : "cat-not-sticky"} `}>
-            {currentLeft > 0 &&
-                <button className="cat-button prev" onClick={() => scrollLeft()}>
+            {(currentPos > 0 && !isMobile) &&
+                <button className="cat-button prev" onClick={() => HandleScrollX(-1)}>
                     <img src="public/svg/leftArrow.svg" alt="Left arrow" />
                 </button>
             }
             <section ref={scrollRef} className="categories-inner-container">
                 {categories.map((category, index) =>
                     <div onClick={() => onSelectCategory(category.name)} key={category.name}
-                        className={`category ${category.name} ${selectedCat === category.name ? 'selected' : ''} `}
+                        className={`category ${category.name} ${selectedCategory === category.name ? 'selected' : ''} `}
                         id={index}>
                         <img src={category.src} alt={category.name} />
                         <span>{category.name}</span>
                     </div>)}
             </section>
-            {!isScrollEnd &&
-                <button className="cat-button next" onClick={() => scrollRight()}>
+            {(!isScrollEnd && !isMobile) &&
+                <button className="cat-button next" onClick={() => HandleScrollX(1)}>
                     <img src="public/svg/rightArrow.svg" alt="Right arrow" />
                 </button>
             }

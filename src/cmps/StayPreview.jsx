@@ -4,7 +4,7 @@ import { getReviewAvg, numberWithCommas } from '../services/utils/util.service.j
 
 export function StayPreview({ stay }) {
     const navigate = useNavigate()
-
+    
     function onShowDetails(stayId) {
         navigate(`/stay/${stayId}`)
     }
@@ -23,7 +23,7 @@ export function StayPreview({ stay }) {
                     <img className="star" src="public/svg/star.svg" alt="Star" />
                     {stay.reviews.length > 0
                         ? <>
-                            <p className="rating-num">5.0</p>
+                            <p className="rating-num">{stay.rating}</p>
                             <p className="ratings-amount">({stay.reviews.length})</p>
                         </>
                         : <p>New</p>

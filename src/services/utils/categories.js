@@ -24,12 +24,12 @@ export const categories = [
         src: 'https://a0.muscache.com/pictures/8a43b8c6-7eb4-421c-b3a9-1bd9fcb26622.jpg'
     },
     {
-        name: 'Amazing views',
-        src: 'https://a0.muscache.com/pictures/3b1eb541-46d9-4bef-abc4-c37d77e3c21b.jpg'
-    },
-    {
         name: 'OMG!',
         src: 'https://a0.muscache.com/pictures/c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6.jpg'
+    },
+    {
+        name: 'Amazing views',
+        src: 'https://a0.muscache.com/pictures/3b1eb541-46d9-4bef-abc4-c37d77e3c21b.jpg'
     },
     {
         name: 'Castles',
@@ -92,12 +92,12 @@ export const categories = [
         src: 'https://a0.muscache.com/pictures/248f85bf-e35e-4dc3-a9a1-e1dbff9a3db4.jpg'
     },
     {
-        name: 'Historical homes',
-        src: 'https://a0.muscache.com/pictures/33dd714a-7b4a-4654-aaf0-f58ea887a688.jpg'
-    },
-    {
         name: 'Boats',
         src: 'https://a0.muscache.com/pictures/687a8682-68b3-4f21-8d71-3c3aef6c1110.jpg'
+    },
+    {
+        name: 'Historical homes',
+        src: 'https://a0.muscache.com/pictures/33dd714a-7b4a-4654-aaf0-f58ea887a688.jpg'
     },
     {
         name: 'Play',
@@ -128,8 +128,8 @@ export const categories = [
         src: 'https://a0.muscache.com/pictures/1d477273-96d6-4819-9bda-9085f809dad3.jpg'
     },
     {
-        name: 'Chef\'s kitchens',
-        src: 'https://a0.muscache.com/pictures/1d477273-96d6-4819-9bda-9085f809dad3.jpg'
+        name: 'Rooms',
+        src: 'https://a0.muscache.com/pictures/7630c83f-96a8-4232-9a10-0398661e2e6f.jpg'
     },
     {
         name: 'Vineyards',
@@ -140,8 +140,8 @@ export const categories = [
         src: 'https://a0.muscache.com/pictures/8b44f770-7156-4c7b-b4d3-d92549c8652f.jpg'
     },
     {
-        name: 'Rooms',
-        src: 'https://a0.muscache.com/pictures/7630c83f-96a8-4232-9a10-0398661e2e6f.jpg'
+        name: 'Chef\'s kitchens',
+        src: 'https://a0.muscache.com/pictures/1d477273-96d6-4819-9bda-9085f809dad3.jpg'
     },
     {
         name: 'Caves',
@@ -188,16 +188,16 @@ export const categories = [
         src: 'https://a0.muscache.com/pictures/7ff6e4a1-51b4-4671-bc9a-6f523f196c61.jpg'
     },
     {
-        name: 'Barns',
-        src: 'https://a0.muscache.com/pictures/f60700bc-8ab5-424c-912b-6ef17abc479a.jpg'
+        name: 'Cycladic homes',
+        src: 'https://a0.muscache.com/pictures/e4b12c1b-409b-4cb6-a674-7c1284449f6e.jpg'
     },
     {
         name: 'Ryokans',
         src: 'https://a0.muscache.com/pictures/827c5623-d182-474a-823c-db3894490896.jpg'
     },
     {
-        name: 'Cycladic homes',
-        src: 'https://a0.muscache.com/pictures/e4b12c1b-409b-4cb6-a674-7c1284449f6e.jpg'
+        name: 'Barns',
+        src: 'https://a0.muscache.com/pictures/f60700bc-8ab5-424c-912b-6ef17abc479a.jpg'
     },
     {
         name: 'Grand pianos',
@@ -228,8 +228,8 @@ export const categories = [
         src: 'https://a0.muscache.com/pictures/6b639c8d-cf9b-41fb-91a0-91af9d7677cc.jpg'
     },
     {
-        name: 'Minsus',
-        src: 'https://a0.muscache.com/pictures/48b55f09-f51c-4ff5-b2c6-7f6bd4d1e049.jpg'
+        name: 'Lake',
+        src: 'https://a0.muscache.com/pictures/a4634ca6-1407-4864-ab97-6e141967d782.jpg'
     },
     {
         name: 'Casas particulares',
@@ -244,7 +244,7 @@ export const categories = [
         src: 'https://a0.muscache.com/pictures/10ce1091-c854-40f3-a2fb-defc2995bcaf.jpg'
     },
     {
-        name: 'Lake',
-        src: 'https://a0.muscache.com/pictures/a4634ca6-1407-4864-ab97-6e141967d782.jpg'
+        name: 'Minsus',
+        src: 'https://a0.muscache.com/pictures/48b55f09-f51c-4ff5-b2c6-7f6bd4d1e049.jpg'
     }
 ]

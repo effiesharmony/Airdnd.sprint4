@@ -5,8 +5,8 @@
 
 .dashboard-reservations {
   display: flex;
-  width: 1fr;
-  padding: 20px;
+  max-width: 1200px;
+  padding: 0 80px;
   align-items: center;
 }
 
@@ -18,10 +18,12 @@
   text-align: center;
   margin: 30px 0;
   margin-bottom: 40px;
+
   .link {
     color: #222222;
     text-decoration: none;
   }
+
   .link-r {
     color: $logo-clr;
     text-decoration: none;
@@ -61,6 +63,7 @@ table td {
     &:hover {
       background-color: #e8f5e9;
     }
+
     &:active {
       background-color: #d9f0da;
     }
@@ -79,6 +82,7 @@ table td {
     &:hover {
       background-color: #ffd6d6;
     }
+
     &:active {
       background-color: #ffc7c7;
     }
@@ -88,32 +92,32 @@ table td {
 .charts-container {
   width: 60%;
   display: flex;
+  flex-direction: row-reverse;
   justify-self: center;
   justify-content: center;
   gap: 20px;
   padding: 20px;
 }
 
-.chart-card, .chart-card-pie {
+.chart-card,
+.chart-card-pie {
   justify-self: center;
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   padding: 30px;
   padding-top: 15px;
-  width: 100%;
-  min-height: 250px;
-  max-height: 250px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.chart-card-pie{
-  min-width: 400px;
-}
+// .chart-card-pie {
+//   max-width: 400px;
+// }
 
-.chart-card-3{
+.chart-card-3 {
   justify-self: center;
   background-color: #ffffff;
   border-radius: 8px;
@@ -121,15 +125,15 @@ table td {
   padding: 30px;
   padding-top: 20px;
   width: 100%;
-  min-width: 450px;
-  min-height: 250px;
-  max-height: 250px;
+  max-width: 450px;
+  height: 250px;
   display: flex;
   align-items: start;
   gap: 40px;
 }
 
-.chart-card h3, .chart-card-3 h3 {
+.chart-card h3,
+.chart-card-3 h3 {
   font-size: 14;
   font-family: AirbnbCereal_W_Bk, san serif;
   font-weight: normal;
@@ -231,6 +235,7 @@ table td {
   font-size: 1rem;
   margin-left: auto;
 }
+
 .actionable-insights {
   width: 100%;
   position: relative;
@@ -253,8 +258,8 @@ table td {
     font-weight: normal;
     margin-bottom: 40px;
     color: #333333;
-    text-align: center; 
-    white-space: nowrap; 
+    text-align: center;
+    white-space: nowrap;
   }
 
   p {
@@ -265,5 +270,11 @@ table td {
     text-align: center;
     color: #555555;
     margin: 5px 0;
+  }
+}
+
+@include for-narrow-layout{
+  .charts-container{
+    flex-direction: column;
   }
 }
