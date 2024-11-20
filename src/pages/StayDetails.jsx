@@ -1,42 +1,42 @@
-import { useEffect, useState } from "react"
-import { useParams, useNavigate, useSearchParams } from "react-router-dom"
-import { useSelector } from "react-redux"
-import { amenityIcons, filterAmenities } from "../services/utils/amenities.js"
-import { loadStay } from "../store/actions/stay.actions"
-import { OrderForm } from "../cmps/OrderForm"
-import { AmenitiesModal } from "../cmps/AmenitiesModal"
-import { MobileGallery } from "../cmps/MobileGallery.jsx"
-import { MobileOrderForm } from "../cmps/MobileOrderForm.jsx"
-import { LongTxt } from "../cmps/LongTxt.jsx"
-import { MobileHeader } from "../cmps/MobileHeader.jsx"
-import Swal from "sweetalert2"
-import withReactContent from "sweetalert2-react-content"
+import { useEffect, useState } from "react";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { amenityIcons, filterAmenities } from "../services/utils/amenities.js";
+import { loadStay } from "../store/actions/stay.actions";
+import { OrderForm } from "../cmps/OrderForm";
+import { AmenitiesModal } from "../cmps/AmenitiesModal";
+import { MobileGallery } from "../cmps/MobileGallery.jsx";
+import { MobileOrderForm } from "../cmps/MobileOrderForm.jsx";
+import { LongTxt } from "../cmps/LongTxt.jsx";
+import { MobileHeader } from "../cmps/MobileHeader.jsx";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
-const MySwal = withReactContent(Swal)
+const MySwal = withReactContent(Swal);
 
 export function StayDetails() {
-  const [searchParams, setSearchParams] = useSearchParams()
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 745)
-  const { stayId } = useParams()
-  const stay = useSelector((storeState) => storeState.stayModule.stay)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
-  const [reviewAmount, setReviewAmount] = useState(6)
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 745);
+  const { stayId } = useParams();
+  const stay = useSelector((storeState) => storeState.stayModule.stay);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const filterBy = useSelector((storeState) => storeState.stayModule.filterBy);
+  const [reviewAmount, setReviewAmount] = useState(6);
 
   useEffect(() => {
     if (stay) {
-      let num = isMobile ? stay.reviews.length : 6
-      setReviewAmount(num)
+      let num = isMobile ? stay.reviews.length : 6;
+      setReviewAmount(num);
     }
-  }, [isMobile, stay])
+  }, [isMobile, stay]);
 
   useEffect(() => {
     const params = updateSearchParams(filterBy);
     if (params.toString()) {
-      setSearchParams(params)
+      setSearchParams(params);
     }
     loadStay(stayId);
-  }, [stayId, filterBy, setSearchParams, loadStay])
+  }, [stayId, filterBy, setSearchParams, loadStay]);
 
   function updateSearchParams(filterBy) {
     const params = new URLSearchParams();
@@ -65,24 +65,24 @@ export function StayDetails() {
   }
 
   function formatDate(dates) {
-    const date = new Date(dates)
-    return date.toISOString().split("T")[0]
+    const date = new Date(dates);
+    return date.toISOString().split("T")[0];
   }
 
   useEffect(() => {
-    window.addEventListener("resize", handleMobileResize)
+    window.addEventListener("resize", handleMobileResize);
     return () => {
-      window.removeEventListener("resize", handleMobileResize)
-    }
-  }, [])
+      window.removeEventListener("resize", handleMobileResize);
+    };
+  }, []);
 
   function handleMobileResize() {
-    setIsMobile(window.innerWidth < 745)
+    setIsMobile(window.innerWidth < 745);
   }
 
   const toggleModal = () => {
-    setIsModalOpen(!isModalOpen)
-  }
+    setIsModalOpen(!isModalOpen);
+  };
 
   const showSharePopup = () => {
     MySwal.fire({
@@ -94,22 +94,22 @@ export function StayDetails() {
       customClass: {
         popup: "share-popup",
       },
-      backdrop: false, 
+      backdrop: false,
       target: ".share-btn",
-    })
-  }
+    });
+  };
 
-  if (!stay) return <p>Loading...</p>
+  if (!stay) return <p>Loading...</p>;
 
   const hardcodedRatings = stay.reviews.map(
     (_, index) => 4.91 + (index % 10) / 100
-  )
+  );
   const averageRating = (
     hardcodedRatings.reduce((sum, rate) => sum + rate, 0) /
     hardcodedRatings.length
-  ).toFixed(2)
+  ).toFixed(2);
 
-  const filteredAmenities = filterAmenities(stay.amenities, amenityIcons)
+  const filteredAmenities = filterAmenities(stay.amenities, amenityIcons);
 
   return (
     <div className="main-details">
@@ -179,7 +179,7 @@ export function StayDetails() {
 
                   <div className="stay-host">
                     <img
-                      src={stay.host.thumbnailUrl}
+                      src={stay.host.pictureUrl}
                       alt={stay.host.fullname}
                       className="host-image"
                     />
@@ -217,12 +217,17 @@ export function StayDetails() {
                     </button>
                   </div>
                 </div>
-                {isMobile
-                  ? <MobileOrderForm />
-                  : <div className="stay-order">
-                    <OrderForm stayId={stayId} filterBy={filterBy} formatDate={formatDate} />
+                {isMobile ? (
+                  <MobileOrderForm />
+                ) : (
+                  <div className="stay-order">
+                    <OrderForm
+                      stayId={stayId}
+                      filterBy={filterBy}
+                      formatDate={formatDate}
+                    />
                   </div>
-                }
+                )}
               </div>
 
               <div className="stay-reviews">
@@ -274,5 +279,5 @@ export function StayDetails() {
       )}
       {isMobile && <MobileOrderForm stay={stay} />}
     </div>
-  )
+  );
 }

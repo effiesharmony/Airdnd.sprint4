@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Pie, Bar } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from "chart.js";
-import { orderService } from "../services/order/order.service.js";
+// import { orderService } from "../services/order/order.service.js";
+import { orderServiceLocal } from "../services/order/order.servece.local.js";
 import { numberWithCommas } from "../services/utils/util.service.js";
 
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
@@ -16,17 +17,21 @@ export function DashboardReservation() {
       JSON.parse(localStorage.getItem("loggedinUser"));
 
     if (loggedinUser) {
-      orderService
+      // orderService
+      orderServiceLocal
         .query({ hostId: loggedinUser._id })
         .then((orders) => setOrders(orders));
-    }
-  }, []);
+        
+      }
+    }, []);
+    console.log(orders);
 
   const handleStatusChange = (orderId, status) => {
     const updatedOrders = orders.map((order) => {
       if (order._id === orderId) {
         order.status = status;
-        orderService.saveOrder(order);
+        // orderService.save(order);
+        orderServiceLocal.saveOrder(order);
       }
       return order;
     });

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { orderService } from '../services/order/order.service'
+// import { orderService } from '../services/order/order.service'
+import { orderServiceLocal } from '../services/order/order.servece.local.js'
 import { ReservationSuccessfull } from './ReservationSuccessfull'
 import { numberWithCommas } from '../services/utils/util.service'
 
@@ -29,7 +30,8 @@ export function ReservationDetails({ stay, guests, adults, children, infants, pe
       status: 'pending',
     }
 
-    orderService.save(order)
+    // orderService.save(order)
+    orderServiceLocal.saveOrder(order)
       .then(() => setShowSuccess(true))
       .catch(err => console.error("Failed to save order:", err))
   }
