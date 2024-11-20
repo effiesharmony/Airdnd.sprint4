@@ -10,7 +10,7 @@ export function StayInformation({ amenities }) {
     },
     {
       key: "Bath-Tools",
-      text: "This stay has a variety of shampoos and additional usable shower information, so you don't have to carry it along the way.",
+      text: "This stay has a variety of shampoos and additional usable shower accessories, so you don't have to carry it along the way.",
       icon: amenityIcons["Shampoo"],
     },
     {
