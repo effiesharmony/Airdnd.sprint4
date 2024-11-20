@@ -451,7 +451,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5); /* Darken background */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -461,57 +461,86 @@
 .amenities-modal-content {
   background-color: #ffffff;
   padding: 20px;
-  border-radius: 10px;
-  width: 50%;
-  max-width: 500px;
+  border-radius: 16px;
+  width: 60%;
+  max-width: 600px;
   max-height: 80%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow-y: auto;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; 
   position: relative;
 
-  h3 {
-    margin-bottom: 20px;
-    font-size: 1.5rem;
-    text-align: center;
+ 
+  scrollbar-width: thin; 
+  scrollbar-color: #ddd #f5f5f5; 
+
+  &::-webkit-scrollbar {
+    width: 8px;
   }
 
-  .amenities-preview {
-    width: 100%;
+  &::-webkit-scrollbar-track {
+    background: #f5f5f5;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 8px;
+    border: 2px solid #f5f5f5;
+  }
+
+  h3 {
+    margin-bottom: 24px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #222;
+  }
+
+  .amenities-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
     list-style: none;
     padding: 0;
+    margin: 0;
 
     .amenity-item {
       display: flex;
       align-items: center;
+      gap: 16px;
       font-size: 1rem;
-      color: #000000;
-      padding: 10px 0;
+      color: #222;
+      padding: 12px 0;
       border-bottom: 1px solid #ddd;
 
-      .amenity-icon {
-        width: 25px;
-        height: 25px;
-        margin-right: 15px;
+      &:last-child {
+        border-bottom: none;
       }
-    }
 
-    .amenity-item:last-child {
-      border-bottom: none;
+      .amenity-icon {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+
+      span {
+        font-weight: 500;
+        color: #444;
+      }
     }
   }
 
   .close-modal-icon {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 20px;
-    height: 20px;
+    top: 16px;
+    right: 16px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
     background: none;
     border: none;
     font-size: 1.2rem;
     font-weight: bold;
-    color: #000;
+    color: #222;
     transition: color 0.3s ease;
 
     &:hover {
@@ -523,6 +552,8 @@
     }
   }
 }
+
+
 
 @include for-wide-layout {
   .review-items {

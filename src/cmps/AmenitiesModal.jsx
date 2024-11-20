@@ -1,7 +1,9 @@
-import React from 'react'
-import { amenityIcons } from '../services/utils/amenities.js'
+import React from "react";
+import { amenityIcons } from "../services/utils/amenities.js";
 
 export function AmenitiesModal({ amenities, onClose }) {
+  const availableIcons = Object.values(amenityIcons);
+
   return (
     <div className="amenities-modal-overlay">
       <div className="amenities-modal-content">
@@ -12,18 +14,19 @@ export function AmenitiesModal({ amenities, onClose }) {
         <ul className="amenities-list">
           {amenities.map((amenity, index) => (
             <li key={index} className="amenity-item">
-              {amenityIcons[amenity] && (
-                <img
-                  src={amenityIcons[amenity]}
-                  alt={amenity}
-                  className="amenity-icon"
-                />
-              )}
+              <img
+                src={
+                  amenityIcons[amenity] ||
+                  availableIcons[Math.floor(Math.random() * availableIcons.length)]
+                }
+                alt={amenity}
+                className="amenity-icon"
+              />
               <span>{amenity}</span>
             </li>
           ))}
         </ul>
       </div>
     </div>
-  )
+  );
 }
