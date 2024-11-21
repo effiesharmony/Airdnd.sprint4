@@ -81,7 +81,7 @@ export function AppHeaderFull() {
 
   return !isReservationPage ? (
     <header
-      className={`app-header full ${
+      className={`app-header ${
         isHomePage ? (isScrolled || !isFilterFocused ? "sticky" : "") : "small"
       }`}
     >

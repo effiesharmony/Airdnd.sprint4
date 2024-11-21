@@ -115,50 +115,6 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
     setDateOutDropdownOpen(false);
   }
 
-  // function applyFilters(event) {
-  //   dispatch(
-  //     stayAction.setFilterBy({
-  //       ...filterBy,
-  //       place: country,
-  //       availableDates: { start: startDate, end: endDate },
-  //       minCapacity: totalGuests,
-  //       adults: adults,
-  //       children: children,
-  //       infants: infants,
-  //       pets: pets,
-  //     })
-  //   );
-  //   event.preventDefault();
-  //   const searchParams = new URLSearchParams();
-  //   if (filterBy.availableDates.start) {
-  //     searchParams.set("checkIn", formatDate(filterBy.availableDates.start));
-  //   }
-  //   if (filterBy.availableDates.end) {
-  //     searchParams.set("checkOut", formatDate(filterBy.availableDates.end));
-  //   }
-  //   if (filterBy.place) {
-  //     searchParams.set("place", filterBy.place);
-  //   }
-  //   if (filterBy.adults > 0) {
-  //     searchParams.set("adults", filterBy.adults);
-  //   }
-  //   if (filterBy.children > 0) {
-  //     searchParams.set("children", filterBy.children);
-  //   }
-  //   if (filterBy.infants > 0) {
-  //     searchParams.set("infants", filterBy.infants);
-  //   }
-  //   if (filterBy.pets > 0) {
-  //     searchParams.set("pets", filterBy.pets);
-  //   }
-  //   if (searchParams.toString()) {
-  //     navigate(`/stay?${searchParams.toString()}`);
-  //   } else {
-  //     navigate("/stay");
-  //   }
-  //   setIsFilterApplied(true);
-  // }
-
   function createSearchParams() {
     const searchParams = new URLSearchParams();
     if (startDate) {

@@ -65,7 +65,7 @@ export function DashboardReservation() {
         );
       });
     }
-  }, []);  
+  }, []);
 
   const handleStatusChange = async (orderId, status) => {
     const updatedOrders = orders.map((order) => {
@@ -80,10 +80,11 @@ export function DashboardReservation() {
 
   const getStayBookingCounts = () => {
     const stayBookingCounts = {};
-    if (orders) {
+    if (orders && orders.length > 0) {
       orders.forEach((order) => {
-        if (order.stay && order.stay.name) {
-          const stayName = order.stay.name;
+        const stay = stays[order.stayId];
+        if (stay && stay.name) {
+          const stayName = stay.name;
           stayBookingCounts[stayName] = (stayBookingCounts[stayName] || 0) + 1;
         }
       });
@@ -101,9 +102,9 @@ export function DashboardReservation() {
     return statusCounts;
   };
 
-  const getMonthlyRevenue = () => {
+  function getMonthlyRevenue() {
     const revenueByMonth = {};
-    if (orders) {
+    if (orders && orders.length > 0) {
       orders.forEach((order) => {
         const month = new Date(order.startDate).toLocaleString("default", {
           month: "short",
@@ -111,8 +112,29 @@ export function DashboardReservation() {
         revenueByMonth[month] = (revenueByMonth[month] || 0) + order.totalPrice;
       });
     }
-    return revenueByMonth;
-  };
+    const monthsOrder = [
+      "Oct",
+      "Nov",
+      "Dec",
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+    ];
+    const sortedRevenue = Object.keys(revenueByMonth)
+      .sort((a, b) => monthsOrder.indexOf(a) - monthsOrder.indexOf(b))
+      .reduce((acc, month) => {
+        acc[month] = revenueByMonth[month];
+        return acc;
+      }, {});
+
+    return sortedRevenue;
+  }
 
   const stayBookingCounts = getStayBookingCounts();
   const statusCounts = getStatusCounts();
@@ -308,20 +330,22 @@ export function DashboardReservation() {
       <table>
         <thead>
           <tr className="table-headers">
-            <th>Booker</th>
-            <th>Stay Name</th>
-            <th>Dates Reserved</th>
-            <th>Guests</th>
-            <th>Price / Night</th>
-            <th>Total</th>
-            <th>Status</th>
-            <th>Manage</th>
+            <th>BOOKER</th>
+            <th>STAY NAME</th>
+            <th>DATES RESERVED</th>
+            <th>GUESTS</th>
+            <th>PRICE / NIGHT</th>
+            <th>TOTAL</th>
+            <th>STATUS</th>
+            <th>MANAGE</th>
           </tr>
         </thead>
         <tbody>
           {orders.length === 0 ? (
             <tr>
-              <td colSpan="8">No orders available</td>
+              <td colSpan="8" className="no-orders">
+                No orders available
+              </td>
             </tr>
           ) : (
             orders.map((order) => {
@@ -330,13 +354,22 @@ export function DashboardReservation() {
 
               return (
                 <tr key={order._id}>
-                  <td>{user.fullname || "Unknown User"}</td>
+                  <td className="user-fullname">{user.fullname || "Unknown User"}</td>
                   <td>{stay.name || "Unknown Stay"}</td>
-                  <td>
-                    {new Date(order.startDate).toLocaleDateString()} -{" "}
-                    {new Date(order.endDate).toLocaleDateString()}
+                  <td className="dates">
+                    {new Date(order.startDate).toLocaleDateString("en-US", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                    <span> - </span>
+                    {new Date(order.endDate).toLocaleDateString("en-US", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    })}
                   </td>
-                  <td>{order.guests.adults} Guests</td>
+                  <td className="guests">{order.guests.adults} Guests</td>
                   <td>${stay.price}</td>
                   <td>${order.totalPrice}</td>
                   <td

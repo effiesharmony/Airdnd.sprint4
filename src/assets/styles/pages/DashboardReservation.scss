@@ -5,9 +5,17 @@
 
 .dashboard-reservations {
   display: flex;
-  max-width: 1200px;
+  width: 100%;
+  width: 93vw;
+  max-width: 1120px;
   padding: 0 80px;
   align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.no-orders {
+  text-align: center;
 }
 
 .dashboard-links {
@@ -31,18 +39,42 @@
 }
 
 table {
+  justify-self: center;
   margin-top: 15px;
   width: 100%;
   border-collapse: collapse;
+  width: 93vw;
+  max-width: 1120px;
+  margin-bottom: 30px;
+  padding: 0 40px;
 }
 
-table th,
+table th {
+  font-family: AirbnbCereal_W_Bk, sans-serif;
+  letter-spacing: 0.02rem;
+  font-weight: normal;
+  font-size: rem(12px);
+  background-color: transparent;
+  text-align: center;
+  border: none;
+  color: #636363;
+  padding: 10px 25px;
+  border-bottom: 1px solid #ddd;
+}
+
 table td {
   height: 60px;
   line-height: 1.5;
   border-bottom: 1px solid #ddd;
   padding: 10px 25px;
   text-align: left;
+  font-size: 16px;
+  font-family: AirbnbCereal_W_Lt, san serif;
+  font-weight: normal;
+}
+
+.user-fullname, .guests{
+  white-space: nowrap;
 }
 
 .action-btns {
@@ -108,14 +140,12 @@ table td {
   padding: 30px;
   padding-top: 15px;
   height: 250px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-// .chart-card-pie {
-//   max-width: 400px;
-// }
 
 .chart-card-3 {
   justify-self: center;
@@ -125,7 +155,7 @@ table td {
   padding: 30px;
   padding-top: 20px;
   width: 100%;
-  max-width: 450px;
+  // max-width: 450px;
   height: 250px;
   display: flex;
   align-items: start;
@@ -133,7 +163,8 @@ table td {
 }
 
 .chart-card h3,
-.chart-card-3 h3 {
+.chart-card-3 h3,
+.chart-card-pie h3 {
   font-size: 14;
   font-family: AirbnbCereal_W_Bk, san serif;
   font-weight: normal;
@@ -215,14 +246,14 @@ table td {
   min-width: 178px;
 
   h3 {
-    font-size: 14;
+    font-size: 16px;
     font-family: AirbnbCereal_W_Lt, san serif;
     font-weight: normal;
     white-space: nowrap;
   }
 
   span {
-    font-size: 14;
+    font-size: 16px;
     font-family: AirbnbCereal_W_Lt, san serif;
     font-weight: normal;
     min-width: 30px;
@@ -273,8 +304,8 @@ table td {
   }
 }
 
-@include for-narrow-layout{
-  .charts-container{
+@include for-narrow-layout {
+  .charts-container {
     flex-direction: column;
   }
 }

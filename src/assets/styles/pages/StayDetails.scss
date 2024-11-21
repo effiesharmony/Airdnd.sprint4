@@ -6,7 +6,10 @@
   justify-content: center;
   justify-self: center;
   padding-top: 17px;
-
+  padding-left: 40px;
+  padding-right: 40px;  
+  width: 100%;
+  
   .sticky-card {
     position: sticky;
     display: flex;
@@ -597,6 +600,8 @@
 @include for-normal-layout {
   .main-details {
     padding: 0 40px;
+    padding-top: 17px;
+
   }
 
   .amenities-preview {

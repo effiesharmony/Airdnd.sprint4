@@ -8,9 +8,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 20;
+  z-index: 999 !important;
   font-family: Arial, sans-serif;
-
+  pointer-events: auto;
+  
   .details-container{
     background-color: white;
     border-radius: 12px;
