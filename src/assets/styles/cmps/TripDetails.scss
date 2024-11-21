@@ -63,12 +63,11 @@
           padding: 0;
         }
 
-        span{
+        span {
           margin: 0 5px;
-
         }
 
-        .span-price{
+        .span-price {
           font-family: AirbnbCereal_W_Bk, sans-serif;
           letter-spacing: 0.02rem;
           font-weight: normal;
@@ -79,7 +78,6 @@
           margin-right: 0;
           padding: 0;
         }
-
       }
     }
 
@@ -91,17 +89,17 @@
 
       .trip-details-host-info {
         position: relative;
-        
+
         .trip-details-host-info-box {
-            position: absolute;
-            top: -25px;
-            left: -70px;
-            display: flex;
-            align-items: center;
-            border-radius: 8px;
-            padding: 7px 60px;
-            padding-left: 60px;
-            background-color: #f4f4f4;
+          position: absolute;
+          top: -25px;
+          left: -70px;
+          display: flex;
+          align-items: center;
+          border-radius: 8px;
+          padding: 7px 60px;
+          padding-left: 60px;
+          background-color: #f4f4f4;
           img {
             width: 40px;
             border-radius: 50%;
@@ -124,12 +122,12 @@
         letter-spacing: 0.02rem;
         cursor: pointer;
         background-image: radial-gradient(
-          circle at center,
+          circle at var(--mouse-x) var(--mouse-y),
           #ff385c 0%,
           #e61e4d 27.5%,
-          #e31c5f 40%,
+          #e31c5f 30%,
           #d70466 57.5%,
-          #bd1e59 75%,
+          #bd1e59 85%,
           #bd1e59 100%
         );
         display: inline-block;

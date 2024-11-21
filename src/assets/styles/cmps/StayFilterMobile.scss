@@ -116,12 +116,12 @@
     .stay-filter-mobile-search {
       font-family: AirbnbCereal_W_Md;
       background-image: radial-gradient(
-        circle at center,
+        circle at var(--mouse-x) var(--mouse-y),
         #ff385c 0%,
         #e61e4d 27.5%,
-        #e31c5f 40%,
+        #e31c5f 30%,
         #d70466 57.5%,
-        #bd1e59 75%,
+        #bd1e59 85%,
         #bd1e59 100%
       );
       display: inline-block;

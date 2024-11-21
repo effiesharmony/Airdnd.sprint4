@@ -20,6 +20,7 @@ export function OrderForm({ stayId, filterBy, formatDate }) {
   const orderFormRef = useRef(null);
   const [isGuestDropdownOpen, setGuestDropdownOpen] = useState(false);
   const [isDateDropdownOpen, setDateDropdownOpen] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     stayService
@@ -95,6 +96,16 @@ export function OrderForm({ stayId, filterBy, formatDate }) {
     setDateDropdownOpen(!isDateDropdownOpen);
     setGuestDropdownOpen(false);
   }
+  
+  function handleMouseMove(e) {
+    const button = e.currentTarget
+    const rect = button.getBoundingClientRect()
+    const mouseX = ((e.clientX - rect.left) / rect.width) * 100
+    const mouseY = ((e.clientY - rect.top) / rect.height) * 100
+    button.style.setProperty("--mouse-x", `${mouseX}%`)
+    button.style.setProperty("--mouse-y", `${mouseY}%`)
+    setMousePos({ x: mouseX, y: mouseY })
+  }
 
   if (!stay) return <p>Loading...</p>;
   return (
@@ -147,7 +158,7 @@ export function OrderForm({ stayId, filterBy, formatDate }) {
             </div>
           </div>
         </div>
-        <button className="reserve-button" onClick={handleReserve}>
+        <button className="reserve-button" onClick={handleReserve} onMouseMove={handleMouseMove}>
           Reserve
         </button>
         <p className="no-charge-text">You won't be charged yet</p>

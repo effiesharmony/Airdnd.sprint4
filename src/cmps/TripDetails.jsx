@@ -32,13 +32,13 @@ export function TripDetails({
   }, [selectedStayId, stays, orders]);
 
   function handleMouseMove(e) {
-    const button = e.currentTarget;
-    const rect = button.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    button.style.setProperty("--mouse-x", `${100 - mouseX / 2}%`);
-    button.style.setProperty("--mouse-y", `${100 - mouseY / 2}%`);
-    setMousePos({ x: mouseX, y: mouseY });
+    const button = e.currentTarget
+    const rect = button.getBoundingClientRect()
+    const mouseX = ((e.clientX - rect.left) / rect.width) * 100
+    const mouseY = ((e.clientY - rect.top) / rect.height) * 100
+    button.style.setProperty("--mouse-x", `${mouseX}%`)
+    button.style.setProperty("--mouse-y", `${mouseY}%`)
+    setMousePos({ x: mouseX, y: mouseY })
   }
 
   function formatDate(dateStr) {
@@ -51,7 +51,6 @@ export function TripDetails({
   }
 
   function onTripClick(stayId) {
-    // const stay = user.trips.find((trip) => trip._id === stayId);
     navigate(`/stay/${stayId}`);
   }
 

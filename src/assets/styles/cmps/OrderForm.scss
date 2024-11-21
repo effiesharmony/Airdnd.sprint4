@@ -141,7 +141,7 @@
   }
 
   .reserve-button {
-    @include reserve-btn
+    @include reserve-btn;
   }
 
   .no-charge-text {

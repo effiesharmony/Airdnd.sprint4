@@ -24,6 +24,7 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
   const [country, setCountry] = useState(filterBy.place);
   const [startDate, setStartDate] = useState(filterBy.start);
   const [endDate, setEndDate] = useState(filterBy.end);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (isFilterApplied) {
@@ -84,10 +85,10 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
     const { adults, children, infants, pets } = guestDetails;
     const totalGuests = adults + children + infants + pets;
     setTotalGuests(totalGuests);
-    setAdults(adults)
-    setChildren(children)
-    setInfants(infants)
-    setPets(pets)
+    setAdults(adults);
+    setChildren(children);
+    setInfants(infants);
+    setPets(pets);
     if (isFilterApplied) {
       dispatch(
         stayAction.setFilterBy({
@@ -208,6 +209,16 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
     setPlaceDropdownOpen(false);
   }
 
+  function handleMouseMove(e) {
+    const button = e.currentTarget
+    const rect = button.getBoundingClientRect()
+    const mouseX = ((e.clientX - rect.left) / rect.width) * 100
+    const mouseY = ((e.clientY - rect.top) / rect.height) * 100
+    button.style.setProperty("--mouse-x", `${mouseX}%`)
+    button.style.setProperty("--mouse-y", `${mouseY}%`)
+    setMousePos({ x: mouseX, y: mouseY })
+  }
+
   return (
     <section
       className={`stay-filter-focused-main-box ${
@@ -313,28 +324,26 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
                   : "Add guests"}
               </div>
             </div>
-            <button
-              className={`stay-filter-focused-search ${
-                isPlaceDropdownOpen ||
-                isDateInDropdownOpen ||
-                isDateOutDropdownOpen ||
-                isGuestDropdownOpen
-                  ? "search"
-                  : "not-search"
-              }`}
-              onClick={(ev) => applyFilters(ev)}
-            >
-              {isPlaceDropdownOpen ||
-              isDateInDropdownOpen ||
-              isDateOutDropdownOpen ||
-              isGuestDropdownOpen ? (
-                <>
-                  <i className="fa-solid fa-magnifying-glass"></i> Search
-                </>
-              ) : (
+            {isPlaceDropdownOpen ||
+            isDateInDropdownOpen ||
+            isDateOutDropdownOpen ||
+            isGuestDropdownOpen ? (
+              <button
+                className="stay-filter-focused-search"
+                onClick={(ev) => applyFilters(ev)}
+                onMouseMove={handleMouseMove}
+              >
+                <i className="fa-solid fa-magnifying-glass"></i> Search
+              </button>
+            ) : (
+              <button
+                className="stay-filter-focused-not-search"
+                onClick={(ev) => applyFilters(ev)}
+                onMouseMove={handleMouseMove}
+              >
                 <i className="fa-solid fa-magnifying-glass"></i>
-              )}
-            </button>
+              </button>
+            )}
           </div>
         </section>
 
