@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-// import { orderService } from '../services/order/order.service'
-import { orderServiceLocal } from '../services/order/order.servece.local.js'
+import { orderService } from '../services/order/order.service'
+// import { orderServiceLocal } from '../services/order/order.servece.local.js'
 import { ReservationSuccessfull } from './ReservationSuccessfull'
 import { numberWithCommas } from '../services/utils/util.service'
 
@@ -18,32 +18,17 @@ export function ReservationDetails({ stay, guests, adults, children, infants, pe
   }, [reservationDates])
 
   const handleConfirmReservation = () => {
-    // const order = {
-    //   userId: user._id,
-    //   stayId: stay._id,
-    //   hostId: stay.host._id,
-    //   pricePerNight: stay.price,
-    //   nights: nights,
-    //   guests: { adults: adults, children: children, infants: infants, pets: pets },
-    //   startDate: reservationDates.checkIn,
-    //   endDate: reservationDates.checkOut,
-    //   status: 'pending',
-    // }
     const order = {
-      userId: user._id,
-      stayId: stay._id,
-      hostId: stay.host._id,
+      stayId: stay._id.toString(),
       pricePerNight: stay.price,
-      nights: nights,
-      guests: { adults: adults, children: children, infants: infants, pets: pets },
+      nights,
+      guests: { adults, children, infants, pets },
       startDate: reservationDates.checkIn,
       endDate: reservationDates.checkOut,
       status: 'pending',
     }
 
-
-    // orderService.save(order)
-    orderServiceLocal.saveOrder(order)
+    orderService.save(order)
       .then(() => setShowSuccess(true))
       .catch(err => console.error("Failed to save order:", err))
   }

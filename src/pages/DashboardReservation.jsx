@@ -1,38 +1,75 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Pie, Bar } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from "chart.js";
-// import { orderService } from "../services/order/order.service.js";
-import { orderServiceLocal } from "../services/order/order.servece.local.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+} from "chart.js";
+import { orderService } from "../services/order/order.service.js";
 import { numberWithCommas } from "../services/utils/util.service.js";
+import { userService } from "../services/user/user.service.js";
+import { stayService } from "../services/stay/stay.service.js";
 
-ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  BarElement,
+  CategoryScale,
+  LinearScale
+);
 
 export function DashboardReservation() {
-  const [orders, setOrders] = useState(null);
+  const [orders, setOrders] = useState([]);
+  const [users, setUsers] = useState({});
+  const [stays, setStays] = useState({});
 
   useEffect(() => {
     const loggedinUser =
       JSON.parse(sessionStorage.getItem("loggedinUser")) ||
       JSON.parse(localStorage.getItem("loggedinUser"));
 
-    if (loggedinUser) {
-      // orderService
-      orderServiceLocal
-        .query({ hostId: loggedinUser._id })
-        .then((orders) => setOrders(orders));
-        
-      }
-    }, []);
-    console.log(orders);
+    if (loggedinUser && loggedinUser._id) {
+      const hostId = String(loggedinUser._id);
+      orderService.getHostOrders(hostId).then((response) => {
+        setOrders(response);
 
-  const handleStatusChange = (orderId, status) => {
+        const userIds = response.map((order) => order.userId);
+        Promise.all(userIds.map((id) => userService.getById(id))).then(
+          (usersData) => {
+            const usersMap = usersData.reduce((map, user) => {
+              map[user._id] = user;
+              return map;
+            }, {});
+            setUsers(usersMap);
+          }
+        );
+
+        const stayIds = response.map((order) => order.stayId);
+        Promise.all(stayIds.map((id) => stayService.getById(id))).then(
+          (stayData) => {
+            const staysMap = stayData.reduce((map, stay) => {
+              map[stay._id] = stay;
+              return map;
+            }, {});
+            setStays(staysMap);
+          }
+        );
+      });
+    }
+  }, []);  
+
+  const handleStatusChange = async (orderId, status) => {
     const updatedOrders = orders.map((order) => {
       if (order._id === orderId) {
         order.status = status;
-        // orderService.save(order);
-        orderServiceLocal.saveOrder(order);
       }
+      orderService.save(order);
       return order;
     });
     setOrders(updatedOrders);
@@ -42,8 +79,10 @@ export function DashboardReservation() {
     const stayBookingCounts = {};
     if (orders) {
       orders.forEach((order) => {
-        const stayName = order.stay.name;
-        stayBookingCounts[stayName] = (stayBookingCounts[stayName] || 0) + 1;
+        if (order.stay && order.stay.name) {
+          const stayName = order.stay.name;
+          stayBookingCounts[stayName] = (stayBookingCounts[stayName] || 0) + 1;
+        }
       });
     }
     return stayBookingCounts;
@@ -63,7 +102,9 @@ export function DashboardReservation() {
     const revenueByMonth = {};
     if (orders) {
       orders.forEach((order) => {
-        const month = new Date(order.startDate).toLocaleString("default", { month: "short" });
+        const month = new Date(order.startDate).toLocaleString("default", {
+          month: "short",
+        });
         revenueByMonth[month] = (revenueByMonth[month] || 0) + order.totalPrice;
       });
     }
@@ -106,8 +147,20 @@ export function DashboardReservation() {
       {
         label: "Revenue",
         data: Object.values(monthlyRevenue),
-        backgroundColor: ["#6A0DAD", "#0000FF", "#1E90FF", "#00CED1", "#40E0D0"],
-        hoverBackgroundColor: ["#500A9D", "#0000CC", "#1876D2", "#00B2A8", "#37CACD"],
+        backgroundColor: [
+          "#6A0DAD",
+          "#0000FF",
+          "#1E90FF",
+          "#00CED1",
+          "#40E0D0",
+        ],
+        hoverBackgroundColor: [
+          "#500A9D",
+          "#0000CC",
+          "#1876D2",
+          "#00B2A8",
+          "#37CACD",
+        ],
         borderRadius: 8,
         borderSkipped: false,
       },
@@ -137,7 +190,7 @@ export function DashboardReservation() {
         enabled: true,
       },
     },
-    radius: "80%", 
+    radius: "80%",
     responsive: true,
     maintainAspectRatio: false,
   };
@@ -204,27 +257,27 @@ export function DashboardReservation() {
         </div>
         <div className="chart-card-3">
           <div>
-          <h3>Reservation Status</h3>
-          <div className="reservation-status">
-            <div className="status-item">
-              <span>Pending</span>
-              <span style={{ color: "#FFCE56" }}>
-                {statusCounts.pending} ({pendingPercent}%)
-              </span>
+            <h3>Reservation Status</h3>
+            <div className="reservation-status">
+              <div className="status-item">
+                <span>Pending</span>
+                <span style={{ color: "#FFCE56" }}>
+                  {statusCounts.pending} ({pendingPercent}%)
+                </span>
+              </div>
+              <div className="status-item">
+                <span>Approved</span>
+                <span style={{ color: "#4CAF50" }}>
+                  {statusCounts.approved} ({approvedPercent}%)
+                </span>
+              </div>
+              <div className="status-item">
+                <span>Rejected</span>
+                <span style={{ color: "#FF0000" }}>
+                  {statusCounts.rejected} ({rejectedPercent}%)
+                </span>
+              </div>
             </div>
-            <div className="status-item">
-              <span>Approved</span>
-              <span style={{ color: "#4CAF50" }}>
-                {statusCounts.approved} ({approvedPercent}%)
-              </span>
-            </div>
-            <div className="status-item">
-              <span>Rejected</span>
-              <span style={{ color: "#FF0000" }}>
-                {statusCounts.rejected} ({rejectedPercent}%)
-              </span>
-            </div>
-          </div>
           </div>
           {/* <div className="actionable-insights">
             <h4>Actionable Insights</h4>
@@ -262,50 +315,66 @@ export function DashboardReservation() {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
-            <tr key={order._id}>
-              <td>{order.guest.fullname}</td>
-              <td>{order.stay.name}</td>
-              <td>
-                {new Date(order.startDate).toLocaleDateString()} -{" "}
-                {new Date(order.endDate).toLocaleDateString()}
-              </td>
-              <td>{order.guests.adults} Guests</td>
-              <td>${numberWithCommas(order.stay.price)}</td>
-              <td>${numberWithCommas(order.totalPrice)}</td>
-              <td
-                className="status"
-                style={{
-                  color:
-                    order.status === "approved"
-                      ? "#4CAF50"
-                      : order.status === "rejected"
-                      ? "#FF0000"
-                      : "#FFCE56",
-                }}
-              >
-                {order.status 
-                ? order.status.charAt(0).toUpperCase() + order.status.slice(1).toLowerCase() 
-                : "Unknown"}
-              </td>
-              <td>
-                <div className="action-btns">
-                  <button
-                    className="approve-btn"
-                    onClick={() => handleStatusChange(order._id, "approved")}
-                  >
-                    Approve
-                  </button>
-                  <button
-                    className="reject-btn"
-                    onClick={() => handleStatusChange(order._id, "rejected")}
-                  >
-                    Reject
-                  </button>
-                </div>
-              </td>
+          {orders.length === 0 ? (
+            <tr>
+              <td colSpan="8">No orders available</td>
             </tr>
-          ))}
+          ) : (
+            orders.map((order) => {
+              const user = users[order.userId] || {};
+              const stay = stays[order.stayId] || {};
+
+              return (
+                <tr key={order._id}>
+                  <td>{user.fullname || "Unknown User"}</td>
+                  <td>{stay.name || "Unknown Stay"}</td>
+                  <td>
+                    {new Date(order.startDate).toLocaleDateString()} -{" "}
+                    {new Date(order.endDate).toLocaleDateString()}
+                  </td>
+                  <td>{order.guests.adults} Guests</td>
+                  <td>${stay.price}</td>
+                  <td>${order.totalPrice}</td>
+                  <td
+                    className="status"
+                    style={{
+                      color:
+                        order.status === "approved"
+                          ? "#4CAF50"
+                          : order.status === "rejected"
+                          ? "#FF0000"
+                          : "#FFCE56",
+                    }}
+                  >
+                    {order.status
+                      ? order.status.charAt(0).toUpperCase() +
+                        order.status.slice(1).toLowerCase()
+                      : "Unknown"}
+                  </td>
+                  <td>
+                    <div className="action-btns">
+                      <button
+                        className="approve-btn"
+                        onClick={() =>
+                          handleStatusChange(order._id, "approved")
+                        }
+                      >
+                        Approve
+                      </button>
+                      <button
+                        className="reject-btn"
+                        onClick={() =>
+                          handleStatusChange(order._id, "rejected")
+                        }
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })
+          )}
         </tbody>
       </table>
     </div>
