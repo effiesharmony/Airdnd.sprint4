@@ -11,6 +11,7 @@ import {
   LinearScale,
 } from "chart.js";
 import { orderService } from "../services/order/order.service.js";
+import { loadHostOrders, addOrder } from "../store/actions/order.actions.js";
 import { numberWithCommas } from "../services/utils/util.service.js";
 import { userService } from "../services/user/user.service.js";
 import { stayService } from "../services/stay/stay.service.js";
@@ -28,6 +29,7 @@ export function DashboardReservation() {
   const [orders, setOrders] = useState([]);
   const [users, setUsers] = useState({});
   const [stays, setStays] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loggedinUser =
@@ -36,7 +38,7 @@ export function DashboardReservation() {
 
     if (loggedinUser && loggedinUser._id) {
       const hostId = String(loggedinUser._id);
-      orderService.getHostOrders(hostId).then((response) => {
+      loadHostOrders(hostId).then((response) => {
         setOrders(response);
 
         const userIds = response.map((order) => order.userId);
@@ -58,6 +60,7 @@ export function DashboardReservation() {
               return map;
             }, {});
             setStays(staysMap);
+            setLoading(false);
           }
         );
       });
@@ -69,7 +72,7 @@ export function DashboardReservation() {
       if (order._id === orderId) {
         order.status = status;
       }
-      orderService.save(order);
+      addOrder(order);
       return order;
     });
     setOrders(updatedOrders);
@@ -236,8 +239,9 @@ export function DashboardReservation() {
     },
   };
 
-  if (!orders) return <div>Loading...</div>;
-
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="dashboard-reservation">
       <div className="dashboard-links">

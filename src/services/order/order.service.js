@@ -22,7 +22,7 @@ function save(order) {
 }
 
 function getUserOrders(userId) {
-	return httpService.get(`order/user-orders/${userId}`)
+	return httpService.get(`order/${userId}/user-orders`)
 }
 
 function getHostOrders(hostId) {

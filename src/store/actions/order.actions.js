@@ -1,6 +1,6 @@
 import { orderService } from '../../services/order/order.service'
 import { store } from '../store'
-import { ADD_ORDER, REMOVE_ORDER, SET_ORDERS } from '../reducers/order.reducer'
+import { ADD_ORDER, REMOVE_ORDER, SET_ORDERS, SET_USER_ORDERS, SET_HOST_ORDERS } from '../reducers/order.reducer'
 
 export async function loadOrders(filterBy = {}) {
 	try {
@@ -31,3 +31,25 @@ export async function removeOrder(orderId) {
 		throw err
 	}
 }
+
+export async function loadUserOrders(userId) {
+	try {
+	  const userOrders = await orderService.getUserOrders(userId)
+	  store.dispatch({ type: SET_USER_ORDERS, orders: userOrders })
+	  return userOrders
+	} catch (err) {
+	  console.error('OrderActions: Error in loadUserOrders', err)
+	  throw err
+	}
+  }
+  
+  export async function loadHostOrders(hostId) {
+	try {
+	  const hostOrders = await orderService.getHostOrders(hostId)
+	  store.dispatch({ type: SET_HOST_ORDERS, orders: hostOrders })
+	  return hostOrders
+	} catch (err) {
+	  console.error('OrderActions: Error in loadHostOrders', err)
+	  throw err
+	}
+  }
