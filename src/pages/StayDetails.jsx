@@ -11,6 +11,8 @@ import { LongTxt } from "../cmps/LongTxt.jsx";
 import { MobileHeader } from "../cmps/MobileHeader.jsx";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { StayInformation } from "../cmps/StayInformation";
+
 
 const MySwal = withReactContent(Swal);
 
@@ -25,15 +27,15 @@ export function StayDetails() {
 
   useEffect(() => {
     if (stay) {
-      let num = isMobile ? stay.reviews.length : 6;
-      setReviewAmount(num);
+      let num = isMobile ? stay.reviews.length : 6
+      setReviewAmount(num)
     }
-  }, [isMobile, stay]);
+  }, [isMobile, stay])
 
   useEffect(() => {
     const params = updateSearchParams(filterBy);
     if (params.toString()) {
-      setSearchParams(params);
+      setSearchParams(params)
     }
     loadStay(stayId);
   }, [stayId, filterBy, setSearchParams, loadStay]);
@@ -155,27 +157,33 @@ export function StayDetails() {
                   </div>
                   <div className="stay-capacity">
                     <h6 className="stay-capacity-guests">
-                      {stay.capacity} {stay.capacity === 1 ? "guest" : "guests"}{" "}
-                      • {stay.bedrooms}{" "}
-                      {stay.bedrooms === 1 ? "bedroom" : "bedrooms"} •{" "}
-                      {stay.bathrooms} {stay.bathrooms === 1 ? "bath" : "baths"}
+                      {stay.capacity} {stay.capacity === 1 ? "guest" : "guests"} • {stay.bedrooms}{" "}
+                      {stay.bedrooms === 1 ? "bedroom" : "bedrooms"} • {stay.bathrooms}{" "}
+                      {stay.bathrooms === 1 ? "bath" : "baths"}
                     </h6>
-                    <div className="stay-capacity-review">
-                      <img src="/public/svg/star.svg" alt="" />
-                      <h6>
-                        {" "}
-                        {stay.reviews && stay.reviews.length > 0
-                          ? averageRating
-                          : "No rating"}{" "}
-                        •{" "}
-                        <span>
-                          {stay.reviews.length === 1
-                            ? " 1 review"
-                            : `${stay.reviews.length} reviews`}
-                        </span>
-                      </h6>
-                    </div>
+                    {stay.isGuestFavorite ? (
+                      <GuestFavorite
+                        rating={averageRating}
+                        reviewCount={stay.reviews.length}
+                      />
+                    ) : (
+                      <div className="stay-capacity-review">
+                        <img src="/public/svg/star.svg" alt="" />
+                        <h6>
+                          {stay.reviews && stay.reviews.length > 0
+                            ? averageRating
+                            : "No rating"}{" "}
+                          •{" "}
+                          <span>
+                            {stay.reviews.length === 1
+                              ? " 1 review"
+                              : `${stay.reviews.length} reviews`}
+                          </span>
+                        </h6>
+                      </div>
+                    )}
                   </div>
+
 
                   <div className="stay-host">
                     <img
@@ -187,12 +195,13 @@ export function StayDetails() {
                       <h5>Hosted by {stay.host.fullname}</h5>
                       <h6>
                         {stay.host.isSuperhost && (
-                          <span className="superhost-badge">Superhost</span>
+                          <span className="superhost-badge">Superhost •</span>
                         )}{" "}
-                        • 1 year hosting
+                        1 year hosting
                       </h6>
                     </div>
                   </div>
+                  <StayInformation amenities={stay.amenities} />
                   <div className="stay-info">
                     <h6>
                       <LongTxt txt={stay.summary} />
