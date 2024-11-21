@@ -12,6 +12,7 @@ import { MobileHeader } from "../cmps/MobileHeader.jsx";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { StayInformation } from "../cmps/StayInformation";
+import { GuestFavorite } from "../cmps/GuestFavorite.jsx";
 
 
 const MySwal = withReactContent(Swal);
