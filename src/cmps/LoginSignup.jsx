@@ -12,10 +12,6 @@ export function LoginSignup() {
                 </nav> */}
                 <Outlet />
             </div>
-            <section className="or">
-                <hr />
-                or
-            </section>
         </div>
     )
 }
