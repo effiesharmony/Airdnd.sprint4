@@ -47,7 +47,7 @@ export function DashboardListings() {
         <div className="dashboard-listings-header">
           <h1>
             {usersStays.length}
-            {usersStays.length === 1 ? "listing" : "listings"}
+            {usersStays.length === 1 ? " listing" : " listings"}
           </h1>
           <button>
             <Link to="/stay/edit" className="add-listing">
