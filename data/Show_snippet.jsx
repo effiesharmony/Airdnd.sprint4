@@ -3,7 +3,7 @@ const [selectedCategory, setSelectedCategory] = useState(searchParams.get('categ
 const [isScrollEnd, setIsScrollEnd] = useState(false)
 const [isScrolled, setIsScrolled] = useState(false)
 const [currentPos, setCurrentPos] = useState(0)
-const [isMobile, setIsMobile] = useState(window.innerWidth < 745)
+const [isMobile, setIsMobile] = useState(window.innerWidth < MaxMobileWidth)
 const scrollRef = useRef(null)
 
 useEffect(() => {
@@ -30,7 +30,7 @@ function onSelectCategory(catName) {
 }
 
 function handleMobileResize() {
-    setIsMobile(window.innerWidth < 745)
+    setIsMobile(window.innerWidth < MaxMobileWidth)
 }
 
 function handleScrollY() {
