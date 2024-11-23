@@ -47,9 +47,14 @@
     align-content: center;
     overflow-x: scroll;
     scroll-behavior: smooth;
-    padding-top: 15px;
+    padding-top: 23px;
 
     .category {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
       min-width: 56px;
       grid-row: 1;
       color: #222222;
@@ -62,7 +67,7 @@
       padding-bottom: 11px;
       margin-top: 0px;
       margin-bottom: 0;
-      border-bottom: 3px solid transparent;
+      border-bottom: 2px solid transparent;
 
       img {
         width: 24px;
@@ -81,12 +86,12 @@
       &:hover {
         cursor: pointer;
         opacity: 1;
-        border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+        border-bottom: 2px solid rgba(0, 0, 0, 0.2);
       }
     }
 
     .category.selected {
-      border-bottom: 3px solid rgb(0, 0, 0);
+      border-bottom: 2px solid rgb(0, 0, 0);
       opacity: 1;
 
       &:hover {
