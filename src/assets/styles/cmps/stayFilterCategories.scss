@@ -166,7 +166,13 @@
   }
 }
 
-@mixin for-mobile-layout {
+@include for-narrow-layout{
+  .categories-outer-container{
+    margin-top: 178px;
+  }
+}
+
+@include for-mobile-layout {
   .categories-outer-container {
     border-top: none;
     margin-top: 82px;
