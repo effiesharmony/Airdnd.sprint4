@@ -38,7 +38,16 @@ export function DashboardReservation() {
     if (loggedinUser && loggedinUser._id) {
       const hostId = String(loggedinUser._id);
       loadHostOrders(hostId).then((response) => {
-        setOrders(response);
+        const monthsOrder = [
+          "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+        ]
+        const sortedOrders = response.sort((a, b) => {
+          const monthA = new Date(a.startDate).toLocaleString("en-US", { month: "short" });
+          const monthB = new Date(b.startDate).toLocaleString("en-US", { month: "short" });
+          return monthsOrder.indexOf(monthB) - monthsOrder.indexOf(monthA);
+        });
+        setOrders(sortedOrders);
 
         const userIds = response.map((order) => order.userId);
         Promise.all(userIds.map((id) => userService.getById(id))).then(
@@ -112,6 +121,10 @@ export function DashboardReservation() {
       });
     }
     const monthsOrder = [
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
       "Oct",
       "Nov",
       "Dec",
@@ -120,10 +133,6 @@ export function DashboardReservation() {
       "Mar",
       "Apr",
       "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
     ];
     const sortedRevenue = Object.keys(revenueByMonth)
       .sort((a, b) => monthsOrder.indexOf(a) - monthsOrder.indexOf(b))
@@ -354,7 +363,7 @@ export function DashboardReservation() {
               return (
                 <tr key={order._id}>
                   <td className="user-fullname">{user.fullname || "Unknown User"}</td>
-                  <td>{stay.name || "Unknown Stay"}</td>
+                  <td className="stay-name">{stay.name.toLowerCase().substring(0, 20)}...</td>
                   <td className="dates">
                     {new Date(order.startDate).toLocaleDateString("en-US", {
                       day: "numeric",

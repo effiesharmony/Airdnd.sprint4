@@ -127,7 +127,7 @@ export function AppHeaderFull() {
           />
           <button
             className={`app-header-right-box-menu ${
-              isMenuOpen ? "active" : ""
+              isMenuOpen ? "active-menu" : ""
             }`}
             onClick={onOpenCloseMenu}
           >

@@ -73,8 +73,12 @@ table td {
   font-weight: normal;
 }
 
-.user-fullname, .guests{
+.user-fullname, .guests, .dates, .stay-name{
   white-space: nowrap;
+}
+
+.user-fullname, .stay-name{
+  padding-right: 0;
 }
 
 .action-btns {
