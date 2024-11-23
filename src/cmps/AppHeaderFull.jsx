@@ -1,7 +1,7 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 import { logout } from "../store/actions/user.actions.js";
 import { StayFilterFocused } from "./StayFilterFocused.jsx";
@@ -19,6 +19,9 @@ export function AppHeaderFull() {
   const [modalType, setModalType] = useState(null);
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1127);
 
+  // Ref for hamburger dropdown
+  const menuRef = useRef(null);
+
   useEffect(() => {
     if (isHomePage) {
       setIsFilterFocused(true);
@@ -28,9 +31,14 @@ export function AppHeaderFull() {
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
+
+    // Add listener for clicks outside of the menu
+    document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isHomePage]);
 
@@ -74,9 +82,10 @@ export function AppHeaderFull() {
     setIsMenuOpen(!isMenuOpen);
   }
 
-  function onCloseFilterModals() {
-    setIsFilterFocused(false);
-    setModalType(null);
+  function handleClickOutside(event) {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsMenuOpen(false); 
+    }
   }
 
   return !isReservationPage ? (
@@ -86,7 +95,7 @@ export function AppHeaderFull() {
       }`}
     >
       {(isScrolled && isFilterFocused) || (!isHomePage && isFilterFocused) ? (
-        <div className="overlay" onClick={onCloseFilterModals}></div>
+        <div className="overlay" onClick={() => setIsFilterFocused(false)}></div>
       ) : null}
       <div className="app-header-top">
         <Link to="/stay" className="logo">
@@ -107,7 +116,7 @@ export function AppHeaderFull() {
           </div>
         </Link>
 
-        <div className="app-header-right-box">
+        <div className="app-header-right-box" ref={menuRef}>
           <Link to="/stay/edit" className="edit">
             <p>Airbnb your home</p>
           </Link>
@@ -136,96 +145,97 @@ export function AppHeaderFull() {
             ) : (
               <img
                 className="app-header-user-img"
-                src='../../public/img/user.png'
+                src="../../public/img/user.png"
                 alt="User icon"
               />
             )}
           </button>
+          {isMenuOpen && (
+            <div className="dropdown-menu">
+              {user ? (
+                <>
+                  <NavLink
+                    className="dropdown-menu-link messages"
+                    to="user/:id"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Messages
+                  </NavLink>
+                  <NavLink
+                    className="dropdown-menu-link trips"
+                    to="trips"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Trips
+                  </NavLink>
+                  <NavLink
+                    className="dropdown-menu-link edit"
+                    to="stay/edit"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Add new stay
+                  </NavLink>
+                  <NavLink
+                    className="dropdown-menu-link wishlist"
+                    to="user/:id"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Wishlist
+                  </NavLink>
+                  <hr />
+                  <NavLink
+                    className="dropdown-menu-link"
+                    to="/dashboard/reservations"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Dashboard
+                  </NavLink>
+                  <hr />
+                  <NavLink
+                    className="dropdown-menu-link"
+                    to="about"
+                    onClick={onOpenCloseMenu}
+                  >
+                    About us
+                  </NavLink>
+                  <button
+                    className="dropdown-menu-link-btn"
+                    onClick={onLogout}
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <NavLink
+                    className="dropdown-menu-link login"
+                    to="login"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Log in
+                  </NavLink>
+                  <NavLink
+                    className="dropdown-menu-link"
+                    to="login/signup"
+                    onClick={onOpenCloseMenu}
+                  >
+                    Sign up
+                  </NavLink>
+                  <hr />
+                  <NavLink
+                    className="dropdown-menu-link"
+                    to="about"
+                    onClick={onOpenCloseMenu}
+                  >
+                    About us
+                  </NavLink>
+                </>
+              )}
+            </div>
+          )}
         </div>
-
-        {isMenuOpen && (
-          <div className="dropdown-menu">
-            {user ? (
-              <>
-                <NavLink
-                  className="dropdown-menu-link messages"
-                  to="user/:id"
-                  onClick={onOpenCloseMenu}
-                >
-                  Messages
-                </NavLink>
-                <NavLink
-                  className="dropdown-menu-link trips"
-                  to="trips"
-                  onClick={onOpenCloseMenu}
-                >
-                  Trips
-                </NavLink>
-                <NavLink
-                  className="dropdown-menu-link edit"
-                  to="stay/edit"
-                  onClick={onOpenCloseMenu}
-                >
-                  Add new stay
-                </NavLink>
-                <NavLink
-                  className="dropdown-menu-link wishlist"
-                  to="user/:id"
-                  onClick={onOpenCloseMenu}
-                >
-                  Wishlist
-                </NavLink>
-                <hr />
-                <NavLink
-                  className="dropdown-menu-link"
-                  to="/dashboard/reservations"
-                  onClick={onOpenCloseMenu}
-                >
-                  Dashboard
-                </NavLink>
-                <hr />
-                <NavLink
-                  className="dropdown-menu-link"
-                  to="about"
-                  onClick={onOpenCloseMenu}
-                >
-                  About us
-                </NavLink>
-                <button className="dropdown-menu-link-btn" onClick={onLogout}>
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <NavLink
-                  className="dropdown-menu-link login"
-                  to="login"
-                  onClick={onOpenCloseMenu}
-                >
-                  Log in
-                </NavLink>
-                <NavLink
-                  className="dropdown-menu-link"
-                  to="login/signup"
-                  onClick={onOpenCloseMenu}
-                >
-                  Sign up
-                </NavLink>
-                <hr />
-                <NavLink
-                  className="dropdown-menu-link"
-                  to="about"
-                  onClick={onOpenCloseMenu}
-                >
-                  About us
-                </NavLink>
-              </>
-            )}
-          </div>
-        )}
       </div>
 
-      {/* <div className="app-header-bottom"> */}
       <StayFilterFocused
         modalType={modalType}
         isFilterFocused={isFilterFocused}
@@ -235,7 +245,6 @@ export function AppHeaderFull() {
         onOpenFilterFocus={onOpenFilterFocus}
         isFilterFocused={isFilterFocused}
       />
-      {/* </div> */}
     </header>
   ) : (
     <header className="app-header full">
