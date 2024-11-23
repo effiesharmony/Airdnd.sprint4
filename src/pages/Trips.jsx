@@ -55,9 +55,8 @@ export function Trips() {
               >
                 <div className="user-trip-top">
                   <img src={stayImage} alt={stayName} className="trip-image" />
-                  <h3 className="trip-name">{stayName}</h3>
-                  <h4>{order.guests.adults ? order.guests.adults + " adults," : ""} {order.guests.children ? order.guests.children + " children," : ""} {order.guests.infants ? order.guests.infants + " infants," : ""} {order.guests.pets ? order.guests.pets + " pets," : ""}</h4>
-                  <h4 className="trip-name">{new Date(order.startDate).toLocaleDateString("en-US", {
+                  <h3 className="trip-name">{stayName.substring(0, 27)}...</h3>
+                  <h4 className="trip-dates">{new Date(order.startDate).toLocaleDateString("en-US", {
                       day: "numeric",
                       month: "short",
                       year: "numeric",
