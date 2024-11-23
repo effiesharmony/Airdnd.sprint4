@@ -66,25 +66,26 @@ export function TripDetails({
           <div className="trip-details-info">
             <h1>{stay.name}</h1>
             <p>
-              Adults: <span>{order.guests.adults}</span>
+              Adults <span>{order.guests.adults}</span>
             </p>
             <p>
-              Kids: <span>{order.guests.kids}</span>
+              Kids <span>{order.guests.kids}</span>
             </p>
             <p>
-              Country: <span>{stay.country}</span>
+              Country <span>{stay.country}</span>
             </p>
             <p>
-              Dates:{" "}
+              Dates{" "}
               <span className="span-dates">
                 {formatDate(order.startDate)} - {formatDate(order.endDate)}
               </span>
             </p>
             <p>
-              Total price:{" "}
+              Total price{" "}
               <span className="span-price">
-                {numberWithCommas(order.totalPrice)} / {order.nights}
-                {order.nights === 1 ? "night" : "nights"}
+                ${numberWithCommas(order.totalPrice)}
+                 {/* / night {order.nights}
+                {order.nights === 1 ? "night" : "nights"} */}
               </span>
             </p>
           </div>

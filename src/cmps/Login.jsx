@@ -1,6 +1,5 @@
 import { useState } from "react"
-import { useNavigate, useLocation } from "react-router"
-// import { userService } from '../services/user/user.service.js'
+import { useNavigate } from "react-router"
 import { userService } from "../services/user"
 import { login } from "../store/actions/user.actions.js"
 
@@ -26,6 +25,17 @@ export function Login({ setIsLoggedIn }) {
   function handleSubmit(ev) {
     ev.preventDefault()
     onLogin(credentials)
+  }
+
+  async function onDemoLogin(ev){
+    ev.preventDefault()
+    setCredentials({ username: 'demo', password: 'demo' })
+    try {
+      const demoUser = await login({ username: 'demo', password: 'demo' })
+      navigate('/stay')
+    } catch (err) {
+      console.log('Login: err in login demo user', err)
+    }
   }
 
   return (
@@ -55,10 +65,10 @@ export function Login({ setIsLoggedIn }) {
       />
       <button className="cta" type="submit">Login</button>
 
-      <button className="demo-login-btn">
+      <button type="button" onClick={onDemoLogin} className="demo-login-btn">
         Demo login
       </button>
-      <button className="signup-btn">
+      <button type="button" onClick={() => navigate('/login/signup')} className="signup-btn">
         Sign up
       </button>
     </form>

@@ -6,10 +6,12 @@ export const ADD_STAY = 'ADD_STAY'
 export const UPDATE_STAY = 'UPDATE_STAY'
 export const ADD_STAY_MSG = 'ADD_STAY_MSG'
 export const SET_FILTER_BY = 'SET_FILTER_BY'
+export const SET_LIKED_STAYS = 'SET_LIKED_STAYS'
 
 const initialState = {
     stays: [],
     stay: null,
+    LikedStays: JSON.parse(localStorage.getItem('likedStays')) || [],
     filterBy: stayService.getDefaultFilter() //null,
 }
 
@@ -36,6 +38,9 @@ export function stayReducer(state = initialState, action) {
             break
         case ADD_STAY_MSG:
             newState = { ...state, stay: { ...state.stay, msgs: [...state.stay.msgs || [], action.msg] } }
+            break
+        case SET_LIKED_STAYS:
+            newState = { ...state, LikedStays: action.LikedStays }
             break
         case SET_FILTER_BY:
             const filterBy = { ...state.filterBy, ...action.filterBy }

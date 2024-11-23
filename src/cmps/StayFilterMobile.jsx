@@ -28,6 +28,10 @@ export function StayFilterMobile({ onCloseFilter }) {
     dispatch(stayAction.setFilterBy({ ...filterBy, [name]: value }));
   }
 
+  function handleSelectPlace(place) {
+    dispatch(stayAction.setFilterBy({ ...filterBy, place: place }))
+  }
+
   function handleDateChange(dates) {
     const [startDate, endDate] = dates;
     dispatch(
@@ -129,6 +133,7 @@ export function StayFilterMobile({ onCloseFilter }) {
               handleChange={handleChange}
               onDateModalOpen={onDateModalOpen}
               clearPlace={clearPlace}
+              handleSelectPlace={handleSelectPlace}
             />
           ) : (
             <>

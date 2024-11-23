@@ -10,8 +10,7 @@ import {
   CategoryScale,
   LinearScale,
 } from "chart.js";
-import { orderService } from "../services/order/order.service.js";
-import { loadHostOrders, addOrder } from "../store/actions/order.actions.js";
+import { loadHostOrders, updateOrder } from "../store/actions/order.actions.js";
 import { numberWithCommas } from "../services/utils/util.service.js";
 import { userService } from "../services/user/user.service.js";
 import { stayService } from "../services/stay/stay.service.js";
@@ -72,7 +71,7 @@ export function DashboardReservation() {
       if (order._id === orderId) {
         order.status = status;
       }
-      addOrder(order);
+      updateOrder(order);
       return order;
     });
     setOrders(updatedOrders);

@@ -1,15 +1,14 @@
 import { Outlet } from 'react-router'
-import { NavLink } from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 
 export function LoginSignup() {
+
+  const isSignup = location.pathname.startsWith("/login/signup");
+
     return (
         <div className="login-page">
             <div className="login-form-container">
-                <h1 className="title">Login</h1>
-                {/* <nav>
-                    <NavLink to=".">Login</NavLink>
-                    <NavLink to="signup">Signup</NavLink>
-                </nav> */}
+                <h1 className="title">{isSignup ? 'Signup' : 'Login'}</h1>
                 <Outlet />
             </div>
         </div>
