@@ -57,9 +57,14 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
       dispatch(stayAction.setFilterBy({ ...filterBy, [name]: value }));
     }
     if (name === "place" && value) {
-      setTimeout(() => {
-        onDateInModalOpen();
-      }, 1000);
+      onDateInModalOpen();
+    }
+  }
+
+  function handleSelectPlace(place) {
+    setCountry(place);
+    if (place) {
+      onDateInModalOpen();
     }
   }
 
@@ -210,13 +215,13 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
   }
 
   function handleMouseMove(e) {
-    const button = e.currentTarget
-    const rect = button.getBoundingClientRect()
-    const mouseX = ((e.clientX - rect.left) / rect.width) * 100
-    const mouseY = ((e.clientY - rect.top) / rect.height) * 100
-    button.style.setProperty("--mouse-x", `${mouseX}%`)
-    button.style.setProperty("--mouse-y", `${mouseY}%`)
-    setMousePos({ x: mouseX, y: mouseY })
+    const button = e.currentTarget;
+    const rect = button.getBoundingClientRect();
+    const mouseX = ((e.clientX - rect.left) / rect.width) * 100;
+    const mouseY = ((e.clientY - rect.top) / rect.height) * 100;
+    button.style.setProperty("--mouse-x", `${mouseX}%`);
+    button.style.setProperty("--mouse-y", `${mouseY}%`);
+    setMousePos({ x: mouseX, y: mouseY });
   }
 
   return (
@@ -347,7 +352,12 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
           </div>
         </section>
 
-        {isPlaceDropdownOpen && <PlaceModal filterBy={filterBy} />}
+        {isPlaceDropdownOpen && (
+          <PlaceModal
+            filterBy={filterBy}
+            handleSelectPlace={handleSelectPlace}
+          />
+        )}
         {isDateInDropdownOpen && (
           <DateModal filterBy={filterBy} handleDateChange={handleDateChange} />
         )}
