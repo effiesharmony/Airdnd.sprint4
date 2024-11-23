@@ -15,6 +15,7 @@ import { StayInformation } from "../cmps/StayInformation";
 import { GuestFavorite } from "../cmps/GuestFavorite.jsx";
 
 
+
 const MySwal = withReactContent(Swal);
 
 export function StayDetails() {
@@ -25,6 +26,7 @@ export function StayDetails() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const filterBy = useSelector((storeState) => storeState.stayModule.filterBy);
   const [reviewAmount, setReviewAmount] = useState(6);
+  
 
   useEffect(() => {
     if (stay) {
