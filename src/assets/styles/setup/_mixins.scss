@@ -114,23 +114,7 @@
   text-align: center;
 
   &:hover {
-    background-image: radial-gradient(
-      circle at var(--mouse-x) var(--mouse-y),
-      #ff385c 5%,
-      #e61e4d 27.5%,
-      #e31c5f 30%,
-      #d70466 57.5%,
-      #bd1e59 85%,
-      #bd1e59 100%
-    );
-    display: inline-block;
-    background-size: 200% 200%;
-    color: white;
-    border: none;
-
-    --mouse-x: 50%;
-    --mouse-y: 50%;
-    background-position: var(--mouse-x) var(--mouse-y);
+    @include button-hover
   }
 }
 
@@ -389,4 +373,25 @@
   .react-datepicker__day--outside-month {
     color: #d5d5d5;
   }
+}
+
+
+@mixin button-hover{
+  background-image: radial-gradient(
+    circle at var(--mouse-x) var(--mouse-y),
+    #ff385c 5%,
+    #e61e4d 27.5%,
+    #e31c5f 30%,
+    #d70466 57.5%,
+    #bd1e59 85%,
+    #bd1e59 100%
+  );
+  display: inline-block;
+  background-size: 200% 200%;
+  color: white;
+  border: none;
+
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  background-position: var(--mouse-x) var(--mouse-y);
 }

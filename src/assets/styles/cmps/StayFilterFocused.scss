@@ -318,22 +318,12 @@
           font-family: AirbnbCereal_W_Bk, sans-serif;
           font-weight: normal;
           letter-spacing: 0.02rem;
-          background-color: #ff385c;
-          background-image: radial-gradient(
-            circle at var(--mouse-x) var(--mouse-y),
-            #ff385c 0%,
-            #e61e4d 27.5%,
-            #e31c5f 30%,
-            #d70466 57.5%,
-            #bd1e59 85%,
-            #bd1e59 100%
-            );
-            display: inline-block;
-            background-size: 200% 200%;
-            color: white;
-            border: none;
-            
-            background-position: var(--mouse-x) var(--mouse-y);
+          border: none;
+          background: linear-gradient(90deg, #ff385c, #d70653);
+          
+          &:hover {
+            @include button-hover;
+          }
 
           i {
             margin-right: 5px;
