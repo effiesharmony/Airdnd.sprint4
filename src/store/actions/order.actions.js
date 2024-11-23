@@ -1,6 +1,6 @@
 import { orderService } from '../../services/order/order.service'
 import { store } from '../store'
-import { ADD_ORDER, REMOVE_ORDER, SET_ORDERS, SET_USER_ORDERS, SET_HOST_ORDERS } from '../reducers/order.reducer'
+import { ADD_ORDER, REMOVE_ORDER, SET_ORDERS, SET_USER_ORDERS, SET_HOST_ORDERS, UPDATE_ORDER } from '../reducers/order.reducer'
 
 export async function loadOrders(filterBy = {}) {
 	try {
@@ -21,6 +21,16 @@ export async function addOrder(order) {
 		throw err
 	}
 }
+
+export async function updateOrder(order) {
+	try {
+	  const updatedOrder = await orderService.save(order)
+	  store.dispatch({ type: UPDATE_ORDER, order: updatedOrder })
+	} catch (err) {
+	  console.error('OrderActions: Error in updateOrder', err)
+	  throw err
+	}
+  }
 
 export async function removeOrder(orderId) {
 	try {

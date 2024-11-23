@@ -17,8 +17,14 @@ function remove(orderId) {
 	return httpService.delete(`order/${orderId}`)
 }
 
-function save(order) {
-	return httpService.post('order', order)
+async function save(order) {
+    var savedOrder
+    if (order._id) {
+        savedOrder = await httpService.put(`order/${order._id}`, order)
+    } else {
+        savedOrder = await httpService.post('order', order)
+    }
+    return savedOrder
 }
 
 function getUserOrders(userId) {
