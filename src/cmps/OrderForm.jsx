@@ -7,8 +7,8 @@ import { ReservationDetails } from "./ReservationDetails.jsx";
 
 export function OrderForm({ stayId, filterBy, formatDate }) {
   const [stay, setStay] = useState(null);
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
+  const [checkIn, setCheckIn] = useState('');
+  const [checkOut, setCheckOut] = useState('');
   const [guests, setGuests] = useState(0);
   const [adults, setAdults] = useState(0);
   const [children, setChildren] = useState(0);
@@ -32,11 +32,11 @@ export function OrderForm({ stayId, filterBy, formatDate }) {
   }, [stayId]);
 
   useEffect(() => {
-    if (filterBy.availableDates?.start) {
-      setCheckIn(formatDate(filterBy.availableDates.start));
+    if (filterBy.availableDates.start) {
+      setCheckIn(filterBy.availableDates.start);
     }
-    if (filterBy.availableDates?.end) {
-      setCheckOut(formatDate(filterBy.availableDates.end));
+    if (filterBy.availableDates.end) {
+      setCheckOut(filterBy.availableDates.end);
     }
     if (filterBy.minCapacity) {
       setGuests(filterBy.minCapacity);

@@ -161,7 +161,7 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
       })
     );
   }
-
+  
   function applyFilters(event) {
     event.preventDefault();
     updateFiltersInStore();
