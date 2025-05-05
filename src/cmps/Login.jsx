@@ -29,9 +29,9 @@ export function Login({ setIsLoggedIn }) {
 
   async function onDemoLogin(ev){
     ev.preventDefault()
-    setCredentials({ username: 'demo', password: 'demo' })
+    setCredentials({ username: 'valery', password: 'valery' })
     try {
-      const demoUser = await login({ username: 'demo', password: 'demo' })
+      const demoUser = await login({ username: 'valery', password: 'valery' })
       navigate('/stay')
     } catch (err) {
       console.log('Login: err in login demo user', err)
