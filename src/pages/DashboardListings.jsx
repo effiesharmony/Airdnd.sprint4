@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { stayAction } from "../store/actions/stay.actions.js";
 
-export function DashboardListings() {
+export default function DashboardListings() {
   const user = useSelector((storeState) => storeState.userModule.user);  
   const stays = useSelector((storeState) => storeState.stayModule.stays);
   const [isSmallListing, setSmallListing] = useState(window.innerWidth <= 745);
@@ -51,7 +51,7 @@ export function DashboardListings() {
           </h1>
           <button>
             <Link to="/stay/edit" className="add-listing">
-              <img src="../../public/svg/plus.svg" alt="" /> Add listings
+              <img src="/svg/plus.svg" alt="" /> Add listings
             </Link>
           </button>
         </div>

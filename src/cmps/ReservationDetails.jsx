@@ -6,7 +6,7 @@ import { addOrder } from "../store/actions/order.actions.js";
 import { ReservationSuccessfull } from './ReservationSuccessfull'
 import { numberWithCommas } from '../services/utils/util.service'
 
-export function ReservationDetails({ stay, guests, adults, children, infants, pets, reservationDates, totalPrice, onClose }) {
+export  function ReservationDetails({ stay, guests, adults, children, infants, pets, reservationDates, totalPrice, onClose }) {
   const [nights, setNights] = useState(0)
   const [showSuccess, setShowSuccess] = useState(false)
   const user = useSelector((storeState) => storeState.userModule.user)

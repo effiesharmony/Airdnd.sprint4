@@ -4,15 +4,11 @@ import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import { loadStays } from "../store/actions/stay.actions.js"
 import { setFilterBy } from "../store/actions/stay.actions.js";
-
-// import { showSuccessMsg, showErrorMsg } from "../services/event-bus.service.js"+
 import { stayService } from "../services/stay/stay.service.local.js"
-// import { userService } from "../services/user/user.service.local.js"
-
 import { StayList } from "../cmps/StayList.jsx"
 import { StayCategories } from "../cmps/StayFilterCategories.jsx"
 
-export function StayIndex() {
+export default function StayIndex() {
   const stays = useSelector((storeState) => storeState.stayModule.stays)
   const filterBy = useSelector((storeState) => storeState.stayModule.filterBy)
 

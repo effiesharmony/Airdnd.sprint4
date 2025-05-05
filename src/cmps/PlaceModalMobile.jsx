@@ -39,7 +39,7 @@ export function PlaceModalMobile({
             className="place-btn"
             onClick={() => handleSelectPlace(getRandomCountry())}
           >
-            <img src="../../public/img/world.jpg" alt="world" />
+            <img src="/img/world.jpg" alt="world" />
             <h2>I’m flexible</h2>
           </div>
 
@@ -47,12 +47,12 @@ export function PlaceModalMobile({
             className="place-btn"
             onClick={() => handleSelectPlace("Turkey")}
           >
-            <img src="../../public/img/middle-east.webp" alt="middle east" />
+            <img src="/img/middle-east.webp" alt="middle east" />
             <h2>Middle East</h2>
           </div>
 
           <div className="place-btn" onClick={() => handleSelectPlace("Italy")}>
-            <img src="../../public/img/italy.webp" alt="italy" />
+            <img src="/img/italy.webp" alt="italy" />
             <h2>Italy</h2>
           </div>
 
@@ -61,7 +61,7 @@ export function PlaceModalMobile({
             onClick={() => handleSelectPlace("United States")}
           >
             <img
-              src="../../public/img/united-states.webp"
+              src="/img/united-states.webp"
               alt="united states"
             />
             <h2>United States</h2>
@@ -71,7 +71,7 @@ export function PlaceModalMobile({
             className="place-btn"
             onClick={() => handleSelectPlace("Greece")}
           >
-            <img src="../../public/img/greece.webp" alt="greece" />
+            <img src="/img/greece.webp" alt="greece" />
             <h2>Greece</h2>
           </div>
 
@@ -80,7 +80,7 @@ export function PlaceModalMobile({
             onClick={() => handleSelectPlace("Indonesia")}
           >
             <img
-              src="../../public/img/southeast-asia.webp"
+              src="/img/southeast-asia.webp"
               alt="southeast asia"
             />
             <h2>Southeast Asia</h2>

@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router"
 import { createRef, useRef, useEffect, useState } from "react"
 import { uploadImg } from "../services/cloudinary.service.js"
 
-export function StayEdit() {
+export default function StayEdit() {
   const navigate = useNavigate()
   const { stayId } = useParams()
   const [stayToEdit, setStayToEdit] = useState(stayService.getEmptyStay())

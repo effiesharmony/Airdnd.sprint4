@@ -4,7 +4,7 @@ import { TripDetails } from "../cmps/TripDetails.jsx";
 import { stayService } from "../services/stay/stay.service.js";
 import { loadUserOrders } from "../store/actions/order.actions.js";
 
-export function Trips() {
+export default function Trips() {
   const user = useSelector((storeState) => storeState.userModule.user);
   const [isTripDetailsOpen, setTripDetailsOpen] = useState(false);
   const [selectedStayId, setSelectedStayId] = useState(null);

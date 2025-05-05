@@ -12,7 +12,7 @@ const initialState = {
     stays: [],
     stay: null,
     LikedStays: JSON.parse(localStorage.getItem('likedStays')) || [],
-    filterBy: stayService.getDefaultFilter() //null,
+    filterBy: stayService.getDefaultFilter()
 }
 
 export function stayReducer(state = initialState, action) {

@@ -50,11 +50,11 @@ export function ImageCarousel({ stay, onShowDetails }) {
             <div className="image-container">
                 {imgIndex > 0 && !isMobile && (
                     <button className="nav-button prev" onClick={(event) => showPrevImg(event)}>
-                        <img src="public/svg/leftArrow.svg" alt="Left arrow" />
+                        <img src="/svg/leftArrow.svg" alt="Left arrow" />
                     </button>
                 )}
                 <div className="heart" onClick={toggleHeart}>
-                    <img src={isLiked ? 'public/svg/redHeart.svg' : 'public/svg/heart.svg'} alt="Heart" />
+                    <img src={isLiked ? '/svg/redHeart.svg' : '/svg/heart.svg'} alt="Heart" />
                 </div>
                 <div className="images">
                     {stay.imgUrls.map((url, index) => (
@@ -68,7 +68,7 @@ export function ImageCarousel({ stay, onShowDetails }) {
                 </div>
                 {imgIndex < stay.imgUrls.length - 1 && !isMobile && (
                     <button className="nav-button next" onClick={(event) => showNextImg(event)}>
-                        <img src="public/svg/rightArrow.svg" alt="Right arrow" />
+                        <img src="/svg/rightArrow.svg" alt="Right arrow" />
                     </button>
                 )}
             </div>

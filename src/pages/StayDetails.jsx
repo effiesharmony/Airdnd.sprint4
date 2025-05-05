@@ -18,7 +18,7 @@ import { GuestFavorite } from "../cmps/GuestFavorite.jsx";
 
 const MySwal = withReactContent(Swal);
 
-export function StayDetails() {
+export default function StayDetails() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 745);
   const { stayId } = useParams();
@@ -132,11 +132,11 @@ export function StayDetails() {
                   <h3>{stay.name}</h3>
                   <div className="stay-actions">
                     <button className="share-btn" onClick={showSharePopup}>
-                      <img src="/public/svg/share.svg" alt="Share" />
+                      <img src="/svg/share.svg" alt="Share" />
                       Share
                     </button>
                     <button className="save-btn">
-                      <img src="/public/svg/save.svg" alt="Save" />
+                      <img src="/svg/save.svg" alt="Save" />
                       Save
                     </button>
                   </div>
@@ -175,7 +175,7 @@ export function StayDetails() {
                       />
                     ) : (
                       <div className="stay-capacity-review">
-                        <img src="/public/svg/star.svg" alt="" />
+                        <img src="/svg/star.svg" alt="" />
                         <h6>
                           {stay.reviews && stay.reviews.length > 0
                             ? averageRating
@@ -248,7 +248,7 @@ export function StayDetails() {
 
               <div className="stay-reviews">
                 <div className="stay-reviews-header">
-                  <img src="/public/svg/star.svg" alt="" />
+                  <img src="/svg/star.svg" alt="" />
                   <h6>
                     {stay.reviews && stay.reviews.length > 0
                       ? averageRating

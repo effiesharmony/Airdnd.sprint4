@@ -283,7 +283,7 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
               </div>
               {startDate && endDate && isDateInDropdownOpen && (
                 <button onClick={clearDates}>
-                  <img src="/public/svg/close.svg" alt="" />
+                  <img src="/svg/close.svg" alt="" />
                 </button>
               )}
             </div>
@@ -309,7 +309,7 @@ export function StayFilterFocused({ modalType, isFilterFocused }) {
               </div>
               {startDate && endDate && isDateOutDropdownOpen && (
                 <button onClick={clearDates}>
-                  <img src="/public/svg/close.svg" alt="" />
+                  <img src="/svg/close.svg" alt="" />
                 </button>
               )}
             </div>

@@ -47,7 +47,7 @@ export function StayCategories({ onSetFilter, filterBy }) {
             ${isScrolled ? "cat-sticky" : "cat-not-sticky"} `}>
             {(currentPos > 0 && !isMobile) &&
                 <button className="cat-button prev" onClick={() => HandleScrollX(-1)}>
-                    <img src="public/svg/leftArrow.svg" alt="Left arrow" />
+                    <img src="/svg/leftArrow.svg" alt="Left arrow" />
                 </button>
             }
             <section ref={scrollRef} className="categories-inner-container">
@@ -61,7 +61,7 @@ export function StayCategories({ onSetFilter, filterBy }) {
             </section>
             {(!isScrollEnd && !isMobile) &&
                 <button className="cat-button next" onClick={() => HandleScrollX(1)}>
-                    <img src="public/svg/rightArrow.svg" alt="Right arrow" />
+                    <img src="/svg/rightArrow.svg" alt="Right arrow" />
                 </button>
             }
         </div>

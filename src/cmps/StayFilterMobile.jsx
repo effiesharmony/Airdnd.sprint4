@@ -116,7 +116,7 @@ export function StayFilterMobile({ onCloseFilter }) {
       <div className="stay-filter-mobile">
         <div className="stay-filter-mobile-close">
           <button className="close-btn" onClick={onCloseFilter}>
-            <img src="/public/svg/close.svg" alt="" />
+            <img src="/svg/close.svg" alt="" />
           </button>
         </div>
 

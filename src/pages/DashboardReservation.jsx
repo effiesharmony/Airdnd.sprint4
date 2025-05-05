@@ -24,7 +24,7 @@ ChartJS.register(
   LinearScale
 );
 
-export function DashboardReservation() {
+export default function DashboardReservation() {
   const [orders, setOrders] = useState([]);
   const [users, setUsers] = useState({});
   const [stays, setStays] = useState({});

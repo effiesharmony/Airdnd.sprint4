@@ -20,7 +20,7 @@ export function StayPreview({ stay }) {
                 {/* <p className="stay-dates">{stay.availableDates[0].month} {stay.availableDates[0].start} - {stay.availableDates[0].end}</p> */}
                 <p className="stay-price"><span>${numberWithCommas(stay.price)}</span> night</p>
                 <div className="stay-rating-container">
-                    <img className="star" src="public/svg/star.svg" alt="Star" />
+                    <img className="star" src="/svg/star.svg" alt="Star" />
                     {stay.reviews.length > 0
                         ? <>
                             <p className="rating-num">{stay.rating}</p>

@@ -25,7 +25,7 @@ export function AppFooter() {
 		<div className="footer-lng">
         <img
           className="app-footer-world-svg"
-          src="/public/svg/world.svg"
+          src="/svg/world.svg"
           alt=""
         />
         <h1>English (US)</h1>

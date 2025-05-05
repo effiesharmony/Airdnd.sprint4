@@ -19,8 +19,8 @@ export function LongTxt({ txt, length = 400 }) {
                         <button className="show-more-btn" onClick={onToggleIsShowFullTxt}>
                             <span className="btn-words" >
                                 {isShowFullTxt
-                                    ? (<> <img src="../public/svg/leftArrow.svg" /> Show less </>)
-                                    : (<> Show more <img src="../public/svg/rightArrow.svg" /> </>)
+                                    ? (<> <img src="/svg/leftArrow.svg" /> Show less </>)
+                                    : (<> Show more <img src="/svg/rightArrow.svg" /> </>)
                                 }
                             </span>
                         </button>

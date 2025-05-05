@@ -103,13 +103,13 @@ export function AppHeaderFull() {
             {isSmallScreen ? (
               <img
                 className="app-header-left-box-logo-img"
-                src="/public/svg/small-logo.svg"
+                src="/svg/small-logo.svg"
                 alt="App Logo"
               />
             ) : (
               <img
                 className="app-header-left-box-logo-img"
-                src="/public/svg/logo.svg"
+                src="/svg/logo.svg"
                 alt="App Logo"
               />
             )}
@@ -122,7 +122,7 @@ export function AppHeaderFull() {
           </Link>
           <img
             className="app-header-world-svg"
-            src="/public/svg/world.svg"
+            src="/svg/world.svg"
             alt="World icon"
           />
           <button
@@ -133,19 +133,19 @@ export function AppHeaderFull() {
           >
             <img
               className="app-header-menu-svg"
-              src="/public/svg/menu.svg"
+              src="/svg/menu.svg"
               alt="Menu icon"
             />
             {user ? (
               <img
                 className="app-header-user-img"
-                src={user.imgUrl ? user.imgUrl : "/public/img/effie.jpeg"}
+                src={user.imgUrl ? user.imgUrl : "/img/effie.jpeg"}
                 alt="User icon"
               />
             ) : (
               <img
                 className="app-header-user-img"
-                src="../../public/img/user.png"
+                src="/img/user.png"
                 alt="User icon"
               />
             )}
@@ -156,7 +156,7 @@ export function AppHeaderFull() {
                 <>
                   <NavLink
                     className="dropdown-menu-link messages"
-                    to="user/:id"
+                    to="/dashboard/listings"
                     onClick={onOpenCloseMenu}
                   >
                     Messages
@@ -177,7 +177,7 @@ export function AppHeaderFull() {
                   </NavLink>
                   <NavLink
                     className="dropdown-menu-link wishlist"
-                    to="user/:id"
+                    to="/dashboard/listings"
                     onClick={onOpenCloseMenu}
                   >
                     Wishlist
@@ -253,7 +253,7 @@ export function AppHeaderFull() {
           <div className="app-header-left-box">
             <img
               className="app-header-left-box-logo-img"
-              src="/public/svg/logo.svg"
+              src="/svg/logo.svg"
               alt="App Logo"
             />
           </div>

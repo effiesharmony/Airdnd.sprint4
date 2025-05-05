@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router'
 import { useLocation } from "react-router-dom";
 
-export function LoginSignup() {
+export default function LoginSignup() {
 
   const isSignup = location.pathname.startsWith("/login/signup");
 
