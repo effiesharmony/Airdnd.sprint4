@@ -6,6 +6,7 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 import { logout } from "../store/actions/user.actions.js";
 import { StayFilterFocused } from "./StayFilterFocused.jsx";
 import { StayFilterUnfocused } from "./StayFilterUnfocused.jsx";
+import { throttle } from 'lodash';
 
 export function AppHeaderFull() {
   const user = useSelector((storeState) => storeState.userModule.user);
@@ -23,23 +24,25 @@ export function AppHeaderFull() {
   const menuRef = useRef(null);
 
   useEffect(() => {
-    if (isHomePage) {
-      setIsFilterFocused(true);
-    } else if (!isHomePage) {
-      setIsFilterFocused(false);
-    }
-
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("resize", handleResize);
-
-    // Add listener for clicks outside of the menu
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+	const throttledScroll = throttle(() => {
+		const scrolled = window.scrollY > 0;
+		setIsScrolled(scrolled);
+		if (scrolled) {
+		  setIsFilterFocused(false);
+		} else if (!scrolled && isHomePage) {
+		  setIsFilterFocused(true);
+		}
+	  }, 100); // не чаще одного раза в 100мс
+	
+	  window.addEventListener("scroll", throttledScroll);
+	  window.addEventListener("resize", handleResize);
+	  document.addEventListener("mousedown", handleClickOutside);
+	
+	  return () => {
+		window.removeEventListener("scroll", throttledScroll);
+		window.removeEventListener("resize", handleResize);
+		document.removeEventListener("mousedown", handleClickOutside);
+	  };
   }, [isHomePage]);
 
   function handleScroll() {
